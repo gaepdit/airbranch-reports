@@ -1,3 +1,5 @@
+# Server settings files
+appsettings\.*\.json
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,rider,cypressio
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,visualstudiocode,rider,cypressio
