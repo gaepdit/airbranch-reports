@@ -3,18 +3,18 @@ using Domain.Personnel;
 
 namespace Domain.Compliance.Models;
 
-public record struct Acc
+public record struct AccReport
 {
     public int Id { get; init; }
+
     public Facility Facility { get; init; }
-    public DateTime DateReceived { get; init; }
+    public int AccReportingYear { get; init; }
     public Staff StaffResponsible { get; init; }
 
+    public DateTime DatePostmarked { get; init; }
+    public DateTime DateReceived { get; init; }
     public DateTime? DateComplete { get; init; }
     public DateTime? DateAcknowledgmentLetterSent { get; init; }
-
-    public int? AccReportingYear { get; init; }
-    public DateTime DatePostmarked { get; init; }
 
     public bool PostmarkedByDeadline { get; init; }
     public bool SignedByResponsibleOfficial { get; init; }

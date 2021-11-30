@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace Domain.Facilities.Models;
 
@@ -15,13 +16,19 @@ public record struct ApbFacilityId : IEquatable<ApbFacilityId>
 
     public static implicit operator ApbFacilityId(string id) => new(id);
 
-    public override string ToString() => _id;
-    public string ShortString => _id;
+    public override string ToString() => FormattedString;
     public string FormattedString => $"{_id[..3]}-{_id[3..8]}";
+
+    [JsonIgnore]
+    public string ShortString => _id;
+    [JsonIgnore]
     public string DbFormattedString => $"0413{ShortString}";
+    [JsonIgnore]
     public string EpaFacilityIdentifier => $"GA00000013{ShortString}";
 
     private const string AirsNumberPattern = @"^(04-?13-?)?\d{3}-?\d{5}$";
+
+    // Static methods
 
     public static bool IsValidAirsNumberFormat(string id) =>
         !string.IsNullOrWhiteSpace(id) && Regex.IsMatch(id, AirsNumberPattern);

@@ -1,6 +1,4 @@
-﻿using Domain.Facilities.Models;
-
-namespace LocalRepository.Data;
+﻿namespace LocalRepository.Data;
 
 internal static class FacilityData
 {

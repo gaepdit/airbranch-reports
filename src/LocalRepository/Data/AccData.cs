@@ -4,7 +4,7 @@ namespace LocalRepository.Data;
 
 internal static class AccData
 {
-    public static IEnumerable<Acc> GetAccs => new List<Acc>
+    public static IEnumerable<AccReport> GetAccReports => new List<AccReport>
     {
         new() {
             Id = 1,

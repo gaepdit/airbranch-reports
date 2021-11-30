@@ -1,6 +1,5 @@
 ﻿using Domain.Organization.Models;
 using Domain.Organization.Repositories;
-using LocalRepository.Data;
 
 namespace LocalRepository.Organization;
 

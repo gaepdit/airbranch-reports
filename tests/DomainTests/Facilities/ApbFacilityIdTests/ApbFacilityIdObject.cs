@@ -13,7 +13,7 @@ public class ApbFacilityIdObject
 
         Assert.Multiple(() =>
         {
-            airs.ToString().Should().Be("12345678");
+            airs.ToString().Should().Be("123-45678");
             airs.ShortString.Should().Be("12345678");
             airs.FormattedString.Should().Be("123-45678");
             airs.DbFormattedString.Should().Be("041312345678");
