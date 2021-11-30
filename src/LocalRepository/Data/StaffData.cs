@@ -2,7 +2,7 @@
 
 namespace LocalRepository.Data;
 
-internal static class StaffData
+public static class StaffData
 {
     public static IEnumerable<Staff> GetStaff => new List<Staff>
     {

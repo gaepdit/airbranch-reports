@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppTests", "tests\WebApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalRepository", "src\LocalRepository\LocalRepository.csproj", "{EF0150D8-60A9-4C1C-9033-DD40E16B83E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalRepositoryTests", "tests\LocalRepositoryTests\LocalRepositoryTests.csproj", "{3D0BAFF4-8986-4FB0-A153-33AE202F0593}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{EF0150D8-60A9-4C1C-9033-DD40E16B83E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF0150D8-60A9-4C1C-9033-DD40E16B83E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF0150D8-60A9-4C1C-9033-DD40E16B83E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D0BAFF4-8986-4FB0-A153-33AE202F0593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D0BAFF4-8986-4FB0-A153-33AE202F0593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D0BAFF4-8986-4FB0-A153-33AE202F0593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D0BAFF4-8986-4FB0-A153-33AE202F0593}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{3AC9405D-BBF4-43D5-8F14-0925D9E9923C} = {E6A757E9-853F-401F-A9C1-234DAA73BE34}
 		{23D6EE83-9DC8-4F4A-8D63-0FF53611B451} = {E6A757E9-853F-401F-A9C1-234DAA73BE34}
 		{50E1541C-419F-4661-A667-262DC1A3E162} = {E6A757E9-853F-401F-A9C1-234DAA73BE34}
+		{3D0BAFF4-8986-4FB0-A153-33AE202F0593} = {E6A757E9-853F-401F-A9C1-234DAA73BE34}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6FCD1233-3EDF-4948-948B-941287FB6E27}

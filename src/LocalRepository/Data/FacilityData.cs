@@ -1,6 +1,6 @@
 ﻿namespace LocalRepository.Data;
 
-internal static class FacilityData
+public static class FacilityData
 {
     public static IEnumerable<Facility> GetFacilities => new List<Facility>
     {

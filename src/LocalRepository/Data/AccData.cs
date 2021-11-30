@@ -2,7 +2,7 @@
 
 namespace LocalRepository.Data;
 
-internal static class AccData
+public static class AccData
 {
     public static IEnumerable<AccReport> GetAccReports => new List<AccReport>
     {
