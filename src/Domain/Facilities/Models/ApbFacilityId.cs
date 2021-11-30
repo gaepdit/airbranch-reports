@@ -16,8 +16,8 @@ public record struct ApbFacilityId : IEquatable<ApbFacilityId>
 
     public static implicit operator ApbFacilityId(string id) => new(id);
 
-    public override string ToString() => FormattedString;
-    public string FormattedString => $"{_id[..3]}-{_id[3..8]}";
+    public override string ToString() => FacilityId;
+    public string FacilityId => $"{_id[..3]}-{_id[3..8]}";
 
     [JsonIgnore]
     public string ShortString => _id;

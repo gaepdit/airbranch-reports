@@ -1,4 +1,5 @@
 using Domain.Compliance.Repositories;
+using Domain.Facilities.Repositories;
 using Domain.Organization.Repositories;
 using System.Data;
 using System.Data.SqlClient;
@@ -12,6 +13,8 @@ builder.Services.AddRazorPages();
 // Configure the data repositories
 if (builder.Environment.IsLocalDev())
 {
+    builder.Services.AddScoped<IFacilitiesRepository,
+        LocalRepository.Facilities.FacilitiesRepository>();
     builder.Services.AddScoped<IOrganizationRepository,
         LocalRepository.Organization.OrganizationRepository>();
     builder.Services.AddScoped<IComplianceRepository,
@@ -21,6 +24,9 @@ else
 {
     builder.Services.AddScoped<IDbConnection>(
         db => new SqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    builder.Services.AddScoped<IFacilitiesRepository,
+        Infrastructure.Facilities.FacilitiesRepository>();
     builder.Services.AddScoped<IOrganizationRepository,
         Infrastructure.Organization.OrganizationRepository>();
     builder.Services.AddScoped<IComplianceRepository,
