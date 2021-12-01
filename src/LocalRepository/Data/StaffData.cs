@@ -10,22 +10,22 @@ public static class StaffData
         {
             Id = 1,
             EmailAddress = "one@example.net",
-            FirstName = "Adélie",
-            LastName = "Penguin",
+            GivenName = "Adélie",
+            FamilyName = "Penguin",
         },
         new()
         {
             Id = 2,
             EmailAddress = "two@example.net",
-            FirstName = "Bactrian",
-            LastName = "Camel",
+            GivenName = "Bactrian",
+            FamilyName = "Camel",
         },
         new()
         {
             Id = 3,
             EmailAddress = "three@example.net",
-            FirstName = "Clouded",
-            LastName = "Leopard",
+            GivenName = "Clouded",
+            FamilyName = "Leopard",
         },
     };
 }

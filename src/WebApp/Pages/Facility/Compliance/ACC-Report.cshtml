@@ -1,0 +1,95 @@
+﻿@page
+@using WebApp.Platform.Formatting
+@model ACC_ReportModel
+@{
+    Layout = "_ReportLayout";
+    ViewData["Title"] = $"{Model.AccReport.Facility.Id} - Title V ACC Memo: {Model.AccReport.AccReportingYear}";
+}
+
+<div class="page-wrapper">
+    <partial name="_EpdBannerPartial" model=Model.OrganizationInfo />
+
+    <div class="memorandum">
+        <header>
+            <h1>Memorandum</h1>
+
+            <dl>
+                <dt>Date:</dt>
+                <dd>@Model.AccReport.DateAcknowledgmentLetterSent.ToString(DisplayFormats.LongDate)</dd>
+                <dt>From:</dt>
+                <dd>@Model.AccReport.StaffResponsible.DisplayName</dd>
+                <dt>Subject:</dt>
+                <dd>
+                    Title V Annual Certification for @Model.AccReport.AccReportingYear<br />
+                    @Model.AccReport.Facility.Name, @Model.AccReport.Facility.City<br />
+                    AIRS # @Model.AccReport.Facility.Id
+                </dd>
+            </dl>
+        </header>
+
+        <section>
+            <p>
+                Condition 8.14.1 of each Title V Permit requires the company to submit an annual compliance
+                certification by January 30 or February 28 each calendar year. After reviewing the compliance
+                certification for the year @Model.AccReport.AccReportingYear for the above facility, I have determined the following:
+            </p>
+
+            <table class="table-values-list">
+                <tbody>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.DatePostmarked)</th>
+                        <td>@Model.AccReport.DatePostmarked.ToString(DisplayFormats.LongDate)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.DateReceived)</th>
+                        <td>@Model.AccReport.DateReceived.ToString(DisplayFormats.LongDate)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.PostmarkedByDeadline)</th>
+                        <td>@Html.DisplayFor(m => m.AccReport.PostmarkedByDeadline)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.SignedByResponsibleOfficial)</th>
+                        <td>@Html.DisplayFor(m => m.AccReport.SignedByResponsibleOfficial)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.CorrectFormsUsed)</th>
+                        <td>@Html.DisplayFor(m => m.AccReport.CorrectFormsUsed)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.AllTitleVConditionsListed)</th>
+                        <td>@Html.DisplayFor(m => m.AccReport.AllTitleVConditionsListed)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.CorrectlyFilledOut)</th>
+                        <td>@Html.DisplayFor(m => m.AccReport.CorrectlyFilledOut)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.DeviationsReported)</th>
+                        <td>@Html.DisplayFor(m => m.AccReport.DeviationsReported)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.UnreportedDeviationsReported)</th>
+                        <td>@Html.DisplayFor(m => m.AccReport.UnreportedDeviationsReported)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.AllDeviationsReported)</th>
+                        <td>@Html.DisplayFor(m => m.AccReport.AllDeviationsReported)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.EnforcementRecommended)</th>
+                        <td>@Html.DisplayFor(m => m.AccReport.EnforcementRecommended)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.AccReport.ResubmittalRequested)</th>
+                        <td>@Html.DisplayFor(m => m.AccReport.ResubmittalRequested)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Comments:</h2>
+
+            <p class="preserve-linebreaks">@Model.AccReport.Comments</p>
+        </section>
+    </div>
+</div>
