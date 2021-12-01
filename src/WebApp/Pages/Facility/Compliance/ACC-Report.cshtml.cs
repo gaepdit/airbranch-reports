@@ -5,6 +5,7 @@ using Domain.Organization.Models;
 using Domain.Organization.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebApp.Platform.Models;
 
 namespace WebApp.Pages.Facility.Compliance;
 
@@ -12,6 +13,7 @@ public class ACC_ReportModel : PageModel
 {
     public AccReport AccReport { get; set; }
     public OrganizationInfo OrganizationInfo { get; set; }
+    public MemoHeader MemoHeader { get; set; }
 
     public async Task<ActionResult> OnGetAsync(
         [FromServices] IComplianceRepository repository,
@@ -26,6 +28,15 @@ public class ACC_ReportModel : PageModel
 
         AccReport = report.Value;
         OrganizationInfo = await orgRepo.GetAsync();
+
+        MemoHeader = new MemoHeader
+        {
+            Date = AccReport.DateAcknowledgmentLetterSent,
+            From = AccReport.StaffResponsible.DisplayName,
+            Subject = $"Title V Annual Certification for {AccReport.AccReportingYear}" + Environment.NewLine +
+                $"{AccReport.Facility.Name}, {AccReport.Facility.City}" + Environment.NewLine +
+                $"AIRS # {AccReport.Facility.Id}",
+        };
 
         return Page();
     }

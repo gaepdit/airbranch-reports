@@ -10,22 +10,7 @@
     <partial name="_EpdBannerPartial" model=Model.OrganizationInfo />
 
     <div class="memorandum">
-        <header>
-            <h1>Memorandum</h1>
-
-            <dl>
-                <dt>Date:</dt>
-                <dd>@Model.AccReport.DateAcknowledgmentLetterSent.ToString(DisplayFormats.LongDate)</dd>
-                <dt>From:</dt>
-                <dd>@Model.AccReport.StaffResponsible.DisplayName</dd>
-                <dt>Subject:</dt>
-                <dd>
-                    Title V Annual Certification for @Model.AccReport.AccReportingYear<br />
-                    @Model.AccReport.Facility.Name, @Model.AccReport.Facility.City<br />
-                    AIRS # @Model.AccReport.Facility.Id
-                </dd>
-            </dl>
-        </header>
+        <partial name="_MemoHeaderPartial" model=Model.MemoHeader />
 
         <section>
             <p>

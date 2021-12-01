@@ -105,7 +105,7 @@ html, body {
     text-transform: uppercase;
 }
 
-.memorandum header dt {
+.memorandum dt {
     text-transform: uppercase;
     font-weight: bold;
     float: left;
@@ -113,7 +113,7 @@ html, body {
     width: 6rem;
 }
 
-.memorandum header dd {
+.memorandum dd {
     margin-left: 7rem;
 }
 
