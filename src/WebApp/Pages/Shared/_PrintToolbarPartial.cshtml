@@ -1,0 +1,8 @@
+﻿@model int
+<div class="print-toolbar">
+    @if (Model > 1)
+    {
+        <text>(@Model pages)</text>
+    }
+    <button onclick="window.print(); return false;">🖨️ Print</button>
+</div>
