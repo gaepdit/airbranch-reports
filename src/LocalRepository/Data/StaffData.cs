@@ -27,5 +27,26 @@ public static class StaffData
             GivenName = "Clouded",
             FamilyName = "Leopard",
         },
+        new()
+        {
+            Id = 4,
+            EmailAddress = "four@example.net",
+            GivenName = "Dugong",
+            FamilyName = "Sirenia",
+        },
+        new()
+        {
+            Id = 5,
+            EmailAddress = "five@example.net",
+            GivenName = "Elephant",
+            FamilyName = "Seal",
+        },
+        new()
+        {
+            Id = 6,
+            EmailAddress = "six@example.net",
+            GivenName = "Fennec",
+            FamilyName = "Fox",
+        },
     };
 }

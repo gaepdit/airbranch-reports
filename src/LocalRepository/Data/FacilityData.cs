@@ -10,6 +10,7 @@ public static class FacilityData
             City = "Atown",
             County = "Appling",
             Name = "Apple Corp",
+            State = "Georgia",
         },
         new()
         {
@@ -17,6 +18,7 @@ public static class FacilityData
             City = "Btown",
             County = "Bibb",
             Name = "Banana Corp",
+            State = "Georgia",
         },
         new()
         {
@@ -24,6 +26,7 @@ public static class FacilityData
             City = "Ctown",
             County = "Clay",
             Name = "Cranberry Corp",
+            State = "Georgia",
         },
     };
 }

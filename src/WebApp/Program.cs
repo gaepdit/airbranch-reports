@@ -1,5 +1,6 @@
 using Domain.Compliance.Repositories;
 using Domain.Facilities.Repositories;
+using Domain.Monitoring.Repositories;
 using Domain.Organization.Repositories;
 using System.Data;
 using System.Data.SqlClient;
@@ -19,6 +20,8 @@ if (builder.Environment.IsLocalDev())
         LocalRepository.Organization.OrganizationRepository>();
     builder.Services.AddScoped<IComplianceRepository,
         LocalRepository.Compliance.ComplianceRepository>();
+    builder.Services.AddScoped<IMonitoringRepository,
+        LocalRepository.Monitoring.MonitoringRepository>();
 }
 else
 {
