@@ -1,5 +1,4 @@
-﻿using Domain.Facilities.Models;
-using Domain.Personnel;
+﻿using Domain.Personnel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Compliance.Models;
@@ -20,7 +19,7 @@ public record struct AccReport
 
     [Display(Name = "Date review completed")]
     public DateTime? DateComplete { get; init; }
-    
+
     [Display(Name = "Date acknowledgment letter sent")]
     public DateTime? DateAcknowledgmentLetterSent { get; init; }
 

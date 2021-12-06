@@ -1,6 +1,4 @@
-﻿using Domain.Facilities.Models;
-
-namespace Domain.Facilities.Repositories
+﻿namespace Domain.Facilities.Repositories
 {
     public interface IFacilitiesRepository
     {

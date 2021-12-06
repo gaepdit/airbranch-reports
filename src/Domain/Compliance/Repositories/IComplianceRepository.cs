@@ -1,5 +1,4 @@
 ﻿using Domain.Compliance.Models;
-using Domain.Facilities.Models;
 
 namespace Domain.Compliance.Repositories;
 
