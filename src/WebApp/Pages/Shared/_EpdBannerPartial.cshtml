@@ -6,11 +6,16 @@
     <div class="grid__item grid__item_right">
         <address class="inside-address">
             <div class="director">@Model.NameOfDirector, Director</div>
-            <div class="branch">Air Protection Branch</div>
+            <div class="branch">@Model.Org</div>
             <div class="address">
-                4244 International Parkway, Suite 120<br />
-                Atlanta, Georgia 30354<br />
-                404-363-7000
+                @Model.OrgAddress.Street<br />
+                @if (Model.OrgAddress.Street2 is not null)
+                {
+                    @Model.OrgAddress.Street2
+                    <br />
+                }
+                @Model.OrgAddress.City, @Model.OrgAddress.State @Model.OrgAddress.PostalCode<br />
+                @Model.OrgPhoneNumber
             </div>
         </address>
     </div>
