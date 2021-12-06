@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppTests", "tests\WebApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalRepository", "src\LocalRepository\LocalRepository.csproj", "{EF0150D8-60A9-4C1C-9033-DD40E16B83E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalRepositoryTests", "tests\LocalRepositoryTests\LocalRepositoryTests.csproj", "{3D0BAFF4-8986-4FB0-A153-33AE202F0593}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalRepositoryTests", "tests\LocalRepositoryTests\LocalRepositoryTests.csproj", "{3D0BAFF4-8986-4FB0-A153-33AE202F0593}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

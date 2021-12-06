@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApp.Api.Compliance
 {
     [ApiController]
-    [Route("api/facility/{facilityId}/")]
+    [Route("api/facility/{facilityId}/acc-report/")]
     [Produces("application/json")]
     public class ComplianceController : ControllerBase
     {
-        [HttpGet("acc-report")]
+        [HttpGet("{year:int}")]
         public async Task<ActionResult<AccReport>> GetAccReportAsync(
             [FromServices] IComplianceRepository repository,
             [FromRoute] string facilityId,
-            [FromQuery] int year)
+            [FromRoute] int year)
         {
             if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) return BadRequest();
             var accReport = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), year);

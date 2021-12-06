@@ -7,7 +7,7 @@ namespace WebApp.Api.Facilities
     [ApiController]
     [Route("api/facility/{facilityId}")]
     [Produces("application/json")]
-    public class FacilitiesController : Controller
+    public class FacilityController : Controller
     {
         [HttpGet]
         public async Task<ActionResult<Facility>> GetAsync(

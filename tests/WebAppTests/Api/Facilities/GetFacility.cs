@@ -18,7 +18,7 @@ public class GetFacility
         repo.Setup(l => l.GetFacilityAsync(It.IsAny<ApbFacilityId>()))
             .ReturnsAsync((Facility)default);
 
-        var controller = new FacilitiesController();
+        var controller = new FacilityController();
         var response = await controller.GetAsync(repo.Object, "00100001");
 
         Assert.Multiple(() =>
@@ -37,7 +37,7 @@ public class GetFacility
         repo.Setup(l => l.GetFacilityAsync(It.IsAny<ApbFacilityId>()))
             .ReturnsAsync((Facility?)null);
 
-        var controller = new FacilitiesController();
+        var controller = new FacilityController();
         var response = await controller.GetAsync(repo.Object, "00100001");
 
         Assert.Multiple(() =>
@@ -52,7 +52,7 @@ public class GetFacility
     public async Task ReturnsBadRequestIfInvalidFacilityId()
     {
         var repo = new Mock<IFacilitiesRepository>();
-        var controller = new FacilitiesController();
+        var controller = new FacilityController();
         var response = await controller.GetAsync(repo.Object, "abc");
 
         Assert.Multiple(() =>

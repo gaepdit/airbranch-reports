@@ -1,6 +1,6 @@
-﻿@page
+﻿@page "~/facility/{facilityId}/acc-report/{year:int}"
 @using WebApp.Platform.Formatting
-@model ACC_ReportModel
+@model AccReportModel
 @{
     Layout = "_ReportLayout";
     ViewData["Title"] = $"{Model.AccReport.Facility.Id} - Title V ACC Memo: {Model.AccReport.AccReportingYear}";

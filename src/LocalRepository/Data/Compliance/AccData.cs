@@ -1,6 +1,6 @@
 ﻿using Domain.Compliance.Models;
 
-namespace LocalRepository.Data;
+namespace LocalRepository.Data.Compliance;
 
 public static class AccData
 {

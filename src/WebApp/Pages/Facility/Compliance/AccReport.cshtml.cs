@@ -9,7 +9,7 @@ using WebApp.Platform.Models;
 
 namespace WebApp.Pages.Facility.Compliance;
 
-public class ACC_ReportModel : PageModel
+public class AccReportModel : PageModel
 {
     public AccReport AccReport { get; set; }
     public OrganizationInfo OrganizationInfo { get; set; }
@@ -18,8 +18,8 @@ public class ACC_ReportModel : PageModel
     public async Task<ActionResult> OnGetAsync(
         [FromServices] IComplianceRepository repository,
         [FromServices] IOrganizationRepository orgRepo,
-        [FromQuery] string facilityId,
-        [FromQuery] int year)
+        [FromRoute] string facilityId,
+        [FromRoute] int year)
     {
         if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) return NotFound($"Facility ID {facilityId} is invalid.");
 

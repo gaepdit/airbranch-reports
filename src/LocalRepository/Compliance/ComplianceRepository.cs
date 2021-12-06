@@ -1,6 +1,6 @@
 ﻿using Domain.Compliance.Models;
 using Domain.Compliance.Repositories;
-using static LocalRepository.Data.AccData;
+using static LocalRepository.Data.Compliance.AccData;
 
 namespace LocalRepository.Compliance;
 
