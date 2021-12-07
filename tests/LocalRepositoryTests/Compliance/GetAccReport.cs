@@ -5,7 +5,7 @@ using NUnit.Framework;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace InfrastructureTests.LocalRepository.Compliance;
+namespace LocalRepositoryTests.Compliance;
 
 public class GetAccReport
 {
