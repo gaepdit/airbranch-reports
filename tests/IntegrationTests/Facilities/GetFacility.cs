@@ -4,7 +4,7 @@ using Infrastructure.Facilities;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
-namespace InfrastructureTests.Facilities;
+namespace IntegrationTests.Facilities;
 
 public class GetFacility
 {

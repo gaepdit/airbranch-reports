@@ -3,7 +3,7 @@ using NUnit.Framework;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace InfrastructureTests;
+namespace IntegrationTests;
 
 [SetUpFixture]
 public class Global

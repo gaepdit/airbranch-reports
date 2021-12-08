@@ -4,7 +4,7 @@ using Infrastructure.Organization;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
-namespace InfrastructureTests.Organization;
+namespace IntegrationTests.Organization;
 
 public class GetOrganization
 {

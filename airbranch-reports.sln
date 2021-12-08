@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E6A757E9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainTests", "tests\DomainTests\DomainTests.csproj", "{3AC9405D-BBF4-43D5-8F14-0925D9E9923C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureTests", "tests\InfrastructureTests\InfrastructureTests.csproj", "{23D6EE83-9DC8-4F4A-8D63-0FF53611B451}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "tests\IntegrationTests\IntegrationTests.csproj", "{23D6EE83-9DC8-4F4A-8D63-0FF53611B451}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppTests", "tests\WebAppTests\WebAppTests.csproj", "{50E1541C-419F-4661-A667-262DC1A3E162}"
 EndProject

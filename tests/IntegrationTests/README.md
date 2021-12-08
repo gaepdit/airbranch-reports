@@ -1,4 +1,4 @@
-﻿# Infrastructure integration tests
+﻿# Infrastructure Integration Tests
 
 The tests in this project require a connection to a working database populated with data. The values in the tests were selected using data from the current `airbranch` dev database.
 

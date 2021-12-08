@@ -3,7 +3,7 @@ using Infrastructure.Compliance;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
-namespace InfrastructureTests.Compliance;
+namespace IntegrationTests.Compliance;
 
 public class AccReportExists
 {
