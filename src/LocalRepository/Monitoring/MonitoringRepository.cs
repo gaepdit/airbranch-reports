@@ -6,15 +6,16 @@ namespace LocalRepository.Monitoring;
 
 public class MonitoringRepository : IMonitoringRepository
 {
-    public async Task<StackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber) =>
-        await StackTestReportExistsAsync(facilityId, referenceNumber)
-        ? GetStackTestReports.SingleOrDefault(e =>
-            e.ReferenceNumber == referenceNumber &&
-            e.Facility.Id == facilityId)
-        : null;
+    public async Task<StackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
+    {
+        if (!await StackTestReportExistsAsync(facilityId, referenceNumber)) return null;
+
+        var result = GetStackTestReports.Single(e => e.ReferenceNumber == referenceNumber && e.Facility.Id == facilityId);
+
+        result.ParseConfidentialParametersCode();
+        return result;
+    }
 
     public Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber) =>
-        Task.FromResult(GetStackTestReports.Any(e =>
-            e.ReferenceNumber == referenceNumber &&
-            e.Facility.Id == facilityId));
+        Task.FromResult(GetStackTestReports.Any(e => e.ReferenceNumber == referenceNumber && e.Facility.Id == facilityId));
 }

@@ -73,6 +73,7 @@ public static class StackTestData
             AvgPollutantConcentration = new ValueWithUnits("17.1","ppm"),
             AvgEmissionRate = new ValueWithUnits("0.013", "lb/ton"),
             PercentAllowable = "75.0",
+            ConfidentialParametersCode = "1",
         },
     };
 }

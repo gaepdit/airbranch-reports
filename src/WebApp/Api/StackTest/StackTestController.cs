@@ -20,7 +20,13 @@ namespace WebApp.Api.StackTest
             if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) return BadRequest();
             var stackTestReport = await repository.GetStackTestReportAsync(facilityId, referenceNumber);
             if (!stackTestReport.HasValue) return NotFound();
-            if (includeConfidentialInfo) return Ok(stackTestReport.Value);
+            
+            if (includeConfidentialInfo)
+            {
+                // TODO: check authentication
+                return Ok(stackTestReport.Value);
+            }
+
             return Ok(stackTestReport.Value.RedactedStackTestReport());
         }
 

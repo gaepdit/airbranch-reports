@@ -1,6 +1,7 @@
 ﻿using Domain.Monitoring.Models.Partials;
 using Domain.Personnel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Domain.Monitoring.Models;
 
@@ -80,11 +81,37 @@ public record struct StackTestReport
     public string PercentAllowable { get; init; }
 
     // Confidential info handling
-    public string ConfidentialParameters { get; init; }
 
+    public List<string> ConfidentialParameters { get; private set; }
+
+    [JsonIgnore]
+    public string ConfidentialParametersCode { private get; init; }
+
+    private string CheckConfidential(string input, string parameter) =>
+        ConfidentialParameters.Contains(parameter)
+        ? GlobalConstants.StackTestConfidentialInfoPlaceholder
+        : input;
+
+    // TODO: Add all parameters
     public StackTestReport RedactedStackTestReport()
     {
-        var redactedStackTestReport = this;
+        var redactedStackTestReport = this with
+        {
+            Pollutant = CheckConfidential(Pollutant, nameof(Pollutant)),
+            Comments = CheckConfidential(Comments, nameof(Comments)),
+        };
+
         return redactedStackTestReport;
+    }
+
+    // TODO: This is going to get funky
+    public void ParseConfidentialParametersCode()
+    {
+        ConfidentialParameters = new List<string>();
+
+        if (ConfidentialParametersCode == "" || ConfidentialParametersCode[0] == '0') return;
+
+        ConfidentialParameters.Add(nameof(Pollutant));
+        ConfidentialParameters.Add(nameof(Comments));
     }
 }

@@ -4,12 +4,17 @@ using Domain.Monitoring.Repositories;
 using Domain.Organization.Repositories;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.Json.Serialization;
 using WebApp.Platform.Environment;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure the UI
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages()
+    .AddJsonOptions(opts =>
+    {
+        opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 // Configure the data repositories
 if (builder.Environment.IsLocalDev())

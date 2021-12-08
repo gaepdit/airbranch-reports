@@ -1,5 +1,4 @@
-﻿using Domain.Personnel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Compliance.Models;
 
@@ -8,8 +7,10 @@ public record struct AccReport
     public int Id { get; init; }
 
     public Facility Facility { get; set; }
-    public int AccReportingYear { get; init; }
     public PersonName StaffResponsible { get; set; }
+
+    [Display(Name = "ACC reporting year")]
+    public int AccReportingYear { get; init; }
 
     [Display(Name = "Date initial certification postmarked")]
     public DateTime DatePostmarked { get; init; }
