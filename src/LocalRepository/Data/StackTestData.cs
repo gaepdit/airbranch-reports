@@ -1,12 +1,12 @@
 ﻿using Domain.Monitoring.Models;
-using Domain.Monitoring.Models.Partials;
+using Domain.Monitoring.Models.StackTestData;
 using Domain.Personnel;
 
 namespace LocalRepository.Data;
 
 public static class StackTestData
 {
-    public static IEnumerable<StackTestReport> GetStackTestReports => new List<StackTestReport>
+    public static IEnumerable<OneStack> GetStackTestReports => new List<OneStack>
     {
         new() {
             ReferenceNumber = 202099999,

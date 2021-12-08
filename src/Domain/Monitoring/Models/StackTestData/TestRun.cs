@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Monitoring.Models.Partials;
+namespace Domain.Monitoring.Models.StackTestData;
 
 public record struct TestRun
 {

@@ -6,13 +6,12 @@ namespace LocalRepository.Monitoring;
 
 public class MonitoringRepository : IMonitoringRepository
 {
-    public async Task<StackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
+    public async Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
     {
         if (!await StackTestReportExistsAsync(facilityId, referenceNumber)) return null;
 
         var result = GetStackTestReports.Single(e => e.ReferenceNumber == referenceNumber && e.Facility.Id == facilityId);
-
-        result.ParseConfidentialParametersCode();
+        result.ParseConfidentialParameters();
         return result;
     }
 

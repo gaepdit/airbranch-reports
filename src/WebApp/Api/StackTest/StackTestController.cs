@@ -11,7 +11,7 @@ namespace WebApp.Api.StackTest
     public class StackTestController : ControllerBase
     {
         [HttpGet("{referenceNumber:int}")]
-        public async Task<ActionResult<StackTestReport>> GetAsync(
+        public async Task<ActionResult<BaseStackTestReport>> GetAsync(
             [FromServices] IMonitoringRepository repository,
             [FromRoute] string facilityId,
             [FromRoute] int referenceNumber,
@@ -19,15 +19,15 @@ namespace WebApp.Api.StackTest
         {
             if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) return BadRequest();
             var stackTestReport = await repository.GetStackTestReportAsync(facilityId, referenceNumber);
-            if (!stackTestReport.HasValue) return NotFound();
-            
+            if (stackTestReport is null) return NotFound();
+
             if (includeConfidentialInfo)
             {
                 // TODO: check authentication
-                return Ok(stackTestReport.Value);
+                return Ok(stackTestReport);
             }
 
-            return Ok(stackTestReport.Value.RedactedStackTestReport());
+            return Ok(stackTestReport.RedactedStackTestReport());
         }
 
         [HttpGet("exists")]

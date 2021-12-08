@@ -21,7 +21,7 @@ public class AccReportModel : PageModel
         [FromRoute] string facilityId,
         [FromRoute] int year)
     {
-        if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) return NotFound($"Facility ID {facilityId} is invalid.");
+        if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) return NotFound($"Facility ID is invalid.");
 
         var report = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), year);
         if (report == null) return NotFound();
