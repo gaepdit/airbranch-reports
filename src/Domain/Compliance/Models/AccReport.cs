@@ -7,9 +7,9 @@ public record struct AccReport
 {
     public int Id { get; init; }
 
-    public Facility Facility { get; init; }
+    public Facility Facility { get; set; }
     public int AccReportingYear { get; init; }
-    public Staff StaffResponsible { get; init; }
+    public PersonName StaffResponsible { get; set; }
 
     [Display(Name = "Date initial certification postmarked")]
     public DateTime DatePostmarked { get; init; }

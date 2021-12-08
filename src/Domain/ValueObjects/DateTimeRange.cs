@@ -1,6 +1,7 @@
 ﻿namespace Domain.ValueObjects;
 
-public record struct DateTimeRange(
+public record struct DateTimeRange
+(
     DateTime StartDate,
     DateTime? EndDate
 );

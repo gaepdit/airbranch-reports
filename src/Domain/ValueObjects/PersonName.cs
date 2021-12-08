@@ -1,0 +1,20 @@
+﻿using System.Text.Json.Serialization;
+
+namespace Domain.ValueObjects;
+
+public record struct PersonName
+(
+    string GivenName, 
+    string FamilyName, 
+    string? Prefix, 
+    string? Suffix
+)
+{
+    [JsonIgnore]
+    public string DisplayName =>
+        string.Join(" ", new[] { GivenName, FamilyName }.Where(s => !string.IsNullOrEmpty(s)));
+
+    [JsonIgnore]
+    public string SortableFullName =>
+        string.Join(", ", new[] { FamilyName, GivenName }.Where(s => !string.IsNullOrEmpty(s)));
+}

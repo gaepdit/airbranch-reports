@@ -10,43 +10,58 @@ public static class StaffData
         {
             Id = 1,
             EmailAddress = "one@example.net",
-            GivenName = "Adélie",
-            FamilyName = "Penguin",
+            Name = new PersonName
+            {
+                GivenName = "Adélie",
+                FamilyName = "Penguin",
+            },
         },
         new()
         {
             Id = 2,
             EmailAddress = "two@example.net",
-            GivenName = "Bactrian",
-            FamilyName = "Camel",
+            Name = new PersonName
+            {
+                GivenName = "Bactrian",
+                FamilyName = "Camel",
+            },
         },
         new()
         {
             Id = 3,
             EmailAddress = "three@example.net",
-            GivenName = "Clouded",
-            FamilyName = "Leopard",
+            Name = new PersonName
+            {
+                GivenName = "Clouded",
+                FamilyName = "Leopard",
+                Suffix = "Jr."
+            }
         },
         new()
         {
             Id = 4,
             EmailAddress = "four@example.net",
-            GivenName = "Dugong",
-            FamilyName = "Sirenia",
+            Name = new PersonName("Dugong", "Sirenia", "Ms.", null)
         },
         new()
         {
             Id = 5,
             EmailAddress = "five@example.net",
-            GivenName = "Elephant",
-            FamilyName = "Seal",
+            Name = new PersonName
+            {
+                GivenName = "Elephant",
+                FamilyName = "Seal",
+            }
         },
         new()
         {
             Id = 6,
             EmailAddress = "six@example.net",
-            GivenName = "Fennec",
-            FamilyName = "Fox",
+            Name = new PersonName
+            {
+                GivenName = "Fennec",
+                FamilyName = "Fox",
+            }
         },
     };
 }
