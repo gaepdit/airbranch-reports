@@ -1,6 +1,6 @@
 using FluentAssertions;
 using LocalRepository.Compliance;
-using LocalRepository.Data.Compliance;
+using LocalRepository.Data;
 using NUnit.Framework;
 using System.Linq;
 using System.Threading.Tasks;

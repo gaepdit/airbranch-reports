@@ -22,7 +22,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("00300003"),
+            Id = new ApbFacilityId("05100149"),
             City = "Ctown",
             County = "Clay",
             Name = "Cranberry Corp",

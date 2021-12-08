@@ -8,13 +8,12 @@ namespace Infrastructure.Facilities;
 public class FacilitiesRepository : IFacilitiesRepository
 {
     private readonly IDbConnection db;
-
-    public FacilitiesRepository(IDbConnection connection) => db = connection;
+    public FacilitiesRepository(IDbConnection conn) => db = conn;
 
     public Task<bool> FacilityExistsAsync(ApbFacilityId facilityId)
     {
-        var query = @"SELECT CONVERT(bit, COUNT(*))
-            FROM dbo.AFSFACILITYDATA
+        var query = @"select convert(bit, count(*))
+            from dbo.AFSFACILITYDATA
             where STRAIRSNUMBER = @AirsNumber
               and STRUPDATESTATUS <> 'H'";
 

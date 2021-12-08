@@ -2,7 +2,7 @@
 using Domain.Monitoring.Models.Partials;
 using Domain.Personnel;
 
-namespace LocalRepository.Data.StackTests;
+namespace LocalRepository.Data;
 
 public static class StackTestData
 {
