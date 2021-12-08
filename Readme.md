@@ -2,6 +2,9 @@
 
 This application creates various printable reports used or provided by the Georgia EPD Air Protection Branch.
 
+[![.NET build and test](https://github.com/gaepdit/airbranch-reports/actions/workflows/dotnet.yml/badge.svg)](https://github.com/gaepdit/airbranch-reports/actions/workflows/dotnet.yml) 
+[![CodeQL](https://github.com/gaepdit/airbranch-reports/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/gaepdit/airbranch-reports/actions/workflows/codeql-analysis.yml)
+
 ## Project organization
 
 The solution contains three projects:
