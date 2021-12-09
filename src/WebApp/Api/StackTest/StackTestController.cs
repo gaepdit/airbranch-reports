@@ -1,4 +1,4 @@
-using Domain.Facilities.Models;
+﻿using Domain.Facilities.Models;
 using Domain.Monitoring.Models;
 using Domain.Monitoring.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -21,13 +21,10 @@ namespace WebApp.Api.StackTest
             var stackTestReport = await repository.GetStackTestReportAsync(facilityId, referenceNumber);
             if (stackTestReport is null) return NotFound();
 
-            if (includeConfidentialInfo)
-            {
-                // TODO: check authentication
-                return Ok(stackTestReport);
-            }
+            // TODO: check authentication
+            //if (includeConfidentialInfo && (User.Identity == null || !User.Identity.IsAuthenticated)) return Forbid();
 
-            return Ok(stackTestReport.RedactedStackTestReport());
+            return includeConfidentialInfo ? Ok(stackTestReport) : Ok(stackTestReport.RedactedStackTestReport());
         }
 
         [HttpGet("exists")]

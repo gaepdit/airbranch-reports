@@ -1,3 +1,4 @@
+using Domain.Utils;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -18,8 +19,21 @@ public abstract record class StackTestReport
     [Display(Name = "Source tested")]
     public string Source { get; init; } = "";
 
-    [Display(Name = "Report type")]
+    [JsonIgnore]
     public ReportType ReportType { get; init; }
+
+    [Display(Name = "Report type")]
+    public string ReportTypeName => ReportType.GetDescription();
+
+    [JsonIgnore]
+    public string ReportTypeSubject => ReportType switch
+    {
+        ReportType.MonitorCertification => "Monitor Certification",
+        ReportType.PemsDevelopment => "PEMS Development Report Review",
+        ReportType.RataCems => "Relative Accuracy Test Audit Report Review",
+        ReportType.SourceTest => "Source Test Report Review",
+        _ => "N/A",
+    };
 
     [Display(Name = "Document type")]
     public DocumentType DocumentType { get; init; } = DocumentType.Unassigned;
@@ -78,6 +92,4 @@ public abstract record class StackTestReport
         ConfidentialParameters.Add(nameof(Pollutant));
         ConfidentialParameters.Add(nameof(Comments));
     }
-
-
 }

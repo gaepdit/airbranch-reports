@@ -11,7 +11,7 @@ namespace WebApp.Pages.Facility.Compliance;
 
 public class AccReportModel : PageModel
 {
-    public AccReport AccReport { get; set; }
+    public AccReport Report { get; set; }
     public OrganizationInfo OrganizationInfo { get; set; }
     public MemoHeader MemoHeader { get; set; }
 
@@ -21,21 +21,22 @@ public class AccReportModel : PageModel
         [FromRoute] string facilityId,
         [FromRoute] int year)
     {
-        if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) return NotFound($"Facility ID is invalid.");
+        if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) 
+            return NotFound($"Facility ID is invalid.");
 
         var report = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), year);
         if (report == null) return NotFound();
 
-        AccReport = report.Value;
+        Report = report.Value;
         OrganizationInfo = await orgRepo.GetAsync();
 
         MemoHeader = new MemoHeader
         {
-            Date = AccReport.DateAcknowledgmentLetterSent,
-            From = AccReport.StaffResponsible.DisplayName,
-            Subject = $"Title V Annual Certification for {AccReport.AccReportingYear}" + Environment.NewLine +
-                $"{AccReport.Facility.Name}, {AccReport.Facility.City}" + Environment.NewLine +
-                $"AIRS # {AccReport.Facility.Id}",
+            Date = Report.DateAcknowledgmentLetterSent,
+            From = Report.StaffResponsible.DisplayName,
+            Subject = $"Title V Annual Certification for {Report.AccReportingYear}" + Environment.NewLine +
+                $"{Report.Facility.Name}, {Report.Facility.City}" + Environment.NewLine +
+                $"AIRS # {Report.Facility.Id}",
         };
 
         return Page();

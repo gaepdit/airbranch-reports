@@ -1,4 +1,52 @@
-﻿@page "facility/{facilityId}/stack-test/{referenceNumber:int}"
+﻿@page "~/facility/{facilityId}/stack-test/{referenceNumber:int}"
+@using Domain.Monitoring.Models
+@using WebApp.Platform.Formatting
 @model WebApp.Pages.Facility.StackTest.IndexModel
 @{
+    Layout = "_ReportLayout";
+    ViewBag.BodyCssClass = "stack-test";
+
+    var Report = Model.Report!;
+    ViewData["Title"] = $"Facility {Report.Facility.Id} - {Report.ReportTypeName} Reference Number: {Report.ReferenceNumber}";
 }
+
+<div class="page-wrapper">
+    <partial name="_EpdBannerPartial" model=Model.OrganizationInfo />
+    <partial name="_MemoHeaderPartial" model=Model.MemoHeader />
+
+    <section class="stack-test-body">
+        @if (Model.ShowConfidentialWarning)
+        {
+            <p><strong>NOTICE: This report contains confidential information.</strong></p>
+        }
+        <p>The following test has been reviewed and was conducted in an acceptable fashion for the purpose intended.</p>
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => Report.Facility.Name)</th>
+                    <td>@Report.Facility.Name</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => Report.Facility.City)</th>
+                    <td>@Report.Facility.City, @Report.Facility.State</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => Report.Source)</th>
+                    <td>@Report.Source</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => Report.Pollutant)</th>
+                    <td>@Report.Pollutant</td>
+                </tr>
+
+                @if (Report is StackTestReportOneStack)
+                {
+                    <partial name="_OneStackPartial" model=Report />
+                }
+            </tbody>
+        </table>
+
+
+    </section>
+</div>

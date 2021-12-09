@@ -14,54 +14,78 @@ html, body {
     font-size: 14px;
 }
 
+/* Text utilities */
+
 .preserve-linebreaks {
     white-space: pre-line;
 }
 
-/* EPD Banner */
-.grid {
+/* Tables */
+
+.table-values-list {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+    .table-values-list tr + tr {
+        border-top: 1px solid #777;
+    }
+
+    .table-values-list th {
+        font-weight: normal;
+        text-align: left;
+        padding: .25rem 0;
+    }
+
+    .table-values-list td {
+        text-align: center;
+        padding: .25rem 1rem .25rem 2rem;
+    }
+
+/* EPD nameplate */
+.nameplate {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
 
-.grid__item {
-    flex: 0 1 auto;
-}
+    .nameplate > div {
+        flex: 0 1 auto;
+    }
 
-.grid__item_right {
-    text-align: right;
-}
+        .nameplate > div:last-child {
+            text-align: right;
+        }
 
-.logo {
-    width: 100%;
-    max-width: 300px;
-    min-width: 50px;
-    padding-right: 10px;
-}
+    .nameplate .logo {
+        width: 100%;
+        max-width: 300px;
+        min-width: 50px;
+        padding-right: 10px;
+    }
 
-.inside-address {
-    display: inline-block;
-    text-align: left;
-    margin-top: .5rem;
-    font-style: normal;
-}
+    .nameplate address {
+        display: inline-block;
+        text-align: left;
+        margin-top: .5rem;
+        font-style: normal;
+    }
 
-.director {
-    font-weight: bold;
-    padding-bottom: .5rem;
-    border-bottom: 1px solid;
-    margin-bottom: .5rem;
-}
+    .nameplate .director {
+        font-weight: bold;
+        padding-bottom: .5rem;
+        border-bottom: 1px solid;
+        margin-bottom: .5rem;
+    }
 
-.branch {
-    font-weight: bold;
-}
+    .nameplate .branch {
+        font-weight: bold;
+    }
 
-.address {
-    font-size: smaller;
-}
+    .nameplate .address {
+        font-size: smaller;
+    }
 
 /* Report layout */
 .print-toolbar + main {
@@ -90,54 +114,39 @@ html, body {
 
 /* Memorandum layout */
 
-.memorandum header {
+header.memorandum {
     border-bottom: 1px solid;
 }
 
-.memorandum h1 {
-    font-size: inherit;
-    text-transform: uppercase;
-    text-decoration: underline;
-}
+    header.memorandum dt {
+        text-transform: uppercase;
+        font-weight: bold;
+        float: left;
+        clear: left;
+        width: 6rem;
+    }
+
+    header.memorandum dd {
+        margin-left: 7rem;
+    }
+
+    header.memorandum h1 {
+        font-size: inherit;
+        text-transform: uppercase;
+        text-decoration: underline;
+    }
 
 .memorandum h2 {
     font-size: inherit;
     text-transform: uppercase;
 }
 
-.memorandum dt {
-    text-transform: uppercase;
-    font-weight: bold;
-    float: left;
-    clear: left;
-    width: 6rem;
+/* Stack Test Report layout */
+
+body.stack-test {
+    font-family: 'Arial', sans-serif;
 }
 
-.memorandum dd {
-    margin-left: 7rem;
-}
-
-/* Tables */
-
-.table-values-list {
-    margin-left: 2rem;
-    margin-bottom: 1rem;
-}
-
-    .table-values-list tr + tr {
-        border-top: 1px solid #777;
-    }
-
-    .table-values-list th {
-        font-weight: normal;
-        text-align: left;
-        padding: .25rem 0;
-    }
-
-    .table-values-list td {
-        text-align: center;
-        padding: .25rem 1rem .25rem 2rem;
-    }
 
 /* Print styles */
 @media print {

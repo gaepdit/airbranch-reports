@@ -10,6 +10,7 @@ public record struct Facility
     [Display(Name = "Company Name")]
     public string Name { get; init; }
 
+    [Display(Name = "Company Location")]
     public string City { get; init; }
     public string County { get; init; }
     public string State { get; init; }
