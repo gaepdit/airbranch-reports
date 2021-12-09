@@ -1,4 +1,4 @@
-﻿using Domain.Facilities.Models;
+using Domain.Facilities.Models;
 using Domain.Monitoring.Models;
 using Domain.Monitoring.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +11,7 @@ namespace WebApp.Api.StackTest
     public class StackTestController : ControllerBase
     {
         [HttpGet("{referenceNumber:int}")]
-        public async Task<ActionResult<BaseStackTestReport>> GetAsync(
+        public async Task<ActionResult<StackTestReport>> GetAsync(
             [FromServices] IMonitoringRepository repository,
             [FromRoute] string facilityId,
             [FromRoute] int referenceNumber,

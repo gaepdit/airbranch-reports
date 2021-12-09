@@ -6,7 +6,7 @@ namespace LocalRepository.Data;
 
 public static class StackTestData
 {
-    public static IEnumerable<OneStack> GetStackTestReports => new List<OneStack>
+    public static IEnumerable<StackTestReportOneStack> GetStackTestReports => new List<StackTestReportOneStack>
     {
         new() {
             ReferenceNumber = 202099999,
@@ -22,14 +22,14 @@ public static class StackTestData
                 new DateTime(2020, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2020, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 1),
-            WitnessedByStaff = new List<Staff>
+            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 1).Name,
+            WitnessedByStaff = new List<PersonName>
             {
-                StaffData.GetStaff.Single(s => s.Id == 2),
-                StaffData.GetStaff.Single(s => s.Id == 3),
+                StaffData.GetStaff.Single(s => s.Id == 2).Name,
+                StaffData.GetStaff.Single(s => s.Id == 3).Name,
             },
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4),
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5),
+            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
             MaxOperatingCapacity = new ValueWithUnits("100", "tons/hr"),
             OperatingCapacity = new ValueWithUnits("90", "tons/hr"),
             AllowableEmissionRates = new List<ValueWithUnits>

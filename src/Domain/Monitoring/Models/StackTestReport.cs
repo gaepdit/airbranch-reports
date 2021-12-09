@@ -1,10 +1,9 @@
-﻿using Domain.Personnel;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Domain.Monitoring.Models;
 
-public abstract record class BaseStackTestReport
+public abstract record class StackTestReport
 {
     // Basic test report info
 
@@ -40,16 +39,16 @@ public abstract record class BaseStackTestReport
     public DateTime DateReceivedByApb { get; init; }
 
     [Display(Name = "Report reviewed by")]
-    public Staff ReviewedByStaff { get; init; }
+    public PersonName ReviewedByStaff { get; init; }
 
     [Display(Name = "Test witnessed by")]
-    public List<Staff> WitnessedByStaff { get; init; } = new List<Staff>();
+    public List<PersonName> WitnessedByStaff { get; init; } = new List<PersonName>();
 
     [Display(Name = "Compliance manager")]
-    public Staff ComplianceManager { get; init; }
+    public PersonName ComplianceManager { get; init; }
 
     [Display(Name = "Testing unit manager")]
-    public Staff TestingUnitManager { get; init; }
+    public PersonName TestingUnitManager { get; init; }
 
     // Confidential info handling
 
@@ -63,10 +62,10 @@ public abstract record class BaseStackTestReport
         ? GlobalConstants.StackTestConfidentialInfoPlaceholder
         : input;
 
-    public abstract BaseStackTestReport RedactedStackTestReport();
+    public abstract StackTestReport RedactedStackTestReport();
     // TODO: Add all parameters
     protected T RedactedBaseStackTestReport<T>()
-        where T : BaseStackTestReport => (T)this with
+        where T : StackTestReport => (T)this with
         {
             Pollutant = CheckConfidential(Pollutant, nameof(Pollutant)),
             Comments = CheckConfidential(Comments, nameof(Comments)),

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Monitoring.Models;
 
-public record class OneStack : BaseStackTestReport
+public record class StackTestReportOneStack : StackTestReport
 {
     // Operating data
 
@@ -36,8 +36,8 @@ public record class OneStack : BaseStackTestReport
     // Confidential info handling
 
     // TODO: Add all parameters
-    public override OneStack RedactedStackTestReport() =>
-        RedactedBaseStackTestReport<OneStack>() with
+    public override StackTestReportOneStack RedactedStackTestReport() =>
+        RedactedBaseStackTestReport<StackTestReportOneStack>() with
         {
             ControlEquipmentInfo = CheckConfidential(ControlEquipmentInfo, nameof(ControlEquipmentInfo)),
         };

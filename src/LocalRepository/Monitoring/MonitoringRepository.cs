@@ -6,7 +6,7 @@ namespace LocalRepository.Monitoring;
 
 public class MonitoringRepository : IMonitoringRepository
 {
-    public async Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
+    public async Task<StackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
     {
         if (!await StackTestReportExistsAsync(facilityId, referenceNumber)) return null;
 

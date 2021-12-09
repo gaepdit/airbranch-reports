@@ -6,7 +6,7 @@ namespace Infrastructure.Monitoring;
 
 public class MonitoringRepository : IMonitoringRepository
 {
-    public Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
+    public Task<StackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
     {
         throw new NotImplementedException();
     }
