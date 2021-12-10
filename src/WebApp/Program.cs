@@ -39,6 +39,8 @@ else
         Infrastructure.Organization.OrganizationRepository>();
     builder.Services.AddScoped<IComplianceRepository,
         Infrastructure.Compliance.ComplianceRepository>();
+    builder.Services.AddScoped<IMonitoringRepository,
+        Infrastructure.Monitoring.MonitoringRepository>();
 }
 
 // Build the application

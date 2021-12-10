@@ -10,7 +10,7 @@ namespace LocalRepositoryTests.Compliance;
 public class GetAccReport
 {
     [Test]
-    public async Task ReturnsAccIfExists()
+    public async Task ReturnsReportIfExists()
     {
         var report = AccData.GetAccReports.First();
 

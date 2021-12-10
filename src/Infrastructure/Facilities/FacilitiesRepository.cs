@@ -27,12 +27,12 @@ public class FacilitiesRepository : IFacilitiesRepository
                    f.STRFACILITYNAME  as [Name],
                    f.STRFACILITYCITY  as [City],
                    f.STRFACILITYSTATE as [State],
-                   l.STRCOUNTYNAME    as [County]
+                   lc.STRCOUNTYNAME   as [County]
             FROM dbo.APBFACILITYINFORMATION AS f
                 inner JOIN dbo.AFSFACILITYDATA AS a
                 ON f.STRAIRSNUMBER = a.STRAIRSNUMBER
-                LEFT JOIN dbo.LOOKUPCOUNTYINFORMATION AS l
-                ON substring(f.STRAIRSNUMBER, 5, 3) = l.STRCOUNTYCODE
+                left join dbo.LOOKUPCOUNTYINFORMATION lc
+                on substring(f.STRAIRSNUMBER, 5, 3) = lc.STRCOUNTYCODE
             where f.STRAIRSNUMBER = @AirsNumber
               and a.STRUPDATESTATUS <> 'H'";
 

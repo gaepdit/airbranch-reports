@@ -2,6 +2,6 @@
 
 public record struct ValueWithUnits
 (
-    string Value, 
+    string Value,
     string Units
 );

@@ -10,15 +10,15 @@ public static class FacilityData
             City = "Atown",
             County = "Appling",
             Name = "Apple Corp",
-            State = "Georgia",
+            State = "GA",
         },
         new()
         {
-            Id = new ApbFacilityId("00200002"),
+            Id = new ApbFacilityId("12100021"),
             City = "Btown",
             County = "Bibb",
             Name = "Banana Corp",
-            State = "Georgia",
+            State = "GA",
         },
         new()
         {
@@ -26,7 +26,15 @@ public static class FacilityData
             City = "Ctown",
             County = "Clay",
             Name = "Cranberry Corp",
-            State = "Georgia",
+            State = "GA",
+        },
+        new()
+        {
+            Id = new ApbFacilityId("17900001"),
+            City = "Dtown",
+            County = "Dade",
+            Name = "Date Corp",
+            State = "GA",
         },
     };
 }

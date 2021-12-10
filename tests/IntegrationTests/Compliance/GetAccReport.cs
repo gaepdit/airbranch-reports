@@ -9,7 +9,7 @@ namespace IntegrationTests.Compliance;
 public class GetAccReport
 {
     [Test]
-    public async Task ReturnsAccIfExists()
+    public async Task ReturnsReportIfExists()
     {
         var facilityId = "193-00008";
         var year = 2019;

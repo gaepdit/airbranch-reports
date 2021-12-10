@@ -11,7 +11,7 @@ public abstract record class StackTestReport
     [Display(Name = "Reference Number")]
     public int ReferenceNumber { get; init; }
 
-    public Facility Facility { get; init; }
+    public Facility Facility { get; set; }
 
     [Display(Name = "Pollutant determined")]
     public string Pollutant { get; init; } = "";
@@ -47,26 +47,26 @@ public abstract record class StackTestReport
     // Test report routing
 
     [Display(Name = "Date(s) of test")]
-    public DateTimeRange TestDates { get; init; }
+    public DateTimeRange TestDates { get; set; }
 
     [Display(Name = "Date received by APB")]
     public DateTime DateReceivedByApb { get; init; }
 
     [Display(Name = "Report reviewed by")]
-    public PersonName ReviewedByStaff { get; init; }
+    public PersonName ReviewedByStaff { get; set; }
 
     [Display(Name = "Test witnessed by")]
-    public List<PersonName> WitnessedByStaff { get; init; } = new List<PersonName>();
+    public List<PersonName> WitnessedByStaff { get; set; } = new List<PersonName>();
 
     [Display(Name = "Compliance manager")]
-    public PersonName ComplianceManager { get; init; }
+    public PersonName ComplianceManager { get; set; }
 
     [Display(Name = "Testing unit manager")]
-    public PersonName TestingUnitManager { get; init; }
+    public PersonName TestingUnitManager { get; set; }
 
     // Confidential info handling
 
-    public List<string> ConfidentialParameters { get; private set; } = new List<string>();
+    public ICollection<string> ConfidentialParameters { get; private set; } = new List<string>();
 
     [JsonIgnore]
     public string ConfidentialParametersCode { protected get; init; } = "";
