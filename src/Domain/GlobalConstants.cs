@@ -2,6 +2,6 @@
 {
     public static class GlobalConstants
     {
-        public const string StackTestConfidentialInfoPlaceholder = "--Conf--";
+        public const string ConfidentialInfoPlaceholder = "--Conf--";
     }
 }

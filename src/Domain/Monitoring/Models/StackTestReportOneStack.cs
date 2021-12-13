@@ -22,7 +22,7 @@ public record class StackTestReportOneStack : StackTestReport
     // Test run data
 
     [Display(Name = "Test runs")]
-    public List<TestRun> TestRuns { get; init; } = new List<TestRun>();
+    public List<TestRun> TestRuns { get; set; } = new List<TestRun>();
 
     [Display(Name = "Average pollutant concentration")]
     public ValueWithUnits AvgPollutantConcentration { get; set; }
@@ -35,20 +35,38 @@ public record class StackTestReportOneStack : StackTestReport
 
     // Confidential info handling
 
-    // TODO: Add all parameters
     public override StackTestReportOneStack RedactedStackTestReport() =>
         RedactedBaseStackTestReport<StackTestReportOneStack>() with
         {
+            MaxOperatingCapacity = CheckConfidential(MaxOperatingCapacity, nameof(MaxOperatingCapacity)),
+            OperatingCapacity = CheckConfidential(OperatingCapacity, nameof(OperatingCapacity)),
+            AllowableEmissionRates = CheckConfidential(AllowableEmissionRates, nameof(AllowableEmissionRates)),
             ControlEquipmentInfo = CheckConfidential(ControlEquipmentInfo, nameof(ControlEquipmentInfo)),
+            AvgPollutantConcentration = CheckConfidential(AvgPollutantConcentration, nameof(AvgPollutantConcentration)),
+            AvgEmissionRate = CheckConfidential(AvgEmissionRate, nameof(AvgEmissionRate)),
+            PercentAllowable = CheckConfidential(PercentAllowable, nameof(PercentAllowable)),
+            TestRuns = CheckConfidential(TestRuns),
         };
+
+    private static List<TestRun> CheckConfidential(List<TestRun> testRuns)
+    {
+        var redactedTestRuns = new List<TestRun>();
+        foreach (var r in testRuns) redactedTestRuns.Add(r.RedactedTestRun());
+        return redactedTestRuns;
+    }
 
     public override void ParseConfidentialParameters()
     {
         if (ConfidentialParametersCode == "" || ConfidentialParametersCode[0] == '0') return;
 
         ParseBaseConfidentialParameters();
-        
+
         // TODO: Fix parsing
         ConfidentialParameters.Add(nameof(ControlEquipmentInfo));
+
+        foreach (var r in TestRuns)
+        {
+            r.ConfidentialParameters.Add(nameof(TestRun.EmissionRate));
+        }
     }
 }

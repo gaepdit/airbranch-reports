@@ -71,19 +71,57 @@ public abstract record class StackTestReport
     [JsonIgnore]
     public string ConfidentialParametersCode { protected get; init; } = "";
 
-    protected string CheckConfidential(string input, string parameter) =>
-        ConfidentialParameters.Contains(parameter)
-        ? GlobalConstants.StackTestConfidentialInfoPlaceholder
-        : input;
-
     public abstract StackTestReport RedactedStackTestReport();
-    // TODO: Add all parameters
-    protected T RedactedBaseStackTestReport<T>()
-        where T : StackTestReport => (T)this with
+
+    protected T RedactedBaseStackTestReport<T>() where T : StackTestReport =>
+        (T)this with
         {
             Pollutant = CheckConfidential(Pollutant, nameof(Pollutant)),
+            Source = CheckConfidential(Source, nameof(Source)),
+            ApplicableRequirement = CheckConfidential(ApplicableRequirement, nameof(ApplicableRequirement)),
             Comments = CheckConfidential(Comments, nameof(Comments)),
+            TestDates = CheckConfidential(TestDates, nameof(TestDates)),
+            DateReceivedByApb = CheckConfidential(DateReceivedByApb, nameof(DateReceivedByApb)),
+            ReviewedByStaff = CheckConfidential(ReviewedByStaff, nameof(ReviewedByStaff)),
+            WitnessedByStaff = CheckConfidential(WitnessedByStaff, nameof(WitnessedByStaff)),
+            ComplianceManager = CheckConfidential(ComplianceManager, nameof(ComplianceManager)),
+            TestingUnitManager = CheckConfidential(TestingUnitManager, nameof(TestingUnitManager)),
         };
+
+    protected string CheckConfidential(string input, string parameter) =>
+        ConfidentialParameters.Contains(parameter)
+        ? GlobalConstants.ConfidentialInfoPlaceholder
+        : input;
+
+    protected DateTime CheckConfidential(DateTime input, string parameter) =>
+        ConfidentialParameters.Contains(parameter)
+        ? default
+        : input;
+
+    protected DateRange CheckConfidential(DateRange input, string parameter) =>
+        ConfidentialParameters.Contains(parameter)
+        ? new DateRange(default, null)
+        : input;
+
+    protected PersonName CheckConfidential(PersonName input, string parameter) =>
+        ConfidentialParameters.Contains(parameter)
+        ? new PersonName { GivenName = "", FamilyName = GlobalConstants.ConfidentialInfoPlaceholder }
+        : input;
+
+    protected List<PersonName> CheckConfidential(List<PersonName> input, string parameter) =>
+        ConfidentialParameters.Contains(parameter)
+        ? new List<PersonName> { new PersonName { GivenName = "", FamilyName = GlobalConstants.ConfidentialInfoPlaceholder } }
+        : input;
+
+    protected ValueWithUnits CheckConfidential(ValueWithUnits input, string parameter) =>
+        ConfidentialParameters.Contains(parameter)
+        ? new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, "")
+        : input;
+
+    protected List<ValueWithUnits> CheckConfidential(List<ValueWithUnits> input, string parameter) =>
+        ConfidentialParameters.Contains(parameter)
+        ? new List<ValueWithUnits> { new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, "") }
+        : input;
 
     public abstract void ParseConfidentialParameters();
     protected void ParseBaseConfidentialParameters()

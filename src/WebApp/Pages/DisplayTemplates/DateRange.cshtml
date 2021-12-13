@@ -1,7 +1,11 @@
 ﻿@model DateRange
 @using Domain.ValueObjects
 @using WebApp.Platform.Formatting
-@if (Model.EndDate is null || Model.EndDate == Model.StartDate)
+@if (Model.EndDate is null && Model.StartDate == default)
+{
+    @Domain.GlobalConstants.ConfidentialInfoPlaceholder
+}
+else if (Model.EndDate is null || Model.EndDate == Model.StartDate)
 {
     @Model.StartDate.ToString(DisplayFormats.LongDate)
 }
