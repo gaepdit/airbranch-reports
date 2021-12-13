@@ -11,8 +11,8 @@
 }
 
 <div class="page-wrapper">
-    <partial name="_EpdBannerPartial" model=Model.OrganizationInfo />
-    <partial name="_MemoHeaderPartial" model=Model.MemoHeader />
+    <partial name="_EpdBannerPartial" model="Model.OrganizationInfo" />
+    <partial name="_MemoHeaderPartial" model="Model.MemoHeader" />
 
     <section class="stack-test-body">
         @if (Model.ShowConfidentialWarning)
@@ -42,7 +42,7 @@
 
                 @if (Report is StackTestReportOneStack)
                 {
-                    <partial name="_OneStackPartial" model=Report />
+                    <partial name="_OneStackPartial" model="Report" />
                 }
             </tbody>
         </table>
