@@ -6,7 +6,7 @@
         @if (Model.Date != null)
         {
             <dt>Date:</dt>
-            <dd>@Model.Date.ToString(DisplayFormats.LongDate)</dd>
+            <dd>@Html.DisplayFor(m => m.Date)</dd>
         }
         @if (Model.To != null)
         {

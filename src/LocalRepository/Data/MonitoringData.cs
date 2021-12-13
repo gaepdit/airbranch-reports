@@ -16,7 +16,7 @@ public static class MonitoringData
             DocumentType = DocumentType.OneStackThreeRuns,
             ApplicableRequirement = "Permit Condition 3.4.1",
             Comments = "N/A",
-            TestDates = new DateTimeRange(
+            TestDates = new DateRange(
                 new DateTime(2020, 10, 1),
                 new DateTime(2020, 10, 1)
             ),
@@ -83,8 +83,8 @@ public static class MonitoringData
             DocumentType = DocumentType.OneStackThreeRuns,
             ApplicableRequirement = "Permit Condition 3.4.1",
             Comments = "N/A",
-            TestDates = new DateTimeRange(
-                new DateTime(2020, 10, 1),
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2020, 11, 1),

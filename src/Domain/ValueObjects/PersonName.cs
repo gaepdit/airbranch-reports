@@ -17,4 +17,6 @@ public record struct PersonName
     [JsonIgnore]
     public string SortableFullName =>
         string.Join(", ", new[] { FamilyName, GivenName }.Where(s => !string.IsNullOrEmpty(s)));
+
+    public override string ToString() => DisplayName;
 }

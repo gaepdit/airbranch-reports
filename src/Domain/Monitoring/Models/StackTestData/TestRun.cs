@@ -4,7 +4,7 @@ namespace Domain.Monitoring.Models.StackTestData;
 
 public record struct TestRun
 {
-    [Display(Name = "Run Number")]
+    [Display(Name = "Test run #")]
     public string RunNumber { get; init; }
 
     [Display(Name = "Gas temperature (°F)")]

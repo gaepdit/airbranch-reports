@@ -41,7 +41,7 @@ public class IndexModel : PageModel
             To = Report.ComplianceManager.DisplayName,
             From = Report.ReviewedByStaff.DisplayName,
             Through = Report.TestingUnitManager.DisplayName,
-            Subject = Report.ReportTypeSubject,
+            Subject = Report.ReportTypeSubject.ToUpperInvariant(),
         };
 
         ShowConfidentialWarning = includeConfidentialInfo && Report.ConfidentialParameters.Any();

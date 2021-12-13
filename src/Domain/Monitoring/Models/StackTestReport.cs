@@ -47,7 +47,7 @@ public abstract record class StackTestReport
     // Test report routing
 
     [Display(Name = "Date(s) of test")]
-    public DateTimeRange TestDates { get; set; }
+    public DateRange TestDates { get; set; }
 
     [Display(Name = "Date received by APB")]
     public DateTime DateReceivedByApb { get; init; }

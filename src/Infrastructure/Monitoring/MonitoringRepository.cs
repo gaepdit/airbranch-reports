@@ -81,7 +81,7 @@ public class MonitoringRepository : IMonitoringRepository
     {
         using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReport, new { ReferenceNumber = referenceNumber });
 
-        var report = multi.Read<T, Facility, PersonName, PersonName, PersonName, DateTimeRange, T>(
+        var report = multi.Read<T, Facility, PersonName, PersonName, PersonName, DateRange, T>(
             (report, facility, reviewedByStaff, complianceManager, testingUnitManager, testDates) =>
             {
                 report.Facility = facility;

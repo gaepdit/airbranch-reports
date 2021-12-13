@@ -12,18 +12,19 @@
 
 <div class="page-wrapper">
     <partial name="_EpdBannerPartial" model="Model.OrganizationInfo" />
-    <partial name="_MemoHeaderPartial" model="Model.MemoHeader" />
 
     <section class="stack-test-body">
+        <partial name="_MemoHeaderPartial" model="Model.MemoHeader" />
+
         @if (Model.ShowConfidentialWarning)
         {
             <p><strong>NOTICE: This report contains confidential information.</strong></p>
         }
-        <p>The following test has been reviewed and was conducted in an acceptable fashion for the purpose intended.</p>
+        <div>The following test has been reviewed and was conducted in an acceptable fashion for the purpose intended.</div>
 
         <table>
             <tbody>
-                <tr>
+                <tr class="table-section">
                     <th>@Html.DisplayNameFor(m => Report.Facility.Name)</th>
                     <td>@Report.Facility.Name</td>
                 </tr>
@@ -39,14 +40,43 @@
                     <th>@Html.DisplayNameFor(m => Report.Pollutant)</th>
                     <td>@Report.Pollutant</td>
                 </tr>
-
+                <tr>
+                    <th>@Html.DisplayNameFor(m => Report.ReviewedByStaff)</th>
+                    <td>@Report.ReviewedByStaff</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => Report.WitnessedByStaff)</th>
+                    <td>@Html.DisplayFor(m => Report.WitnessedByStaff, "PersonList")</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => Report.TestDates)</th>
+                    <td>@Html.DisplayFor(m => Report.TestDates)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => Report.DateReceivedByApb)</th>
+                    <td>@Html.DisplayFor(m => Report.DateReceivedByApb)</td>
+                </tr>
                 @if (Report is StackTestReportOneStack)
                 {
                     <partial name="_OneStackPartial" model="Report" />
                 }
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <footer class="lr-grid">
+                            <div>
+                                <div>cc: @Report.ComplianceManager</div>
+                                <div>AIRS Number: @Report.Facility.Id</div>
+                            </div>
+                            <div>
+                                <div>Reference Number: @Report.ReferenceNumber</div>
+                                <div>Printed: @DateTime.Today.ToString(DisplayFormats.ShortDate)</div>
+                            </div>
+                        </footer>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
-
-
     </section>
 </div>

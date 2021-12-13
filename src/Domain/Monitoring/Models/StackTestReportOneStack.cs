@@ -13,7 +13,7 @@ public record class StackTestReportOneStack : StackTestReport
     [Display(Name = "Operating capacity")]
     public ValueWithUnits OperatingCapacity { get; set; }
 
-    [Display(Name = "Allowable emission rates")]
+    [Display(Name = "Allowable emission rate(s)")]
     public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new List<ValueWithUnits>();
 
     [Display(Name = "Control equipment and monitoring data")]

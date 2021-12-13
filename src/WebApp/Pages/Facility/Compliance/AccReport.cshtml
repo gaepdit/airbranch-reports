@@ -23,11 +23,11 @@
             <tbody>
                 <tr>
                     <th>@Html.DisplayNameFor(m => m.Report.DatePostmarked)</th>
-                    <td>@Model.Report.DatePostmarked.ToString(DisplayFormats.LongDate)</td>
+                    <td>@Html.DisplayFor(m => m.Report.DatePostmarked)</td>
                 </tr>
                 <tr>
                     <th>@Html.DisplayNameFor(m => m.Report.DateReceived)</th>
-                    <td>@Model.Report.DateReceived.ToString(DisplayFormats.LongDate)</td>
+                    <td>@Html.DisplayFor(m => m.Report.DateReceived)</td>
                 </tr>
                 <tr>
                     <th>@Html.DisplayNameFor(m => m.Report.PostmarkedByDeadline)</th>
