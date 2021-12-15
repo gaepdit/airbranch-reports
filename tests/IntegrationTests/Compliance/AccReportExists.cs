@@ -10,7 +10,7 @@ public class AccReportExists
     [Test]
     public async Task ReturnsTrueIfExists()
     {
-        var repo = new ComplianceRepository(Global.db!);
+        var repo = new ComplianceRepository(Global.conn!);
         var result = await repo.AccReportExistsAsync("193-00008", 2019);
         result.Should().BeTrue();
     }
@@ -18,7 +18,7 @@ public class AccReportExists
     [Test]
     public async Task ReturnsFalseIfNotExists()
     {
-        var repo = new ComplianceRepository(Global.db!);
+        var repo = new ComplianceRepository(Global.conn!);
         var result = await repo.AccReportExistsAsync("000-00000", 2019);
         result.Should().BeFalse();
     }

@@ -13,7 +13,7 @@ public class GetStackTestReport
     {
         var facilityId = "121-00021";
         var referenceNumber = 201100541;
-        var repo = new MonitoringRepository(Global.db!);
+        var repo = new MonitoringRepository(Global.conn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -28,7 +28,7 @@ public class GetStackTestReport
     [Test]
     public async Task ReturnsNullIfNotExists()
     {
-        var repo = new MonitoringRepository(Global.db!);
+        var repo = new MonitoringRepository(Global.conn!);
         var result = await repo.GetStackTestReportAsync("000-00000", 2019);
 
         result.Should().BeNull();

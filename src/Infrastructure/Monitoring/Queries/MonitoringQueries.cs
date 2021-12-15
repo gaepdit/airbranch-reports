@@ -2,6 +2,15 @@
 
 internal static class MonitoringQueries
 {
+    public static string StackTestReportExists = @"
+select convert(bit, count(1))
+from dbo.ISMPMASTER m
+    inner join ISMPREPORTINFORMATION r
+    on m.STRREFERENCENUMBER = r.STRREFERENCENUMBER
+where r.STRDOCUMENTTYPE <> '001'
+  and m.STRAIRSNUMBER = @AirsNumber
+  and convert(int, m.STRREFERENCENUMBER) = @ReferenceNumber
+";
 
     public static string StackTestReport = @"
 select convert(int, r.STRREFERENCENUMBER) as ReferenceNumber,
@@ -52,7 +61,8 @@ from ISMPREPORTINFORMATION r
     on f.STRAIRSNUMBER = i.STRAIRSNUMBER
     left join dbo.LOOKUPCOUNTYINFORMATION lc
     on substring(f.STRAIRSNUMBER, 5, 3) = lc.STRCOUNTYCODE
-where r.STRREFERENCENUMBER = @ReferenceNumber;
+where STRDOCUMENTTYPE <> '001'
+  and r.STRREFERENCENUMBER = @ReferenceNumber;
 
 select w.WitnessId                        as Id,
        pw.STRFIRSTNAME                    as GivenName,

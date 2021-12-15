@@ -8,15 +8,15 @@ namespace IntegrationTests;
 [SetUpFixture]
 public class Global
 {
-    internal static IDbConnection? db;
+    internal static IDbConnection? conn;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
         var config = new ConfigurationBuilder().AddJsonFile("testsettings.json").Build();
-        db = new SqlConnection(config.GetConnectionString("DefaultConnection"));
+        conn = new SqlConnection(config.GetConnectionString("DefaultConnection"));
     }
 
     [OneTimeTearDown]
-    public void OneTimeTearDown() => db?.Dispose();
+    public void OneTimeTearDown() => conn?.Dispose();
 }

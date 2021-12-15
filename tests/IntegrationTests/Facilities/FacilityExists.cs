@@ -10,7 +10,7 @@ public class FacilityExists
     [Test]
     public async Task ReturnsTrueIfExists()
     {
-        var repo = new FacilitiesRepository(Global.db!);
+        var repo = new FacilitiesRepository(Global.conn!);
         var result = await repo.FacilityExistsAsync("001-00001");
         result.Should().BeTrue();
     }
@@ -18,7 +18,7 @@ public class FacilityExists
     [Test]
     public async Task ReturnsFalseIfNotExists()
     {
-        var repo = new FacilitiesRepository(Global.db!);
+        var repo = new FacilitiesRepository(Global.conn!);
         var result = await repo.FacilityExistsAsync("000-00000");
         result.Should().BeFalse();
     }

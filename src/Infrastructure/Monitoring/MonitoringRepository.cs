@@ -16,12 +16,7 @@ public class MonitoringRepository : IMonitoringRepository
 
     public Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber)
     {
-        var query = @"select convert(bit, count(1))
-            from dbo.ISMPMASTER
-            where STRAIRSNUMBER = @AirsNumber
-              and convert(int, STRREFERENCENUMBER) = @ReferenceNumber";
-
-        return db.ExecuteScalarAsync<bool>(query, new
+        return db.ExecuteScalarAsync<bool>(MonitoringQueries.StackTestReportExists, new
         {
             AirsNumber = facilityId.DbFormattedString,
             ReferenceNumber = referenceNumber,
