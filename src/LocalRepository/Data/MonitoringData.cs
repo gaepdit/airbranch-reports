@@ -47,6 +47,7 @@ public static class MonitoringData
                     GasFlowRateDscfm = "13000",
                     PollutantConcentration = "17.1",
                     EmissionRate = "0.013",
+                    ConfidentialParametersCode="",
                 },
                 new TestRun
                 {
@@ -57,6 +58,7 @@ public static class MonitoringData
                     GasFlowRateDscfm = "13100",
                     PollutantConcentration = "17.2",
                     EmissionRate = "0.014",
+                    ConfidentialParametersCode="0000000",
                 },
                 new TestRun
                 {
@@ -67,12 +69,13 @@ public static class MonitoringData
                     GasFlowRateDscfm = "12900",
                     PollutantConcentration = "17.0",
                     EmissionRate = "0.012",
+                    ConfidentialParametersCode="0101010",
                 },
             },
             AvgPollutantConcentration = new ValueWithUnits("17.1","ppm"),
             AvgEmissionRate = new ValueWithUnits("0.013", "lb/ton"),
             PercentAllowable = "75.0",
-            ConfidentialParametersCode = "1",
+            ConfidentialParametersCode = "1B000000000000000000000001100000000000011000001100000110101",
         },
         new StackTestReportOneStack() {
             ReferenceNumber = 202001297,
@@ -110,6 +113,7 @@ public static class MonitoringData
                     GasFlowRateDscfm = "13000",
                     PollutantConcentration = "17.1",
                     EmissionRate = "0.013",
+                    ConfidentialParametersCode="",
                 },
                 new TestRun
                 {
@@ -120,6 +124,7 @@ public static class MonitoringData
                     GasFlowRateDscfm = "13100",
                     PollutantConcentration = "17.2",
                     EmissionRate = "0.014",
+                    ConfidentialParametersCode="",
                 },
                 new TestRun
                 {
@@ -130,12 +135,13 @@ public static class MonitoringData
                     GasFlowRateDscfm = "12900",
                     PollutantConcentration = "17.0",
                     EmissionRate = "0.012",
+                    ConfidentialParametersCode="",
                 },
             },
             AvgPollutantConcentration = new ValueWithUnits("17.1","ppm"),
             AvgEmissionRate = new ValueWithUnits("0.013", "lb/ton"),
             PercentAllowable = "75.0",
-            ConfidentialParametersCode = "1",
+            ConfidentialParametersCode = "0",
         },
     };
 }

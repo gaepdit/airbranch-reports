@@ -108,7 +108,7 @@ from ISMPREPORTINFORMATION r
     left join LOOKUPUNITS u4
     on u4.STRUNITKEY = d.STREMISSIONRATEUNIT
         and u4.STRUNITKEY <> '00000'
-where r.STRREFERENCENUMBER = @ReferenceNumber;
+where convert(int, r.STRREFERENCENUMBER) = @ReferenceNumber;
 
 select trim(t.Value) as Value,
        u.STRUNITDESCRIPTION               as Units
@@ -142,48 +142,67 @@ select trim(RunNumber)              as RunNumber,
        trim(GasFlowRateAscfm)       as GasFlowRateAscfm,
        trim(GasFlowRateDscfm)       as GasFlowRateDscfm,
        trim(PollutantConcentration) as PollutantConcentration,
-       trim(EmissionRate)           as EmissionRate
+       trim(EmissionRate)           as EmissionRate,
+       isnull(ConfidentialParametersCode, '') as ConfidentialParametersCode
 from (
-    select STRREFERENCENUMBER,
-           STRRUNNUMBER1A              as RunNumber,
-           STRGASTEMPERATURE1A         as GasTemperature,
-           STRGASMOISTURE1A            as GasMoisture,
-           STRGASFLOWRATEACFM1A        as GasFlowRateAscfm,
-           STRGASFLOWRATEDSCFM1A       as GasFlowRateDscfm,
-           STRPOLLUTANTCONCENTRATION1A as PollutantConcentration,
-           STREMISSIONRATE1A           as EmissionRate
-    from ISMPREPORTONESTACK
+    select 1                                       as Id,
+           s.STRREFERENCENUMBER,
+           s.STRRUNNUMBER1A                        as RunNumber,
+           s.STRGASTEMPERATURE1A                   as GasTemperature,
+           s.STRGASMOISTURE1A                      as GasMoisture,
+           s.STRGASFLOWRATEACFM1A                  as GasFlowRateAscfm,
+           s.STRGASFLOWRATEDSCFM1A                 as GasFlowRateDscfm,
+           s.STRPOLLUTANTCONCENTRATION1A           as PollutantConcentration,
+           s.STREMISSIONRATE1A                     as EmissionRate,
+           substring(r.STRCONFIDENTIALDATA, 35, 7) as ConfidentialParametersCode
+    from ISMPREPORTONESTACK s
+        inner join ISMPREPORTINFORMATION r
+        on r.STRREFERENCENUMBER = s.STRREFERENCENUMBER
     union
-    select STRREFERENCENUMBER,
-           STRRUNNUMBER1B,
-           STRGASTEMPERATURE1B,
-           STRGASMOISTURE1B,
-           STRGASFLOWRATEACFM1B,
-           STRGASFLOWRATEDSCFM1B,
-           STRPOLLUTANTCONCENTRATION1B,
-           STREMISSIONRATE1B
-    from ISMPREPORTONESTACK
+    select 2,
+           s.STRREFERENCENUMBER,
+           s.STRRUNNUMBER1B,
+           s.STRGASTEMPERATURE1B,
+           s.STRGASMOISTURE1B,
+           s.STRGASFLOWRATEACFM1B,
+           s.STRGASFLOWRATEDSCFM1B,
+           s.STRPOLLUTANTCONCENTRATION1B,
+           s.STREMISSIONRATE1B,
+           substring(r.STRCONFIDENTIALDATA, 42, 7)
+    from ISMPREPORTONESTACK s
+        inner join ISMPREPORTINFORMATION r
+        on r.STRREFERENCENUMBER = s.STRREFERENCENUMBER
     union
-    select STRREFERENCENUMBER,
-           STRRUNNUMBER1C,
-           STRGASTEMPERATURE1C,
-           STRGASMOISTURE1C,
-           STRGASFLOWRATEACFM1C,
-           STRGASFLOWRATEDSCFM1C,
-           STRPOLLUTANTCONCENTRATION1C,
-           STREMISSIONRATE1C
-    from ISMPREPORTONESTACK
+    select 3,
+           IIF(r.STRDOCUMENTTYPE in ('003', '004'), s.STRREFERENCENUMBER, null),
+           s.STRRUNNUMBER1C,
+           s.STRGASTEMPERATURE1C,
+           s.STRGASMOISTURE1C,
+           s.STRGASFLOWRATEACFM1C,
+           s.STRGASFLOWRATEDSCFM1C,
+           s.STRPOLLUTANTCONCENTRATION1C,
+           s.STREMISSIONRATE1C,
+           IIF(r.STRDOCUMENTTYPE in ('003', '004'), substring(r.STRCONFIDENTIALDATA, 49, 7), null)
+    from ISMPREPORTONESTACK s
+        inner join ISMPREPORTINFORMATION r
+        on r.STRREFERENCENUMBER = s.STRREFERENCENUMBER
     union
-    select STRREFERENCENUMBER,
-           STRRUNNUMBER1D,
-           STRGASTEMPERATURE1D,
-           STRGASMOISTURE1D,
-           STRGASFLOWRATEACFM1D,
-           STRGASFLOWRATEDSCFM1D,
-           STRPOLLUTANTCONCENTRATION1D,
-           STREMISSIONRATE1D
-    from ISMPREPORTONESTACK) t
-where t.EmissionRate not in ('', ' ', 'N/A')
-  and convert(int, t.STRREFERENCENUMBER) = @ReferenceNumber;";
+    select 4,
+           IIF(r.STRDOCUMENTTYPE in ('004'), s.STRREFERENCENUMBER, null),
+           s.STRRUNNUMBER1D,
+           s.STRGASTEMPERATURE1D,
+           s.STRGASMOISTURE1D,
+           s.STRGASFLOWRATEACFM1D,
+           s.STRGASFLOWRATEDSCFM1D,
+           s.STRPOLLUTANTCONCENTRATION1D,
+           s.STREMISSIONRATE1D,
+           IIF(r.STRDOCUMENTTYPE in ('003', '004'), substring(r.STRCONFIDENTIALDATA, 56, 7), null)
+    from ISMPREPORTONESTACK s
+        inner join ISMPREPORTINFORMATION r
+        on r.STRREFERENCENUMBER = s.STRREFERENCENUMBER
+) t
+where convert(int, STRREFERENCENUMBER) = @ReferenceNumber
+order by Id;
+";
 
 }

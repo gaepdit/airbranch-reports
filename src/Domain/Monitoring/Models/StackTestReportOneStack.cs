@@ -45,28 +45,48 @@ public record class StackTestReportOneStack : StackTestReport
             AvgPollutantConcentration = CheckConfidential(AvgPollutantConcentration, nameof(AvgPollutantConcentration)),
             AvgEmissionRate = CheckConfidential(AvgEmissionRate, nameof(AvgEmissionRate)),
             PercentAllowable = CheckConfidential(PercentAllowable, nameof(PercentAllowable)),
-            TestRuns = CheckConfidential(TestRuns),
+            TestRuns = RedactedTestRuns(TestRuns),
         };
-
-    private static List<TestRun> CheckConfidential(List<TestRun> testRuns)
-    {
-        var redactedTestRuns = new List<TestRun>();
-        foreach (var r in testRuns) redactedTestRuns.Add(r.RedactedTestRun());
-        return redactedTestRuns;
-    }
 
     public override void ParseConfidentialParameters()
     {
         if (ConfidentialParametersCode == "" || ConfidentialParametersCode[0] == '0') return;
-
         ParseBaseConfidentialParameters();
 
-        // TODO: Fix parsing
-        ConfidentialParameters.Add(nameof(ControlEquipmentInfo));
+        AddIfConfidential(26, nameof(MaxOperatingCapacity));
+        AddIfConfidential(27, nameof(OperatingCapacity));
+        AddIfConfidential(31, nameof(ApplicableRequirement));
+        AddIfConfidential(32, nameof(ControlEquipmentInfo));
+        AddIfConfidential(33, nameof(PercentAllowable));
+        AddIfConfidential(34, nameof(Comments));
 
-        foreach (var r in TestRuns)
+        switch (DocumentType)
         {
-            r.ConfidentialParameters.Add(nameof(TestRun.EmissionRate));
+            case DocumentType.OneStackTwoRuns:
+                AddIfConfidential(49, nameof(AvgPollutantConcentration));
+                AddIfConfidential(50, nameof(AvgPollutantConcentration));
+                AddIfConfidential(51, nameof(AvgEmissionRate));
+                AddIfConfidential(52, nameof(AvgEmissionRate));
+                break;
+
+            case DocumentType.OneStackThreeRuns:
+                AddIfConfidential(56, nameof(AvgPollutantConcentration));
+                AddIfConfidential(57, nameof(AvgPollutantConcentration));
+                AddIfConfidential(58, nameof(AvgEmissionRate));
+                AddIfConfidential(59, nameof(AvgEmissionRate));
+                break;
+
+            case DocumentType.OneStackFourRuns:
+                AddIfConfidential(63, nameof(AvgPollutantConcentration));
+                AddIfConfidential(64, nameof(AvgPollutantConcentration));
+                AddIfConfidential(65, nameof(AvgEmissionRate));
+                AddIfConfidential(66, nameof(AvgEmissionRate));
+                break;
+
+            default:
+                break;
         }
+
+        foreach (var r in TestRuns) r.ParseConfidentialParameters();
     }
 }

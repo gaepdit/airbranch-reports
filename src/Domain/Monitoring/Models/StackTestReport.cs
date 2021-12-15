@@ -1,3 +1,4 @@
+using Domain.Monitoring.Models.StackTestData;
 using Domain.Utils;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
@@ -65,11 +66,13 @@ public abstract record class StackTestReport
     public PersonName TestingUnitManager { get; set; }
 
     // Confidential info handling
-
-    public ICollection<string> ConfidentialParameters { get; private set; } = new List<string>();
+    // For documentation of the ConfidentialParametersCode string, see:
+    // https://github.com/gaepdit/iaip/blob/main/IAIP/ISMP/ISMPConfidentialData.vb
 
     [JsonIgnore]
     public string ConfidentialParametersCode { protected get; init; } = "";
+
+    public ICollection<string> ConfidentialParameters { get; private set; } = new HashSet<string>();
 
     public abstract StackTestReport RedactedStackTestReport();
 
@@ -115,7 +118,7 @@ public abstract record class StackTestReport
 
     protected ValueWithUnits CheckConfidential(ValueWithUnits input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, "")
+        ? new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, input.Units)
         : input;
 
     protected List<ValueWithUnits> CheckConfidential(List<ValueWithUnits> input, string parameter) =>
@@ -123,11 +126,22 @@ public abstract record class StackTestReport
         ? new List<ValueWithUnits> { new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, "") }
         : input;
 
+    protected static List<TestRun> RedactedTestRuns(List<TestRun> testRuns)
+    {
+        var redactedTestRuns = new List<TestRun>();
+        foreach (var r in testRuns) redactedTestRuns.Add(r.RedactedTestRun());
+        return redactedTestRuns;
+    }
+
     public abstract void ParseConfidentialParameters();
     protected void ParseBaseConfidentialParameters()
     {
-        // TODO: Fix parsing
-        ConfidentialParameters.Add(nameof(Pollutant));
-        ConfidentialParameters.Add(nameof(Comments));
+        AddIfConfidential(15, nameof(Pollutant));
+    }
+
+    // Uses "ONE"-based position to better correlate with IAIP code
+    protected void AddIfConfidential(int position, string parameter)
+    {
+        if (ConfidentialParametersCode[position - 1] == '1') ConfidentialParameters.Add(parameter);
     }
 }

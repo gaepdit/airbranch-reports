@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Domain.Monitoring.Models.StackTestData;
 
@@ -27,6 +28,9 @@ public record struct TestRun
 
     // Confidential info handling
 
+    [JsonIgnore]
+    public string ConfidentialParametersCode { private get; init; } = "";
+
     public ICollection<string> ConfidentialParameters { get; private set; } = new HashSet<string>();
 
     public TestRun RedactedTestRun() =>
@@ -45,4 +49,23 @@ public record struct TestRun
         ConfidentialParameters.Contains(parameter)
         ? GlobalConstants.ConfidentialInfoPlaceholder
         : input;
+
+    public void ParseConfidentialParameters()
+    {
+        if (ConfidentialParametersCode == "") return;
+
+        AddIfConfidential(1, nameof(RunNumber));
+        AddIfConfidential(2, nameof(GasTemperature));
+        AddIfConfidential(3, nameof(GasMoisture));
+        AddIfConfidential(4, nameof(GasFlowRateAscfm));
+        AddIfConfidential(5, nameof(GasFlowRateDscfm));
+        AddIfConfidential(6, nameof(PollutantConcentration));
+        AddIfConfidential(7, nameof(EmissionRate));
+    }
+
+    // Uses "ONE"-based position to better correlate with IAIP code
+    public void AddIfConfidential(int position, string parameter)
+    {
+        if (ConfidentialParametersCode[position - 1] == '1') ConfidentialParameters.Add(parameter);
+    }
 }
