@@ -36,5 +36,13 @@ public static class FacilityData
             Name = "Date Corp",
             State = "GA",
         },
+        new()
+        {
+            Id = new ApbFacilityId("05900071"),
+            City = "Etown",
+            County = "Early",
+            Name = "Elderberry Inc.",
+            State = "GA",
+        },
     };
 }

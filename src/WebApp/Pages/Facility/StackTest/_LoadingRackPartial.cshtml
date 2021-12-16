@@ -1,0 +1,54 @@
+﻿@model Domain.Monitoring.Models.StackTestReportLoadingRack
+<tr>
+    <th>@Html.DisplayNameFor(m => m.ApplicableRequirement)</th>
+    <td>@Model!.ApplicableRequirement</td>
+</tr>
+<tr class="table-section">
+    <th>@Html.DisplayNameFor(m => m.MaxOperatingCapacity)</th>
+    <td>@Html.DisplayFor(m => m.MaxOperatingCapacity)</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.OperatingCapacity)</th>
+    <td>@Html.DisplayFor(m => m.OperatingCapacity)</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.AllowableEmissionRates)</th>
+    <td>@Html.DisplayFor(m => m.AllowableEmissionRates)</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.ControlEquipmentInfo)</th>
+    <td>@Model!.ControlEquipmentInfo</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.TestDuration)</th>
+    <td>@Html.DisplayFor(m => m.TestDuration)</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.PollutantConcentrationIn)</th>
+    <td class="table-subtable">
+        <table class="table-subtable-horizontal">
+            <tbody>
+                <tr>
+                    <th scope="row">IN</th>
+                    <td>@Html.DisplayFor(m => m.PollutantConcentrationIn)</td>
+                </tr>
+                <tr>
+                    <th scope="row">OUT</th>
+                    <td>@Html.DisplayFor(m => m.PollutantConcentrationOut)</td>
+                </tr>
+            </tbody>
+        </table>
+    </td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.EmissionRate)</th>
+    <td>@Html.DisplayFor(m => m.EmissionRate)</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.DestructionReduction)</th>
+    <td>@Html.DisplayFor(m => m.DestructionReduction)</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.Comments)</th>
+    <td class="preserve-linebreaks">@Model!.Comments</td>
+</tr>

@@ -2,7 +2,7 @@
 @using Domain.Monitoring.Models.StackTestData
 @if (Model!.TestRuns is not { Count: > 0 }) return;
 
-<table>
+<table class="table-subtable-vertical">
     <thead>
         <tr>
             <th scope="row">@Html.DisplayNameFor(m => m.TestRuns.FirstOrDefault().RunNumber)</th>

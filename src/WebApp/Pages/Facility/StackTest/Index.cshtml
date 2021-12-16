@@ -56,9 +56,18 @@
                     <th>@Html.DisplayNameFor(m => Report.DateReceivedByApb)</th>
                     <td>@Html.DisplayFor(m => Report.DateReceivedByApb)</td>
                 </tr>
-                @if (Report is StackTestReportOneStack)
+                @switch (Report)
                 {
-                    <partial name="_OneStackPartial" model="Report" />
+                    case StackTestReportOneStack _:
+                        <partial name="_OneStackPartial" model="Report" />
+                        break;
+
+                    case StackTestReportLoadingRack _:
+                        <partial name="_LoadingRackPartial" model="Report" />
+                        break;
+
+                    default:
+                        break;
                 }
             </tbody>
             <tfoot>

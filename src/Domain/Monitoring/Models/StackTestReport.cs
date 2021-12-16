@@ -36,8 +36,11 @@ public abstract record class StackTestReport
         _ => "N/A",
     };
 
-    [Display(Name = "Document type")]
+    [JsonIgnore]
     public DocumentType DocumentType { get; init; } = DocumentType.Unassigned;
+
+    [Display(Name = "Document type")]
+    public string DocumentTypeName => DocumentType.GetDescription();
 
     [Display(Name = "Applicable requirement")]
     public string ApplicableRequirement { get; init; } = "";
@@ -65,7 +68,8 @@ public abstract record class StackTestReport
     [Display(Name = "Testing unit manager")]
     public PersonName TestingUnitManager { get; set; }
 
-    // Confidential info handling
+    #region Confidential info handling
+
     // For documentation of the ConfidentialParametersCode string, see:
     // https://github.com/gaepdit/iaip/blob/main/IAIP/ISMP/ISMPConfidentialData.vb
 
@@ -144,4 +148,6 @@ public abstract record class StackTestReport
     {
         if (ConfidentialParametersCode[position - 1] == '1') ConfidentialParameters.Add(parameter);
     }
+
+    #endregion
 }

@@ -33,7 +33,7 @@ public record class StackTestReportOneStack : StackTestReport
     [Display(Name = "Percent allowable (%)")]
     public string PercentAllowable { get; set; } = "";
 
-    // Confidential info handling
+    #region Confidential info handling
 
     public override StackTestReportOneStack RedactedStackTestReport() =>
         RedactedBaseStackTestReport<StackTestReportOneStack>() with
@@ -89,4 +89,6 @@ public record class StackTestReportOneStack : StackTestReport
 
         foreach (var r in TestRuns) r.ParseConfidentialParameters();
     }
+
+    #endregion
 }

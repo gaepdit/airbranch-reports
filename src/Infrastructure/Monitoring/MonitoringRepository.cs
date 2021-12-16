@@ -23,6 +23,10 @@ public class MonitoringRepository : IMonitoringRepository
         });
     }
 
+    public Task<DocumentType> GetDocumentTypeAsync(int referenceNumber) =>
+    db.QuerySingleAsync<DocumentType>(MonitoringQueries.GetDocumentType,
+        new { ReferenceNumber = referenceNumber });
+
     public async Task<StackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
     {
         if (!await StackTestReportExistsAsync(facilityId, referenceNumber)) return null;
@@ -42,7 +46,8 @@ public class MonitoringRepository : IMonitoringRepository
             case DocumentType.TwoStackDRE:
                 break;
             case DocumentType.LoadingRack:
-                break;
+                return await GetLoadingRackAsync(referenceNumber);
+
             case DocumentType.PondTreatment:
                 break;
             case DocumentType.GasConcentration:
@@ -74,16 +79,17 @@ public class MonitoringRepository : IMonitoringRepository
 
     private async Task<T> GetBaseStackTestReportAsync<T>(int referenceNumber) where T : StackTestReport
     {
-        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReport, new { ReferenceNumber = referenceNumber });
+        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReport,
+            new { ReferenceNumber = referenceNumber });
 
         var report = multi.Read<T, Facility, PersonName, PersonName, PersonName, DateRange, T>(
-            (report, facility, reviewedByStaff, complianceManager, testingUnitManager, testDates) =>
+            (report, Facility, ReviewedByStaff, ComplianceManager, TestingUnitManager, TestDates) =>
             {
-                report.Facility = facility;
-                report.ReviewedByStaff = reviewedByStaff;
-                report.ComplianceManager = complianceManager;
-                report.TestingUnitManager = testingUnitManager;
-                report.TestDates = testDates;
+                report.Facility = Facility;
+                report.ReviewedByStaff = ReviewedByStaff;
+                report.ComplianceManager = ComplianceManager;
+                report.TestingUnitManager = TestingUnitManager;
+                report.TestDates = TestDates;
                 return report;
             }).Single();
 
@@ -96,17 +102,18 @@ public class MonitoringRepository : IMonitoringRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportOneStack>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReportOneStack, new { ReferenceNumber = referenceNumber });
+        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReportOneStack,
+            new { ReferenceNumber = referenceNumber });
 
         _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(
-            (r, maxOperatingCapacity, OperatingCapacity, AvgPollutantConcentration, AvgEmissionRate) =>
+            (r, MaxOperatingCapacity, OperatingCapacity, AvgPollutantConcentration, AvgEmissionRate) =>
             {
-                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
-                report.PercentAllowable = r.PercentAllowable;
-                report.MaxOperatingCapacity = maxOperatingCapacity;
+                report.MaxOperatingCapacity = MaxOperatingCapacity;
                 report.OperatingCapacity = OperatingCapacity;
+                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
                 report.AvgPollutantConcentration = AvgPollutantConcentration;
                 report.AvgEmissionRate = AvgEmissionRate;
+                report.PercentAllowable = r.PercentAllowable;
                 return r;
             });
 
@@ -117,10 +124,30 @@ public class MonitoringRepository : IMonitoringRepository
         return report;
     }
 
-    public Task<DocumentType> GetDocumentTypeAsync(int referenceNumber) =>
-        db.QuerySingleAsync<DocumentType>(
-            @"select convert(int, STRDOCUMENTTYPE) as DocumentType
-            from ISMPREPORTINFORMATION
-            where STRREFERENCENUMBER = @ReferenceNumber",
+    private async Task<StackTestReportLoadingRack> GetLoadingRackAsync(int referenceNumber)
+    {
+        var report = await GetBaseStackTestReportAsync<StackTestReportLoadingRack>(referenceNumber);
+
+        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReportLoadingRack,
             new { ReferenceNumber = referenceNumber });
+
+        _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(
+            (r, MaxOperatingCapacity, OperatingCapacity, TestDuration, PollutantConcentrationIn, PollutantConcentrationOut, EmissionRate) =>
+            {
+                report.MaxOperatingCapacity = MaxOperatingCapacity;
+                report.OperatingCapacity = OperatingCapacity;
+                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
+                report.TestDuration = TestDuration;
+                report.PollutantConcentrationIn = PollutantConcentrationIn;
+                report.PollutantConcentrationOut = PollutantConcentrationOut;
+                report.EmissionRate = EmissionRate;
+                report.DestructionReduction = new ValueWithUnits(r.DestructionReduction, "%");
+                return r;
+            });
+
+        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
+
+        report.ParseConfidentialParameters();
+        return report;
+    }
 }

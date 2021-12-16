@@ -199,17 +199,27 @@ footer {
         padding-right: 0;
     }
 
-.stack-test td.table-subtable {
+.stack-test .table-subtable {
     border: none;
     padding: 0;
 }
 
-.stack-test .table-subtable td {
+    .stack-test .table-subtable tbody tr:first-child th,
+    .stack-test .table-subtable tbody tr:first-child td {
+        border-top: none;
+    }
+
+.stack-test .table-subtable-vertical td {
     text-align: center;
 }
 
-.stack-test tr:last-child th,
-.stack-test tr:last-child td {
+.stack-test .table-subtable-horizontal th {
+    padding-left: 1rem;
+    width: 3rem;
+}
+
+.stack-test tbody > tr:last-child th,
+.stack-test tbody > tr:last-child td {
     border-bottom: none;
 }
 

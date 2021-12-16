@@ -7,7 +7,7 @@ public static class MonitoringData
 {
     public static IEnumerable<StackTestReport> GetStackTestReports => new List<StackTestReport>
     {
-        new StackTestReportOneStack() {
+        new StackTestReportOneStack {
             ReferenceNumber = 201100541,
             Facility = FacilityData.GetFacilities.Single(e => e.Id.ShortString == "12100021"),
             Pollutant = "Total Reduced Sulfur Compounds",
@@ -29,6 +29,7 @@ public static class MonitoringData
             },
             ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
             TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+
             MaxOperatingCapacity = new ValueWithUnits("100", "tons/hr"),
             OperatingCapacity = new ValueWithUnits("90", "tons/hr"),
             AllowableEmissionRates = new List<ValueWithUnits>
@@ -72,12 +73,12 @@ public static class MonitoringData
                     ConfidentialParametersCode="0101010",
                 },
             },
-            AvgPollutantConcentration = new ValueWithUnits("17.1","ppm"),
+            AvgPollutantConcentration = new ValueWithUnits("17.1", "ppm"),
             AvgEmissionRate = new ValueWithUnits("0.013", "lb/ton"),
             PercentAllowable = "75.0",
             ConfidentialParametersCode = "1B000000000000000000000001100000000000011000001100000110101",
         },
-        new StackTestReportOneStack() {
+        new StackTestReportOneStack {
             ReferenceNumber = 202001297,
             Facility = FacilityData.GetFacilities.Single(e => e.Id.ShortString == "17900001"),
             Pollutant = "Total Reduced Sulfur Compounds",
@@ -91,10 +92,11 @@ public static class MonitoringData
                 new DateTime(2020, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2020, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 1).Name,
+            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 2).Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
             TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+
             MaxOperatingCapacity = new ValueWithUnits("100", "tons/hr"),
             OperatingCapacity = new ValueWithUnits("90", "tons/hr"),
             AllowableEmissionRates = new List<ValueWithUnits>
@@ -138,10 +140,44 @@ public static class MonitoringData
                     ConfidentialParametersCode="",
                 },
             },
-            AvgPollutantConcentration = new ValueWithUnits("17.1","ppm"),
+            AvgPollutantConcentration = new ValueWithUnits("17.1", "ppm"),
             AvgEmissionRate = new ValueWithUnits("0.013", "lb/ton"),
             PercentAllowable = "75.0",
             ConfidentialParametersCode = "0",
+        },
+        new StackTestReportLoadingRack
+        {
+            ReferenceNumber = 201901149,
+            Facility = FacilityData.GetFacilities.Single(e => e.Id.ShortString == "05900071"),
+            Pollutant = "Volatile Organic Compounds",
+            Source = "Tank Truck Loading Rack",
+            ReportType = ReportType.SourceTest,
+            DocumentType = DocumentType.LoadingRack,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = "Highest VOC concentration at inlet was 50 percent./r/nAverage VOC concentration at inlet was 28 percent during 6 hour test period.",
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+
+            MaxOperatingCapacity = new ValueWithUnits("400,000,000", "GPY"),
+            OperatingCapacity = new ValueWithUnits("90,000", "GPY"),
+            AllowableEmissionRates = new List<ValueWithUnits>
+            {
+                new ValueWithUnits("18", "mg/L"),
+            },
+            ControlEquipmentInfo = "Vapor Combustor/r/nHighest back pressure 340mm H2O",
+            TestDuration = new ValueWithUnits("6", "Hours"),
+            PollutantConcentrationIn = new ValueWithUnits("20", "%"),
+            PollutantConcentrationOut = new ValueWithUnits("120", "PPM"),
+            EmissionRate = new ValueWithUnits("9.9", "mg/L"),
+            DestructionReduction = new ValueWithUnits("98.2", "%"),
+            ConfidentialParametersCode = "1F000000000000000000000001000000010001",
         },
     };
 }

@@ -26,7 +26,7 @@ public record struct TestRun
     [Display(Name = "Emission rate")]
     public string EmissionRate { get; init; } = "";
 
-    // Confidential info handling
+    #region Confidential info handling
 
     [JsonIgnore]
     public string ConfidentialParametersCode { private get; init; } = "";
@@ -68,4 +68,6 @@ public record struct TestRun
     {
         if (ConfidentialParametersCode[position - 1] == '1') ConfidentialParameters.Add(parameter);
     }
+
+    #endregion
 }
