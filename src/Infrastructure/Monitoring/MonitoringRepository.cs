@@ -66,9 +66,7 @@ public class MonitoringRepository : IMonitoringRepository
                 break;
             case DocumentType.Method9Single:
                 break;
-            case DocumentType.PEMS:
-                break;
-            case DocumentType.PTEPermanentTotalEnclosure:
+            case DocumentType.PTE:
                 break;
 
             default:
