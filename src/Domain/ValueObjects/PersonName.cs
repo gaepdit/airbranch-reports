@@ -6,8 +6,8 @@ public record struct PersonName
 (
     string GivenName, 
     string FamilyName, 
-    string? Prefix, 
-    string? Suffix
+    string? Prefix = null, 
+    string? Suffix = null
 )
 {
     [JsonIgnore]

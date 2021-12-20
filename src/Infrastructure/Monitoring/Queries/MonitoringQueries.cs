@@ -258,18 +258,21 @@ from ISMPREPORTINFORMATION r
 where convert(int, r.STRREFERENCENUMBER) = @ReferenceNumber;
 
 select trim(t.Value) as Value,
-       Units
+       Units,
+       Preamble
 from (
     select STRREFERENCENUMBER,
            1                     as Id,
            STRLIMITATIONVELOCITY as Value,
-           'ft/sec'              as Units
+           'ft/sec'              as Units,
+           'Velocity less than'  as Preamble
     from ISMPREPORTFLARE
     union
     select STRREFERENCENUMBER,
            2 as Id,
            STRLIMITATIONHEATCAPACITY,
-           'BTU/scf'
+           'BTU/scf',
+           'Heat Content greater than or equal to'
     from ISMPREPORTFLARE
 ) t
 where convert(int, t.STRREFERENCENUMBER) = @ReferenceNumber

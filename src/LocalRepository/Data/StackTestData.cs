@@ -169,8 +169,8 @@ public static class StackTestData
             OperatingCapacity = new ValueWithUnits("100", "%"),
             AllowableEmissionRates = new List<ValueWithUnits>
             {
-                new ValueWithUnits("80", "ft/sec"),
-                new ValueWithUnits("200", "BTU/scf"),
+                new ValueWithUnits("80", "ft/sec", "Velocity less than"),
+                new ValueWithUnits("200", "BTU/scf", "Heat Content greater than or equal to"),
             },
             ControlEquipmentInfo = "Opacity 0.0% (2 Hour Method 22 Test Run)",
             TestRuns = new List<FlareTestRun>

@@ -111,17 +111,17 @@ public abstract record class BaseStackTestReport
 
     protected PersonName CheckConfidential(PersonName input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? new PersonName { GivenName = "", FamilyName = GlobalConstants.ConfidentialInfoPlaceholder }
+        ? new PersonName("", GlobalConstants.ConfidentialInfoPlaceholder)
         : input;
 
     protected List<PersonName> CheckConfidential(List<PersonName> input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? new List<PersonName> { new PersonName { GivenName = "", FamilyName = GlobalConstants.ConfidentialInfoPlaceholder } }
+        ? new List<PersonName> { new PersonName("", GlobalConstants.ConfidentialInfoPlaceholder) }
         : input;
 
     protected ValueWithUnits CheckConfidential(ValueWithUnits input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, input.Units)
+        ? new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, input.Units, input.Preamble)
         : input;
 
     protected List<ValueWithUnits> CheckConfidential(List<ValueWithUnits> input, string parameter) =>
