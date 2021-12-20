@@ -1,11 +1,11 @@
 ﻿using Domain.Monitoring.Models;
-using Domain.Monitoring.Models.StackTestData;
+using Domain.Monitoring.Models.TestRuns;
 
 namespace LocalRepository.Data;
 
 public static class StackTestData
 {
-    public static IEnumerable<StackTestReport> GetStackTestReports => new List<StackTestReport>
+    public static IEnumerable<BaseStackTestReport> GetStackTestReports => new List<BaseStackTestReport>
     {
         new StackTestReportOneStack {
             ReferenceNumber = 201100541,
@@ -37,9 +37,9 @@ public static class StackTestData
                 new ValueWithUnits("0.018", "lb/ton"),
             },
             ControlEquipmentInfo = "Scrubber pressure drop: 1 in. H2O\n\rScrubber recirculation rate: 200 gpm",
-            TestRuns = new List<TestRun>
+            TestRuns = new List<StackTestRun>
             {
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "1",
                     GasTemperature = "175",
@@ -50,7 +50,7 @@ public static class StackTestData
                     EmissionRate = "0.013",
                     ConfidentialParametersCode="",
                 },
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "2",
                     GasTemperature = "176",
@@ -61,7 +61,7 @@ public static class StackTestData
                     EmissionRate = "0.014",
                     ConfidentialParametersCode="0000000",
                 },
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "3",
                     GasTemperature = "174",
@@ -104,9 +104,9 @@ public static class StackTestData
                 new ValueWithUnits("0.018", "lb/ton"),
             },
             ControlEquipmentInfo = "Scrubber pressure drop: 1 in. H2O\n\rScrubber recirculation rate: 200 gpm",
-            TestRuns = new List<TestRun>
+            TestRuns = new List<StackTestRun>
             {
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "1",
                     GasTemperature = "175",
@@ -117,7 +117,7 @@ public static class StackTestData
                     EmissionRate = "0.013",
                     ConfidentialParametersCode="",
                 },
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "2",
                     GasTemperature = "176",
@@ -128,7 +128,7 @@ public static class StackTestData
                     EmissionRate = "0.014",
                     ConfidentialParametersCode="",
                 },
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "3",
                     GasTemperature = "174",

@@ -11,7 +11,7 @@ namespace WebApp.Pages.Facility.StackTest;
 
 public class IndexModel : PageModel
 {
-    public StackTestReport? Report { get; private set; } 
+    public BaseStackTestReport? Report { get; private set; } 
     public OrganizationInfo OrganizationInfo { get; private set; }
     public MemoHeader MemoHeader { get; private set; }
     public bool ShowConfidentialWarning { get; private set; } = false;

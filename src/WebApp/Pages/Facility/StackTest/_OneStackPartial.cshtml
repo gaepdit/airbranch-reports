@@ -9,11 +9,7 @@
 </tr>
 <tr>
     <th>@Html.DisplayNameFor(m => m.AllowableEmissionRates)</th>
-    <td>@Html.DisplayFor(m => m.AllowableEmissionRates)</td>
-</tr>
-<tr>
-    <th>@Html.DisplayNameFor(m => m.ApplicableRequirement)</th>
-    <td>@Model!.ApplicableRequirement</td>
+    <td>@Html.DisplayFor(m => m.AllowableEmissionRates, "ValueWithUnitsCollection")</td>
 </tr>
 <tr>
     <th>@Html.DisplayNameFor(m => m.ControlEquipmentInfo)</th>
@@ -21,7 +17,7 @@
 </tr>
 <tr>
     <td colspan="2" class="table-subtable">
-        <partial name="_TestRunTablePartial" model="Model" />
+        <partial name="_TestRunTableStackPartial" model="Model" />
     </td>
 </tr>
 <tr>

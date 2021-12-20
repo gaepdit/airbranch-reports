@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using Domain.Facilities.Models;
 using Domain.Monitoring.Models;
-using Domain.Monitoring.Models.StackTestData;
+using Domain.Monitoring.Models.TestRuns;
 using Domain.Monitoring.Repositories;
 using Domain.ValueObjects;
 using Infrastructure.Monitoring.Queries;
@@ -27,7 +27,7 @@ public class MonitoringRepository : IMonitoringRepository
     db.QuerySingleAsync<DocumentType>(MonitoringQueries.GetDocumentType,
         new { ReferenceNumber = referenceNumber });
 
-    public async Task<StackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
+    public async Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
     {
         if (!await StackTestReportExistsAsync(facilityId, referenceNumber)) return null;
 
@@ -76,7 +76,7 @@ public class MonitoringRepository : IMonitoringRepository
         return null;
     }
 
-    private async Task<T> GetBaseStackTestReportAsync<T>(int referenceNumber) where T : StackTestReport
+    private async Task<T> GetBaseStackTestReportAsync<T>(int referenceNumber) where T : BaseStackTestReport
     {
         using var multi = await db.QueryMultipleAsync(MonitoringQueries.BaseStackTestReport,
             new { ReferenceNumber = referenceNumber });
@@ -117,7 +117,7 @@ public class MonitoringRepository : IMonitoringRepository
             });
 
         report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
-        report.TestRuns.AddRange(multi.Read<TestRun>());
+        report.TestRuns.AddRange(multi.Read<StackTestRun>());
 
         report.ParseConfidentialParameters();
         return report;

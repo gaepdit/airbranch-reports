@@ -1,11 +1,10 @@
-using Domain.Monitoring.Models.StackTestData;
 using Domain.Utils;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Domain.Monitoring.Models;
 
-public abstract record class StackTestReport
+public abstract record class BaseStackTestReport
 {
     // Basic test report info
 
@@ -78,9 +77,9 @@ public abstract record class StackTestReport
 
     public ICollection<string> ConfidentialParameters { get; protected set; } = new HashSet<string>();
 
-    public abstract StackTestReport RedactedStackTestReport();
+    public abstract BaseStackTestReport RedactedStackTestReport();
 
-    protected T RedactedBaseStackTestReport<T>() where T : StackTestReport =>
+    protected T RedactedBaseStackTestReport<T>() where T : BaseStackTestReport =>
         (T)this with
         {
             Pollutant = CheckConfidential(Pollutant, nameof(Pollutant)),
@@ -129,42 +128,6 @@ public abstract record class StackTestReport
         ConfidentialParameters.Contains(parameter)
         ? new List<ValueWithUnits> { new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, "") }
         : input;
-
-    protected static List<TestRun> RedactedTestRuns(List<TestRun> testRuns)
-    {
-        var redactedTestRuns = new List<TestRun>();
-        foreach (var r in testRuns) redactedTestRuns.Add(r.RedactedTestRun());
-        return redactedTestRuns;
-    }
-
-    protected static List<FlareTestRun> RedactedTestRuns(List<FlareTestRun> testRuns)
-    {
-        var redactedTestRuns = new List<FlareTestRun>();
-        foreach (var r in testRuns) redactedTestRuns.Add(r.RedactedTestRun());
-        return redactedTestRuns;
-    }
-
-    protected static List<TestRun> ParsedTestRuns(List<TestRun> testRuns)
-    {
-        var parsedTestRuns = new List<TestRun>();
-        foreach (var r in testRuns)
-        {
-            r.ParseConfidentialParameters();
-            parsedTestRuns.Add(r);
-        }
-        return parsedTestRuns;
-    }
-
-    protected static List<FlareTestRun> ParsedTestRuns(List<FlareTestRun> testRuns)
-    {
-        var parsedTestRuns = new List<FlareTestRun>();
-        foreach (var r in testRuns)
-        {
-            r.ParseConfidentialParameters();
-            parsedTestRuns.Add(r);
-        }
-        return parsedTestRuns;
-    }
 
     public abstract void ParseConfidentialParameters();
     protected void ParseBaseConfidentialParameters()

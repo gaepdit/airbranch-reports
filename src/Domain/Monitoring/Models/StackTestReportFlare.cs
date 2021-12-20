@@ -1,9 +1,9 @@
-﻿using Domain.Monitoring.Models.StackTestData;
+﻿using Domain.Monitoring.Models.TestRuns;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Monitoring.Models;
 
-public record class StackTestReportFlare : StackTestReport
+public record class StackTestReportFlare : BaseStackTestReport
 {
     // Operating data
 
@@ -45,13 +45,13 @@ public record class StackTestReportFlare : StackTestReport
             AvgHeatingValue = CheckConfidential(AvgHeatingValue, nameof(AvgHeatingValue)),
             AvgEmissionRateVelocity = CheckConfidential(AvgEmissionRateVelocity, nameof(AvgEmissionRateVelocity)),
             PercentAllowable = CheckConfidential(PercentAllowable, nameof(PercentAllowable)),
-            TestRuns = RedactedTestRuns(TestRuns),
+            TestRuns = BaseTestRun.RedactedTestRuns(TestRuns),
         };
 
     public override void ParseConfidentialParameters()
     {
         ConfidentialParameters = new HashSet<string>();
-        TestRuns = ParsedTestRuns(TestRuns);
+        TestRuns = BaseTestRun.ParsedTestRuns(TestRuns);
 
         if (ConfidentialParametersCode == "" || ConfidentialParametersCode[0] == '0') return;
         ParseBaseConfidentialParameters();

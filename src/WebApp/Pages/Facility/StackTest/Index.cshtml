@@ -46,7 +46,7 @@
                 </tr>
                 <tr>
                     <th>@Html.DisplayNameFor(m => Report.WitnessedByStaff)</th>
-                    <td>@Html.DisplayFor(m => Report.WitnessedByStaff, "PersonList")</td>
+                    <td>@Html.DisplayFor(m => Report.WitnessedByStaff, "PersonCollection")</td>
                 </tr>
                 <tr>
                     <th>@Html.DisplayNameFor(m => Report.TestDates)</th>
@@ -55,6 +55,10 @@
                 <tr>
                     <th>@Html.DisplayNameFor(m => Report.DateReceivedByApb)</th>
                     <td>@Html.DisplayFor(m => Report.DateReceivedByApb)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => Report.ApplicableRequirement)</th>
+                    <td>@Report.ApplicableRequirement</td>
                 </tr>
                 @switch (Report)
                 {

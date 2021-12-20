@@ -15,7 +15,7 @@ public class MonitoringRepository : IMonitoringRepository
     public Task<DocumentType> GetDocumentTypeAsync(int referenceNumber) =>
         Task.FromResult(GetStackTestReports.Single(e => e.ReferenceNumber == referenceNumber).DocumentType);
 
-    public async Task<StackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
+    public async Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
     {
         if (!await StackTestReportExistsAsync(facilityId, referenceNumber)) return null;
 
