@@ -154,7 +154,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             DocumentType = DocumentType.LoadingRack,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = "Highest VOC concentration at inlet was 50 percent./r/nAverage VOC concentration at inlet was 28 percent during 6 hour test period.",
+            Comments = "Highest VOC concentration at inlet was 50 percent.\r\nAverage VOC concentration at inlet was 28 percent during 6 hour test period.",
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
@@ -211,7 +211,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             DocumentType = DocumentType.LoadingRack,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = "Highest VOC concentration at inlet was 50 percent./r/nAverage VOC concentration at inlet was 28 percent during 6 hour test period.",
+            Comments = "Highest VOC concentration at inlet was 50 percent.\r\nAverage VOC concentration at inlet was 28 percent during 6 hour test period.",
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
@@ -228,7 +228,7 @@ public static class StackTestData
             {
                 new ValueWithUnits("18", "mg/L"),
             },
-            ControlEquipmentInfo = "Vapor Combustor/r/nHighest back pressure 340mm H2O",
+            ControlEquipmentInfo = "Vapor Combustor\r\nHighest back pressure 340mm H2O",
             TestDuration = new ValueWithUnits("6", "Hours"),
             PollutantConcentrationIn = new ValueWithUnits("20", "%"),
             PollutantConcentrationOut = new ValueWithUnits("120", "PPM"),
