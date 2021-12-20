@@ -11,7 +11,7 @@ namespace WebApp.Api.StackTest
     public class StackTestController : ControllerBase
     {
         [HttpGet("{referenceNumber:int}")]
-        public async Task<ActionResult<StackTestReport>> GetAsync(
+        public async Task<ActionResult<BaseStackTestReport>> GetAsync(
             [FromServices] IMonitoringRepository repository,
             [FromRoute] string facilityId,
             [FromRoute] int referenceNumber,

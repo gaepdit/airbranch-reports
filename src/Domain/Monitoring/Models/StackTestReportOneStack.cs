@@ -1,9 +1,9 @@
-﻿using Domain.Monitoring.Models.StackTestData;
+﻿using Domain.Monitoring.Models.TestRuns;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Monitoring.Models;
 
-public record class StackTestReportOneStack : StackTestReport
+public record class StackTestReportOneStack : BaseStackTestReport
 {
     // Operating data
 
@@ -22,7 +22,7 @@ public record class StackTestReportOneStack : StackTestReport
     // Test run data
 
     [Display(Name = "Test runs")]
-    public List<TestRun> TestRuns { get; set; } = new List<TestRun>();
+    public List<StackTestRun> TestRuns { get; set; } = new List<StackTestRun>();
 
     [Display(Name = "Average pollutant concentration")]
     public ValueWithUnits AvgPollutantConcentration { get; set; }
@@ -45,13 +45,13 @@ public record class StackTestReportOneStack : StackTestReport
             AvgPollutantConcentration = CheckConfidential(AvgPollutantConcentration, nameof(AvgPollutantConcentration)),
             AvgEmissionRate = CheckConfidential(AvgEmissionRate, nameof(AvgEmissionRate)),
             PercentAllowable = CheckConfidential(PercentAllowable, nameof(PercentAllowable)),
-            TestRuns = RedactedTestRuns(TestRuns),
+            TestRuns = BaseTestRun.RedactedTestRuns(TestRuns),
         };
 
     public override void ParseConfidentialParameters()
     {
         ConfidentialParameters = new HashSet<string>();
-        TestRuns = ParsedTestRuns(TestRuns);
+        TestRuns = BaseTestRun.ParsedTestRuns(TestRuns);
 
         if (ConfidentialParametersCode == "" || ConfidentialParametersCode[0] == '0') return;
         ParseBaseConfidentialParameters();

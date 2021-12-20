@@ -1,11 +1,11 @@
 ﻿using Domain.Monitoring.Models;
-using Domain.Monitoring.Models.StackTestData;
+using Domain.Monitoring.Models.TestRuns;
 
 namespace LocalRepository.Data;
 
-public static class MonitoringData
+public static class StackTestData
 {
-    public static IEnumerable<StackTestReport> GetStackTestReports => new List<StackTestReport>
+    public static IEnumerable<BaseStackTestReport> GetStackTestReports => new List<BaseStackTestReport>
     {
         new StackTestReportOneStack {
             ReferenceNumber = 201100541,
@@ -37,9 +37,9 @@ public static class MonitoringData
                 new ValueWithUnits("0.018", "lb/ton"),
             },
             ControlEquipmentInfo = "Scrubber pressure drop: 1 in. H2O\n\rScrubber recirculation rate: 200 gpm",
-            TestRuns = new List<TestRun>
+            TestRuns = new List<StackTestRun>
             {
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "1",
                     GasTemperature = "175",
@@ -50,7 +50,7 @@ public static class MonitoringData
                     EmissionRate = "0.013",
                     ConfidentialParametersCode="",
                 },
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "2",
                     GasTemperature = "176",
@@ -61,7 +61,7 @@ public static class MonitoringData
                     EmissionRate = "0.014",
                     ConfidentialParametersCode="0000000",
                 },
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "3",
                     GasTemperature = "174",
@@ -104,9 +104,9 @@ public static class MonitoringData
                 new ValueWithUnits("0.018", "lb/ton"),
             },
             ControlEquipmentInfo = "Scrubber pressure drop: 1 in. H2O\n\rScrubber recirculation rate: 200 gpm",
-            TestRuns = new List<TestRun>
+            TestRuns = new List<StackTestRun>
             {
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "1",
                     GasTemperature = "175",
@@ -117,7 +117,7 @@ public static class MonitoringData
                     EmissionRate = "0.013",
                     ConfidentialParametersCode="",
                 },
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "2",
                     GasTemperature = "176",
@@ -128,7 +128,7 @@ public static class MonitoringData
                     EmissionRate = "0.014",
                     ConfidentialParametersCode="",
                 },
-                new TestRun
+                new StackTestRun
                 {
                     RunNumber = "3",
                     GasTemperature = "174",
@@ -145,6 +145,63 @@ public static class MonitoringData
             PercentAllowable = "75.0",
             ConfidentialParametersCode = "0",
         },
+        new StackTestReportFlare
+        {
+            ReferenceNumber = 200400407,
+            Facility = FacilityData.GetFacilities.Single(e => e.Id.ShortString == "05700040"),
+            Pollutant = "Volatile Organic Compounds",
+            Source = "Tank Truck Loading Rack",
+            ReportType = ReportType.SourceTest,
+            DocumentType = DocumentType.LoadingRack,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = "Highest VOC concentration at inlet was 50 percent.\r\nAverage VOC concentration at inlet was 28 percent during 6 hour test period.",
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+
+            MaxOperatingCapacity = new ValueWithUnits("100", "%"),
+            OperatingCapacity = new ValueWithUnits("100", "%"),
+            AllowableEmissionRates = new List<ValueWithUnits>
+            {
+                new ValueWithUnits("80", "ft/sec", "Velocity less than"),
+                new ValueWithUnits("200", "BTU/scf", "Heat Content greater than or equal to"),
+            },
+            ControlEquipmentInfo = "Opacity 0.0% (2 Hour Method 22 Test Run)",
+            TestRuns = new List<FlareTestRun>
+            {
+                new FlareTestRun
+                {
+                    RunNumber = "1",
+                    HeatingValue = "400",
+                    EmissionRateVelocity = "35",
+                    ConfidentialParametersCode = "",
+                },
+                new FlareTestRun
+                {
+                    RunNumber = "2",
+                    HeatingValue = "450",
+                    EmissionRateVelocity = "37",
+                    ConfidentialParametersCode = "",
+                },
+                new FlareTestRun
+                {
+                    RunNumber = "3",
+                    HeatingValue = "425",
+                    EmissionRateVelocity = "39",
+                    ConfidentialParametersCode = "",
+                },
+            },
+            AvgHeatingValue = new ValueWithUnits("425", "BTU/scf"),
+            AvgEmissionRateVelocity = new ValueWithUnits("37", "ft/sec"),
+            PercentAllowable = "75.0",
+            ConfidentialParametersCode = "",
+        },
         new StackTestReportLoadingRack
         {
             ReferenceNumber = 201901149,
@@ -154,7 +211,7 @@ public static class MonitoringData
             ReportType = ReportType.SourceTest,
             DocumentType = DocumentType.LoadingRack,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = "Highest VOC concentration at inlet was 50 percent./r/nAverage VOC concentration at inlet was 28 percent during 6 hour test period.",
+            Comments = "Highest VOC concentration at inlet was 50 percent.\r\nAverage VOC concentration at inlet was 28 percent during 6 hour test period.",
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
@@ -171,7 +228,7 @@ public static class MonitoringData
             {
                 new ValueWithUnits("18", "mg/L"),
             },
-            ControlEquipmentInfo = "Vapor Combustor/r/nHighest back pressure 340mm H2O",
+            ControlEquipmentInfo = "Vapor Combustor\r\nHighest back pressure 340mm H2O",
             TestDuration = new ValueWithUnits("6", "Hours"),
             PollutantConcentrationIn = new ValueWithUnits("20", "%"),
             PollutantConcentrationOut = new ValueWithUnits("120", "PPM"),

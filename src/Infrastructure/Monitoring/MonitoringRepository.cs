@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using Domain.Facilities.Models;
 using Domain.Monitoring.Models;
-using Domain.Monitoring.Models.StackTestData;
+using Domain.Monitoring.Models.TestRuns;
 using Domain.Monitoring.Repositories;
 using Domain.ValueObjects;
 using Infrastructure.Monitoring.Queries;
@@ -27,7 +27,7 @@ public class MonitoringRepository : IMonitoringRepository
     db.QuerySingleAsync<DocumentType>(MonitoringQueries.GetDocumentType,
         new { ReferenceNumber = referenceNumber });
 
-    public async Task<StackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
+    public async Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
     {
         if (!await StackTestReportExistsAsync(facilityId, referenceNumber)) return null;
 
@@ -53,7 +53,8 @@ public class MonitoringRepository : IMonitoringRepository
             case DocumentType.GasConcentration:
                 break;
             case DocumentType.Flare:
-                break;
+                return await GetFlareAsync(referenceNumber);
+
             case DocumentType.Rata:
                 break;
             case DocumentType.MemorandumStandard:
@@ -75,9 +76,9 @@ public class MonitoringRepository : IMonitoringRepository
         return null;
     }
 
-    private async Task<T> GetBaseStackTestReportAsync<T>(int referenceNumber) where T : StackTestReport
+    private async Task<T> GetBaseStackTestReportAsync<T>(int referenceNumber) where T : BaseStackTestReport
     {
-        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReport,
+        using var multi = await db.QueryMultipleAsync(MonitoringQueries.BaseStackTestReport,
             new { ReferenceNumber = referenceNumber });
 
         var report = multi.Read<T, Facility, PersonName, PersonName, PersonName, DateRange, T>(
@@ -116,7 +117,33 @@ public class MonitoringRepository : IMonitoringRepository
             });
 
         report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
-        report.TestRuns.AddRange(multi.Read<TestRun>());
+        report.TestRuns.AddRange(multi.Read<StackTestRun>());
+
+        report.ParseConfidentialParameters();
+        return report;
+    }
+
+    private async Task<StackTestReportFlare> GetFlareAsync(int referenceNumber)
+    {
+        var report = await GetBaseStackTestReportAsync<StackTestReportFlare>(referenceNumber);
+
+        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReportFlare,
+            new { ReferenceNumber = referenceNumber });
+
+        _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(
+            (r, MaxOperatingCapacity, OperatingCapacity, AvgHeatingValue, AvgEmissionRateVelocity) =>
+            {
+                report.MaxOperatingCapacity = MaxOperatingCapacity;
+                report.OperatingCapacity = OperatingCapacity;
+                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
+                report.AvgHeatingValue = AvgHeatingValue;
+                report.AvgEmissionRateVelocity = AvgEmissionRateVelocity;
+                report.PercentAllowable = r.PercentAllowable;
+                return r;
+            });
+
+        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
+        report.TestRuns.AddRange(multi.Read<FlareTestRun>());
 
         report.ParseConfidentialParameters();
         return report;

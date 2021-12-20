@@ -2,7 +2,7 @@
 
 namespace Domain.Monitoring.Models;
 
-public record class StackTestReportLoadingRack : StackTestReport
+public record class StackTestReportLoadingRack : BaseStackTestReport
 {
     // Operating data
 

@@ -1,4 +1,4 @@
-﻿@model Domain.Monitoring.Models.StackTestReportOneStack
+﻿@model Domain.Monitoring.Models.StackTestReportFlare
 <tr class="table-section">
     <th>@Html.DisplayNameFor(m => m.MaxOperatingCapacity)</th>
     <td>@Html.DisplayFor(m => m.MaxOperatingCapacity)</td>
@@ -17,7 +17,7 @@
 </tr>
 <tr>
     <td colspan="2" class="table-subtable">
-        <partial name="_TestRunTableStackPartial" model="Model" />
+        <partial name="_TestRunTableFlarePartial" model="Model" />
     </td>
 </tr>
 <tr>
