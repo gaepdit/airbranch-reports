@@ -1,6 +1,6 @@
 ﻿using Domain.Monitoring.Models;
 using Domain.Monitoring.Repositories;
-using static LocalRepository.Data.MonitoringData;
+using static LocalRepository.Data.StackTestData;
 
 namespace LocalRepository.Monitoring;
 

@@ -137,9 +137,27 @@ public abstract record class StackTestReport
         return redactedTestRuns;
     }
 
+    protected static List<FlareTestRun> RedactedTestRuns(List<FlareTestRun> testRuns)
+    {
+        var redactedTestRuns = new List<FlareTestRun>();
+        foreach (var r in testRuns) redactedTestRuns.Add(r.RedactedTestRun());
+        return redactedTestRuns;
+    }
+
     protected static List<TestRun> ParsedTestRuns(List<TestRun> testRuns)
     {
         var parsedTestRuns = new List<TestRun>();
+        foreach (var r in testRuns)
+        {
+            r.ParseConfidentialParameters();
+            parsedTestRuns.Add(r);
+        }
+        return parsedTestRuns;
+    }
+
+    protected static List<FlareTestRun> ParsedTestRuns(List<FlareTestRun> testRuns)
+    {
+        var parsedTestRuns = new List<FlareTestRun>();
         foreach (var r in testRuns)
         {
             r.ParseConfidentialParameters();

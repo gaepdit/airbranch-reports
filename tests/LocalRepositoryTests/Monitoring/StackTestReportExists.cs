@@ -12,7 +12,7 @@ public class StackTestReportExists
     [Test]
     public async Task ReturnsTrueIfExists()
     {
-        var report = MonitoringData.GetStackTestReports.First();
+        var report = StackTestData.GetStackTestReports.First();
 
         var repo = new MonitoringRepository();
         var result = await repo.StackTestReportExistsAsync(report.Facility.Id, report.ReferenceNumber);

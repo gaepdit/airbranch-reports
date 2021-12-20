@@ -53,7 +53,8 @@ public class MonitoringRepository : IMonitoringRepository
             case DocumentType.GasConcentration:
                 break;
             case DocumentType.Flare:
-                break;
+                return await GetFlareAsync(referenceNumber);
+
             case DocumentType.Rata:
                 break;
             case DocumentType.MemorandumStandard:
@@ -77,7 +78,7 @@ public class MonitoringRepository : IMonitoringRepository
 
     private async Task<T> GetBaseStackTestReportAsync<T>(int referenceNumber) where T : StackTestReport
     {
-        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReport,
+        using var multi = await db.QueryMultipleAsync(MonitoringQueries.BaseStackTestReport,
             new { ReferenceNumber = referenceNumber });
 
         var report = multi.Read<T, Facility, PersonName, PersonName, PersonName, DateRange, T>(
@@ -117,6 +118,32 @@ public class MonitoringRepository : IMonitoringRepository
 
         report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
         report.TestRuns.AddRange(multi.Read<TestRun>());
+
+        report.ParseConfidentialParameters();
+        return report;
+    }
+
+    private async Task<StackTestReportFlare> GetFlareAsync(int referenceNumber)
+    {
+        var report = await GetBaseStackTestReportAsync<StackTestReportFlare>(referenceNumber);
+
+        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReportFlare,
+            new { ReferenceNumber = referenceNumber });
+
+        _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(
+            (r, MaxOperatingCapacity, OperatingCapacity, AvgHeatingValue, AvgEmissionRateVelocity) =>
+            {
+                report.MaxOperatingCapacity = MaxOperatingCapacity;
+                report.OperatingCapacity = OperatingCapacity;
+                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
+                report.AvgHeatingValue = AvgHeatingValue;
+                report.AvgEmissionRateVelocity = AvgEmissionRateVelocity;
+                report.PercentAllowable = r.PercentAllowable;
+                return r;
+            });
+
+        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
+        report.TestRuns.AddRange(multi.Read<FlareTestRun>());
 
         report.ParseConfidentialParameters();
         return report;

@@ -13,7 +13,7 @@ public class GetDocumentType
     [Test]
     public async Task ReturnsDocumentTypeIfExists()
     {
-        var report = MonitoringData.GetStackTestReports.First();
+        var report = StackTestData.GetStackTestReports.First();
 
         var repo = new MonitoringRepository();
         var result = await repo.GetDocumentTypeAsync(report.ReferenceNumber);

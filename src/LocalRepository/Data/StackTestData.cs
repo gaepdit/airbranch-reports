@@ -3,7 +3,7 @@ using Domain.Monitoring.Models.StackTestData;
 
 namespace LocalRepository.Data;
 
-public static class MonitoringData
+public static class StackTestData
 {
     public static IEnumerable<StackTestReport> GetStackTestReports => new List<StackTestReport>
     {
@@ -144,6 +144,63 @@ public static class MonitoringData
             AvgEmissionRate = new ValueWithUnits("0.013", "lb/ton"),
             PercentAllowable = "75.0",
             ConfidentialParametersCode = "0",
+        },
+        new StackTestReportFlare
+        {
+            ReferenceNumber = 200400407,
+            Facility = FacilityData.GetFacilities.Single(e => e.Id.ShortString == "05700040"),
+            Pollutant = "Volatile Organic Compounds",
+            Source = "Tank Truck Loading Rack",
+            ReportType = ReportType.SourceTest,
+            DocumentType = DocumentType.LoadingRack,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = "Highest VOC concentration at inlet was 50 percent./r/nAverage VOC concentration at inlet was 28 percent during 6 hour test period.",
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+
+            MaxOperatingCapacity = new ValueWithUnits("100", "%"),
+            OperatingCapacity = new ValueWithUnits("100", "%"),
+            AllowableEmissionRates = new List<ValueWithUnits>
+            {
+                new ValueWithUnits("80", "ft/sec"),
+                new ValueWithUnits("200", "BTU/scf"),
+            },
+            ControlEquipmentInfo = "Opacity 0.0% (2 Hour Method 22 Test Run)",
+            TestRuns = new List<FlareTestRun>
+            {
+                new FlareTestRun
+                {
+                    RunNumber = "1",
+                    HeatingValue = "400",
+                    EmissionRateVelocity = "35",
+                    ConfidentialParametersCode = "",
+                },
+                new FlareTestRun
+                {
+                    RunNumber = "2",
+                    HeatingValue = "450",
+                    EmissionRateVelocity = "37",
+                    ConfidentialParametersCode = "",
+                },
+                new FlareTestRun
+                {
+                    RunNumber = "3",
+                    HeatingValue = "425",
+                    EmissionRateVelocity = "39",
+                    ConfidentialParametersCode = "",
+                },
+            },
+            AvgHeatingValue = new ValueWithUnits("425", "BTU/scf"),
+            AvgEmissionRateVelocity = new ValueWithUnits("37", "ft/sec"),
+            PercentAllowable = "75.0",
+            ConfidentialParametersCode = "",
         },
         new StackTestReportLoadingRack
         {

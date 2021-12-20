@@ -1,0 +1,34 @@
+﻿@model Domain.Monitoring.Models.StackTestReportFlare
+<tr class="table-section">
+    <th>@Html.DisplayNameFor(m => m.MaxOperatingCapacity)</th>
+    <td>@Html.DisplayFor(m => m.MaxOperatingCapacity)</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.OperatingCapacity)</th>
+    <td>@Html.DisplayFor(m => m.OperatingCapacity)</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.AllowableEmissionRates)</th>
+    <td>@Html.DisplayFor(m => m.AllowableEmissionRates)</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.ApplicableRequirement)</th>
+    <td>@Model!.ApplicableRequirement</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.ControlEquipmentInfo)</th>
+    <td>@Model!.ControlEquipmentInfo</td>
+</tr>
+<tr>
+    <td colspan="2" class="table-subtable">
+        <partial name="_FlareTestRunTablePartial" model="Model" />
+    </td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.PercentAllowable)</th>
+    <td>@Model!.PercentAllowable</td>
+</tr>
+<tr>
+    <th>@Html.DisplayNameFor(m => m.Comments)</th>
+    <td class="preserve-linebreaks">@Model!.Comments</td>
+</tr>
