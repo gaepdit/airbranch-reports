@@ -52,6 +52,7 @@ public record struct TestRun
 
     public void ParseConfidentialParameters()
     {
+        ConfidentialParameters = new HashSet<string>();
         if (ConfidentialParametersCode == "") return;
 
         AddIfConfidential(1, nameof(RunNumber));

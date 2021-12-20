@@ -51,6 +51,7 @@ public record class StackTestReportLoadingRack : StackTestReport
 
     public override void ParseConfidentialParameters()
     {
+        ConfidentialParameters = new HashSet<string>();
         if (ConfidentialParametersCode == "" || ConfidentialParametersCode[0] == '0') return;
         ParseBaseConfidentialParameters();
 

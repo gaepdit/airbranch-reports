@@ -1,3 +1,4 @@
+using Domain.Facilities.Models;
 using Domain.Monitoring.Models;
 using FluentAssertions;
 using Infrastructure.Monitoring;
@@ -23,6 +24,18 @@ public class GetStackTestReport
             result!.ReferenceNumber.Should().Be(referenceNumber);
             result.Facility.Id.ToString().Should().Be(facilityId);
         });
+    }
+
+    [Test]
+    public async Task ParsingConfidentialInfoDoesNotFail()
+    {
+        var facilityId = new ApbFacilityId("17900001");
+        var referenceNumber = 202001297;
+        var repo = new MonitoringRepository(Global.conn!);
+        StackTestReportOneStack? stackTestReport = await repo.GetStackTestReportAsync(facilityId, referenceNumber) as StackTestReportOneStack;
+
+        var act = () => stackTestReport!.RedactedStackTestReport();
+        act.Should().NotThrow();
     }
 
     [Test]

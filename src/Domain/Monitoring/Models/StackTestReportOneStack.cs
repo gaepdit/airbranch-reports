@@ -50,6 +50,9 @@ public record class StackTestReportOneStack : StackTestReport
 
     public override void ParseConfidentialParameters()
     {
+        ConfidentialParameters = new HashSet<string>();
+        TestRuns = ParsedTestRuns(TestRuns);
+
         if (ConfidentialParametersCode == "" || ConfidentialParametersCode[0] == '0') return;
         ParseBaseConfidentialParameters();
 
@@ -87,7 +90,6 @@ public record class StackTestReportOneStack : StackTestReport
                 break;
         }
 
-        foreach (var r in TestRuns) r.ParseConfidentialParameters();
     }
 
     #endregion

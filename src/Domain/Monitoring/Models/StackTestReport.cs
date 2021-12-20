@@ -76,7 +76,7 @@ public abstract record class StackTestReport
     [JsonIgnore]
     public string ConfidentialParametersCode { protected get; init; } = "";
 
-    public ICollection<string> ConfidentialParameters { get; private set; } = new HashSet<string>();
+    public ICollection<string> ConfidentialParameters { get; protected set; } = new HashSet<string>();
 
     public abstract StackTestReport RedactedStackTestReport();
 
@@ -135,6 +135,17 @@ public abstract record class StackTestReport
         var redactedTestRuns = new List<TestRun>();
         foreach (var r in testRuns) redactedTestRuns.Add(r.RedactedTestRun());
         return redactedTestRuns;
+    }
+
+    protected static List<TestRun> ParsedTestRuns(List<TestRun> testRuns)
+    {
+        var parsedTestRuns = new List<TestRun>();
+        foreach (var r in testRuns)
+        {
+            r.ParseConfidentialParameters();
+            parsedTestRuns.Add(r);
+        }
+        return parsedTestRuns;
     }
 
     public abstract void ParseConfidentialParameters();
