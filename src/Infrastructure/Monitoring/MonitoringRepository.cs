@@ -4,7 +4,6 @@ using Domain.Monitoring.Models;
 using Domain.Monitoring.Models.TestRuns;
 using Domain.Monitoring.Repositories;
 using Domain.ValueObjects;
-using Infrastructure.Monitoring.Queries;
 using System.Data;
 
 namespace Infrastructure.Monitoring;
