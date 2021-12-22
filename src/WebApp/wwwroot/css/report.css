@@ -97,8 +97,14 @@ html, body {
     margin-top: 1.5rem;
 }
 
+main {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
 .page-wrapper {
-    margin: 1rem 1.5rem;
+    max-width: 70rem;
+    margin: 1rem auto;
     padding: 1.333rem;
     box-shadow: 0 0 1px rgba(0,0,0,0.12), 0 0 2px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.12), 0 6px 8px rgba(0,0,0,0.12)
 }
