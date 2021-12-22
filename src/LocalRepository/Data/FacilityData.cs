@@ -7,50 +7,146 @@ public static class FacilityData
         new()
         {
             Id = new ApbFacilityId("00100001"),
-            City = "Atlantis",
-            County = "Appling",
             Name = "Apple Corp",
-            State = "GA",
+            County = "Appling",
+            Description = "Apples and more",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = null,
+                City = "Atlantis",
+                State = "GA",
+                PostalCode = "30000",
+            },
+            GeoCoordinate = new GeoCoordinate(34.1M, -84.5M),
+            HeaderData = new FacilityHeaderData
+            {
+                OperatingStatusCode = FacilityOperatingStatus.O,
+                ClassificationCode = FacilityClassification.A,
+                CmsClassificationCode = FacilityCmsClassification.A,
+                Sic = "1234",
+                Naics = "123456",
+                RmpId = null,
+                OwnershipType = null,
+                StartupDate = new DateTime(2000, 1, 1),
+                PermitRevocationDate = null,
+                AirPrograms = new List<string> { "SIP", "MACT", },
+                ProgramClassifications = new List<string> { "NSR/PSD Major" },
+                OneHourOzoneNonattainment = OneHourOzoneNonattainmentStatus.Contribute,
+                EightHourOzoneNonattainment = EightHourOzoneNonattainmentStatus.Atlanta,
+                PmFineNonattainment = PmFineNonattainmentStatus.Atlanta,
+                NspsFeeExempt = false,
+            },
         },
         new()
         {
             Id = new ApbFacilityId("12100021"),
-            City = "Bedford Falls",
-            County = "Bibb",
             Name = "Banana Corp",
-            State = "GA",
+            County = "Bibb",
+            Description = "Bananas and more",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = "Suite B",
+                City = "Bedford Falls",
+                State = "GA",
+                PostalCode = "30000",
+            },
+            HeaderData = new FacilityHeaderData
+            {
+                OperatingStatusCode = FacilityOperatingStatus.O,
+                ClassificationCode = FacilityClassification.SM,
+                CmsClassificationCode = FacilityCmsClassification.S,
+                Sic = "1234",
+                Naics = "123456",
+                RmpId = "1234-5678-9012",
+                OwnershipType = "Federal Facility (U.S. Government)",
+                StartupDate = new DateTime(2000, 1, 1),
+                PermitRevocationDate = null,
+                AirPrograms = new List<string> { "SIP", "NSPS", },
+                ProgramClassifications = new List<string>(),
+                OneHourOzoneNonattainment = OneHourOzoneNonattainmentStatus.No,
+                EightHourOzoneNonattainment = EightHourOzoneNonattainmentStatus.None,
+                PmFineNonattainment = PmFineNonattainmentStatus.None,
+                NspsFeeExempt = true,
+            },
         },
         new()
         {
             Id = new ApbFacilityId("05100149"),
-            City = "Coruscant",
-            County = "Clay",
             Name = "Cranberry Corp",
-            State = "GA",
+            County = "Clay",
+            Description = "Cranberries and more",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = null,
+                City = "Coruscant",
+                State = "GA",
+                PostalCode = "30000",
+            },
+            GeoCoordinate = new GeoCoordinate(34.1M, -84.5M),
+            HeaderData = new FacilityHeaderData
+            {
+                OperatingStatusCode = FacilityOperatingStatus.X,
+                ClassificationCode = FacilityClassification.Unspecified,
+                CmsClassificationCode = FacilityCmsClassification.Unspecified,
+                Sic = "1234",
+                Naics = "123456",
+                StartupDate = new DateTime(2000, 1, 1),
+                PermitRevocationDate = new DateTime(2020, 2, 2),
+                AirPrograms = new List<string> { "SIP" },
+                ProgramClassifications = new List<string>(),
+                OneHourOzoneNonattainment = OneHourOzoneNonattainmentStatus.No,
+                EightHourOzoneNonattainment = EightHourOzoneNonattainmentStatus.None,
+                PmFineNonattainment = PmFineNonattainmentStatus.None,
+            },
         },
         new()
         {
             Id = new ApbFacilityId("17900001"),
-            City = "Duckburg",
-            County = "Dade",
             Name = "Date Corp",
-            State = "GA",
+            County = "Dade",
+            Description = "Dates and times",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = "Suite D",
+                City = "Duckburg",
+                State = "GA",
+                PostalCode = "30000",
+            },
         },
         new()
         {
             Id = new ApbFacilityId("05900071"),
-            City = "Emerald City",
-            County = "Early",
             Name = "Elderberry Inc.",
-            State = "GA",
+            County = "Early",
+            Description = "Your mother was a hamster and your father smelt of elderberries!",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = null,
+                City = "Emerald City",
+                State = "GA",
+                PostalCode = "30000",
+            },
         },
         new()
         {
             Id = new ApbFacilityId("05700040"),
-            City = "Fer-de-Lance",
-            County = "Floyd",
             Name = "Fruit Inc.",
-            State = "GA",
+            County = "Floyd",
+            Description = "Nothing but fruit",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = "Suite F",
+                City = "Fer-de-Lance",
+                State = "GA",
+                PostalCode = "30000",
+            },
+            GeoCoordinate = new GeoCoordinate(34.1M, -84.5M),
         },
     };
 }

@@ -1,4 +1,4 @@
-@page "~/facility/{facilityId}/stack-test/{referenceNumber:int}"
+﻿@page "~/facility/{facilityId}/stack-test/{referenceNumber:int}"
 @using Domain.Monitoring.Models
 @using WebApp.Platform.Formatting
 @model WebApp.Pages.Facility.StackTest.IndexModel
@@ -29,8 +29,8 @@
                     <td>@Report.Facility.Name</td>
                 </tr>
                 <tr>
-                    <th>@Html.DisplayNameFor(m => Report.Facility.City)</th>
-                    <td>@Report.Facility.City, @Report.Facility.State</td>
+                    <th>@Html.DisplayNameFor(m => Report.Facility.FacilityAddress)</th>
+                    <td>@Report.Facility.FacilityAddress.City, @Report.Facility.FacilityAddress.State</td>
                 </tr>
                 <tr>
                     <th>@Html.DisplayNameFor(m => Report.Source)</th>

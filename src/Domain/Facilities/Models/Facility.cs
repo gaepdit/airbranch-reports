@@ -1,17 +1,31 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Facilities.Models;
 
 public record class Facility
 {
+    // Facility identity
+
     [Display(Name = "AIRS Number")]
-    public ApbFacilityId Id { get; init; }
+    public ApbFacilityId? Id { get; init; }
 
-    [Display(Name = "Company Name")]
-    public string Name { get; init; }
+    [Display(Name = "Facility Name")]
+    public string Name { get; init; } = "";
 
-    [Display(Name = "Company Location")]
-    public string City { get; init; }
-    public string County { get; init; }
-    public string State { get; init; }
+    public string Description { get; init; } = "";
+
+    // Location
+
+    [Display(Name = "Facility Address")]
+    public Address FacilityAddress { get; set; }
+
+    [Display(Name = "County")]
+    public string County { get; init; } = "";
+
+    [Display(Name = "Geographic Coordinates")]
+    public GeoCoordinate? GeoCoordinate { get; set; }
+
+    // Regulatory data
+
+    public FacilityHeaderData? HeaderData { get; set; }
 }

@@ -34,7 +34,7 @@ public class AccReportModel : PageModel
             Date = Report.DateAcknowledgmentLetterSent,
             From = Report.StaffResponsible.DisplayName,
             Subject = $"Title V Annual Certification for {Report.AccReportingYear}" + Environment.NewLine +
-                $"{Report.Facility.Name}, {Report.Facility.City}" + Environment.NewLine +
+                $"{Report.Facility.Name}, {Report.Facility.FacilityAddress.City}" + Environment.NewLine +
                 $"AIRS # {Report.Facility.Id}",
         };
 
