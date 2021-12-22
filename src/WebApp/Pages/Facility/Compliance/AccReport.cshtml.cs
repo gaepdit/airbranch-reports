@@ -11,7 +11,7 @@ namespace WebApp.Pages.Facility.Compliance;
 
 public class AccReportModel : PageModel
 {
-    public AccReport Report { get; set; }
+    public AccReport? Report { get; set; }
     public OrganizationInfo OrganizationInfo { get; set; }
     public MemoHeader MemoHeader { get; set; }
 
@@ -24,10 +24,9 @@ public class AccReportModel : PageModel
         if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) 
             return NotFound($"Facility ID is invalid.");
 
-        var report = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), year);
-        if (report == null) return NotFound();
+        Report = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), year);
+        if (Report?.Facility is null) return NotFound();
 
-        Report = report.Value;
         OrganizationInfo = await orgRepo.GetAsync();
 
         MemoHeader = new MemoHeader

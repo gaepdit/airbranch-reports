@@ -1,3 +1,4 @@
+using Domain.Facilities.Models;
 using FluentAssertions;
 using LocalRepository.Data;
 using LocalRepository.Facilities;
@@ -15,7 +16,7 @@ public class FacilityExists
         var facility = FacilityData.GetFacilities.First();
 
         var repo = new FacilitiesRepository();
-        var result = await repo.FacilityExistsAsync(facility.Id);
+        var result = await repo.FacilityExistsAsync(facility.Id!);
         result.Should().BeTrue();
     }
 
@@ -23,7 +24,7 @@ public class FacilityExists
     public async Task ReturnsFalseIfNotExists()
     {
         var repo = new FacilitiesRepository();
-        var result = await repo.FacilityExistsAsync(default);
+        var result = await repo.FacilityExistsAsync(new ApbFacilityId(Constants.FacilityIdThatDoesNotExist));
         result.Should().BeFalse();
     }
 }

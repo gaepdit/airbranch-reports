@@ -27,7 +27,7 @@ public class IndexModel : PageModel
             return NotFound($"Facility ID is invalid.");
 
         var report = await repository.GetStackTestReportAsync(new ApbFacilityId(facilityId), referenceNumber);
-        if (report == null) return NotFound();
+        if (report?.Facility is null) return NotFound();
 
         // TODO: check authentication
         //if (includeConfidentialInfo && (User.Identity == null || !User.Identity.IsAuthenticated)) return Forbid();

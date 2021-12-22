@@ -9,7 +9,7 @@ public static class StackTestData
     {
         new StackTestReportOneStack {
             ReferenceNumber = 201100541,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id.ShortString == "12100021"),
+            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "12100021"),
             Pollutant = "Total Reduced Sulfur Compounds",
             Source = "Process No. 1",
             ReportType = ReportType.SourceTest,
@@ -148,7 +148,7 @@ public static class StackTestData
         new StackTestReportFlare
         {
             ReferenceNumber = 200400407,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id.ShortString == "05700040"),
+            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05700040"),
             Pollutant = "Volatile Organic Compounds",
             Source = "Tank Truck Loading Rack",
             ReportType = ReportType.SourceTest,
@@ -205,7 +205,7 @@ public static class StackTestData
         new StackTestReportLoadingRack
         {
             ReferenceNumber = 201901149,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id.ShortString == "05900071"),
+            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05900071"),
             Pollutant = "Volatile Organic Compounds",
             Source = "Tank Truck Loading Rack",
             ReportType = ReportType.SourceTest,

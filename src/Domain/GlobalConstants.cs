@@ -1,7 +1,6 @@
-﻿namespace Domain
+﻿namespace Domain;
+
+public static class GlobalConstants
 {
-    public static class GlobalConstants
-    {
-        public const string ConfidentialInfoPlaceholder = "--Conf--";
-    }
+    public const string ConfidentialInfoPlaceholder = "--Conf--";
 }

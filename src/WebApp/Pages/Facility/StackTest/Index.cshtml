@@ -1,4 +1,4 @@
-﻿@page "~/facility/{facilityId}/stack-test/{referenceNumber:int}"
+@page "~/facility/{facilityId}/stack-test/{referenceNumber:int}"
 @using Domain.Monitoring.Models
 @using WebApp.Platform.Formatting
 @model WebApp.Pages.Facility.StackTest.IndexModel
@@ -7,7 +7,7 @@
     ViewBag.BodyCssClass = "stack-test";
 
     var Report = Model.Report!;
-    ViewData["Title"] = $"Facility {Report.Facility.Id} - {Report.ReportTypeName} Reference Number: {Report.ReferenceNumber}";
+    ViewData["Title"] = $"Facility {Report.Facility!.Id} - {Report.ReportTypeName} Reference Number: {Report.ReferenceNumber}";
 }
 
 <div class="page-wrapper">

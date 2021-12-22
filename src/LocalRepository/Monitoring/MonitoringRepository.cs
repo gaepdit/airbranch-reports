@@ -9,7 +9,7 @@ public class MonitoringRepository : IMonitoringRepository
     public Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber) =>
         Task.FromResult(GetStackTestReports.Any(e =>
         e.ReferenceNumber == referenceNumber &&
-        e.Facility.Id == facilityId &&
+        e.Facility?.Id == facilityId &&
         e.DocumentType != DocumentType.Unassigned));
 
     public Task<DocumentType> GetDocumentTypeAsync(int referenceNumber) =>

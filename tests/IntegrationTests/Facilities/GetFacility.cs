@@ -18,8 +18,9 @@ public class GetFacility
         Assert.Multiple(() =>
         {
             result.Should().BeOfType<Facility>();
-            result.HasValue.Should().BeTrue();
-            result.Value.Id.ToString().Should().Be(facilityId);
+            result.Should().NotBeNull();
+            result!.Id.Should().NotBeNull();
+            result.Id!.ToString().Should().Be(facilityId);
         });
     }
 

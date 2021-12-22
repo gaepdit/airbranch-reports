@@ -22,7 +22,8 @@ public class GetStackTestReport
             result.Should().BeOfType<StackTestReportOneStack>();
             result.Should().NotBeNull();
             result!.ReferenceNumber.Should().Be(referenceNumber);
-            result.Facility.Id.ToString().Should().Be(facilityId);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id!.ToString().Should().Be(facilityId);
         });
     }
 

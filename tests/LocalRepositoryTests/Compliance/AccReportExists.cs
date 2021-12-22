@@ -1,3 +1,4 @@
+using Domain.Facilities.Models;
 using FluentAssertions;
 using LocalRepository.Compliance;
 using LocalRepository.Data;
@@ -15,7 +16,7 @@ public class AccReportExists
         var report = AccData.GetAccReports.First();
 
         var repo = new ComplianceRepository();
-        var result = await repo.AccReportExistsAsync(report.Facility.Id, report.AccReportingYear);
+        var result = await repo.AccReportExistsAsync(report.Facility!.Id!, report.AccReportingYear);
         result.Should().BeTrue();
     }
 
@@ -23,7 +24,7 @@ public class AccReportExists
     public async Task ReturnsFalseIfNotExists()
     {
         var repo = new ComplianceRepository();
-        var result = await repo.AccReportExistsAsync(default, default);
+        var result = await repo.AccReportExistsAsync(new ApbFacilityId(Constants.FacilityIdThatDoesNotExist), default);
         result.Should().BeFalse();
     }
 }

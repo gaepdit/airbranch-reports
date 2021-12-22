@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Domain.Facilities.Models;
+using FluentAssertions;
 using LocalRepository.Data;
 using LocalRepository.Monitoring;
 using NUnit.Framework;
@@ -15,7 +16,7 @@ public class StackTestReportExists
         var report = StackTestData.GetStackTestReports.First();
 
         var repo = new MonitoringRepository();
-        var result = await repo.StackTestReportExistsAsync(report.Facility.Id, report.ReferenceNumber);
+        var result = await repo.StackTestReportExistsAsync(report.Facility!.Id!, report.ReferenceNumber);
         result.Should().BeTrue();
     }
 
@@ -23,7 +24,7 @@ public class StackTestReportExists
     public async Task ReturnsFalseIfNotExists()
     {
         var repo = new MonitoringRepository();
-        var result = await repo.StackTestReportExistsAsync(default, default);
+        var result = await repo.StackTestReportExistsAsync(new ApbFacilityId(Constants.FacilityIdThatDoesNotExist), default);
         result.Should().BeFalse();
     }
 }

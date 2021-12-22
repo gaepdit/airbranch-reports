@@ -1,5 +1,5 @@
+using Domain.Facilities.Models;
 using FluentAssertions;
-using LocalRepository.Compliance;
 using LocalRepository.Data;
 using LocalRepository.Monitoring;
 using NUnit.Framework;
@@ -17,7 +17,7 @@ public class GetStackTestReport
         report.ParseConfidentialParameters();
 
         var repo = new MonitoringRepository();
-        var result = await repo.GetStackTestReportAsync(report.Facility.Id, report.ReferenceNumber);
+        var result = await repo.GetStackTestReportAsync(report.Facility!.Id!, report.ReferenceNumber);
         result.Should().BeEquivalentTo(report);
     }
 
@@ -25,7 +25,7 @@ public class GetStackTestReport
     public async Task ReturnsNullIfNotExists()
     {
         var repo = new MonitoringRepository();
-        var result = await repo.GetStackTestReportAsync(default, default);
+        var result = await repo.GetStackTestReportAsync(new ApbFacilityId(Constants.FacilityIdThatDoesNotExist), default);
         result.Should().BeNull();
     }
 }

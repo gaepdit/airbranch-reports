@@ -2,11 +2,11 @@
 
 namespace Domain.Compliance.Models;
 
-public record struct AccReport
+public record class AccReport
 {
     public int Id { get; init; }
 
-    public Facility Facility { get; set; }
+    public Facility? Facility { get; set; }
     public PersonName StaffResponsible { get; set; }
 
     [Display(Name = "ACC reporting year")]
@@ -24,7 +24,7 @@ public record struct AccReport
     [Display(Name = "Date acknowledgment letter sent")]
     public DateTime? DateAcknowledgmentLetterSent { get; init; }
 
-    public string Comments { get; init; }
+    public string Comments { get; init; } = "";
 
     [Display(Name = "ACC postmarked by the deadline")]
     [UIHint("BooleanYesNo")]

@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Facilities.Models;
 
-public record struct Facility
+public record class Facility
 {
     [Display(Name = "AIRS Number")]
     public ApbFacilityId Id { get; init; }

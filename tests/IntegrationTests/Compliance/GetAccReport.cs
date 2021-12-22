@@ -19,9 +19,10 @@ public class GetAccReport
         Assert.Multiple(() =>
         {
             result.Should().BeOfType<AccReport>();
-            result.HasValue.Should().BeTrue();
-            result.Value.AccReportingYear.Should().Be(year);
-            result.Value.Facility.Id.ToString().Should().Be(facilityId);
+            result.Should().NotBeNull();
+            result!.AccReportingYear.Should().Be(year);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id!.ToString().Should().Be(facilityId);
         });
     }
 

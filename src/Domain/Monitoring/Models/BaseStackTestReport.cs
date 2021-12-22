@@ -11,7 +11,7 @@ public abstract record class BaseStackTestReport
     [Display(Name = "Reference Number")]
     public int ReferenceNumber { get; init; }
 
-    public Facility Facility { get; set; }
+    public Facility? Facility { get; set; }
 
     [Display(Name = "Pollutant determined")]
     public string Pollutant { get; init; } = "";

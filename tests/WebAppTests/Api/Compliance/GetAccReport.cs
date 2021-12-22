@@ -17,7 +17,7 @@ public class GetAccReport
     {
         var repo = new Mock<IComplianceRepository>();
         repo.Setup(l => l.GetAccReportAsync(It.IsAny<ApbFacilityId>(), It.IsAny<int>()))
-            .ReturnsAsync((AccReport)default);
+            .ReturnsAsync(new AccReport());
 
         var controller = new ComplianceController();
         var response = await controller.GetAccReportAsync(repo.Object, "00100001", default);
@@ -27,7 +27,7 @@ public class GetAccReport
             response.Result.Should().BeOfType<OkObjectResult>();
             var result = response.Result as OkObjectResult;
             result!.StatusCode.Should().Be(200);
-            result!.Value.Should().BeEquivalentTo((AccReport)default);
+            result!.Value.Should().BeEquivalentTo(new AccReport());
         });
     }
 

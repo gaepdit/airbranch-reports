@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Domain.Facilities.Models;
 
-public record struct ApbFacilityId : IEquatable<ApbFacilityId>
+public record class ApbFacilityId : IEquatable<ApbFacilityId>
 {
     private readonly string _id;
 

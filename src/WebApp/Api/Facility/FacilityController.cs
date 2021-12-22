@@ -16,9 +16,9 @@ namespace WebApp.Api.Facilities
         {
             if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) return BadRequest();
             var facility = await repository.GetFacilityAsync(facilityId);
-            return !facility.HasValue
+            return facility is null
                 ? NotFound()
-                : Ok(facility.Value);
+                : Ok(facility);
         }
 
         [HttpGet("exists")]

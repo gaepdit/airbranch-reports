@@ -18,9 +18,9 @@ namespace WebApp.Api.Compliance
         {
             if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) return BadRequest();
             var accReport = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), year);
-            return !accReport.HasValue
+            return accReport is null
                 ? NotFound()
-                : Ok(accReport.Value);
+                : Ok(accReport);
         }
     }
 }
