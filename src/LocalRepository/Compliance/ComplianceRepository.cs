@@ -1,4 +1,4 @@
-﻿using Domain.Compliance.Models;
+using Domain.Compliance.Models;
 using Domain.Compliance.Repositories;
 using static LocalRepository.Data.AccData;
 
@@ -6,6 +6,7 @@ namespace LocalRepository.Compliance;
 
 public class ComplianceRepository : IComplianceRepository
 {
+    // ACC
     public Task<bool> AccReportExistsAsync(ApbFacilityId facilityId, int year) =>
         Task.FromResult(GetAccReports.Any(e => e.Facility?.Id == facilityId && e.AccReportingYear == year));
 

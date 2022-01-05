@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using Domain.Compliance.Models;
 using Domain.Compliance.Repositories;
 using Domain.Facilities.Models;
@@ -12,6 +12,7 @@ public class ComplianceRepository : IComplianceRepository
     private readonly IDbConnection db;
     public ComplianceRepository(IDbConnection conn) => db = conn;
 
+    // ACC
     public Task<bool> AccReportExistsAsync(ApbFacilityId facilityId, int year)
     {
         var query = @"select convert(bit, count(*))

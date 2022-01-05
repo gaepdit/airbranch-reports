@@ -103,7 +103,7 @@ main {
 }
 
 .page-wrapper {
-    max-width: 70rem;
+    max-width: 62rem;
     margin: 1rem auto;
     padding: 1.333rem;
     box-shadow: 0 0 1px rgba(0,0,0,0.12), 0 0 2px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.12), 0 6px 8px rgba(0,0,0,0.12)
@@ -124,7 +124,7 @@ main {
         margin-left: .5rem;
     }
 
-/* Memorandum layout */
+/* Memorandum header layout */
 
 header.memorandum + section {
     border-top: 1px solid;
@@ -148,16 +148,18 @@ header.memorandum h1 {
     text-decoration: underline;
 }
 
-.memorandum h2 {
-    font-size: inherit;
-    text-transform: uppercase;
-}
-
 /* Footer */
 
 footer {
     border-top: 2px solid;
     margin-top: 2rem;
+}
+
+/* ACC layout */
+
+.acc h2 {
+    font-size: inherit;
+    text-transform: uppercase;
 }
 
 /* Stack Test Report layout */
