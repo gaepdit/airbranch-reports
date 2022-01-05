@@ -1,4 +1,4 @@
-@page "~/facility/{facilityId}/fce/{year:int}"
+﻿@page "~/facility/{facilityId}/fce/{year:int}"
 @using WebApp.Platform.Formatting
 @model FceReportModel
 @{
@@ -28,36 +28,36 @@
         <dl class="dl-inline">
             <dt>@Html.DisplayNameFor(m => @facility.Description)</dt>
             <dd>@facility.Description</dd>
-    </dl>
+        </dl>
 
-    <div class="grid-half">
-        <div>
-            @Html.DisplayFor(m => facility.FacilityAddress)
-            <br />
+        <div class="grid-half">
             <div>
-                @facility.County County<br />
-                @Html.DisplayFor(m => facility.GeoCoordinates)
+                @Html.DisplayFor(m => facility.FacilityAddress)
+                <br />
+                <div>
+                    @facility.County County<br />
+                    @Html.DisplayFor(m => facility.GeoCoordinates)
+                </div>
+            </div>
+            <div>
+                <dl class="dl-inline">
+                    <dt>@Html.DisplayNameFor(m => header.OperatingStatus)</dt>
+                    <dd>@header.OperatingStatus</dd>
+                    <dt>@Html.DisplayNameFor(m => header.Classification)</dt>
+                    <dd>@header.Classification</dd>
+                    <dt>@Html.DisplayNameFor(m => header.CmsClassification)</dt>
+                    <dd>@header.CmsClassification</dd>
+                    <dt>@Html.DisplayNameFor(m => header.Sic)</dt>
+                    <dd>@header.Sic</dd>
+                    <dt>@Html.DisplayNameFor(m => header.Naics)</dt>
+                    <dd>@header.Naics</dd>
+                    <dt>@Html.DisplayNameFor(m => header.AirPrograms)</dt>
+                    <dd>@Html.DisplayFor(m => header.AirPrograms, "StringCollection")</dd>
+                    <dt>@Html.DisplayNameFor(m => header.ProgramClassifications)</dt>
+                    <dd>@Html.DisplayFor(m => header.ProgramClassifications, "StringCollection")</dd>
+                </dl>
             </div>
         </div>
-        <div>
-            <dl class="dl-inline">
-                <dt>@Html.DisplayNameFor(m => header.OperatingStatus)</dt>
-                <dd>@header.OperatingStatus</dd>
-                <dt>@Html.DisplayNameFor(m => header.Classification)</dt>
-                <dd>@header.Classification</dd>
-                <dt>@Html.DisplayNameFor(m => header.CmsClassification)</dt>
-                <dd>@header.CmsClassification</dd>
-                <dt>@Html.DisplayNameFor(m => header.Sic)</dt>
-                <dd>@header.Sic</dd>
-                <dt>@Html.DisplayNameFor(m => header.Naics)</dt>
-                <dd>@header.Naics</dd>
-                <dt>@Html.DisplayNameFor(m => header.AirPrograms)</dt>
-                <dd>@Html.DisplayFor(m => header.AirPrograms, "StringCollection")</dd>
-                <dt>@Html.DisplayNameFor(m => header.ProgramClassifications)</dt>
-                <dd>@Html.DisplayFor(m => header.ProgramClassifications, "StringCollection")</dd>
-            </dl>
-        </div>
-    </div>
     </div>
 
     <h2>Full Compliance Evaluation</h2>
@@ -88,5 +88,9 @@
     </div>
 
     <h1>Supporting compliance data for @Html.DisplayFor(m => report.SupportingDataDateRange, new{Connector = "through"})</h1>
+
+    <h2>Inspections</h2>
+
+    <partial name="_InspectionsTablePartial" model="report.Inspections" />
 
 </div>

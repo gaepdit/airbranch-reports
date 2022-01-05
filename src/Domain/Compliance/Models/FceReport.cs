@@ -1,3 +1,4 @@
+﻿using Domain.Compliance.Models.WorkItems;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Compliance.Models;
@@ -27,4 +28,5 @@ public record class FceReport
 
     // Supporting compliance data
 
+    public List<Inspection> Inspections { get; init; } = new List<Inspection>();
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.Compliance.Models;
+using Domain.Compliance.Models.WorkItems;
 
 namespace LocalRepository.Data;
 
@@ -15,6 +16,19 @@ public static class FceData
             Comments = "In compliance.",
             DateCompleted = new DateTime(2011, 1, 30),
             Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "00100001"),
+
+            Inspections = new List<Inspection>
+            {
+                new()
+                {
+                    Id = 1,
+                    Inspector = StaffData.GetStaff.Single(e => e.Id == 1).Name,
+                    InspectionDate = new DateRange {StartDate = new DateTime(2011, 1, 1)},
+                    Reason = "Planned Unannounced",
+                    FacilityWasOperating = true,
+                    ComplianceStatus = "Compliant",
+                },
+            },
         },
         new() {
             Id = 2,
@@ -24,6 +38,38 @@ public static class FceData
             WithOnsiteInspection = false,
             DateCompleted = new DateTime(2012, 2, 28),
             Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05100149"),
+        },
+        new() {
+            Id = 3,
+            FceYear = 2013,
+            StaffReviewedBy = StaffData.GetStaff.Single(e => e.Id == 3).Name,
+            SupportingDataDateRange = new DateRange(new DateTime(2012, 3, 3), new DateTime(2013, 3, 3)),
+            WithOnsiteInspection = false,
+            Comments = "N/A",
+            DateCompleted = new DateTime(2013, 3, 30),
+            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "00100001"),
+
+            Inspections = new List<Inspection>
+            {
+                new()
+                {
+                    Id = 11111,
+                    Inspector = StaffData.GetStaff.Single(e => e.Id == 3).Name,
+                    InspectionDate = new DateRange {StartDate = new DateTime(2011, 1, 1)},
+                    Reason = "Joint EPD/EPA",
+                    FacilityWasOperating = false,
+                    ComplianceStatus = "Deviation(s) Noted",
+                },
+                new()
+                {
+                    Id = 22222,
+                    Inspector = StaffData.GetStaff.Single(e => e.Id == 4).Name,
+                    InspectionDate = new DateRange(new DateTime(2013, 3, 1), new DateTime(2013, 3, 3)),
+                    Reason = "Complaint Investigation",
+                    FacilityWasOperating = true,
+                    ComplianceStatus = "Compliant",
+                },
+            },
         },
     };
 }
