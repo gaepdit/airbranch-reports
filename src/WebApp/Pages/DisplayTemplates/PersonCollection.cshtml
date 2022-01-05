@@ -1,5 +1,6 @@
 ﻿@model ICollection<PersonName>
 @using Domain.ValueObjects
+
 @if (Model is { Count: > 0 })
 {
     @string.Join(", ", Model)

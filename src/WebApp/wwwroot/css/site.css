@@ -1,18 +1,35 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
+/* Half & half grid */
+
+.grid-half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1rem;
+}
+
+    .grid-half > div:first-child {
+        border-right: 1px solid #bbb;
+        padding-right: 1rem;
+    }
+
+    .grid-half > div:last-child {
+        padding-left: 1rem;
+    }
+
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }

@@ -80,7 +80,7 @@ public static class StackTestData
         },
         new StackTestReportOneStack {
             ReferenceNumber = 202001297,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id.ShortString == "17900001"),
+            Facility = FacilityData.GetFacilities.Single(e => e.Id!.ShortString == "17900001"),
             Pollutant = "Total Reduced Sulfur Compounds",
             Source = "Process No. 1",
             ReportType = ReportType.SourceTest,

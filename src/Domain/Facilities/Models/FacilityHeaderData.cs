@@ -11,14 +11,14 @@ public record class FacilityHeaderData
     [JsonIgnore]
     public FacilityOperatingStatus OperatingStatusCode { get; init; }
 
-    [Display(Name = "Document type")]
+    [Display(Name = "Operating status")]
     public string OperatingStatus => OperatingStatusCode.GetDescription();
 
 
-    [Display(Name = "Startup Date")]
+    [Display(Name = "Startup date")]
     public DateTime? StartupDate { get; init; }
 
-    [Display(Name = "Permit Revocation Date")]
+    [Display(Name = "Permit revocation date")]
     public DateTime? PermitRevocationDate { get; init; }
 
     // Classifications
@@ -32,7 +32,7 @@ public record class FacilityHeaderData
     [JsonIgnore]
     public FacilityCmsClassification CmsClassificationCode { get; init; }
 
-    [Display(Name = "CMS Classification")]
+    [Display(Name = "CMS classification")]
     public string CmsClassification => CmsClassificationCode.GetDescription();
 
     // Industry
@@ -44,7 +44,7 @@ public record class FacilityHeaderData
     /// Currently we only track federally-owned facilities, represented by the 
     /// OwnershipTypeCode "FDF" and description "Federal Facility (U.S. Government)"
     /// </remarks>
-    [Display(Name = "Ownership Type")]
+    [Display(Name = "Ownership type")]
     public string? OwnershipType;
 
     [Display(Name = "SIC")]
@@ -72,7 +72,7 @@ public record class FacilityHeaderData
 
     // Regulations
 
-    [Display(Name = "NSPS Fee Exempt")]
+    [Display(Name = "NSPS fee exempt")]
     public bool NspsFeeExempt { get; init; }
 
     /// <summary>
@@ -84,7 +84,7 @@ public record class FacilityHeaderData
     /// PSD, NSR, NESHAP, NSPS, FESOP, Acid Precipitation, 
     /// Native American, MACT, Title V, Risk Management Plan
     /// </remarks>
-    [Display(Name = "Air Programs")]
+    [Display(Name = "Air programs")]
     public List<string> AirPrograms { get; init; } = new List<string>();
 
     /// <summary>
@@ -94,7 +94,7 @@ public record class FacilityHeaderData
     /// Possible values:
     /// NSR/PSD Major, HAPs Major
     /// </remarks>
-    [Display(Name = "Program Classifications")]
+    [Display(Name = "Program classifications")]
     public List<string> ProgramClassifications { get; init; } = new List<string>();
 
     #region Regex patterns

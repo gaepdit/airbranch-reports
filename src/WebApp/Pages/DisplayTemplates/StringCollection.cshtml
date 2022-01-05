@@ -1,0 +1,6 @@
+﻿@model ICollection<string>
+
+@if (Model is { Count: > 0 })
+{
+    @string.Join(", ", Model)
+}

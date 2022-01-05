@@ -1,4 +1,4 @@
-using Dapper;
+﻿using Dapper;
 using Domain.Compliance.Models;
 using Domain.Compliance.Repositories;
 using Domain.Facilities.Models;
@@ -86,5 +86,16 @@ public class ComplianceRepository : IComplianceRepository
                 return a;
             },
             param)).Single();
+    }
+
+    // FCE
+    public Task<bool> FceReportExistsAsync(ApbFacilityId facilityId, int year)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int year)
+    {
+        throw new NotImplementedException();
     }
 }

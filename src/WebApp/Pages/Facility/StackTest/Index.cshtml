@@ -4,7 +4,7 @@
 @model WebApp.Pages.Facility.StackTest.IndexModel
 @{
     Layout = "_ReportLayout";
-    ViewBag.BodyCssClass = "stack-test";
+    ViewBag.BodyCssClass = "stack-test sans-serif";
 
     var Report = Model.Report!;
     ViewData["Title"] = $"Facility {Report.Facility!.Id} - {Report.ReportTypeName} Reference Number: {Report.ReferenceNumber}";
@@ -81,7 +81,7 @@
             <tfoot>
                 <tr>
                     <td colspan="2">
-                        <footer class="lr-grid">
+                        <footer class="split-lr">
                             <div>
                                 <div>cc: @Report.ComplianceManager</div>
                                 <div>AIRS Number: @Report.Facility.Id</div>
