@@ -89,8 +89,7 @@
 
     <h1>Supporting compliance data for @Html.DisplayFor(m => report.SupportingDataDateRange, new{Connector = "through"})</h1>
 
-    <h2>Inspections</h2>
-
-    <partial name="_InspectionsTablePartial" model="report.Inspections" />
+    <partial name="_InspectionsPartial" model="report.Inspections" />
+    <partial name="_ReportsPartial" model="report.Reports" />
 
 </div>

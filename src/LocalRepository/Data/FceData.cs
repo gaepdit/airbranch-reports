@@ -29,6 +29,32 @@ public static class FceData
                     ComplianceStatus = "Compliant",
                 },
             },
+
+            Reports = new List<Report>
+            {
+                new()
+                {
+                    Id = 200,
+                    ReportPeriod = "Second Semiannual",
+                    ReportPeriodDates = new DateRange(new DateTime(2019, 7, 1), new DateTime(2019, 12, 31)),
+                    ReceivedDate = new DateTime(2020, 2, 1),
+                    Reviewer = StaffData.GetStaff.Single(e => e.Id == 2).Name,
+                    DeviationsReported = true,
+                    Comments = "In compliance. And what's more, not out of compliance. " +
+                    "In other words, vis a vis compliance status, more in than out. " +
+                    "And I guess that's all I have to say about that.",
+                },
+                new()
+                {
+                    Id = 300,
+                    ReportPeriod = "Annual",
+                    ReportPeriodDates = new DateRange(new DateTime(2019, 1, 1), new DateTime(2019, 12, 31)),
+                    ReceivedDate = new DateTime(2020, 3, 1),
+                    Reviewer = StaffData.GetStaff.Single(e => e.Id == 3).Name,
+                    DeviationsReported = false,
+                    Comments = "",
+                },
+            }
         },
         new() {
             Id = 2,

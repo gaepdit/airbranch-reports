@@ -1,5 +1,8 @@
 ﻿@model List<Inspection>
 @using Domain.Compliance.Models.WorkItems
+
+<h2>Inspections</h2>
+
 @{
     if (Model is not { Count: > 0 })
     {
@@ -13,7 +16,7 @@
 <table class="">
     <thead>
         <tr>
-            <th scope="col">@Html.DisplayNameFor(m => firstItem.Id)</th>
+            <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Id)</th>
             <th scope="col">@Html.DisplayNameFor(m => firstItem.InspectionDate)</th>
             <th scope="col">@Html.DisplayNameFor(m => firstItem.Inspector)</th>
             <th scope="col">@Html.DisplayNameFor(m => firstItem.Reason)</th>
@@ -25,7 +28,7 @@
         @foreach (var i in Model)
         {
             <tr>
-                <td>@i.Id</td>
+                <th scope="row">@i.Id</th>
                 <td>@Html.DisplayFor(m => i.InspectionDate)</td>
                 <td>@i.Inspector.SortableFullName</td>
                 <td>@i.Reason</td>

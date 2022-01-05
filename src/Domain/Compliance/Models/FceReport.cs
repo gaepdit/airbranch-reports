@@ -29,4 +29,5 @@ public record class FceReport
     // Supporting compliance data
 
     public List<Inspection> Inspections { get; init; } = new List<Inspection>();
+    public List<Report> Reports { get; init; } = new List<Report>();
 }
