@@ -23,7 +23,7 @@ public record class Facility
     public string County { get; init; } = "";
 
     [Display(Name = "Geographic Coordinates")]
-    public GeoCoordinate? GeoCoordinate { get; set; }
+    public GeoCoordinates? GeoCoordinates { get; set; }
 
     // Regulatory data
 

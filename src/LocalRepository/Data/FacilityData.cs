@@ -18,7 +18,7 @@ public static class FacilityData
                 State = "GA",
                 PostalCode = "30000",
             },
-            GeoCoordinate = new GeoCoordinate(34.1M, -84.5M),
+            GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
             HeaderData = new FacilityHeaderData
             {
                 OperatingStatusCode = FacilityOperatingStatus.O,
@@ -85,7 +85,7 @@ public static class FacilityData
                 State = "GA",
                 PostalCode = "30000",
             },
-            GeoCoordinate = new GeoCoordinate(34.1M, -84.5M),
+            GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
             HeaderData = new FacilityHeaderData
             {
                 OperatingStatusCode = FacilityOperatingStatus.X,
@@ -146,7 +146,7 @@ public static class FacilityData
                 State = "GA",
                 PostalCode = "30000",
             },
-            GeoCoordinate = new GeoCoordinate(34.1M, -84.5M),
+            GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
         },
     };
 }

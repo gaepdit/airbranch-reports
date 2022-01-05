@@ -24,11 +24,11 @@ public class FacilitiesRepository : IFacilitiesRepository
         using var multi = await db.QueryMultipleAsync(FacilitiesQueries.GetFacility,
             new { AirsNumber = facilityId.DbFormattedString });
 
-        var facility = multi.Read<Facility, Address, GeoCoordinate, FacilityHeaderData, Facility>(
-            (facility, FacilityAddress, GeoCoordinate, HeaderData) =>
+        var facility = multi.Read<Facility, Address, GeoCoordinates, FacilityHeaderData, Facility>(
+            (facility, FacilityAddress, GeoCoordinates, HeaderData) =>
             {
                 facility.FacilityAddress = FacilityAddress;
-                facility.GeoCoordinate = GeoCoordinate;
+                facility.GeoCoordinates = GeoCoordinates;
                 facility.HeaderData = HeaderData;
                 return facility;
             }).Single();

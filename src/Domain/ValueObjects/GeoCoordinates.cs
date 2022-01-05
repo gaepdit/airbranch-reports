@@ -1,6 +1,6 @@
 ﻿namespace Domain.ValueObjects;
 
-public record struct GeoCoordinate
+public record struct GeoCoordinates
 (
     decimal Latitude,
     decimal Longitude
