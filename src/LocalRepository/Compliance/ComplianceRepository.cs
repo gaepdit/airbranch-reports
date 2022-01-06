@@ -17,11 +17,11 @@ public class ComplianceRepository : IComplianceRepository
         : null;
 
     // FCE
-    public Task<bool> FceReportExistsAsync(ApbFacilityId facilityId, int year) =>
-        Task.FromResult(GetFceReports.Any(e => e.Facility?.Id == facilityId && e.FceYear == year));
+    public Task<bool> FceReportExistsAsync(ApbFacilityId facilityId, int id) =>
+        Task.FromResult(GetFceReports.Any(e => e.Facility?.Id == facilityId && e.Id == id));
 
-    public async Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int year) =>
-        await FceReportExistsAsync(facilityId, year).ConfigureAwait(false)
-        ? GetFceReports.SingleOrDefault(e => e.Facility?.Id == facilityId && e.FceYear == year)
+    public async Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int id) =>
+        await FceReportExistsAsync(facilityId, id).ConfigureAwait(false)
+        ? GetFceReports.SingleOrDefault(e => e.Facility?.Id == facilityId && e.Id == id)
         : null;
 }

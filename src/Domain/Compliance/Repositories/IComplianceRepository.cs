@@ -9,6 +9,6 @@ public interface IComplianceRepository
     Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int year);
 
     // FCE
-    Task<bool> FceReportExistsAsync(ApbFacilityId facilityId, int year);
-    Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int year);
+    Task<bool> FceReportExistsAsync(ApbFacilityId facilityId, int id);
+    Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int id);
 }

@@ -23,14 +23,14 @@ namespace WebApp.Api.Compliance
                 : Ok(report);
         }
 
-        [HttpGet("fce/{year:int}")]
+        [HttpGet("fce/{id:int}")]
         public async Task<ActionResult<AccReport>> GetFceReportAsync(
             [FromServices] IComplianceRepository repository,
             [FromRoute] string facilityId,
-            [FromRoute] int year)
+            [FromRoute] int id)
         {
             if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) return BadRequest();
-            var report = await repository.GetFceReportAsync(new ApbFacilityId(facilityId), year);
+            var report = await repository.GetFceReportAsync(new ApbFacilityId(facilityId), id);
             return report is null
                 ? NotFound()
                 : Ok(report);

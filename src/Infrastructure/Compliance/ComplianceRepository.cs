@@ -89,12 +89,12 @@ public class ComplianceRepository : IComplianceRepository
     }
 
     // FCE
-    public Task<bool> FceReportExistsAsync(ApbFacilityId facilityId, int year)
+    public Task<bool> FceReportExistsAsync(ApbFacilityId facilityId, int id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int year)
+    public Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int id)
     {
         throw new NotImplementedException();
     }
