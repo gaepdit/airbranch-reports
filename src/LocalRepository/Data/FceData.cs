@@ -54,7 +54,7 @@ public static class FceData
                     ReceivedDate = new DateTime(2011, 3, 1),
                     Reviewer = StaffData.GetStaff.Single(e => e.Id == 3).Name,
                     DeviationsReported = true,
-                }
+                },
             },
 
             Reports = new List<Report>
@@ -79,7 +79,19 @@ public static class FceData
                     DeviationsReported = false,
                     Comments = TextData.Empty,
                 },
-            }
+            },
+
+            Notifications =
+            {
+                new()
+                {
+                    Id = 4,
+                    DateReceived = new DateTime(2011, 4, 1),
+                    Reviewer = StaffData.GetStaff.Single(e => e.Id == 4).Name,
+                    Type = "N/A",
+                    Comments = TextData.ShortMultiline,
+                },
+            },
         },
         new() {
             Id = 2,

@@ -32,4 +32,5 @@ public record class FceReport
     public List<RmpInspection> RmpInspections { get; init; } = new List<RmpInspection>();
     public List<Acc> Accs { get; init; } = new List<Acc>();
     public List<Report> Reports { get; init; } = new List<Report>();
+    public List<Notification> Notifications { get; init; } = new List<Notification>();
 }
