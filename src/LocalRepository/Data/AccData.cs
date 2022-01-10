@@ -11,8 +11,7 @@ public static class AccData
             AccReportingYear = 2018,
             AllDeviationsReported = true,
             AllTitleVConditionsListed = true,
-            Comments = "No compliance issues noted. \r\nThe information in the ACC is consistent " +
-            "with previously submitted reports and inspection observations.",
+            Comments = TextData.Multiline,
             CorrectFormsUsed = true,
             CorrectlyFilledOut = true,
             DateAcknowledgmentLetterSent = null,
@@ -33,7 +32,7 @@ public static class AccData
             AccReportingYear = 2019,
             AllDeviationsReported = false,
             AllTitleVConditionsListed = false,
-            Comments = "Deviations reported. Enforcement is recommended.",
+            Comments = TextData.Short,
             CorrectFormsUsed = false,
             CorrectlyFilledOut = false,
             DateAcknowledgmentLetterSent = new DateTime(2001, 11, 22),

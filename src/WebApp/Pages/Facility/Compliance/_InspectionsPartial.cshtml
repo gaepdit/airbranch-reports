@@ -28,12 +28,20 @@
         @foreach (var i in Model)
         {
             <tr>
-                <th scope="row">@i.Id</th>
+                <th scope="row" rowspan="2">@i.Id</th>
                 <td>@Html.DisplayFor(m => i.InspectionDate)</td>
                 <td>@i.Inspector.SortableFullName</td>
                 <td>@i.Reason</td>
                 <td>@Html.DisplayFor(m => i.FacilityWasOperating, "BooleanYesNo")</td>
                 <td>@i.ComplianceStatus</td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <dl class="dl-inline">
+                        <dt>Comments</dt>
+                        <dd>@i.Comments</dd>
+                    </dl>
+                </td>
             </tr>
         }
     </tbody>

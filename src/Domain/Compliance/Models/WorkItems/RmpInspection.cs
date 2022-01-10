@@ -20,4 +20,6 @@ public record class RmpInspection
 
     [Display(Name = "Compliance status")]
     public string ComplianceStatus { get; init; } = "";
+
+    public string Comments { get; init; } = "";
 }

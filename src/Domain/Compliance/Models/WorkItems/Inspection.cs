@@ -20,4 +20,6 @@ public record class Inspection
 
     [Display(Name = "Compliance status")]
     public string ComplianceStatus { get; init; } = "";
+
+    public string Comments { get; init; } = "";
 }

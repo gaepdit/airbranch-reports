@@ -27,6 +27,7 @@ public static class FceData
                     Reason = "Planned Unannounced",
                     FacilityWasOperating = true,
                     ComplianceStatus = "Compliant",
+                    Comments = TextData.Long,
                 },
             },
 
@@ -40,6 +41,7 @@ public static class FceData
                     Reason = "Planned Unannounced",
                     FacilityWasOperating = true,
                     ComplianceStatus = "Compliant",
+                    Comments = TextData.VeryShort,
                 },
             },
 
@@ -65,9 +67,7 @@ public static class FceData
                     ReceivedDate = new DateTime(2020, 2, 1),
                     Reviewer = StaffData.GetStaff.Single(e => e.Id == 2).Name,
                     DeviationsReported = true,
-                    Comments = "In compliance. And what's more, not out of compliance. " +
-                    "In other words, vis a vis compliance status, more in than out. " +
-                    "And I guess that's all I have to say about that.",
+                    Comments = TextData.Long,
                 },
                 new()
                 {
@@ -77,7 +77,7 @@ public static class FceData
                     ReceivedDate = new DateTime(2020, 3, 1),
                     Reviewer = StaffData.GetStaff.Single(e => e.Id == 3).Name,
                     DeviationsReported = false,
-                    Comments = "",
+                    Comments = TextData.Empty,
                 },
             }
         },
@@ -96,7 +96,7 @@ public static class FceData
             StaffReviewedBy = StaffData.GetStaff.Single(e => e.Id == 3).Name,
             SupportingDataDateRange = new DateRange(new DateTime(2012, 3, 3), new DateTime(2013, 3, 3)),
             WithOnsiteInspection = false,
-            Comments = "N/A",
+            Comments = TextData.VeryShort,
             DateCompleted = new DateTime(2013, 3, 30),
             Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "00100001"),
 
