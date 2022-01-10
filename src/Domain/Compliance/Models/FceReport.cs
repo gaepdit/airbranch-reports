@@ -1,4 +1,4 @@
-﻿using Domain.Compliance.Models.WorkItems;
+using Domain.Compliance.Models.WorkItems;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Compliance.Models;
@@ -29,5 +29,6 @@ public record class FceReport
     // Supporting compliance data
 
     public List<Inspection> Inspections { get; init; } = new List<Inspection>();
+    public List<RmpInspection> RmpInspections { get; init; } = new List<RmpInspection>();
     public List<Report> Reports { get; init; } = new List<Report>();
 }

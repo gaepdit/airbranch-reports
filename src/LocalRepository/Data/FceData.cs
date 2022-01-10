@@ -30,6 +30,19 @@ public static class FceData
                 },
             },
 
+            RmpInspections = new List<RmpInspection>
+            {
+                new()
+                {
+                    Id = 40001,
+                    Inspector = StaffData.GetStaff.Single(e => e.Id == 2).Name,
+                    InspectionDate = new DateRange {StartDate = new DateTime(2011, 2, 2)},
+                    Reason = "Planned Unannounced",
+                    FacilityWasOperating = true,
+                    ComplianceStatus = "Compliant",
+                },
+            },
+
             Reports = new List<Report>
             {
                 new()

@@ -1,4 +1,4 @@
-﻿@page "~/facility/{facilityId}/fce/{year:int}"
+@page "~/facility/{facilityId}/fce/{year:int}"
 @using WebApp.Platform.Formatting
 @model FceReportModel
 @{
@@ -90,6 +90,7 @@
     <h1>Supporting compliance data for @Html.DisplayFor(m => report.SupportingDataDateRange, new{Connector = "through"})</h1>
 
     <partial name="_InspectionsPartial" model="report.Inspections" />
+    <partial name="_RmpInspectionsPartial" model="report.RmpInspections" />
     <partial name="_ReportsPartial" model="report.Reports" />
 
 </div>
