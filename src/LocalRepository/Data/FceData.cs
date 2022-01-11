@@ -125,6 +125,17 @@ public static class FceData
                     Status = "Paid in Full",
                 },
             },
+
+            EnforcementHistory =
+            {
+                new()
+                {
+                    Id = 1000,
+                    StaffResponsible = StaffData.GetStaff.Single(e => e.Id == 6).Name,
+                    DiscoveryDate = new DateTime(2011, 7, 1),
+                    Type = "Letter of Noncompliance",
+                },
+            },
         },
         new() {
             Id = 2,

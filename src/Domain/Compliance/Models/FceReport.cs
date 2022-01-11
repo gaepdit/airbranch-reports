@@ -1,4 +1,4 @@
-using Domain.Compliance.Models.WorkItems;
+﻿using Domain.Compliance.Models.WorkItems;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Compliance.Models;
@@ -35,4 +35,5 @@ public record class FceReport
     public List<Notification> Notifications { get; init; } = new List<Notification>();
     public List<StackTest> StackTests { get; init; } = new List<StackTest>();
     public List<FeeYear> FeesData { get; init; } = new List<FeeYear>();
+    public List<Enforcement> EnforcementHistory { get; init; } = new List<Enforcement>();
 }
