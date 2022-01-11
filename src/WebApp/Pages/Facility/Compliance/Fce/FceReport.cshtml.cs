@@ -6,7 +6,7 @@ using Domain.Organization.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebApp.Pages.Facility.Compliance;
+namespace WebApp.Pages.Facility.Compliance.Fce;
 
 public class FceReportModel : PageModel
 {

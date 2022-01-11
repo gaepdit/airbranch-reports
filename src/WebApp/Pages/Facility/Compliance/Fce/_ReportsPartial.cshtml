@@ -27,7 +27,7 @@
         @foreach (var i in Model)
         {
             <tr>
-                <th scope="row" rowspan="2">@i.Id</th>
+                <th scope="row" rowspan="2"><p>@i.Id</p></th>
                 <td>
                     @i.ReportPeriod<br />
                     @Html.DisplayFor(m => i.ReportPeriodDates, new{Connector = "–"})
