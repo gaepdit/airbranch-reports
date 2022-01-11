@@ -33,4 +33,5 @@ public record class FceReport
     public List<Acc> Accs { get; init; } = new List<Acc>();
     public List<Report> Reports { get; init; } = new List<Report>();
     public List<Notification> Notifications { get; init; } = new List<Notification>();
+    public List<StackTest> StackTests { get; init; } = new List<StackTest>();
 }

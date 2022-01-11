@@ -73,7 +73,7 @@
                 <dd>@Html.DisplayFor(m => report.WithOnsiteInspection, "BooleanYesNo")</dd>
             </dl>
             <dl class="dl-inline">
-                <dt>Comments</dt>
+                <dt>@Html.DisplayNameFor(m => report.Comments)</dt>
                 <dd>@report.Comments</dd>
             </dl>
         </div>
@@ -94,5 +94,6 @@
     <partial name="_AccsPartial" model="report.Accs" />
     <partial name="_ReportsPartial" model="report.Reports" />
     <partial name="_NotificationsPartial" model="report.Notifications" />
+    <partial name="_StackTestsPartial" model="report.StackTests" />
 
 </div>

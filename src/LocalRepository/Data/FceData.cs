@@ -92,6 +92,19 @@ public static class FceData
                     Comments = TextData.ShortMultiline,
                 },
             },
+
+            StackTests =
+            {
+                new()
+                {
+                    Id = 80000,
+                    ReferenceNumber = 201100001,
+                    ReceivedDate = new DateTime(2011, 5, 1),
+                    Reviewer = StaffData.GetStaff.Single(e => e.Id == 5).Name,
+                    ComplianceStatus = "In Compliance",
+                    SourceTested = TextData.Short,
+                },
+            },
         },
         new() {
             Id = 2,

@@ -1,7 +1,7 @@
-﻿@model List<Notification>
+﻿@model List<StackTest>
 @using Domain.Compliance.Models.WorkItems
 
-<h2>Notifications</h2>
+<h2>Source Tests</h2>
 
 @{
     if (Model is not { Count: > 0 })
@@ -17,9 +17,10 @@
     <thead>
         <tr>
             <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Id)</th>
-            <th scope="col">@Html.DisplayNameFor(m => firstItem.DateReceived)</th>
+            <th scope="col">@Html.DisplayNameFor(m => firstItem.ReferenceNumber)</th>
+            <th scope="col">@Html.DisplayNameFor(m => firstItem.ReceivedDate)</th>
             <th scope="col">@Html.DisplayNameFor(m => firstItem.Reviewer)</th>
-            <th scope="col">@Html.DisplayNameFor(m => firstItem.Type)</th>
+            <th scope="col">@Html.DisplayNameFor(m => firstItem.ComplianceStatus)</th>
         </tr>
     </thead>
     <tbody>
@@ -27,15 +28,16 @@
         {
             <tr>
                 <th scope="row" rowspan="2">@i.Id</th>
-                <td>@Html.DisplayFor(m => i.DateReceived)</td>
+                <td>@i.ReferenceNumber</td>
+                <td>@Html.DisplayFor(m => i.ReceivedDate)</td>
                 <td>@i.Reviewer.SortableFullName</td>
-                <td>@i.Type</td>
+                <td>@i.ComplianceStatus</td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <dl class="dl-inline">
-                        <dt>@Html.DisplayNameFor(m => firstItem.Comments)</dt>
-                        <dd>@i.Comments</dd>
+                        <dt>@Html.DisplayNameFor(m => firstItem.SourceTested)</dt>
+                        <dd>@i.SourceTested</dd>
                     </dl>
                 </td>
             </tr>
