@@ -105,6 +105,26 @@ public static class FceData
                     SourceTested = TextData.Short,
                 },
             },
+
+            FeesData =
+            {
+                new()
+                {
+                    Year = 2011,
+                    InvoicedAmount = 100000M,
+                    AmountPaid = 99999.99M,
+                    Balance = 0.01M,
+                    Status = "Partial Payment",
+                },
+                new()
+                {
+                    Year = 2010,
+                    InvoicedAmount = 4000M,
+                    AmountPaid = 4000M,
+                    Balance = 0M,
+                    Status = "Paid in Full",
+                },
+            },
         },
         new() {
             Id = 2,

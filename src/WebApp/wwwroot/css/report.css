@@ -29,6 +29,10 @@ html, body {
     white-space: nowrap;
 }
 
+.align-right {
+    text-align: right;
+}
+
 /* Tables */
 
 .table-values-list {
@@ -306,6 +310,10 @@ dl.dl-inline {
         text-decoration: underline;
         text-align: left;
     }
+
+        .fce table th.align-right {
+            text-align: right;
+        }
 
     .fce table tbody th {
         text-decoration: none;
