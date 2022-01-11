@@ -77,7 +77,6 @@ footer.split-lr > div:last-child {
 .grid-half {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-bottom: 1rem;
 }
 
 /* EPD nameplate */
@@ -282,6 +281,10 @@ dl.dl-inline {
     font-weight: inherit;
     border-bottom: 1px solid;
     margin-bottom: 2rem;
+}
+
+.fce div + h1 {
+    margin-top: 2rem;
 }
 
 .fce header .title {

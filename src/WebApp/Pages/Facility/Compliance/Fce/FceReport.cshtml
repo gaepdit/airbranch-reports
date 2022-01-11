@@ -62,29 +62,31 @@
 
     <h2>Full Compliance Evaluation</h2>
 
-    <div class="fce-content grid-half">
-        <div>
-            <dl class="dl-inline">
-                <dt><b>@Html.DisplayNameFor(m => report.FceYear)</b></dt>
-                <dd><b>@report.FceYear</b></dd>
-                <dt>@Html.DisplayNameFor(m => report.StaffReviewedBy)</dt>
-                <dd>@report.StaffReviewedBy.SortableFullName</dd>
-                <dt>@Html.DisplayNameFor(m => report.WithOnsiteInspection)</dt>
-                <dd>@Html.DisplayFor(m => report.WithOnsiteInspection, "BooleanYesNo")</dd>
-            </dl>
-            <dl class="dl-inline">
-                <dt>@Html.DisplayNameFor(m => report.Comments)</dt>
-                <dd>@report.Comments</dd>
-            </dl>
+    <div class="fce-content">
+        <div class="grid-half">
+            <div>
+                <dl class="dl-inline">
+                    <dt><b>@Html.DisplayNameFor(m => report.FceYear)</b></dt>
+                    <dd><b>@report.FceYear</b></dd>
+                    <dt>@Html.DisplayNameFor(m => report.StaffReviewedBy)</dt>
+                    <dd>@report.StaffReviewedBy.SortableFullName</dd>
+                    <dt>@Html.DisplayNameFor(m => report.WithOnsiteInspection)</dt>
+                    <dd>@Html.DisplayFor(m => report.WithOnsiteInspection, "BooleanYesNo")</dd>
+                </dl>
+            </div>
+            <div>
+                <dl class="dl-inline">
+                    <dt>@Html.DisplayNameFor(m => report.Id)</dt>
+                    <dd>@report.Id</dd>
+                    <dt>@Html.DisplayNameFor(m => report.DateCompleted)</dt>
+                    <dd>@Html.DisplayFor(m => report.DateCompleted)</dd>
+                </dl>
+            </div>
         </div>
-        <div>
-            <dl class="dl-inline">
-                <dt>@Html.DisplayNameFor(m => report.Id)</dt>
-                <dd>@report.Id</dd>
-                <dt>@Html.DisplayNameFor(m => report.DateCompleted)</dt>
-                <dd>@Html.DisplayFor(m => report.DateCompleted)</dd>
-            </dl>
-        </div>
+        <dl class="dl-inline">
+            <dt>@Html.DisplayNameFor(m => report.Comments)</dt>
+            <dd>@report.Comments</dd>
+        </dl>
     </div>
 
     <h1>Supporting compliance data for @Html.DisplayFor(m => report.SupportingDataDateRange, new{Connector = "through"})</h1>
