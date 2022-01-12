@@ -148,5 +148,39 @@ public static class FacilityData
             },
             GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
         },
+        new()
+        {
+            Id = new ApbFacilityId("00100005"),
+            Name = "Guava Inc.",
+            County = "Glynn",
+            Description = "Guavalicious",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = "Suite g",
+                City = "Gnu York",
+                State = "GA",
+                PostalCode = "30000",
+            },
+            GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
+            HeaderData = new FacilityHeaderData
+            {
+                OperatingStatusCode = FacilityOperatingStatus.O,
+                ClassificationCode = FacilityClassification.SM,
+                CmsClassificationCode = FacilityCmsClassification.S,
+                Sic = "1234",
+                Naics = "123456",
+                RmpId = "1234-5678-9012",
+                OwnershipType = "Federal Facility (U.S. Government)",
+                StartupDate = new DateTime(2000, 1, 1),
+                PermitRevocationDate = null,
+                AirPrograms = new List<string> { "SIP", "NSPS", },
+                ProgramClassifications = new List<string>(),
+                OneHourOzoneNonattainment = OneHourOzoneNonattainmentStatus.No,
+                EightHourOzoneNonattainment = EightHourOzoneNonattainmentStatus.None,
+                PmFineNonattainment = PmFineNonattainmentStatus.None,
+                NspsFeeExempt = true,
+            },
+        },
     };
 }

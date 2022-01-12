@@ -24,6 +24,7 @@ public class FceReportModel : PageModel
 
         Report = await repository.GetFceReportAsync(new ApbFacilityId(facilityId), year);
         if (Report?.Facility is null) return NotFound();
+        if (Report.Facility.HeaderData is null) return NotFound();
 
         OrganizationInfo = await orgRepo.GetAsync();
 
