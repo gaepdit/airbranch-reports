@@ -4,6 +4,7 @@ using Domain.Monitoring.Repositories;
 using Domain.Organization.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using System.Data;
@@ -29,6 +30,10 @@ else
         .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
 }
 
+// Persist data protection keys
+var keysFolder = Path.Combine(builder.Configuration["PersistedFilesBasePath"], "DataProtectionKeys");
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(Directory.CreateDirectory(keysFolder));
 builder.Services.AddAuthorization();
 
 // Configure the UI
