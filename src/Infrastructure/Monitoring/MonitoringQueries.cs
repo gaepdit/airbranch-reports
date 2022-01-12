@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Monitoring.Queries;
+﻿namespace Infrastructure.Monitoring;
 
 internal static class MonitoringQueries
 {

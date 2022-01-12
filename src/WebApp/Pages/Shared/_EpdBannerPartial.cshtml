@@ -1,5 +1,5 @@
 ﻿@model Domain.Organization.Models.OrganizationInfo
-<div role="banner" class="nameplate lr-grid">
+<div role="banner" class="nameplate split-lr">
     <div>
         <img class="logo" src="~/img/epd-logo.svg" alt="Georgia Environmental Protection Division" />
     </div>
@@ -8,13 +8,7 @@
             <div class="director">@Model.NameOfDirector, Director</div>
             <div class="branch">@Model.Org</div>
             <div class="address">
-                @Model.OrgAddress.Street<br />
-                @if (Model.OrgAddress.Street2 is not null)
-                {
-                    @Model.OrgAddress.Street2
-                    <br />
-                }
-                @Model.OrgAddress.City, @Model.OrgAddress.State @Model.OrgAddress.PostalCode<br />
+                @Html.DisplayFor(m => m.OrgAddress)
                 @Model.OrgPhoneNumber
             </div>
         </address>

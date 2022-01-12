@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Domain.Facilities.Models;
 using Domain.Facilities.Repositories;
+using Domain.ValueObjects;
 using System.Data;
 
 namespace Infrastructure.Facilities;
@@ -10,35 +11,29 @@ public class FacilitiesRepository : IFacilitiesRepository
     private readonly IDbConnection db;
     public FacilitiesRepository(IDbConnection conn) => db = conn;
 
-    public Task<bool> FacilityExistsAsync(ApbFacilityId facilityId)
-    {
-        var query = @"select convert(bit, count(*))
-            from dbo.AFSFACILITYDATA
-            where STRAIRSNUMBER = @AirsNumber
-              and STRUPDATESTATUS <> 'H'";
-
-        return db.ExecuteScalarAsync<bool>(query,
+    public Task<bool> FacilityExistsAsync(ApbFacilityId facilityId) =>
+        db.ExecuteScalarAsync<bool>(FacilitiesQueries.FacilityExists,
             new { AirsNumber = facilityId.DbFormattedString });
-    }
 
     public async Task<Facility?> GetFacilityAsync(ApbFacilityId facilityId)
     {
-        var query = @"SELECT f.STRAIRSNUMBER    as [Id],
-                   f.STRFACILITYNAME  as [Name],
-                   f.STRFACILITYCITY  as [City],
-                   f.STRFACILITYSTATE as [State],
-                   lc.STRCOUNTYNAME   as [County]
-            FROM dbo.APBFACILITYINFORMATION AS f
-                inner JOIN dbo.AFSFACILITYDATA AS a
-                ON f.STRAIRSNUMBER = a.STRAIRSNUMBER
-                left join dbo.LOOKUPCOUNTYINFORMATION lc
-                on substring(f.STRAIRSNUMBER, 5, 3) = lc.STRCOUNTYCODE
-            where f.STRAIRSNUMBER = @AirsNumber
-              and a.STRUPDATESTATUS <> 'H'";
+        if (!await FacilityExistsAsync(facilityId)) return null;
 
-        var result = await db.QuerySingleOrDefaultAsync<Facility>(query,
+        using var multi = await db.QueryMultipleAsync(FacilitiesQueries.GetFacility,
             new { AirsNumber = facilityId.DbFormattedString });
 
-        return result == default ? null : result;
+        var facility = multi.Read<Facility, Address, GeoCoordinates, FacilityHeaderData, Facility>(
+            (facility, FacilityAddress, GeoCoordinates, HeaderData) =>
+            {
+                facility.FacilityAddress = FacilityAddress;
+                facility.GeoCoordinates = GeoCoordinates;
+                facility.HeaderData = HeaderData;
+                return facility;
+            }).Single();
+
+        facility.HeaderData!.AirPrograms.AddRange(multi.Read<string>());
+        facility.HeaderData!.ProgramClassifications.AddRange(multi.Read<string>());
+
+        return facility;
     }
 }

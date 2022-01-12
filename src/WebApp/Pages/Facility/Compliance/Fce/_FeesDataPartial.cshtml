@@ -1,0 +1,38 @@
+﻿@model List<FeeYear>
+@using Domain.Compliance.Models.WorkItems
+
+<h2>Five-Year History of Annual Permit Fees</h2>
+
+@{
+    if (Model is not { Count: > 0 })
+    {
+        <div class="fce-content">None.</div>
+        return;
+    }
+
+    var firstItem = Model.FirstOrDefault()!;
+}
+
+<table class="">
+    <thead>
+        <tr>
+            <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Year)</th>
+            <th scope="col" class="align-right">@Html.DisplayNameFor(m => firstItem.InvoicedAmount)</th>
+            <th scope="col" class="align-right">@Html.DisplayNameFor(m => firstItem.AmountPaid)</th>
+            <th scope="col" class="align-right">@Html.DisplayNameFor(m => firstItem.Balance)</th>
+            <th scope="col">@Html.DisplayNameFor(m => firstItem.Status)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <th scope="row">@i.Year</th>
+                <td class="align-right">@Html.DisplayFor(m => i.InvoicedAmount, "Currency")</td>
+                <td class="align-right">@Html.DisplayFor(m => i.AmountPaid, "Currency")</td>
+                <td class="align-right">@Html.DisplayFor(m => i.Balance, "Currency")</td>
+                <td>@i.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

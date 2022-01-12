@@ -4,7 +4,6 @@ using Domain.Monitoring.Models;
 using Domain.Monitoring.Models.TestRuns;
 using Domain.Monitoring.Repositories;
 using Domain.ValueObjects;
-using Infrastructure.Monitoring.Queries;
 using System.Data;
 
 namespace Infrastructure.Monitoring;
@@ -14,18 +13,17 @@ public class MonitoringRepository : IMonitoringRepository
     private readonly IDbConnection db;
     public MonitoringRepository(IDbConnection conn) => db = conn;
 
-    public Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber)
-    {
-        return db.ExecuteScalarAsync<bool>(MonitoringQueries.StackTestReportExists, new
-        {
-            AirsNumber = facilityId.DbFormattedString,
-            ReferenceNumber = referenceNumber,
-        });
-    }
+    public Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber) =>
+        db.ExecuteScalarAsync<bool>(MonitoringQueries.StackTestReportExists,
+            new
+            {
+                AirsNumber = facilityId.DbFormattedString,
+                ReferenceNumber = referenceNumber,
+            });
 
     public Task<DocumentType> GetDocumentTypeAsync(int referenceNumber) =>
-    db.QuerySingleAsync<DocumentType>(MonitoringQueries.GetDocumentType,
-        new { ReferenceNumber = referenceNumber });
+        db.QuerySingleAsync<DocumentType>(MonitoringQueries.GetDocumentType,
+            new { ReferenceNumber = referenceNumber });
 
     public async Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
     {

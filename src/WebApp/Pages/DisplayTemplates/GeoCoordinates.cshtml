@@ -1,0 +1,7 @@
+﻿@model GeoCoordinates?
+@using Domain.ValueObjects
+
+@if (Model is not null)
+{
+    <div>Lat: @Model.Value.Latitude, Long: @Model.Value.Longitude</div>
+}

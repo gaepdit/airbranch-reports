@@ -26,12 +26,5 @@ namespace WebApp.Api.StackTest
 
             return includeConfidentialInfo ? Ok(stackTestReport) : Ok(stackTestReport.RedactedStackTestReport());
         }
-
-        [HttpGet("exists")]
-        public async Task<ActionResult<bool>> ExistsAsync(
-            [FromServices] IMonitoringRepository repository,
-            [FromRoute] string facilityId,
-            [FromRoute] int referenceNumber) =>
-            Ok(await repository.StackTestReportExistsAsync(facilityId, referenceNumber));
     }
 }

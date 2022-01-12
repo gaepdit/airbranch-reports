@@ -19,12 +19,14 @@ public record class AccReport
     public DateTime DateReceived { get; init; }
 
     [Display(Name = "Date review completed")]
-    public DateTime? DateComplete { get; init; }
+    public DateTime? DateCompleted { get; init; }
 
     [Display(Name = "Date acknowledgment letter sent")]
     public DateTime? DateAcknowledgmentLetterSent { get; init; }
 
     public string Comments { get; init; } = "";
+
+    // ACC evaluation data
 
     [Display(Name = "ACC postmarked by the deadline")]
     [UIHint("BooleanYesNo")]

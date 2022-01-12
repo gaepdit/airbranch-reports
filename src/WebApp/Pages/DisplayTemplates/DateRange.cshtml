@@ -1,6 +1,7 @@
 ﻿@model DateRange
 @using Domain.ValueObjects
 @using WebApp.Platform.Formatting
+
 @if (Model.EndDate is null && Model.StartDate == default)
 {
     @Domain.GlobalConstants.ConfidentialInfoPlaceholder
@@ -11,5 +12,5 @@ else if (Model.EndDate is null || Model.EndDate == Model.StartDate)
 }
 else
 {
-    @string.Join(" to ", new[] {Model.StartDate.ToString(DisplayFormats.LongDate), Model.EndDate.ToString(DisplayFormats.LongDate)})
+    @string.Join($" {ViewData["Connector"] ?? "to"} ", new[] {Model.StartDate.ToString(DisplayFormats.LongDate), Model.EndDate.ToString(DisplayFormats.LongDate)})
 }

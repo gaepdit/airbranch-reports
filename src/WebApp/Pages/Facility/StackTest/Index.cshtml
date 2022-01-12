@@ -1,10 +1,10 @@
-@page "~/facility/{facilityId}/stack-test/{referenceNumber:int}"
+﻿@page "~/facility/{facilityId}/stack-test/{referenceNumber:int}"
 @using Domain.Monitoring.Models
 @using WebApp.Platform.Formatting
 @model WebApp.Pages.Facility.StackTest.IndexModel
 @{
     Layout = "_ReportLayout";
-    ViewBag.BodyCssClass = "stack-test";
+    ViewBag.BodyCssClass = "stack-test sans-serif";
 
     var Report = Model.Report!;
     ViewData["Title"] = $"Facility {Report.Facility!.Id} - {Report.ReportTypeName} Reference Number: {Report.ReferenceNumber}";
@@ -29,8 +29,8 @@
                     <td>@Report.Facility.Name</td>
                 </tr>
                 <tr>
-                    <th>@Html.DisplayNameFor(m => Report.Facility.City)</th>
-                    <td>@Report.Facility.City, @Report.Facility.State</td>
+                    <th>@Html.DisplayNameFor(m => Report.Facility.FacilityAddress)</th>
+                    <td>@Report.Facility.FacilityAddress.City, @Report.Facility.FacilityAddress.State</td>
                 </tr>
                 <tr>
                     <th>@Html.DisplayNameFor(m => Report.Source)</th>
@@ -81,7 +81,7 @@
             <tfoot>
                 <tr>
                     <td colspan="2">
-                        <footer class="lr-grid">
+                        <footer class="split-lr">
                             <div>
                                 <div>cc: @Report.ComplianceManager</div>
                                 <div>AIRS Number: @Report.Facility.Id</div>
