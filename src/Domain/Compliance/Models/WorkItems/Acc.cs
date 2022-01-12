@@ -8,9 +8,9 @@ public record class Acc
     public int Id { get; init; }
 
     [Display(Name = "Reporting year")]
-    public int AccReportingYear { get; init; }
+    public int? AccReportingYear { get; init; }
 
-    public PersonName Reviewer { get; init; }
+    public PersonName Reviewer { get; set; }
 
     [Display(Name = "Date received")]
     public DateTime ReceivedDate { get; init; }

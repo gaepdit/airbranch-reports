@@ -11,7 +11,7 @@ public class GetFceReport
     [Test]
     public async Task ReturnsReportIfExists()
     {
-        var facilityId = "00100001";
+        var facilityId = "001-00001";
         var id = 7136;
         var repo = new ComplianceRepository(Global.conn!);
         var result = await repo.GetFceReportAsync(facilityId, id);

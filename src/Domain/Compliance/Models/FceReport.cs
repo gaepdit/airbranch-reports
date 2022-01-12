@@ -24,7 +24,7 @@ public record class FceReport
 
     public string Comments { get; init; } = "";
 
-    public DateRange SupportingDataDateRange { get; init; }
+    public DateRange SupportingDataDateRange { get; set; }
 
     // Supporting compliance data
 
@@ -34,6 +34,6 @@ public record class FceReport
     public List<Report> Reports { get; init; } = new List<Report>();
     public List<Notification> Notifications { get; init; } = new List<Notification>();
     public List<StackTest> StackTests { get; init; } = new List<StackTest>();
-    public List<FeeYear> FeesData { get; init; } = new List<FeeYear>();
+    public List<FeeYear> FeesHistory { get; init; } = new List<FeeYear>();
     public List<Enforcement> EnforcementHistory { get; init; } = new List<Enforcement>();
 }

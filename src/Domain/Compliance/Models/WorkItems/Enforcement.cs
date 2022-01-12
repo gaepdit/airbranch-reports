@@ -8,10 +8,11 @@ public record class Enforcement
     public int Id { get; init; }
 
     [Display(Name = "Staff responsible")]
-    public PersonName StaffResponsible { get; init; }
+    public PersonName StaffResponsible { get; set; }
 
     [Display(Name = "Date")]
-    public DateTime DiscoveryDate { get; init; }
+    public DateTime EnforcementDate { get; init; }
 
-    public string Type { get; init; } = "";
+    [Display(Name = "Type")]
+    public string EnforcementType { get; init; } = "";
 }

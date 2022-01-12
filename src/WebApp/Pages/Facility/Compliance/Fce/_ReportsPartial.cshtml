@@ -30,7 +30,7 @@
                 <th scope="row" rowspan="2"><p>@i.Id</p></th>
                 <td>
                     @i.ReportPeriod<br />
-                    @Html.DisplayFor(m => i.ReportPeriodDates, new{Connector = "–"})
+                    @Html.DisplayFor(m => i.ReportPeriodDateRange, new{Connector = "–"})
                 </td>
                 <td>@Html.DisplayFor(m => i.ReceivedDate)</td>
                 <td>@i.Reviewer.SortableFullName</td>

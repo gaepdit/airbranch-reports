@@ -63,7 +63,7 @@ public static class FceData
                 {
                     Id = 200,
                     ReportPeriod = "Second Semiannual",
-                    ReportPeriodDates = new DateRange(new DateTime(2019, 7, 1), new DateTime(2019, 12, 31)),
+                    ReportPeriodDateRange = new DateRange(new DateTime(2019, 7, 1), new DateTime(2019, 12, 31)),
                     ReceivedDate = new DateTime(2020, 2, 1),
                     Reviewer = StaffData.GetStaff.Single(e => e.Id == 2).Name,
                     DeviationsReported = true,
@@ -73,7 +73,7 @@ public static class FceData
                 {
                     Id = 300,
                     ReportPeriod = "Annual",
-                    ReportPeriodDates = new DateRange(new DateTime(2019, 1, 1), new DateTime(2019, 12, 31)),
+                    ReportPeriodDateRange = new DateRange(new DateTime(2019, 1, 1), new DateTime(2019, 12, 31)),
                     ReceivedDate = new DateTime(2020, 3, 1),
                     Reviewer = StaffData.GetStaff.Single(e => e.Id == 3).Name,
                     DeviationsReported = false,
@@ -106,7 +106,7 @@ public static class FceData
                 },
             },
 
-            FeesData =
+            FeesHistory =
             {
                 new()
                 {
@@ -132,8 +132,8 @@ public static class FceData
                 {
                     Id = 1000,
                     StaffResponsible = StaffData.GetStaff.Single(e => e.Id == 6).Name,
-                    DiscoveryDate = new DateTime(2011, 7, 1),
-                    Type = "Letter of Noncompliance",
+                    EnforcementDate = new DateTime(2011, 7, 1),
+                    EnforcementType = "Letter of Noncompliance",
                 },
             },
         },

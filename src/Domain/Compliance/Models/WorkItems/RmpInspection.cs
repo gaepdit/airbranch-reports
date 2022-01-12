@@ -7,10 +7,10 @@ public record class RmpInspection
     [Display(Name = "Tracking #")]
     public int Id { get; init; }
 
-    public PersonName Inspector { get; init; }
+    public PersonName Inspector { get; set; }
 
     [Display(Name = "Date")]
-    public DateRange InspectionDate { get; init; }
+    public DateRange InspectionDate { get; set; }
 
     [Display(Name = "Reason for inspection")]
     public string Reason { get; init; } = "";

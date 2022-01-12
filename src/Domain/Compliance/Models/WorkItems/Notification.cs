@@ -10,7 +10,7 @@ public record class Notification
     [Display(Name = "Date received")]
     public DateTime DateReceived { get; init; }
 
-    public PersonName Reviewer { get; init; }
+    public PersonName Reviewer { get; set; }
 
     [Display(Name = "Notification type")]
     public string Type { get; init; } = "";

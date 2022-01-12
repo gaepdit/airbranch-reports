@@ -30,8 +30,8 @@ public class StackTestReportExists
     [Test]
     public async Task ReturnsFalseIfUnassignedDocumentType()
     {
-        var facilityId = "14300017";
-        var referenceNumber = 202001344;
+        var facilityId = "095-00085";
+        var referenceNumber = 202101068;
         var repo = new MonitoringRepository(Global.conn!);
         var result = await repo.StackTestReportExistsAsync(facilityId, referenceNumber);
         result.Should().BeFalse();

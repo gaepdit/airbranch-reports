@@ -18,7 +18,8 @@ select f.STRAIRSNUMBER               as Id,
        'FacilityAddress'             as Id,
        dbo.NullIfNaOrEmpty(f.STRFACILITYSTREET1)
                                      as Street,
-       f.STRFACILITYSTREET2          as Street2,
+       dbo.NullIfNaOrEmpty(f.STRFACILITYSTREET2)
+                                     as Street2,
        trim(f.STRFACILITYCITY)       as City,
        f.STRFACILITYSTATE            as State,
        f.STRFACILITYZIPCODE          as PostalCode,

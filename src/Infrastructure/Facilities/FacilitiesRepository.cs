@@ -11,11 +11,9 @@ public class FacilitiesRepository : IFacilitiesRepository
     private readonly IDbConnection db;
     public FacilitiesRepository(IDbConnection conn) => db = conn;
 
-    public Task<bool> FacilityExistsAsync(ApbFacilityId facilityId)
-    {
-        return db.ExecuteScalarAsync<bool>(FacilitiesQueries.FacilityExists,
+    public Task<bool> FacilityExistsAsync(ApbFacilityId facilityId) =>
+        db.ExecuteScalarAsync<bool>(FacilitiesQueries.FacilityExists,
             new { AirsNumber = facilityId.DbFormattedString });
-    }
 
     public async Task<Facility?> GetFacilityAsync(ApbFacilityId facilityId)
     {
