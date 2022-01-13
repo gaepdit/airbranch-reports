@@ -6,7 +6,7 @@ The tests in this project require a connection to a working database populated w
 
 ## Setup
 
-Create a *testsettings.json* file with a valid connection string:
+Create a *testsettings.json* file in this folder with a valid connection string:
 
 ```json
 {
