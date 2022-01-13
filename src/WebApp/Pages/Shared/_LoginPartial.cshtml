@@ -1,4 +1,16 @@
 ﻿@using System.Security.Principal
+@using System.Security.Claims
+@{
+    string greeting;
+    if (User.HasClaim(c => c.Type == "name"))
+    {
+        greeting = User.FindFirstValue("name").Split(',')[1];
+    }
+    else
+    {
+        greeting = User.Identity?.Name?.Split('@')[0] ?? "";
+    }
+}
 
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -17,19 +29,21 @@
                     @if (User.Identity?.IsAuthenticated == true)
                     {
                         <li class="nav-item">
-                            <span class="navbar-text text-dark d-block">Hello, @User.Identity?.Name?.Split('@')[0]</span>
+                            <span class="navbar-text text-dark d-block">Hello, @greeting</span>
                         </li>
                         <environment exclude="Local">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">Sign out</a>
+                                <a class="btn btn-outline-secondary ms-2" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">Sign out</a>
                             </li>
                         </environment>
                     }
                     else
                     {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">Sign in</a>
-                        </li>
+                        <environment exclude="Local">
+                            <li class="nav-item">
+                                <a class="btn btn-outline-info" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">Sign in</a>
+                            </li>
+                        </environment>
                     }
                 </ul>
             </div>
