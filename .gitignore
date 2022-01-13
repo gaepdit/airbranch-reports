@@ -1,5 +1,6 @@
 # Server settings files
 appsettings\.*\.json
+!appsettings.Local.json
 testsettings.json
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,rider,cypressio
