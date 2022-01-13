@@ -29,8 +29,8 @@ public class IndexModel : PageModel
         var report = await repository.GetStackTestReportAsync(new ApbFacilityId(facilityId), referenceNumber);
         if (report?.Facility is null) return NotFound();
 
-        // TODO: check authentication
-        //if (includeConfidentialInfo && (User.Identity == null || !User.Identity.IsAuthenticated)) return Forbid();
+        if (includeConfidentialInfo && (User.Identity == null || !User.Identity.IsAuthenticated)) 
+            return Challenge();
 
         Report = includeConfidentialInfo ? report : report.RedactedStackTestReport();
 

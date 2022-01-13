@@ -21,8 +21,8 @@ namespace WebApp.Api.StackTest
             var stackTestReport = await repository.GetStackTestReportAsync(facilityId, referenceNumber);
             if (stackTestReport is null) return NotFound();
 
-            // TODO: check authentication
-            //if (includeConfidentialInfo && (User.Identity == null || !User.Identity.IsAuthenticated)) return Forbid();
+            if (includeConfidentialInfo && (User.Identity == null || !User.Identity.IsAuthenticated))
+                return Challenge();
 
             return includeConfidentialInfo ? Ok(stackTestReport) : Ok(stackTestReport.RedactedStackTestReport());
         }
