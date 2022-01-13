@@ -32,9 +32,14 @@ select convert(int, r.STRREFERENCENUMBER) as ReferenceNumber,
 
        i.STRAIRSNUMBER                    as Id,
        f.STRFACILITYNAME                  as Name,
-       f.STRFACILITYCITY                  as City,
-       f.STRFACILITYSTATE                 as [State],
        lc.STRCOUNTYNAME                   as County,
+
+       'Address'                          as Id,
+       f.STRFACILITYSTREET1               as Street,
+       f.STRFACILITYSTREET2               as Street2,
+       f.STRFACILITYCITY                  as City,
+       f.STRFACILITYSTATE                 as State,
+       f.STRFACILITYZIPCODE               as PostalCode,
 
        'ReviewedByStaff'                  as Id,
        pr.STRFIRSTNAME                    as GivenName,
