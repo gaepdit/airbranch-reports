@@ -1,0 +1,12 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Property Name="Project" Value="DomainTests" />
+        <Property Name="Project" Value="LocalRepositoryTests" />
+        <Property Name="Project" Value="WebAppTests" />
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>
