@@ -274,6 +274,19 @@ dl.dl-inline {
     padding: 0;
 }
 
+/* Confidential parameters */
+.conf-param {
+    outline: 1px solid red;
+    padding: 0.1rem .25rem;
+    font-style: normal;
+    border-radius: 3px;
+}
+
+    em.conf-param::before {
+        content: "(Conf) ";
+        font-style: italic;
+    }
+
 /* FCE layout */
 
 .fce h1 {

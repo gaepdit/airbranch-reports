@@ -1,0 +1,9 @@
+﻿@model (string Value, string Param,  List<string> ConfidentialParams)
+@if (Model.ConfidentialParams.Contains(Model.Param))
+{
+    <em class="conf-param">@Model.Value</em>
+}
+else
+{
+    @Model.Value
+}
