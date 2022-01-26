@@ -33,7 +33,7 @@ public record class FceReport
     public List<Acc> Accs { get; init; } = new List<Acc>();
     public List<Report> Reports { get; init; } = new List<Report>();
     public List<Notification> Notifications { get; init; } = new List<Notification>();
-    public List<StackTest> StackTests { get; init; } = new List<StackTest>();
+    public List<StackTestWork> StackTests { get; init; } = new List<StackTestWork>();
     public List<FeeYear> FeesHistory { get; init; } = new List<FeeYear>();
     public List<Enforcement> EnforcementHistory { get; init; } = new List<Enforcement>();
 }

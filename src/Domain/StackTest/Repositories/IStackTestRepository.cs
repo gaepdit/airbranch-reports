@@ -1,8 +1,8 @@
-﻿using Domain.Monitoring.Models;
+﻿using Domain.StackTest.Models;
 
-namespace Domain.Monitoring.Repositories;
+namespace Domain.StackTest.Repositories;
 
-public interface IMonitoringRepository
+public interface IStackTestRepository
 {
     Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber);
     Task<DocumentType> GetDocumentTypeAsync(int referenceNumber);

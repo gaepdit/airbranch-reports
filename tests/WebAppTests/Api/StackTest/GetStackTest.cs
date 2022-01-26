@@ -1,6 +1,6 @@
 using Domain.Facilities.Models;
-using Domain.Monitoring.Models;
-using Domain.Monitoring.Repositories;
+using Domain.StackTest.Models;
+using Domain.StackTest.Repositories;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -15,7 +15,7 @@ public class GetStackTest
     [Test]
     public async Task ReturnsOkIfExists()
     {
-        var repo = new Mock<IMonitoringRepository>();
+        var repo = new Mock<IStackTestRepository>();
         repo.Setup(l => l.GetStackTestReportAsync(It.IsAny<ApbFacilityId>(), It.IsAny<int>()))
             .ReturnsAsync(new StackTestReportOneStack());
 
@@ -34,7 +34,7 @@ public class GetStackTest
     [Test]
     public async Task ReturnsNotFoundIfNotExists()
     {
-        var repo = new Mock<IMonitoringRepository>();
+        var repo = new Mock<IStackTestRepository>();
         repo.Setup(l => l.GetStackTestReportAsync(It.IsAny<ApbFacilityId>(), It.IsAny<int>()))
             .ReturnsAsync((StackTestReportOneStack?)null);
 
@@ -52,7 +52,7 @@ public class GetStackTest
     [Test]
     public async Task ReturnsBadRequestIfInvalidFacilityId()
     {
-        var repo = new Mock<IMonitoringRepository>();
+        var repo = new Mock<IStackTestRepository>();
         var controller = new StackTestController();
         var response = await controller.GetAsync(repo.Object, "abc", default);
 

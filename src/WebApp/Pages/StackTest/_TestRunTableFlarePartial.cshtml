@@ -1,5 +1,5 @@
-﻿@model Domain.Monitoring.Models.StackTestReportFlare
-@using Domain.Monitoring.Models.TestRuns
+﻿@model Domain.StackTest.Models.StackTestReportFlare
+@using Domain.StackTest.Models.TestRun
 @{
     if (Model!.TestRuns is not { Count: > 0 }) return;
     var firstTestRun = Model.TestRuns.FirstOrDefault()!;

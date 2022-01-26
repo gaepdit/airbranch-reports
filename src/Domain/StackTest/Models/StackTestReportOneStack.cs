@@ -1,7 +1,7 @@
-﻿using Domain.Monitoring.Models.TestRuns;
+﻿using Domain.StackTest.Models.TestRun;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Monitoring.Models;
+namespace Domain.StackTest.Models;
 
 public record class StackTestReportOneStack : BaseStackTestReport
 {

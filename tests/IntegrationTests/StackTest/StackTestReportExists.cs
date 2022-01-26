@@ -1,9 +1,9 @@
 using FluentAssertions;
-using Infrastructure.Monitoring;
+using Infrastructure.StackTest;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
-namespace IntegrationTests.Monitoring;
+namespace IntegrationTests.StackTest;
 
 public class StackTestReportExists
 {
@@ -12,7 +12,7 @@ public class StackTestReportExists
     {
         var facilityId = "12100021";
         var referenceNumber = 201100541;
-        var repo = new MonitoringRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.conn!);
         var result = await repo.StackTestReportExistsAsync(facilityId, referenceNumber);
         result.Should().BeTrue();
     }
@@ -22,7 +22,7 @@ public class StackTestReportExists
     {
         var facilityId = "000-00000";
         var referenceNumber = 1;
-        var repo = new MonitoringRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.conn!);
         var result = await repo.StackTestReportExistsAsync(facilityId, referenceNumber);
         result.Should().BeFalse();
     }
@@ -32,7 +32,7 @@ public class StackTestReportExists
     {
         var facilityId = "095-00085";
         var referenceNumber = 202101068;
-        var repo = new MonitoringRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.conn!);
         var result = await repo.StackTestReportExistsAsync(facilityId, referenceNumber);
         result.Should().BeFalse();
     }

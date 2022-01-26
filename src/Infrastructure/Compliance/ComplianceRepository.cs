@@ -112,7 +112,7 @@ public class ComplianceRepository : IComplianceRepository
                 item.Reviewer = staff;
                 return item;
             }));
-        report.StackTests.AddRange(multi.Read<StackTest, PersonName, StackTest>(
+        report.StackTests.AddRange(multi.Read<StackTestWork, PersonName, StackTestWork>(
             (item, staff) =>
             {
                 item.Reviewer = staff;

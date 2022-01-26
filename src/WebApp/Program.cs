@@ -1,7 +1,7 @@
 using Domain.Compliance.Repositories;
 using Domain.Facilities.Repositories;
-using Domain.Monitoring.Repositories;
 using Domain.Organization.Repositories;
+using Domain.StackTest.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.DataProtection;
@@ -52,8 +52,8 @@ if (builder.Environment.IsLocalDev())
         LocalRepository.Organization.OrganizationRepository>();
     builder.Services.AddScoped<IComplianceRepository,
         LocalRepository.Compliance.ComplianceRepository>();
-    builder.Services.AddScoped<IMonitoringRepository,
-        LocalRepository.Monitoring.MonitoringRepository>();
+    builder.Services.AddScoped<IStackTestRepository,
+        LocalRepository.StackTest.StackTestRepository>();
 }
 else
 {
@@ -67,8 +67,8 @@ else
         Infrastructure.Organization.OrganizationRepository>();
     builder.Services.AddScoped<IComplianceRepository,
         Infrastructure.Compliance.ComplianceRepository>();
-    builder.Services.AddScoped<IMonitoringRepository,
-        Infrastructure.Monitoring.MonitoringRepository>();
+    builder.Services.AddScoped<IStackTestRepository,
+        Infrastructure.StackTest.StackTestRepository>();
 }
 
 // Build the application

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Domain.Monitoring.Models.TestRuns;
+namespace Domain.StackTest.Models.TestRun;
 
 public abstract record class BaseTestRun
 {

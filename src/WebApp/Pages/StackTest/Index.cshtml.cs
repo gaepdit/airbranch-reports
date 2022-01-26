@@ -1,8 +1,8 @@
 using Domain.Facilities.Models;
-using Domain.Monitoring.Models;
-using Domain.Monitoring.Repositories;
 using Domain.Organization.Models;
 using Domain.Organization.Repositories;
+using Domain.StackTest.Models;
+using Domain.StackTest.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApp.Platform.Models;
@@ -17,7 +17,7 @@ public class IndexModel : PageModel
     public bool ShowConfidentialWarning { get; private set; } = false;
 
     public async Task<ActionResult> OnGetAsync(
-        [FromServices] IMonitoringRepository repository,
+        [FromServices] IStackTestRepository repository,
         [FromServices] IOrganizationRepository orgRepo,
         [FromRoute] string facilityId,
         [FromRoute] int referenceNumber,

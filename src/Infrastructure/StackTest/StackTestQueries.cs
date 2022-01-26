@@ -1,6 +1,6 @@
-﻿namespace Infrastructure.Monitoring;
+﻿namespace Infrastructure.StackTest;
 
-internal static class MonitoringQueries
+internal static class StackTestQueries
 {
     public static string StackTestReportExists = @"
 select convert(bit, count(1))

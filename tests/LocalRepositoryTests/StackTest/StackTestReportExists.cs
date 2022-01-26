@@ -1,12 +1,12 @@
 ﻿using Domain.Facilities.Models;
 using FluentAssertions;
 using LocalRepository.Data;
-using LocalRepository.Monitoring;
+using LocalRepository.StackTest;
 using NUnit.Framework;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LocalRepositoryTests.Monitoring;
+namespace LocalRepositoryTests.StackTest;
 
 public class StackTestReportExists
 {
@@ -15,7 +15,7 @@ public class StackTestReportExists
     {
         var report = StackTestData.GetStackTestReports.First();
 
-        var repo = new MonitoringRepository();
+        var repo = new StackTestRepository();
         var result = await repo.StackTestReportExistsAsync(report.Facility!.Id!, report.ReferenceNumber);
         result.Should().BeTrue();
     }
@@ -23,7 +23,7 @@ public class StackTestReportExists
     [Test]
     public async Task ReturnsFalseIfNotExists()
     {
-        var repo = new MonitoringRepository();
+        var repo = new StackTestRepository();
         var result = await repo.StackTestReportExistsAsync(new ApbFacilityId(Constants.FacilityIdThatDoesNotExist), default);
         result.Should().BeFalse();
     }

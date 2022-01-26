@@ -1,5 +1,5 @@
-﻿using Domain.Monitoring.Models;
-using Domain.Monitoring.Models.TestRuns;
+﻿using Domain.StackTest.Models;
+using Domain.StackTest.Models.TestRun;
 
 namespace LocalRepository.Data;
 

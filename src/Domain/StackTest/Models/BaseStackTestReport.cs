@@ -2,7 +2,7 @@ using Domain.Utils;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Domain.Monitoring.Models;
+namespace Domain.StackTest.Models;
 
 public abstract record class BaseStackTestReport
 {

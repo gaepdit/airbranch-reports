@@ -1,10 +1,10 @@
-﻿using Domain.Monitoring.Models;
-using Domain.Monitoring.Repositories;
+﻿using Domain.StackTest.Models;
+using Domain.StackTest.Repositories;
 using static LocalRepository.Data.StackTestData;
 
-namespace LocalRepository.Monitoring;
+namespace LocalRepository.StackTest;
 
-public class MonitoringRepository : IMonitoringRepository
+public class StackTestRepository : IStackTestRepository
 {
     public Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber) =>
         Task.FromResult(GetStackTestReports.Any(e =>

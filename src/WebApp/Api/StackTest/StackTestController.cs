@@ -1,6 +1,6 @@
 ﻿using Domain.Facilities.Models;
-using Domain.Monitoring.Models;
-using Domain.Monitoring.Repositories;
+using Domain.StackTest.Models;
+using Domain.StackTest.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Api.StackTest
@@ -12,7 +12,7 @@ namespace WebApp.Api.StackTest
     {
         [HttpGet("{referenceNumber:int}")]
         public async Task<ActionResult<BaseStackTestReport>> GetAsync(
-            [FromServices] IMonitoringRepository repository,
+            [FromServices] IStackTestRepository repository,
             [FromRoute] string facilityId,
             [FromRoute] int referenceNumber,
             [FromQuery] bool includeConfidentialInfo = false)

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Monitoring.Models;
+namespace Domain.StackTest.Models;
 
 public record class StackTestReportLoadingRack : BaseStackTestReport
 {

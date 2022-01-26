@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Monitoring.Models.TestRuns;
+namespace Domain.StackTest.Models.TestRun;
 
 public record class FlareTestRun : BaseTestRun
 {

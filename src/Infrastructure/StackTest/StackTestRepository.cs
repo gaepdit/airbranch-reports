@@ -1,20 +1,20 @@
 ﻿using Dapper;
 using Domain.Facilities.Models;
-using Domain.Monitoring.Models;
-using Domain.Monitoring.Models.TestRuns;
-using Domain.Monitoring.Repositories;
+using Domain.StackTest.Models;
+using Domain.StackTest.Models.TestRun;
+using Domain.StackTest.Repositories;
 using Domain.ValueObjects;
 using System.Data;
 
-namespace Infrastructure.Monitoring;
+namespace Infrastructure.StackTest;
 
-public class MonitoringRepository : IMonitoringRepository
+public class StackTestRepository : IStackTestRepository
 {
     private readonly IDbConnection db;
-    public MonitoringRepository(IDbConnection conn) => db = conn;
+    public StackTestRepository(IDbConnection conn) => db = conn;
 
     public Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber) =>
-        db.ExecuteScalarAsync<bool>(MonitoringQueries.StackTestReportExists,
+        db.ExecuteScalarAsync<bool>(StackTestQueries.StackTestReportExists,
             new
             {
                 AirsNumber = facilityId.DbFormattedString,
@@ -22,7 +22,7 @@ public class MonitoringRepository : IMonitoringRepository
             });
 
     public Task<DocumentType> GetDocumentTypeAsync(int referenceNumber) =>
-        db.QuerySingleAsync<DocumentType>(MonitoringQueries.GetDocumentType,
+        db.QuerySingleAsync<DocumentType>(StackTestQueries.GetDocumentType,
             new { ReferenceNumber = referenceNumber });
 
     public async Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
@@ -76,7 +76,7 @@ public class MonitoringRepository : IMonitoringRepository
 
     private async Task<T> GetBaseStackTestReportAsync<T>(int referenceNumber) where T : BaseStackTestReport
     {
-        using var multi = await db.QueryMultipleAsync(MonitoringQueries.BaseStackTestReport,
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.BaseStackTestReport,
             new { ReferenceNumber = referenceNumber });
 
         var report = multi.Read<T, Facility, Address, PersonName, PersonName, PersonName, DateRange, T>(
@@ -100,7 +100,7 @@ public class MonitoringRepository : IMonitoringRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportOneStack>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReportOneStack,
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportOneStack,
             new { ReferenceNumber = referenceNumber });
 
         _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(
@@ -126,7 +126,7 @@ public class MonitoringRepository : IMonitoringRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportFlare>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReportFlare,
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportFlare,
             new { ReferenceNumber = referenceNumber });
 
         _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(
@@ -152,7 +152,7 @@ public class MonitoringRepository : IMonitoringRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportLoadingRack>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync(MonitoringQueries.StackTestReportLoadingRack,
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportLoadingRack,
             new { ReferenceNumber = referenceNumber });
 
         _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(

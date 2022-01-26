@@ -2,7 +2,7 @@
 
 namespace Domain.Compliance.Models.WorkItems;
 
-public record class StackTest
+public record class StackTestWork
 {
     [Display(Name = "Tracking #")]
     public int Id { get; init; }

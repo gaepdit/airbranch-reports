@@ -1,12 +1,12 @@
 using FluentAssertions;
 using LocalRepository.Data;
-using LocalRepository.Monitoring;
+using LocalRepository.StackTest;
 using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LocalRepositoryTests.Monitoring;
+namespace LocalRepositoryTests.StackTest;
 
 public class GetDocumentType
 {
@@ -15,7 +15,7 @@ public class GetDocumentType
     {
         var report = StackTestData.GetStackTestReports.First();
 
-        var repo = new MonitoringRepository();
+        var repo = new StackTestRepository();
         var result = await repo.GetDocumentTypeAsync(report.ReferenceNumber);
         result.Should().Be(report.DocumentType);
     }
@@ -23,7 +23,7 @@ public class GetDocumentType
     [Test]
     public async Task ThrowsIfNotExists()
     {
-        var repo = new MonitoringRepository();
+        var repo = new StackTestRepository();
         Func<Task> action = async () => await repo.GetDocumentTypeAsync(default);
         (await action.Should().ThrowAsync<InvalidOperationException>())
             .WithMessage("Sequence contains no matching element");

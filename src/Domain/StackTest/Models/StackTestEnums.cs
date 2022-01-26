@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Domain.Monitoring.Models;
+namespace Domain.StackTest.Models;
 
 public enum ReportType
 {

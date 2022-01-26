@@ -1,5 +1,5 @@
-﻿@model Domain.Monitoring.Models.StackTestReportOneStack
-@using Domain.Monitoring.Models.TestRuns
+﻿@model Domain.StackTest.Models.StackTestReportOneStack
+@using Domain.StackTest.Models.TestRun
 @{
     if (Model!.TestRuns is not { Count: > 0 }) return;
     var firstTestRun = Model.TestRuns.FirstOrDefault()!;

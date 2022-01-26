@@ -1,11 +1,11 @@
-using Domain.Monitoring.Models;
+using Domain.StackTest.Models;
 using FluentAssertions;
-using Infrastructure.Monitoring;
+using Infrastructure.StackTest;
 using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
 
-namespace IntegrationTests.Monitoring;
+namespace IntegrationTests.StackTest;
 
 public class GetDocumentType
 {
@@ -13,7 +13,7 @@ public class GetDocumentType
     public async Task ReturnsDocumentTypeIfExists()
     {
         var referenceNumber = 201100541;
-        var repo = new MonitoringRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.conn!);
         var result = await repo.GetDocumentTypeAsync(referenceNumber);
         result.Should().Be(DocumentType.OneStackThreeRuns);
     }
@@ -21,7 +21,7 @@ public class GetDocumentType
     [Test]
     public async Task ThrowsIfNotExists()
     {
-        var repo = new MonitoringRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.conn!);
         Func<Task> action = async () => await repo.GetDocumentTypeAsync(default);
         (await action.Should().ThrowAsync<InvalidOperationException>())
             .WithMessage("Sequence contains no elements");
