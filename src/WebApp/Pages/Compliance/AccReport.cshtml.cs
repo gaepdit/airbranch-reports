@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApp.Platform.Models;
 
-namespace WebApp.Pages.Facility.Compliance;
+namespace WebApp.Pages.Compliance;
 
 public class AccReportModel : PageModel
 {
@@ -21,7 +21,7 @@ public class AccReportModel : PageModel
         [FromRoute] string facilityId,
         [FromRoute] int year)
     {
-        if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) 
+        if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId))
             return NotFound($"Facility ID is invalid.");
 
         Report = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), year);

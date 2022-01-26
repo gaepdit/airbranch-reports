@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApp.Platform.Models;
 
-namespace WebApp.Pages.Facility.StackTest;
+namespace WebApp.Pages.StackTest;
 
 public class IndexModel : PageModel
 {
-    public BaseStackTestReport? Report { get; private set; } 
+    public BaseStackTestReport? Report { get; private set; }
     public OrganizationInfo OrganizationInfo { get; private set; }
     public MemoHeader MemoHeader { get; private set; }
     public bool ShowConfidentialWarning { get; private set; } = false;
@@ -29,7 +29,7 @@ public class IndexModel : PageModel
         var report = await repository.GetStackTestReportAsync(new ApbFacilityId(facilityId), referenceNumber);
         if (report?.Facility is null) return NotFound();
 
-        if (includeConfidentialInfo && (User.Identity == null || !User.Identity.IsAuthenticated)) 
+        if (includeConfidentialInfo && (User.Identity == null || !User.Identity.IsAuthenticated))
             return Challenge();
 
         Report = includeConfidentialInfo ? report : report.RedactedStackTestReport();
