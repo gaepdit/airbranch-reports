@@ -25,39 +25,39 @@
         <table>
             <tbody>
                 <tr class="table-section">
-                    <th>@Html.DisplayNameFor(m => Report.Facility.Name)</th>
+                    <th scope="row">@Html.DisplayNameFor(m => Report.Facility.Name)</th>
                     <td>@Report.Facility.Name</td>
                 </tr>
                 <tr>
-                    <th>@Html.DisplayNameFor(m => Report.Facility.FacilityAddress)</th>
+                    <th scope="row">@Html.DisplayNameFor(m => Report.Facility.FacilityAddress)</th>
                     <td>@Report.Facility.FacilityAddress.City, @Report.Facility.FacilityAddress.State</td>
                 </tr>
                 <tr>
-                    <th>@Html.DisplayNameFor(m => Report.Source)</th>
+                    <th scope="row">@Html.DisplayNameFor(m => Report.Source)</th>
                     <td>@Report.Source</td>
                 </tr>
                 <tr>
-                    <th>@Html.DisplayNameFor(m => Report.Pollutant)</th>
+                    <th scope="row">@Html.DisplayNameFor(m => Report.Pollutant)</th>
                     <td>@Report.Pollutant</td>
                 </tr>
                 <tr>
-                    <th>@Html.DisplayNameFor(m => Report.ReviewedByStaff)</th>
+                    <th scope="row">@Html.DisplayNameFor(m => Report.ReviewedByStaff)</th>
                     <td>@Report.ReviewedByStaff</td>
                 </tr>
                 <tr>
-                    <th>@Html.DisplayNameFor(m => Report.WitnessedByStaff)</th>
+                    <th scope="row">@Html.DisplayNameFor(m => Report.WitnessedByStaff)</th>
                     <td>@Html.DisplayFor(m => Report.WitnessedByStaff, "PersonCollection")</td>
                 </tr>
                 <tr>
-                    <th>@Html.DisplayNameFor(m => Report.TestDates)</th>
+                    <th scope="row">@Html.DisplayNameFor(m => Report.TestDates)</th>
                     <td>@Html.DisplayFor(m => Report.TestDates)</td>
                 </tr>
                 <tr>
-                    <th>@Html.DisplayNameFor(m => Report.DateReceivedByApb)</th>
+                    <th scope="row">@Html.DisplayNameFor(m => Report.DateReceivedByApb)</th>
                     <td>@Html.DisplayFor(m => Report.DateReceivedByApb)</td>
                 </tr>
                 <tr>
-                    <th>@Html.DisplayNameFor(m => Report.ApplicableRequirement)</th>
+                    <th scope="row">@Html.DisplayNameFor(m => Report.ApplicableRequirement)</th>
                     <td>@Report.ApplicableRequirement</td>
                 </tr>
                 @switch (Report)
