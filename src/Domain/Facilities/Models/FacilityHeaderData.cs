@@ -45,7 +45,7 @@ public record class FacilityHeaderData
     /// OwnershipTypeCode "FDF" and description "Federal Facility (U.S. Government)"
     /// </remarks>
     [Display(Name = "Ownership type")]
-    public string? OwnershipType;
+    public string? OwnershipType { get; init; }
 
     [Display(Name = "SIC")]
     [RegularExpression(SicCodePattern)]

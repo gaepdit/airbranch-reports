@@ -37,8 +37,9 @@ internal class LocalAuthenticationHandler : AuthenticationHandler<Authentication
 
     protected override async Task HandleChallengeAsync(AuthenticationProperties properties)
     {
+        await base.HandleChallengeAsync(properties);
+
         await Response.BodyWriter.WriteAsync(Encoding.UTF8.GetBytes("Status Code: 403; Forbidden \r\n" +
             "To access protected pages, set 'AuthenticatedUser' to 'true' in 'appsettings.Local.json' file."));
-        return;
     }
 }

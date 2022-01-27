@@ -2,14 +2,14 @@
 
 internal static class FacilitiesQueries
 {
-    public static string FacilityExists = @"
+    public const string FacilityExists = @"
 select convert(bit, count(*))
 from dbo.AFSFACILITYDATA
 where STRAIRSNUMBER = @AirsNumber
   and STRUPDATESTATUS <> 'H'
 ";
 
-    public static string GetFacility = @"
+    public const string GetFacility = @"
 select f.STRAIRSNUMBER               as Id,
        trim(f.STRFACILITYNAME)       as Name,
        trim(char(13) + char(10) + ' ' from h.STRPLANTDESCRIPTION)
