@@ -40,7 +40,6 @@ public record class StackTestReportLoadingRack : BaseStackTestReport
         {
             MaxOperatingCapacity = CheckConfidential(MaxOperatingCapacity, nameof(MaxOperatingCapacity)),
             OperatingCapacity = CheckConfidential(OperatingCapacity, nameof(OperatingCapacity)),
-            AllowableEmissionRates = CheckConfidential(AllowableEmissionRates, nameof(AllowableEmissionRates)),
             ControlEquipmentInfo = CheckConfidential(ControlEquipmentInfo, nameof(ControlEquipmentInfo)),
             TestDuration = CheckConfidential(TestDuration, nameof(TestDuration)),
             PollutantConcentrationIn = CheckConfidential(PollutantConcentrationIn, nameof(PollutantConcentrationIn)),

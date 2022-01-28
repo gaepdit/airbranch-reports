@@ -40,7 +40,6 @@ public record class StackTestReportOneStack : BaseStackTestReport
         {
             MaxOperatingCapacity = CheckConfidential(MaxOperatingCapacity, nameof(MaxOperatingCapacity)),
             OperatingCapacity = CheckConfidential(OperatingCapacity, nameof(OperatingCapacity)),
-            AllowableEmissionRates = CheckConfidential(AllowableEmissionRates, nameof(AllowableEmissionRates)),
             ControlEquipmentInfo = CheckConfidential(ControlEquipmentInfo, nameof(ControlEquipmentInfo)),
             AvgPollutantConcentration = CheckConfidential(AvgPollutantConcentration, nameof(AvgPollutantConcentration)),
             AvgEmissionRate = CheckConfidential(AvgEmissionRate, nameof(AvgEmissionRate)),
