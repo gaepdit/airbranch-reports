@@ -157,7 +157,7 @@ public static class FacilityData
             FacilityAddress = new Address
             {
                 Street = "123 Main Street",
-                Street2 = "Suite g",
+                Street2 = "Suite G",
                 City = "Gnu York",
                 State = "GA",
                 PostalCode = "30000",
@@ -181,6 +181,22 @@ public static class FacilityData
                 PmFineNonattainment = PmFineNonattainmentStatus.None,
                 NspsFeeExempt = true,
             },
+        },
+        new()
+        {
+            Id = new ApbFacilityId("24500002"),
+            Name = "Huckleberry LLC",
+            County = "Hall",
+            Description = "Huckleberries & Chuckleberries",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = "Suite H",
+                City = "Hill Valley",
+                State = "GA",
+                PostalCode = "30000",
+            },
+            GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
         },
     };
 }

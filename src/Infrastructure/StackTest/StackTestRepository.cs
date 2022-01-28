@@ -40,7 +40,8 @@ public class StackTestRepository : IStackTestRepository
                 return await GetOneStackAsync(referenceNumber);
 
             case DocumentType.TwoStackStandard:
-                break;
+                return await GetTwoStackAsync(referenceNumber);
+
             case DocumentType.TwoStackDRE:
                 break;
             case DocumentType.LoadingRack:
@@ -122,30 +123,9 @@ public class StackTestRepository : IStackTestRepository
         return report;
     }
 
-    private async Task<StackTestReportFlare> GetFlareAsync(int referenceNumber)
+    private Task<StackTestReportTwoStack> GetTwoStackAsync(int referenceNumber)
     {
-        var report = await GetBaseStackTestReportAsync<StackTestReportFlare>(referenceNumber);
-
-        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportFlare,
-            new { ReferenceNumber = referenceNumber });
-
-        _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(
-            (r, MaxOperatingCapacity, OperatingCapacity, AvgHeatingValue, AvgEmissionRateVelocity) =>
-            {
-                report.MaxOperatingCapacity = MaxOperatingCapacity;
-                report.OperatingCapacity = OperatingCapacity;
-                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
-                report.AvgHeatingValue = AvgHeatingValue;
-                report.AvgEmissionRateVelocity = AvgEmissionRateVelocity;
-                report.PercentAllowable = r.PercentAllowable;
-                return r;
-            });
-
-        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
-        report.TestRuns.AddRange(multi.Read<FlareTestRun>());
-
-        report.ParseConfidentialParameters();
-        return report;
+        throw new NotImplementedException();
     }
 
     private async Task<StackTestReportLoadingRack> GetLoadingRackAsync(int referenceNumber)
@@ -170,6 +150,32 @@ public class StackTestRepository : IStackTestRepository
             });
 
         report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
+
+        report.ParseConfidentialParameters();
+        return report;
+    }
+
+    private async Task<StackTestReportFlare> GetFlareAsync(int referenceNumber)
+    {
+        var report = await GetBaseStackTestReportAsync<StackTestReportFlare>(referenceNumber);
+
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportFlare,
+            new { ReferenceNumber = referenceNumber });
+
+        _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(
+            (r, MaxOperatingCapacity, OperatingCapacity, AvgHeatingValue, AvgEmissionRateVelocity) =>
+            {
+                report.MaxOperatingCapacity = MaxOperatingCapacity;
+                report.OperatingCapacity = OperatingCapacity;
+                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
+                report.AvgHeatingValue = AvgHeatingValue;
+                report.AvgEmissionRateVelocity = AvgEmissionRateVelocity;
+                report.PercentAllowable = r.PercentAllowable;
+                return r;
+            });
+
+        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
+        report.TestRuns.AddRange(multi.Read<FlareTestRun>());
 
         report.ParseConfidentialParameters();
         return report;
