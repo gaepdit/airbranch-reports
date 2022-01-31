@@ -138,6 +138,7 @@ public abstract record class BaseStackTestReport
     // Uses "ONE"-based position to better correlate with IAIP code
     protected void AddIfConfidential(int position, string parameter)
     {
+        if (ConfidentialParametersCode.Length < position) return;
         if (ConfidentialParametersCode[position - 1] == '1') ConfidentialParameters.Add(parameter);
     }
 

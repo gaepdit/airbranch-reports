@@ -1,4 +1,6 @@
 ﻿@model Domain.StackTest.Models.StackTestReportTwoStack
+@using Domain.StackTest.Models
+
 <tr class="table-section">
     <th scope="row">@Html.DisplayNameFor(m => m.MaxOperatingCapacity)</th>
     <td>@Html.DisplayFor(m => m.MaxOperatingCapacity)</td>
@@ -20,10 +22,22 @@
         <partial name="_TestRunsTwoStackPartial" model="Model" />
     </td>
 </tr>
-<tr>
-    <th scope="row">@Html.DisplayNameFor(m => m.PercentAllowable)</th>
-    <td>@Model!.PercentAllowable</td>
-</tr>
+
+@if (Model.DocumentType == DocumentType.TwoStackStandard)
+{
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(m => m.PercentAllowable)</th>
+        <td>@Model!.PercentAllowable</td>
+    </tr>
+}
+else // DocumentType.TwoStackDre
+{
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(m => m.DestructionEfficiency)</th>
+        <td>@Model!.DestructionEfficiency</td>
+    </tr>
+}
+
 <tr>
     <th scope="row">@Html.DisplayNameFor(m => m.Comments)</th>
     <td class="preserve-linebreaks">@Model!.Comments</td>

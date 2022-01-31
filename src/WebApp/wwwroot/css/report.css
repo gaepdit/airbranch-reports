@@ -227,7 +227,7 @@ dl.dl-inline {
 }
 
 .stack-test th {
-    width: 14rem;
+    width: 15rem;
     text-align: left;
     text-transform: uppercase;
     border-left: none;
@@ -240,7 +240,7 @@ dl.dl-inline {
 
         .stack-test th[rowspan="2"] + th,
         .stack-test th.split-table-header {
-            width: 4rem;
+            width: 5rem;
             padding-left:0.5rem;
         }
 

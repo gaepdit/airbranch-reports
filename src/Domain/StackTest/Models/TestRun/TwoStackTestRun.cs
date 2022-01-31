@@ -34,7 +34,7 @@ public record class TwoStackTestRun : BaseTestRun
     public string StackOneEmissionRate { get; init; } = "";
     public string StackTwoEmissionRate { get; init; } = "";
 
-    // `SumEmissionRate` is used by Two Stack Standard but not by Two Stack DRE
+    // `SumEmissionRate` is used by Two Stack (Standard) but not by Two Stack (DRE)
     [Display(Name = "Total")]
     public string SumEmissionRate { get; set; } = "";
 

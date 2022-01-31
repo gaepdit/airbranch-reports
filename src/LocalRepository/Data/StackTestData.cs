@@ -331,7 +331,7 @@ public static class StackTestData
             PercentAllowable = "75.0",
             ConfidentialParametersCode = "0",
         },
-        new StackTestReportTwoStackDre
+        new StackTestReportTwoStack
         {
             ReferenceNumber = 200400473,
             Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "07300003"),
