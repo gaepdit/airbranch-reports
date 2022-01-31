@@ -67,6 +67,24 @@ public class GetStackTestReport
     }
 
     [Test]
+    public async Task ReturnsTwoStackDreReportIfExists()
+    {
+        var facilityId = new ApbFacilityId("07300003");
+        var referenceNumber = 200400473;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestReportTwoStackDre>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+        });
+    }
+
+    [Test]
     public async Task ReturnsLoadingRackReportIfExists()
     {
         var facilityId = new ApbFacilityId("02100090");

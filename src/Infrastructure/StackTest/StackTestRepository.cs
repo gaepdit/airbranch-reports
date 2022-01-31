@@ -42,8 +42,9 @@ public class StackTestRepository : IStackTestRepository
             case DocumentType.TwoStackStandard:
                 return await GetTwoStackAsync(referenceNumber);
 
-            case DocumentType.TwoStackDRE:
-                break;
+            case DocumentType.TwoStackDre:
+                return await GetTwoStackDreAsync(referenceNumber);
+
             case DocumentType.LoadingRack:
                 return await GetLoadingRackAsync(referenceNumber);
 
@@ -156,6 +157,48 @@ public class StackTestRepository : IStackTestRepository
                 report.StackTwoAvgEmissionRate = (ValueWithUnits)results[6];
                 report.SumAvgEmissionRate = (ValueWithUnits)results[7];
                 report.PercentAllowable = r.PercentAllowable;
+                return r;
+            });
+
+        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
+
+        report.TestRuns.AddRange(multi.Read<TwoStackTestRun>());
+
+        report.ParseConfidentialParameters();
+        return report;
+    }
+
+    private async Task<BaseStackTestReport?> GetTwoStackDreAsync(int referenceNumber)
+    {
+        var report = await GetBaseStackTestReportAsync<StackTestReportTwoStackDre>(referenceNumber);
+
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportTwoStackDre,
+            new { ReferenceNumber = referenceNumber });
+
+        _ = multi.Read(
+            types: new[]
+            {
+                typeof(StackTestReportTwoStackDre),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+            },
+            map: results =>
+            {
+                StackTestReportTwoStackDre r = (StackTestReportTwoStackDre)results[0];
+                report.MaxOperatingCapacity = (ValueWithUnits)results[1];
+                report.OperatingCapacity = (ValueWithUnits)results[2];
+                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
+                report.StackOneName = r.StackOneName;
+                report.StackTwoName = r.StackTwoName;
+                report.StackOneAvgPollutantConcentration = (ValueWithUnits)results[3];
+                report.StackTwoAvgPollutantConcentration = (ValueWithUnits)results[4];
+                report.StackOneAvgEmissionRate = (ValueWithUnits)results[5];
+                report.StackTwoAvgEmissionRate = (ValueWithUnits)results[6];
+                report.DestructionEfficiency = r.DestructionEfficiency;
                 return r;
             });
 
