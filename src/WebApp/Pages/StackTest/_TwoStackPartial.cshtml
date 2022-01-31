@@ -1,4 +1,4 @@
-﻿@model Domain.StackTest.Models.StackTestReportOneStack
+﻿@model Domain.StackTest.Models.StackTestReportTwoStack
 <tr class="table-section">
     <th>@Html.DisplayNameFor(m => m.MaxOperatingCapacity)</th>
     <td>@Html.DisplayFor(m => m.MaxOperatingCapacity)</td>
@@ -17,7 +17,7 @@
 </tr>
 <tr>
     <td colspan="2" class="table-subtable">
-        <partial name="_TestRunsOneStackPartial" model="Model" />
+        <partial name="_TestRunsTwoStackPartial" model="Model" />
     </td>
 </tr>
 <tr>

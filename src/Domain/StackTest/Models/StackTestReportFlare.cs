@@ -40,7 +40,6 @@ public record class StackTestReportFlare : BaseStackTestReport
         {
             MaxOperatingCapacity = CheckConfidential(MaxOperatingCapacity, nameof(MaxOperatingCapacity)),
             OperatingCapacity = CheckConfidential(OperatingCapacity, nameof(OperatingCapacity)),
-            AllowableEmissionRates = CheckConfidential(AllowableEmissionRates, nameof(AllowableEmissionRates)),
             ControlEquipmentInfo = CheckConfidential(ControlEquipmentInfo, nameof(ControlEquipmentInfo)),
             AvgHeatingValue = CheckConfidential(AvgHeatingValue, nameof(AvgHeatingValue)),
             AvgEmissionRateVelocity = CheckConfidential(AvgEmissionRateVelocity, nameof(AvgEmissionRateVelocity)),
