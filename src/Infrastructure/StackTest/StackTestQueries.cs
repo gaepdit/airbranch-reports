@@ -2,7 +2,7 @@
 
 internal static class StackTestQueries
 {
-    public static string StackTestReportExists = @"
+    public const string StackTestReportExists = @"
 select convert(bit, count(1))
 from dbo.ISMPMASTER m
     inner join ISMPREPORTINFORMATION r
@@ -12,13 +12,13 @@ where r.STRDOCUMENTTYPE <> '001'
   and convert(int, m.STRREFERENCENUMBER) = @ReferenceNumber
 ";
 
-    public static string GetDocumentType = @"
+    public const string GetDocumentType = @"
 select convert(int, STRDOCUMENTTYPE) as DocumentType
 from ISMPREPORTINFORMATION
 where STRREFERENCENUMBER = @ReferenceNumber
 ";
 
-    public static string BaseStackTestReport = @"
+    public const string BaseStackTestReport = @"
 select convert(int, r.STRREFERENCENUMBER) as ReferenceNumber,
        lp.STRPOLLUTANTDESCRIPTION         as Pollutant,
        trim(r.STREMISSIONSOURCE)          as Source,
@@ -101,7 +101,7 @@ from ISMPREPORTINFORMATION r
 where r.STRREFERENCENUMBER = @ReferenceNumber;
 ";
 
-    public static string StackTestReportOneStack = @"
+    public const string StackTestReportOneStack = @"
 select trim(char(13) + char(10) + ' ' from r.STRCONTROLEQUIPMENTDATA)
                                         as ControlEquipmentInfo,
        trim(d.STRPERCENTALLOWABLE)          as PercentAllowable,
@@ -389,7 +389,7 @@ where convert(int, ReferenceNumber) = @ReferenceNumber
 order by Id;
 ";
 
-    public static string StackTestReportFlare = @"
+    public const string StackTestReportFlare = @"
 select trim(char(13) + char(10) + ' ' from r.STRCONTROLEQUIPMENTDATA)
                                        as ControlEquipmentInfo,
        d.STRPERCENTALLOWABLE           as PercentAllowable,
@@ -479,7 +479,7 @@ where convert(int, STRREFERENCENUMBER) = @ReferenceNumber
 order by t.RunNumber;
 ";
 
-    public static string StackTestReportLoadingRack = @"
+    public const string StackTestReportLoadingRack = @"
 select trim(char(13) + char(10) + ' ' from r.STRCONTROLEQUIPMENTDATA)
                                         as ControlEquipmentInfo,
        'MaxOperatingCapacity'           as Id,

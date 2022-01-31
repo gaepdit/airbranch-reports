@@ -18,7 +18,7 @@
     </thead>
     <tbody>
         <tr>
-            <th>@Html.DisplayNameFor(m => firstTestRun.GasTemperature)</th>
+            <th scope="row">@Html.DisplayNameFor(m => firstTestRun.GasTemperature)</th>
             @foreach (var r in Model.TestRuns)
             {
                 <td>@r.GasTemperature</td>
@@ -26,7 +26,7 @@
             <td></td>
         </tr>
         <tr>
-            <th>@Html.DisplayNameFor(m => firstTestRun.GasMoisture)</th>
+            <th scope="row">@Html.DisplayNameFor(m => firstTestRun.GasMoisture)</th>
             @foreach (var r in Model.TestRuns)
             {
                 <td>@r.GasMoisture</td>
@@ -34,7 +34,7 @@
             <td></td>
         </tr>
         <tr>
-            <th>@Html.DisplayNameFor(m => firstTestRun.GasFlowRateAscfm)</th>
+            <th scope="row">@Html.DisplayNameFor(m => firstTestRun.GasFlowRateAscfm)</th>
             @foreach (var r in Model.TestRuns)
             {
                 <td>@r.GasFlowRateAscfm</td>
@@ -42,7 +42,7 @@
             <td></td>
         </tr>
         <tr>
-            <th>@Html.DisplayNameFor(m => firstTestRun.GasFlowRateDscfm)</th>
+            <th scope="row">@Html.DisplayNameFor(m => firstTestRun.GasFlowRateDscfm)</th>
             @foreach (var r in Model.TestRuns)
             {
                 <td>@r.GasFlowRateDscfm</td>
@@ -50,7 +50,7 @@
             <td></td>
         </tr>
         <tr>
-            <th>@Html.DisplayNameFor(m => firstTestRun.PollutantConcentration) (@Model.AvgPollutantConcentration.Units)</th>
+            <th scope="row">@Html.DisplayNameFor(m => firstTestRun.PollutantConcentration) (@Model.AvgPollutantConcentration.Units)</th>
             @foreach (var r in Model.TestRuns)
             {
                 <td>@r.PollutantConcentration</td>
@@ -58,7 +58,7 @@
             <td>@Model.AvgPollutantConcentration.Value</td>
         </tr>
         <tr>
-            <th>@Html.DisplayNameFor(m => firstTestRun.EmissionRate) (@Model.AvgEmissionRate.Units)</th>
+            <th scope="row">@Html.DisplayNameFor(m => firstTestRun.EmissionRate) (@Model.AvgEmissionRate.Units)</th>
             @foreach (var r in Model.TestRuns)
             {
                 <td>@r.EmissionRate</td>

@@ -3,7 +3,7 @@
 internal static class ComplianceQueries
 {
     // ACC
-    public static string AccReportExists = @"
+    public const string AccReportExists = @"
 select convert(bit, count(*))
 from dbo.SSCPITEMMASTER m
     inner join dbo.SSCPACCS c
@@ -12,7 +12,7 @@ where STRAIRSNUMBER = @AirsNumber
     and year(DATACCREPORTINGYEAR) = @Year
 ";
 
-    public static string GetAccReport = @"
+    public const string GetAccReport = @"
 select c.STRTRACKINGNUMBER                                            as Id,
        convert(date, m.DATRECEIVEDDATE)                               as DateReceived,
        convert(date, m.DATCOMPLETEDATE)                               as DateComplete,
@@ -53,7 +53,7 @@ where m.STRDELETE is null
 ";
 
     // FCE
-    public static string FceReportExists = @"
+    public const string FceReportExists = @"
 select convert(bit, count(*))
 from SSCPFCEMASTER
 where STRAIRSNUMBER = @AirsNumber
@@ -61,7 +61,7 @@ where STRAIRSNUMBER = @AirsNumber
   and (IsDeleted is null or IsDeleted = 0)
 ";
 
-    public static string GetFceReport = @"
+    public const string GetFceReport = @"
 select f.STRFCENUMBER                   as Id,
        f.STRFCEYEAR                     as FceYear,
        convert(date, f.DATFCECOMPLETED) as DateCompleted,
