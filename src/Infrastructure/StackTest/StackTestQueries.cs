@@ -1,4 +1,4 @@
-namespace Infrastructure.StackTest;
+﻿namespace Infrastructure.StackTest;
 
 internal static class StackTestQueries
 {
@@ -482,7 +482,6 @@ order by t.RunNumber;
     public static string StackTestReportLoadingRack = @"
 select trim(char(13) + char(10) + ' ' from r.STRCONTROLEQUIPMENTDATA)
                                         as ControlEquipmentInfo,
-       trim(d.STRDESTRUCTIONEFFICIENCY) as DestructionReduction,
        'MaxOperatingCapacity'           as Id,
        trim(d.STRMAXOPERATINGCAPACITY)  as Value,
        u1.STRUNITDESCRIPTION            as Units,
@@ -500,7 +499,10 @@ select trim(char(13) + char(10) + ' ' from r.STRCONTROLEQUIPMENTDATA)
        u5.STRUNITDESCRIPTION            as Units,
        'EmissionRate'                   as Id,
        trim(d.STREMISSIONRATE)          as Value,
-       u6.STRUNITDESCRIPTION            as Units
+       u6.STRUNITDESCRIPTION            as Units,
+       'DestructionReduction'           as Id,
+       trim(d.STRDESTRUCTIONEFFICIENCY) as Value,
+       '%'                              as Units
 from ISMPREPORTINFORMATION r
     inner join ISMPREPORTFLARE d
     on d.STRREFERENCENUMBER = r.STRREFERENCENUMBER

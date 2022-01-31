@@ -1,4 +1,4 @@
-using Dapper;
+﻿using Dapper;
 using Domain.Facilities.Models;
 using Domain.StackTest.Models;
 using Domain.StackTest.Models.TestRun;
@@ -104,7 +104,7 @@ public class StackTestRepository : IStackTestRepository
         using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportOneStack,
             new { ReferenceNumber = referenceNumber });
 
-        _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(
+        _ = multi.Read<StackTestReportOneStack, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, StackTestReportOneStack>(
             (r, MaxOperatingCapacity, OperatingCapacity, AvgPollutantConcentration, AvgEmissionRate) =>
             {
                 report.MaxOperatingCapacity = MaxOperatingCapacity;
@@ -174,17 +174,29 @@ public class StackTestRepository : IStackTestRepository
         using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportLoadingRack,
             new { ReferenceNumber = referenceNumber });
 
-        _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(
-            (r, MaxOperatingCapacity, OperatingCapacity, TestDuration, PollutantConcentrationIn, PollutantConcentrationOut, EmissionRate) =>
+        _ = multi.Read(
+            types: new[]
             {
-                report.MaxOperatingCapacity = MaxOperatingCapacity;
-                report.OperatingCapacity = OperatingCapacity;
+                typeof(StackTestReportLoadingRack),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+            },
+            map: results =>
+            {
+                StackTestReportLoadingRack r = (StackTestReportLoadingRack)results[0];
+                report.MaxOperatingCapacity = (ValueWithUnits)results[1];
+                report.OperatingCapacity = (ValueWithUnits)results[2];
                 report.ControlEquipmentInfo = r.ControlEquipmentInfo;
-                report.TestDuration = TestDuration;
-                report.PollutantConcentrationIn = PollutantConcentrationIn;
-                report.PollutantConcentrationOut = PollutantConcentrationOut;
-                report.EmissionRate = EmissionRate;
-                report.DestructionReduction = new ValueWithUnits(r.DestructionReduction, "%");
+                report.TestDuration = (ValueWithUnits)results[3];
+                report.PollutantConcentrationIn = (ValueWithUnits)results[4];
+                report.PollutantConcentrationOut = (ValueWithUnits)results[5];
+                report.EmissionRate = (ValueWithUnits)results[6];
+                report.DestructionReduction = (ValueWithUnits)results[7];
                 return r;
             });
 
@@ -201,7 +213,7 @@ public class StackTestRepository : IStackTestRepository
         using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportFlare,
             new { ReferenceNumber = referenceNumber });
 
-        _ = multi.Read<dynamic, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, dynamic>(
+        _ = multi.Read<StackTestReportFlare, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, StackTestReportFlare>(
             (r, MaxOperatingCapacity, OperatingCapacity, AvgHeatingValue, AvgEmissionRateVelocity) =>
             {
                 report.MaxOperatingCapacity = MaxOperatingCapacity;
