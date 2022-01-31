@@ -77,8 +77,8 @@ public record class StackTestReportTwoStack : BaseStackTestReport
         AddIfConfidential(35, nameof(StackTwoName));
         AddIfConfidential(79, nameof(StackOneAvgPollutantConcentration));
         AddIfConfidential(80, nameof(StackTwoAvgPollutantConcentration));
-        AddIfConfidential(81, nameof(StackOneAvgEmissionRate));
-        AddIfConfidential(82, nameof(StackTwoAvgEmissionRate));
+        AddIfConfidential(82, nameof(StackOneAvgEmissionRate));
+        AddIfConfidential(83, nameof(StackTwoAvgEmissionRate));
         AddIfConfidential(87, nameof(SumAvgEmissionRate));
         AddIfConfidential(88, nameof(PercentAllowable));
     }
