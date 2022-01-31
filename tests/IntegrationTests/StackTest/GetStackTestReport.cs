@@ -10,9 +10,9 @@ namespace IntegrationTests.StackTest;
 public class GetStackTestReport
 {
     [Test]
-    public async Task ReturnsReportIfExists()
+    public async Task ReturnsOneStackReportIfExists()
     {
-        var facilityId = "121-00021";
+        var facilityId = new ApbFacilityId("121-00021");
         var referenceNumber = 201100541;
         var repo = new StackTestRepository(Global.conn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
@@ -23,7 +23,7 @@ public class GetStackTestReport
             result.Should().NotBeNull();
             result!.ReferenceNumber.Should().Be(referenceNumber);
             result.Facility.Should().NotBeNull();
-            result.Facility!.Id!.ToString().Should().Be(facilityId);
+            result.Facility!.Id.Should().Be(facilityId);
         });
     }
 
@@ -46,5 +46,60 @@ public class GetStackTestReport
         var result = await repo.GetStackTestReportAsync("000-00000", 2019);
 
         result.Should().BeNull();
+    }
+    
+    [Test]
+    public async Task ReturnsTwoStackReportIfExists()
+    {
+        var facilityId = new ApbFacilityId("24500002");
+        var referenceNumber = 201600525;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestReportTwoStack>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+        });
+    }
+
+    [Test]
+    public async Task ReturnsLoadingRackReportIfExists()
+    {
+        var facilityId = new ApbFacilityId("02100090");
+        var referenceNumber = 200500014;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestReportLoadingRack>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+            ((StackTestReportLoadingRack)result).DestructionReduction.Units.Should().Be("%");
+        });
+    }
+
+    [Test]
+    public async Task ReturnsFlareReportIfExists()
+    {
+        var facilityId = new ApbFacilityId("05700040");
+        var referenceNumber = 200400407;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestReportFlare>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+        });
     }
 }

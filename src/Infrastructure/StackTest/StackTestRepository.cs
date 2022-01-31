@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using Domain.Facilities.Models;
 using Domain.StackTest.Models;
 using Domain.StackTest.Models.TestRun;
@@ -123,9 +123,48 @@ public class StackTestRepository : IStackTestRepository
         return report;
     }
 
-    private Task<StackTestReportTwoStack> GetTwoStackAsync(int referenceNumber)
+    private async Task<StackTestReportTwoStack> GetTwoStackAsync(int referenceNumber)
     {
-        throw new NotImplementedException();
+        var report = await GetBaseStackTestReportAsync<StackTestReportTwoStack>(referenceNumber);
+
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportTwoStack,
+            new { ReferenceNumber = referenceNumber });
+
+        _ = multi.Read(
+            types: new[]
+            {
+                typeof(StackTestReportTwoStack),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+                typeof(ValueWithUnits),
+            },
+            map: results =>
+            {
+                StackTestReportTwoStack r = (StackTestReportTwoStack)results[0];
+                report.MaxOperatingCapacity = (ValueWithUnits)results[1];
+                report.OperatingCapacity = (ValueWithUnits)results[2];
+                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
+                report.StackOneName = r.StackOneName;
+                report.StackTwoName = r.StackTwoName;
+                report.StackOneAvgPollutantConcentration = (ValueWithUnits)results[3];
+                report.StackTwoAvgPollutantConcentration = (ValueWithUnits)results[4];
+                report.StackOneAvgEmissionRate = (ValueWithUnits)results[5];
+                report.StackTwoAvgEmissionRate = (ValueWithUnits)results[6];
+                report.SumAvgEmissionRate = (ValueWithUnits)results[7];
+                report.PercentAllowable = r.PercentAllowable;
+                return r;
+            });
+
+        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
+
+        report.TestRuns.AddRange(multi.Read<TwoStackTestRun>());
+
+        report.ParseConfidentialParameters();
+        return report;
     }
 
     private async Task<StackTestReportLoadingRack> GetLoadingRackAsync(int referenceNumber)
