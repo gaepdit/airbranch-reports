@@ -152,7 +152,7 @@ public static class StackTestData
             Pollutant = "Volatile Organic Compounds",
             Source = "Tank Truck Loading Rack",
             ReportType = ReportType.SourceTest,
-            DocumentType = DocumentType.LoadingRack,
+            DocumentType = DocumentType.Flare,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.Multiline,
             TestDates = new DateRange(
@@ -338,7 +338,7 @@ public static class StackTestData
             Pollutant = "Particulate Matter",
             Source = "Tower",
             ReportType = ReportType.SourceTest,
-            DocumentType = DocumentType.TwoStackStandard,
+            DocumentType = DocumentType.TwoStackDre,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.Multiline,
             TestDates = new DateRange(
