@@ -235,6 +235,7 @@ select trim(char(13) + char(10) + ' ' from r.STRCONTROLEQUIPMENTDATA)
        trim(d.STRSTACKONENAME)             as StackOneName,
        trim(d.STRSTACKTWONAME)             as StackTwoName,
        trim(d.STRPERCENTALLOWABLE)         as PercentAllowable,
+       trim(d.STRDESTRUCTIONPERCENT)       as DestructionEfficiency,
        'MaxOperatingCapacity'              as Id,
        trim(d.STRMAXOPERATINGCAPACITY)     as Value,
        u1.STRUNITDESCRIPTION               as Units,

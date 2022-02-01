@@ -47,9 +47,9 @@ public class GetStackTestReport
 
         result.Should().BeNull();
     }
-    
+
     [Test]
-    public async Task ReturnsTwoStackReportIfExists()
+    public async Task ReturnsTwoStackStandardReportIfExists()
     {
         var facilityId = new ApbFacilityId("24500002");
         var referenceNumber = 201600525;
@@ -63,6 +63,26 @@ public class GetStackTestReport
             result!.ReferenceNumber.Should().Be(referenceNumber);
             result.Facility.Should().NotBeNull();
             result.Facility!.Id.Should().Be(facilityId);
+            result.DocumentType.Should().Be(DocumentType.TwoStackStandard);
+        });
+    }
+
+    [Test]
+    public async Task ReturnsTwoStackDreReportIfExists()
+    {
+        var facilityId = new ApbFacilityId("07300003");
+        var referenceNumber = 200400473;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestReportTwoStack>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+            result.DocumentType.Should().Be(DocumentType.TwoStackDre);
         });
     }
 

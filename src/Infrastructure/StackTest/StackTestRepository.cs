@@ -40,10 +40,9 @@ public class StackTestRepository : IStackTestRepository
                 return await GetOneStackAsync(referenceNumber);
 
             case DocumentType.TwoStackStandard:
+            case DocumentType.TwoStackDre:
                 return await GetTwoStackAsync(referenceNumber);
 
-            case DocumentType.TwoStackDRE:
-                break;
             case DocumentType.LoadingRack:
                 return await GetLoadingRackAsync(referenceNumber);
 
@@ -156,6 +155,7 @@ public class StackTestRepository : IStackTestRepository
                 report.StackTwoAvgEmissionRate = (ValueWithUnits)results[6];
                 report.SumAvgEmissionRate = (ValueWithUnits)results[7];
                 report.PercentAllowable = r.PercentAllowable;
+                report.DestructionEfficiency = r.DestructionEfficiency;
                 return r;
             });
 

@@ -198,5 +198,21 @@ public static class FacilityData
             },
             GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
         },
+        new()
+        {
+            Id = new ApbFacilityId("07300003"),
+            Name = "Indian Fig Co.",
+            County = "Irwin",
+            Description = "Prickly pears",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = "Suite I",
+                City = "Isthmus City",
+                State = "GA",
+                PostalCode = "30000",
+            },
+            GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
+        },
     };
 }

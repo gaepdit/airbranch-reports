@@ -18,7 +18,7 @@ public enum DocumentType
     [Description("One Stack (Three Runs)")] OneStackThreeRuns = 003,
     [Description("One Stack (Four Runs)")] OneStackFourRuns = 004,
     [Description("Two Stack (Standard)")] TwoStackStandard = 005,
-    [Description("Two Stack (DRE)")] TwoStackDRE = 006,
+    [Description("Two Stack (DRE)")] TwoStackDre = 006,
     [Description("Loading Rack")] LoadingRack = 007,
     [Description("Pond Treatment")] PondTreatment = 008,
     [Description("Gas Concentration")] GasConcentration = 009,

@@ -7,8 +7,8 @@ public record class TwoStackTestRun : BaseTestRun
     // `BaseTestRun` includes the `RunNumber` property.
     // The database and IAIP allow each stack to have different run numbers,
     // but only the Stack One run numbers are displayed in the report.
-    // Stack Two run numbers are not used.
-    //public string StackTwoRunNumber { get; init; } = "";
+    // Stack Two run numbers are not used:
+    // `public string StackTwoRunNumber { get; init; } = "";`
 
     [Display(Name = "Gas temperature (°F)")]
     public string StackOneGasTemperature { get; init; } = "";
@@ -34,6 +34,7 @@ public record class TwoStackTestRun : BaseTestRun
     public string StackOneEmissionRate { get; init; } = "";
     public string StackTwoEmissionRate { get; init; } = "";
 
+    // `SumEmissionRate` is used by Two Stack (Standard) but not by Two Stack (DRE)
     [Display(Name = "Total")]
     public string SumEmissionRate { get; set; } = "";
 

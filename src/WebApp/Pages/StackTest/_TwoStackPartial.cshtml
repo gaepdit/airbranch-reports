@@ -1,18 +1,20 @@
 ﻿@model Domain.StackTest.Models.StackTestReportTwoStack
+@using Domain.StackTest.Models
+
 <tr class="table-section">
-    <th>@Html.DisplayNameFor(m => m.MaxOperatingCapacity)</th>
+    <th scope="row">@Html.DisplayNameFor(m => m.MaxOperatingCapacity)</th>
     <td>@Html.DisplayFor(m => m.MaxOperatingCapacity)</td>
 </tr>
 <tr>
-    <th>@Html.DisplayNameFor(m => m.OperatingCapacity)</th>
+    <th scope="row">@Html.DisplayNameFor(m => m.OperatingCapacity)</th>
     <td>@Html.DisplayFor(m => m.OperatingCapacity)</td>
 </tr>
 <tr>
-    <th>@Html.DisplayNameFor(m => m.AllowableEmissionRates)</th>
+    <th scope="row">@Html.DisplayNameFor(m => m.AllowableEmissionRates)</th>
     <td>@Html.DisplayFor(m => m.AllowableEmissionRates, "ValueWithUnitsCollection")</td>
 </tr>
 <tr>
-    <th>@Html.DisplayNameFor(m => m.ControlEquipmentInfo)</th>
+    <th scope="row">@Html.DisplayNameFor(m => m.ControlEquipmentInfo)</th>
     <td class="preserve-linebreaks">@Model!.ControlEquipmentInfo</td>
 </tr>
 <tr>
@@ -20,11 +22,23 @@
         <partial name="_TestRunsTwoStackPartial" model="Model" />
     </td>
 </tr>
+
+@if (Model.DocumentType == DocumentType.TwoStackStandard)
+{
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(m => m.PercentAllowable)</th>
+        <td>@Model!.PercentAllowable</td>
+    </tr>
+}
+else // DocumentType.TwoStackDre
+{
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(m => m.DestructionEfficiency)</th>
+        <td>@Model!.DestructionEfficiency</td>
+    </tr>
+}
+
 <tr>
-    <th>@Html.DisplayNameFor(m => m.PercentAllowable)</th>
-    <td>@Model!.PercentAllowable</td>
-</tr>
-<tr>
-    <th>@Html.DisplayNameFor(m => m.Comments)</th>
+    <th scope="row">@Html.DisplayNameFor(m => m.Comments)</th>
     <td class="preserve-linebreaks">@Model!.Comments</td>
 </tr>
