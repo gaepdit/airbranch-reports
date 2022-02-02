@@ -42,6 +42,9 @@ builder.Services
     .AddJsonOptions(opts => opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
     .AddMicrosoftIdentityUI();
 
+// Configure HSTS (max age: two years)
+builder.Services.AddHsts(opts => opts.MaxAge = TimeSpan.FromDays(730));
+
 // Configure the data repositories
 if (builder.Environment.IsLocalDev())
 {
@@ -88,7 +91,6 @@ else
 
 if (!env.IsLocalDev())
 {
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
