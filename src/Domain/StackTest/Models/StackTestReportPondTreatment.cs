@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.StackTest.Models;
 
-public record class StackTestReportFlare : BaseStackTestReport
+public record class StackTestReportPondTreatment : BaseStackTestReport
 {
     // Operating data
 
@@ -13,37 +13,34 @@ public record class StackTestReportFlare : BaseStackTestReport
     [Display(Name = "Operating capacity")]
     public ValueWithUnits OperatingCapacity { get; set; }
 
-    [Display(Name = "Allowable emission rate(s)")]
-    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new List<ValueWithUnits>();
-
     [Display(Name = "Control equipment and monitoring data")]
     public string ControlEquipmentInfo { get; set; } = "";
 
     // Test run data
 
     [Display(Name = "Test runs")]
-    public List<FlareTestRun> TestRuns { get; set; } = new List<FlareTestRun>();
+    public List<PondTreatmentTestRun> TestRuns { get; set; } = new List<PondTreatmentTestRun>();
 
-    [Display(Name = "Average heating value")]
-    public ValueWithUnits AvgHeatingValue { get; set; }
+    [Display(Name = "Average pollutant collection rate")]
+    public ValueWithUnits AvgPollutantCollectionRate { get; set; }
 
-    [Display(Name = "Average emission rate velocity")]
-    public ValueWithUnits AvgEmissionRateVelocity { get; set; }
+    [Display(Name = "Average treatment rate")]
+    public ValueWithUnits AvgTreatmentRate { get; set; }
 
-    [Display(Name = "Percent allowable (%)")]
-    public string PercentAllowable { get; set; } = "";
+    [Display(Name = "Destruction efficiency (%)")]
+    public string DestructionEfficiency { get; set; } = "";
 
     #region Confidential info handling
 
-    public override StackTestReportFlare RedactedStackTestReport() =>
-        RedactedBaseStackTestReport<StackTestReportFlare>() with
+    public override StackTestReportPondTreatment RedactedStackTestReport() =>
+        RedactedBaseStackTestReport<StackTestReportPondTreatment>() with
         {
             MaxOperatingCapacity = CheckConfidential(MaxOperatingCapacity, nameof(MaxOperatingCapacity)),
             OperatingCapacity = CheckConfidential(OperatingCapacity, nameof(OperatingCapacity)),
             ControlEquipmentInfo = CheckConfidential(ControlEquipmentInfo, nameof(ControlEquipmentInfo)),
-            AvgHeatingValue = CheckConfidential(AvgHeatingValue, nameof(AvgHeatingValue)),
-            AvgEmissionRateVelocity = CheckConfidential(AvgEmissionRateVelocity, nameof(AvgEmissionRateVelocity)),
-            PercentAllowable = CheckConfidential(PercentAllowable, nameof(PercentAllowable)),
+            AvgPollutantCollectionRate = CheckConfidential(AvgPollutantCollectionRate, nameof(AvgPollutantCollectionRate)),
+            AvgTreatmentRate = CheckConfidential(AvgTreatmentRate, nameof(AvgTreatmentRate)),
+            DestructionEfficiency = CheckConfidential(DestructionEfficiency, nameof(DestructionEfficiency)),
             TestRuns = BaseTestRun.RedactedTestRuns(TestRuns),
         };
 
@@ -57,12 +54,12 @@ public record class StackTestReportFlare : BaseStackTestReport
 
         AddIfConfidential(26, nameof(MaxOperatingCapacity));
         AddIfConfidential(27, nameof(OperatingCapacity));
-        AddIfConfidential(30, nameof(ApplicableRequirement));
-        AddIfConfidential(31, nameof(ControlEquipmentInfo));
-        AddIfConfidential(42, nameof(AvgHeatingValue));
-        AddIfConfidential(44, nameof(AvgEmissionRateVelocity));
-        AddIfConfidential(45, nameof(PercentAllowable));
-        AddIfConfidential(46, nameof(Comments));
+        AddIfConfidential(31, nameof(ApplicableRequirement));
+        AddIfConfidential(32, nameof(ControlEquipmentInfo));
+        AddIfConfidential(43, nameof(AvgPollutantCollectionRate));
+        AddIfConfidential(45, nameof(AvgTreatmentRate));
+        AddIfConfidential(46, nameof(DestructionEfficiency));
+        AddIfConfidential(47, nameof(Comments));
     }
 
     #endregion

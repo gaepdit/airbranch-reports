@@ -422,5 +422,57 @@ public static class StackTestData
             DestructionEfficiency = "75.0",
             ConfidentialParametersCode = "0",
         },
+        new StackTestReportPondTreatment
+        {
+            ReferenceNumber = 200400023,
+            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "11500021"),
+            Pollutant = "Methanol",
+            Source = "Pond",
+            ReportType = ReportType.SourceTest,
+            DocumentType = DocumentType.PondTreatment,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.Multiline,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+
+            MaxOperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
+            OperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
+            ControlEquipmentInfo = TextData.ShortMultiline,
+            TestRuns = new List<PondTreatmentTestRun>
+            {
+                new PondTreatmentTestRun
+                {
+                    RunNumber = "1",
+                    PollutantCollectionRate = "7",
+                    TreatmentRate = "7.0",
+                    ConfidentialParametersCode = "",
+                },
+                new PondTreatmentTestRun
+                {
+                    RunNumber = "2",
+                    PollutantCollectionRate = "7.4",
+                    TreatmentRate = "37",
+                    ConfidentialParametersCode = "7.2",
+                },
+                new PondTreatmentTestRun
+                {
+                    RunNumber = "3",
+                    PollutantCollectionRate = "7.8",
+                    TreatmentRate = "39",
+                    ConfidentialParametersCode = "7.4",
+                },
+            },
+            AvgPollutantCollectionRate = new ValueWithUnits("7.4", "lb/ODTP"),
+            AvgTreatmentRate = new ValueWithUnits("7.2", "lb/ODTP"),
+            DestructionEfficiency = "97.3",
+            ConfidentialParametersCode = "",
+        },
     };
 }

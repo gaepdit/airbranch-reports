@@ -65,23 +65,17 @@ public record class StackTestReportOneStack : BaseStackTestReport
         switch (DocumentType)
         {
             case DocumentType.OneStackTwoRuns:
-                AddIfConfidential(49, nameof(AvgPollutantConcentration));
                 AddIfConfidential(50, nameof(AvgPollutantConcentration));
-                AddIfConfidential(51, nameof(AvgEmissionRate));
                 AddIfConfidential(52, nameof(AvgEmissionRate));
                 break;
 
             case DocumentType.OneStackThreeRuns:
-                AddIfConfidential(56, nameof(AvgPollutantConcentration));
                 AddIfConfidential(57, nameof(AvgPollutantConcentration));
-                AddIfConfidential(58, nameof(AvgEmissionRate));
                 AddIfConfidential(59, nameof(AvgEmissionRate));
                 break;
 
             case DocumentType.OneStackFourRuns:
-                AddIfConfidential(63, nameof(AvgPollutantConcentration));
                 AddIfConfidential(64, nameof(AvgPollutantConcentration));
-                AddIfConfidential(65, nameof(AvgEmissionRate));
                 AddIfConfidential(66, nameof(AvgEmissionRate));
                 break;
 
