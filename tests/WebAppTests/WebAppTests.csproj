@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\WebApp\WebApp.csproj" />
+    <ProjectReference Include="..\..\src\WebApp\Air.WebApp.csproj" />
   </ItemGroup>
 
 </Project>
