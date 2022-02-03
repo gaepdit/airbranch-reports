@@ -459,7 +459,7 @@ from (
         on r.STRREFERENCENUMBER = s.STRREFERENCENUMBER
     union
     select s.STRREFERENCENUMBER,
-           '1'                                     as RunNumber,
+           '2'                                     as RunNumber,
            s.STRHEATINGVALUE2A                     as HeatingValue,
            s.STRVELOCITY2A                         as EmissionRateVelocity,
            substring(r.STRCONFIDENTIALDATA, 35, 3) as ConfidentialParametersCode
@@ -468,7 +468,7 @@ from (
         on r.STRREFERENCENUMBER = s.STRREFERENCENUMBER
     union
     select s.STRREFERENCENUMBER,
-           '1'                                     as RunNumber,
+           '3'                                     as RunNumber,
            s.STRHEATINGVALUE3A                     as HeatingValue,
            s.STRVELOCITY3A                         as EmissionRateVelocity,
            substring(r.STRCONFIDENTIALDATA, 38, 3) as ConfidentialParametersCode
@@ -552,6 +552,75 @@ from (
         and u.STRUNITKEY <> '00000'
 where convert(int, t.STRREFERENCENUMBER) = @ReferenceNumber
 order by t.Id;
+";
+
+    public const string StackTestReportPondTreatment = @"
+select trim(char(13) + char(10) + ' ' from r.STRCONTROLEQUIPMENTDATA)
+                                       as ControlEquipmentInfo,
+       d.STRPERCENTALLOWABLE           as DestructionEfficiency,
+       'MaxOperatingCapacity'          as Id,
+       trim(d.STRMAXOPERATINGCAPACITY) as Value,
+       u1.STRUNITDESCRIPTION           as Units,
+       'OperatingCapacity'             as Id,
+       trim(d.STROPERATINGCAPACITY)    as Value,
+       u2.STRUNITDESCRIPTION           as Units,
+       'AvgPollutantCollectionRate'    as Id,
+       d.STRPOLLUTANTCONCENTRATIONAVG  as Value,
+       u3.STRUNITDESCRIPTION           as Units,
+       'AvgTreatmentRate'              as Id,
+       d.STRTREATMENTRATEAVG           as Value,
+       u4.STRUNITDESCRIPTION           as Units
+from ISMPREPORTINFORMATION r
+    inner join ISMPREPORTPONDANDGAS d
+    on d.STRREFERENCENUMBER = r.STRREFERENCENUMBER
+    left join LOOKUPUNITS u1
+    on u1.STRUNITKEY = d.STRMAXOPERATINGCAPACITYUNIT
+        and u1.STRUNITKEY <> '00000'
+    left join LOOKUPUNITS u2
+    on u2.STRUNITKEY = d.STROPERATINGCAPACITYUNIT
+        and u2.STRUNITKEY <> '00000'
+    left join LOOKUPUNITS u3
+    on u3.STRUNITKEY = d.STRPOLLUTANTCONCENTRATIONUNIT
+        and u3.STRUNITKEY <> '00000'
+    left join LOOKUPUNITS u4
+    on u4.STRUNITKEY = d.STRTREATMENTRATEUNIT
+        and u4.STRUNITKEY <> '00000'
+where convert(int, r.STRREFERENCENUMBER) = @ReferenceNumber;
+
+select trim(RunNumber)                        as RunNumber,
+       trim(PollutantCollectionRate)          as PollutantCollectionRate,
+       trim(TreatmentRate)                    as TreatmentRate,
+       isnull(ConfidentialParametersCode, '') as ConfidentialParametersCode
+from (
+    select s.STRREFERENCENUMBER,
+           STRRUNNUMBER1A                          as RunNumber,
+           s.STRPOLLUTANTCONCENTRATION1A           as PollutantCollectionRate,
+           s.STRTREATMENTRATE1A                    as TreatmentRate,
+           substring(r.STRCONFIDENTIALDATA, 32, 3) as ConfidentialParametersCode
+    from ISMPREPORTPONDANDGAS s
+        inner join ISMPREPORTINFORMATION r
+        on r.STRREFERENCENUMBER = s.STRREFERENCENUMBER
+    union
+    select s.STRREFERENCENUMBER,
+           STRRUNNUMBER1B                          as RunNumber,
+           s.STRPOLLUTANTCONCENTRATION1B           as HeatingValue,
+           s.STRTREATMENTRATE1B                    as EmissionRateVelocity,
+           substring(r.STRCONFIDENTIALDATA, 36, 3) as ConfidentialParametersCode
+    from ISMPREPORTPONDANDGAS s
+        inner join ISMPREPORTINFORMATION r
+        on r.STRREFERENCENUMBER = s.STRREFERENCENUMBER
+    union
+    select s.STRREFERENCENUMBER,
+           STRRUNNUMBER1C                          as RunNumber,
+           s.STRPOLLUTANTCONCENTRATION1C           as HeatingValue,
+           s.STRTREATMENTRATE1C                    as EmissionRateVelocity,
+           substring(r.STRCONFIDENTIALDATA, 39, 3) as ConfidentialParametersCode
+    from ISMPREPORTPONDANDGAS s
+        inner join ISMPREPORTINFORMATION r
+        on r.STRREFERENCENUMBER = s.STRREFERENCENUMBER
+) t
+where convert(int, STRREFERENCENUMBER) = @ReferenceNumber
+order by t.RunNumber;
 ";
 
 }
