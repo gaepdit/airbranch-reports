@@ -8,12 +8,12 @@ public static class StackTestData
     public static IEnumerable<BaseStackTestReport> GetStackTestReports => new List<BaseStackTestReport>
     {
         new StackTestReportOneStack {
+            DocumentType = DocumentType.OneStackThreeRuns,
             ReferenceNumber = 201100541,
             Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "12100021"),
             Pollutant = "Total Reduced Sulfur Compounds",
             Source = "Process No. 1",
             ReportType = ReportType.SourceTest,
-            DocumentType = DocumentType.OneStackThreeRuns,
             ApplicableRequirement = "Permit Condition 3.4.1",
             Comments = "N/A",
             TestDates = new DateRange(
@@ -79,12 +79,12 @@ public static class StackTestData
             ConfidentialParametersCode = "1B000000000000000000000001100000000000011000001100000110101",
         },
         new StackTestReportOneStack {
+            DocumentType = DocumentType.OneStackThreeRuns,
             ReferenceNumber = 202001297,
             Facility = FacilityData.GetFacilities.Single(e => e.Id!.ShortString == "17900001"),
             Pollutant = "Total Reduced Sulfur Compounds",
             Source = "Process No. 1",
             ReportType = ReportType.SourceTest,
-            DocumentType = DocumentType.OneStackThreeRuns,
             ApplicableRequirement = "Permit Condition 3.4.1",
             Comments = "N/A",
             TestDates = new DateRange(
@@ -145,105 +145,14 @@ public static class StackTestData
             PercentAllowable = "75.0",
             ConfidentialParametersCode = "0",
         },
-        new StackTestReportFlare
-        {
-            ReferenceNumber = 200400407,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05700040"),
-            Pollutant = "Volatile Organic Compounds",
-            Source = "Tank Truck Loading Rack",
-            ReportType = ReportType.SourceTest,
-            DocumentType = DocumentType.Flare,
-            ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.Multiline,
-            TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
-            ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
-            WitnessedByStaff = new List<PersonName>(),
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
-
-            MaxOperatingCapacity = new ValueWithUnits("100", "%"),
-            OperatingCapacity = new ValueWithUnits("100", "%"),
-            AllowableEmissionRates = new List<ValueWithUnits>
-            {
-                new ValueWithUnits("80", "ft/sec", "Velocity less than"),
-                new ValueWithUnits("200", "BTU/scf", "Heat Content greater than or equal to"),
-            },
-            ControlEquipmentInfo = TextData.Short,
-            TestRuns = new List<FlareTestRun>
-            {
-                new FlareTestRun
-                {
-                    RunNumber = "1",
-                    HeatingValue = "400",
-                    EmissionRateVelocity = "35",
-                    ConfidentialParametersCode = "",
-                },
-                new FlareTestRun
-                {
-                    RunNumber = "2",
-                    HeatingValue = "450",
-                    EmissionRateVelocity = "37",
-                    ConfidentialParametersCode = "",
-                },
-                new FlareTestRun
-                {
-                    RunNumber = "3",
-                    HeatingValue = "425",
-                    EmissionRateVelocity = "39",
-                    ConfidentialParametersCode = "",
-                },
-            },
-            AvgHeatingValue = new ValueWithUnits("425", "BTU/scf"),
-            AvgEmissionRateVelocity = new ValueWithUnits("37", "ft/sec"),
-            PercentAllowable = "75.0",
-            ConfidentialParametersCode = "",
-        },
-        new StackTestReportLoadingRack
-        {
-            ReferenceNumber = 201901149,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05900071"),
-            Pollutant = "Volatile Organic Compounds",
-            Source = "Tank Truck Loading Rack",
-            ReportType = ReportType.SourceTest,
-            DocumentType = DocumentType.LoadingRack,
-            ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.ShortMultiline,
-            TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
-            ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
-            WitnessedByStaff = new List<PersonName>(),
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
-
-            MaxOperatingCapacity = new ValueWithUnits("400,000,000", "GPY"),
-            OperatingCapacity = new ValueWithUnits("90,000", "GPY"),
-            AllowableEmissionRates = new List<ValueWithUnits>
-            {
-                new ValueWithUnits("18", "mg/L"),
-            },
-            ControlEquipmentInfo = TextData.ShortMultiline,
-            TestDuration = new ValueWithUnits("6", "Hours"),
-            PollutantConcentrationIn = new ValueWithUnits("20", "%"),
-            PollutantConcentrationOut = new ValueWithUnits("120", "PPM"),
-            EmissionRate = new ValueWithUnits("9.9", "mg/L"),
-            DestructionReduction = new ValueWithUnits("98.2", "%"),
-            ConfidentialParametersCode = "1F000000000000000000000001000000010001",
-        },
         new StackTestReportTwoStack
         {
+            DocumentType = DocumentType.TwoStackStandard,
             ReferenceNumber = 201600525,
             Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "24500002"),
             Pollutant = "Particulate Matter",
             Source = "Tower",
             ReportType = ReportType.SourceTest,
-            DocumentType = DocumentType.TwoStackStandard,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.Multiline,
             TestDates = new DateRange(
@@ -333,12 +242,12 @@ public static class StackTestData
         },
         new StackTestReportTwoStack
         {
+            DocumentType = DocumentType.TwoStackDre,
             ReferenceNumber = 200400473,
             Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "07300003"),
             Pollutant = "Particulate Matter",
             Source = "Tower",
             ReportType = ReportType.SourceTest,
-            DocumentType = DocumentType.TwoStackDre,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.Multiline,
             TestDates = new DateRange(
@@ -421,6 +330,149 @@ public static class StackTestData
             StackTwoAvgEmissionRate = new ValueWithUnits("3.00","LB/HR"),
             DestructionEfficiency = "75.0",
             ConfidentialParametersCode = "0",
+        },
+        new StackTestReportLoadingRack
+        {
+            DocumentType = DocumentType.LoadingRack,
+            ReferenceNumber = 201901149,
+            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05900071"),
+            Pollutant = "Volatile Organic Compounds",
+            Source = "Tank Truck Loading Rack",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.ShortMultiline,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+
+            MaxOperatingCapacity = new ValueWithUnits("400,000,000", "GPY"),
+            OperatingCapacity = new ValueWithUnits("90,000", "GPY"),
+            AllowableEmissionRates = new List<ValueWithUnits>
+            {
+                new ValueWithUnits("18", "mg/L"),
+            },
+            ControlEquipmentInfo = TextData.ShortMultiline,
+            TestDuration = new ValueWithUnits("6", "Hours"),
+            PollutantConcentrationIn = new ValueWithUnits("20", "%"),
+            PollutantConcentrationOut = new ValueWithUnits("120", "PPM"),
+            EmissionRate = new ValueWithUnits("9.9", "mg/L"),
+            DestructionReduction = new ValueWithUnits("98.2", "%"),
+            ConfidentialParametersCode = "1F000000000000000000000001000000010001",
+        },
+        new StackTestReportPondTreatment
+        {
+            DocumentType = DocumentType.PondTreatment,
+            ReferenceNumber = 200400023,
+            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "11500021"),
+            Pollutant = "Methanol",
+            Source = "Pond",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.Multiline,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+
+            MaxOperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
+            OperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
+            ControlEquipmentInfo = TextData.ShortMultiline,
+            TestRuns = new List<PondTreatmentTestRun>
+            {
+                new PondTreatmentTestRun
+                {
+                    RunNumber = "1",
+                    PollutantCollectionRate = "7",
+                    TreatmentRate = "7.0",
+                    ConfidentialParametersCode = "",
+                },
+                new PondTreatmentTestRun
+                {
+                    RunNumber = "2",
+                    PollutantCollectionRate = "7.4",
+                    TreatmentRate = "37",
+                    ConfidentialParametersCode = "7.2",
+                },
+                new PondTreatmentTestRun
+                {
+                    RunNumber = "3",
+                    PollutantCollectionRate = "7.8",
+                    TreatmentRate = "39",
+                    ConfidentialParametersCode = "7.4",
+                },
+            },
+            AvgPollutantCollectionRate = new ValueWithUnits("7.4", "lb/ODTP"),
+            AvgTreatmentRate = new ValueWithUnits("7.2", "lb/ODTP"),
+            DestructionEfficiency = "97.3",
+            ConfidentialParametersCode = "",
+        },
+        new StackTestReportFlare
+        {
+            DocumentType = DocumentType.Flare,
+            ReferenceNumber = 200400407,
+            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05700040"),
+            Pollutant = "Volatile Organic Compounds",
+            Source = "Tank Truck Loading Rack",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.Multiline,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+
+            MaxOperatingCapacity = new ValueWithUnits("100", "%"),
+            OperatingCapacity = new ValueWithUnits("100", "%"),
+            AllowableEmissionRates = new List<ValueWithUnits>
+            {
+                new ValueWithUnits("80", "ft/sec", "Velocity less than"),
+                new ValueWithUnits("200", "BTU/scf", "Heat Content greater than or equal to"),
+            },
+            ControlEquipmentInfo = TextData.Short,
+            TestRuns = new List<FlareTestRun>
+            {
+                new FlareTestRun
+                {
+                    RunNumber = "1",
+                    HeatingValue = "400",
+                    EmissionRateVelocity = "35",
+                    ConfidentialParametersCode = "",
+                },
+                new FlareTestRun
+                {
+                    RunNumber = "2",
+                    HeatingValue = "450",
+                    EmissionRateVelocity = "37",
+                    ConfidentialParametersCode = "",
+                },
+                new FlareTestRun
+                {
+                    RunNumber = "3",
+                    HeatingValue = "425",
+                    EmissionRateVelocity = "39",
+                    ConfidentialParametersCode = "",
+                },
+            },
+            AvgHeatingValue = new ValueWithUnits("425", "BTU/scf"),
+            AvgEmissionRateVelocity = new ValueWithUnits("37", "ft/sec"),
+            PercentAllowable = "75.0",
+            ConfidentialParametersCode = "",
         },
     };
 }

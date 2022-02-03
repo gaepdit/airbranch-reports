@@ -20,7 +20,7 @@ public enum DocumentType
     [Description("Two Stack (Standard)")] TwoStackStandard = 005,
     [Description("Two Stack (DRE)")] TwoStackDre = 006,
     [Description("Loading Rack")] LoadingRack = 007,
-    [Description("Pond Treatment")] PondTreatment = 008,
+    [Description("Pond Treatment")] PondTreatment = 008, // (Pulping Process Condensate)
     [Description("Gas Concentration")] GasConcentration = 009,
     [Description("Flare")] Flare = 010,
     [Description("RATA")] Rata = 011,

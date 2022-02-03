@@ -214,5 +214,21 @@ public static class FacilityData
             },
             GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
         },
+        new()
+        {
+            Id = new ApbFacilityId("11500021"),
+            Name = "Juniper Berry Co.",
+            County = "Jones",
+            Description = "Genièvre",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = "Suite J",
+                City = "Jump City",
+                State = "GA",
+                PostalCode = "30000",
+            },
+            GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
+        },
     };
 }
