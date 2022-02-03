@@ -417,6 +417,62 @@ public static class StackTestData
             DestructionEfficiency = "97.3",
             ConfidentialParametersCode = "",
         },
+        new StackTestReportGasConcentration
+        {
+            DocumentType = DocumentType.GasConcentration,
+            ReferenceNumber = 200400009,
+            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "15300040"),
+            Pollutant = "Nitrogen Oxides",
+            Source = "Combustion Turbine",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.Short,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+
+            MaxOperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
+            OperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
+            AllowableEmissionRates = new List<ValueWithUnits>
+            {
+                new ValueWithUnits("25", "PPM @ 15% O2"),
+            },
+            ControlEquipmentInfo = TextData.ShortMultiline,
+            TestRuns = new List<GasConcentrationTestRun>
+            {
+                new GasConcentrationTestRun
+                {
+                    RunNumber = "1",
+                    PollutantConcentration = "26",
+                    EmissionRate = "22",
+                    ConfidentialParametersCode = "",
+                },
+                new GasConcentrationTestRun
+                {
+                    RunNumber = "2",
+                    PollutantConcentration = "26",
+                    EmissionRate = "22",
+                    ConfidentialParametersCode = "7.2",
+                },
+                new GasConcentrationTestRun
+                {
+                    RunNumber = "3",
+                    PollutantConcentration = "26",
+                    EmissionRate = "22",
+                    ConfidentialParametersCode = "7.4",
+                },
+            },
+            AvgPollutantConcentration = new ValueWithUnits("25", "PPM"),
+            AvgEmissionRate = new ValueWithUnits("22", "PPM @ 15% O2"),
+            PercentAllowable= "90",
+            ConfidentialParametersCode = "",
+        },
         new StackTestReportFlare
         {
             DocumentType = DocumentType.Flare,

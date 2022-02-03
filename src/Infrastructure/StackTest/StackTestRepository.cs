@@ -50,7 +50,8 @@ public class StackTestRepository : IStackTestRepository
                 return await GetPondTreatmentAsync(referenceNumber);
 
             case DocumentType.GasConcentration:
-                break;
+                return await GetGasConcentrationAsync(referenceNumber);
+
             case DocumentType.Flare:
                 return await GetFlareAsync(referenceNumber);
 
@@ -227,6 +228,32 @@ public class StackTestRepository : IStackTestRepository
             });
 
         report.TestRuns.AddRange(multi.Read<PondTreatmentTestRun>());
+
+        report.ParseConfidentialParameters();
+        return report;
+    }
+
+    private async Task<StackTestReportGasConcentration> GetGasConcentrationAsync(int referenceNumber)
+    {
+        var report = await GetBaseStackTestReportAsync<StackTestReportGasConcentration>(referenceNumber);
+
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportGasConcentration,
+            new { ReferenceNumber = referenceNumber });
+
+        _ = multi.Read<StackTestReportGasConcentration, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits, StackTestReportGasConcentration>(
+            (r, MaxOperatingCapacity, OperatingCapacity, AvgPollutantConcentration, AvgEmissionRate) =>
+            {
+                report.MaxOperatingCapacity = MaxOperatingCapacity;
+                report.OperatingCapacity = OperatingCapacity;
+                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
+                report.AvgPollutantConcentration = AvgPollutantConcentration;
+                report.AvgEmissionRate = AvgEmissionRate;
+                report.PercentAllowable = r.PercentAllowable;
+                return r;
+            });
+
+        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
+        report.TestRuns.AddRange(multi.Read<GasConcentrationTestRun>());
 
         report.ParseConfidentialParameters();
         return report;

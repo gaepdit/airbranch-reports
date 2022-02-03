@@ -124,6 +124,24 @@ public class GetStackTestReport
     }
 
     [Test]
+    public async Task ReturnsGasConcentrationReportIfExists()
+    {
+        var facilityId = new ApbFacilityId("15300040");
+        var referenceNumber = 200400009;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestReportGasConcentration>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+        });
+    }
+
+    [Test]
     public async Task ReturnsFlareReportIfExists()
     {
         var facilityId = new ApbFacilityId("05700040");
