@@ -10,24 +10,6 @@ namespace IntegrationTests.StackTest;
 public class GetStackTestReport
 {
     [Test]
-    public async Task ReturnsOneStackReportIfExists()
-    {
-        var facilityId = new ApbFacilityId("121-00021");
-        var referenceNumber = 201100541;
-        var repo = new StackTestRepository(Global.conn!);
-        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
-
-        Assert.Multiple(() =>
-        {
-            result.Should().BeOfType<StackTestReportOneStack>();
-            result.Should().NotBeNull();
-            result!.ReferenceNumber.Should().Be(referenceNumber);
-            result.Facility.Should().NotBeNull();
-            result.Facility!.Id.Should().Be(facilityId);
-        });
-    }
-
-    [Test]
     public async Task ParsingConfidentialInfoDoesNotFail()
     {
         var facilityId = new ApbFacilityId("17900001");
@@ -46,6 +28,24 @@ public class GetStackTestReport
         var result = await repo.GetStackTestReportAsync("000-00000", 2019);
 
         result.Should().BeNull();
+    }
+
+    [Test]
+    public async Task ReturnsOneStackReportIfExists()
+    {
+        var facilityId = new ApbFacilityId("121-00021");
+        var referenceNumber = 201100541;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestReportOneStack>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+        });
     }
 
     [Test]
@@ -102,6 +102,24 @@ public class GetStackTestReport
             result.Facility.Should().NotBeNull();
             result.Facility!.Id.Should().Be(facilityId);
             ((StackTestReportLoadingRack)result).DestructionReduction.Units.Should().Be("%");
+        });
+    }
+
+    [Test]
+    public async Task ReturnsPondTreatmentReportIfExists()
+    {
+        var facilityId = new ApbFacilityId("11500021");
+        var referenceNumber = 200400023;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestReportPondTreatment>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
         });
     }
 
