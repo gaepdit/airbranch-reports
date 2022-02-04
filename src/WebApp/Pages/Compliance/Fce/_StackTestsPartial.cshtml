@@ -1,7 +1,7 @@
 ﻿@model List<StackTestWork>
 @using Domain.Compliance.Models.WorkItems
 
-<h2>Source Tests</h2>
+<h2 id="source-tests">Source Tests</h2>
 
 @{
     if (Model is not { Count: > 0 })
@@ -13,7 +13,7 @@
     var firstItem = Model.FirstOrDefault()!;
 }
 
-<table class="">
+<table aria-labelledby="source-tests">
     <thead>
         <tr>
             <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Id)</th>
