@@ -241,7 +241,7 @@ dl.dl-inline {
         .stack-test th[rowspan="2"] + th,
         .stack-test th.split-table-header {
             width: 5rem;
-            padding-left:0.5rem;
+            padding-left: 0.5rem;
         }
 
     .stack-test th[scope=col] {
@@ -267,6 +267,21 @@ dl.dl-inline {
 
 .stack-test .table-subtable-vertical td {
     text-align: center;
+}
+
+.stack-test .table-subtable-vertical th[scope=col] {
+    padding-left: 1rem;
+}
+
+.stack-test .table-subtable-vertical thead th[scope=col]:first-child {
+    text-align: left;
+    padding-left: 0;
+}
+
+.stack-test .table-subtable-indent tr :first-child {
+    text-align: left;
+    border-left: none;
+    padding-left: 2rem;
 }
 
 .stack-test .table-subtable-horizontal th {

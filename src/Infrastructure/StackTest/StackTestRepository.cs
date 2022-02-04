@@ -56,7 +56,8 @@ public class StackTestRepository : IStackTestRepository
                 return await GetFlareAsync(referenceNumber);
 
             case DocumentType.Rata:
-                break;
+                return await GetRataAsync(referenceNumber);
+
             case DocumentType.MemorandumStandard:
                 break;
             case DocumentType.MemorandumToFile:
@@ -280,6 +281,29 @@ public class StackTestRepository : IStackTestRepository
 
         report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
         report.TestRuns.AddRange(multi.Read<FlareTestRun>());
+
+        report.ParseConfidentialParameters();
+        return report;
+    }
+
+    private async Task<StackTestReportRata> GetRataAsync(int referenceNumber)
+    {
+        var report = await GetBaseStackTestReportAsync<StackTestReportRata>(referenceNumber);
+
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportRata,
+            new { ReferenceNumber = referenceNumber });
+
+        var r = await multi.ReadSingleAsync<StackTestReportRata>();
+
+        report.ApplicableStandard = r.ApplicableStandard;
+        report.Diluent = r.Diluent;
+        report.Units = r.Units;
+        report.RelativeAccuracyCode = r.RelativeAccuracyCode;
+        report.RelativeAccuracyPercent = r.RelativeAccuracyPercent;
+        report.RelativeAccuracyRequiredPercent = r.RelativeAccuracyRequiredPercent;
+        report.RelativeAccuracyRequiredLabel = r.RelativeAccuracyRequiredLabel;
+        report.ComplianceStatus = r.ComplianceStatus;
+        report.TestRuns.AddRange(multi.Read<RataTestRun>());
 
         report.ParseConfidentialParameters();
         return report;

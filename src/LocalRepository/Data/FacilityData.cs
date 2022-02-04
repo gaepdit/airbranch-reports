@@ -246,5 +246,21 @@ public static class FacilityData
             },
             GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
         },
-    };
+        new()
+        {
+            Id = new ApbFacilityId("30500001"),
+            Name = "Muscadine Inc.",
+            County = "McIntosh",
+            Description = "Jellies and Jams",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = "Suite M",
+                City = "Maycomb",
+                State = "GA",
+                PostalCode = "30000",
+            },
+            GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
+        },
+   };
 }

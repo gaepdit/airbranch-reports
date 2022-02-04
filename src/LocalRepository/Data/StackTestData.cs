@@ -479,7 +479,7 @@ public static class StackTestData
             ReferenceNumber = 200400407,
             Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05700040"),
             Pollutant = "Volatile Organic Compounds",
-            Source = "Tank Truck Loading Rack",
+            Source = "Flare",
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.Multiline,
@@ -492,7 +492,6 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
             TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
-
             MaxOperatingCapacity = new ValueWithUnits("100", "%"),
             OperatingCapacity = new ValueWithUnits("100", "%"),
             AllowableEmissionRates = new List<ValueWithUnits>
@@ -528,6 +527,87 @@ public static class StackTestData
             AvgHeatingValue = new ValueWithUnits("425", "BTU/scf"),
             AvgEmissionRateVelocity = new ValueWithUnits("37", "ft/sec"),
             PercentAllowable = "75.0",
+            ConfidentialParametersCode = "",
+        },
+        new StackTestReportRata
+        {
+            DocumentType = DocumentType.Rata,
+            ReferenceNumber = 201200095,
+            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "30500001"),
+            Pollutant = "Nitrogen Oxides",
+            Source = "Boiler",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.VeryShort,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+            ApplicableStandard = TextData.Short,
+            Diluent = "Oxygen",
+            Units = "LB/MMBTU",
+            RelativeAccuracyCode = "AppStandard",
+            RelativeAccuracyPercent = "5.5",
+            RelativeAccuracyRequiredPercent = "10",
+            RelativeAccuracyRequiredLabel  = "% of the applicable standard (when the average of " +
+            "the RM test data is less than 50% of the applicable standard).",
+            ComplianceStatus = "Pass",
+            TestRuns = new List<RataTestRun>
+            {
+                new RataTestRun
+                {
+                    RunNumber = "1",
+                    ReferenceMethod = "0.023",
+                    Cms = "0.022",
+                    Omitted = false,
+                    ConfidentialParametersCode = "",
+                },
+                new RataTestRun
+                {
+                    RunNumber = "2",
+                    ReferenceMethod = "0.023",
+                    Cms = "0.022",
+                    Omitted = true,
+                    ConfidentialParametersCode = "",
+                },
+                new RataTestRun
+                {
+                    RunNumber = "3",
+                    ReferenceMethod = "0.023",
+                    Cms = "0.022",
+                    Omitted = false,
+                    ConfidentialParametersCode = "",
+                },
+                new RataTestRun
+                {
+                    RunNumber = "4",
+                    ReferenceMethod = "0.023",
+                    Cms = "0.022",
+                    Omitted = false,
+                    ConfidentialParametersCode = "",
+                },
+                new RataTestRun
+                {
+                    RunNumber = "5",
+                    ReferenceMethod = "0.023",
+                    Cms = "0.022",
+                    Omitted = false,
+                    ConfidentialParametersCode = "",
+                },
+                new RataTestRun
+                {
+                    RunNumber = "6",
+                    ReferenceMethod = "0.023",
+                    Cms = "0.022",
+                    Omitted = true,
+                    ConfidentialParametersCode = "",
+                },
+            },
             ConfidentialParametersCode = "",
         },
     };
