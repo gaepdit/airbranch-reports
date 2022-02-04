@@ -7,6 +7,6 @@ public record struct ValueWithUnits
     string? Preamble = null
 )
 {
-    public override string ToString() =>
+    public string Display() =>
         string.Join(" ", new[] { Preamble, Value, Units }.Where(s => !string.IsNullOrEmpty(s)));
 }

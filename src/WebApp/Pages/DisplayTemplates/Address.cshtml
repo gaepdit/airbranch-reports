@@ -1,7 +1,7 @@
 ﻿@model Address
 @using Domain.ValueObjects
 
-<div class="text-nowrap">
+<div class="text-nowrap" aria-label="Postal address">
     @Model.Street
     @if (!string.IsNullOrWhiteSpace(Model.Street2))
     {

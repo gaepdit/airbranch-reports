@@ -12,15 +12,15 @@
     ViewData["Title"] = $"Facility {facility.Id} - FCE Report: {report.FceYear}";
 }
 
-<div class="page-wrapper">
+<div class="page-wrapper" aria-label="Document">
     <partial name="_EpdBannerPartial" model="Model.OrganizationInfo" />
 
     <header>
         <h1>Full Compliance Evaluation Report</h1>
 
         <div class="title split-lr">
-            <div>@facility.Name, @facility.FacilityAddress.City</div>
-            <div>@facility.Id</div>
+            <div aria-label="Facility name and city">@facility.Name, @facility.FacilityAddress.City</div>
+            <div aria-label="Facility ID">@facility.Id</div>
         </div>
     </header>
 
@@ -31,7 +31,7 @@
         </dl>
 
         <div class="grid-half">
-            <div>
+            <div aria-label="Facility location">
                 @Html.DisplayFor(m => facility.FacilityAddress)
                 <br />
                 <div>
