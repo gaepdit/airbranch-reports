@@ -5,7 +5,7 @@
     var firstTestRun = Model.TestRuns.FirstOrDefault()!;
 }
 
-<table class="table-subtable-vertical">
+<table class="table-subtable-vertical" aria-label="Test run data">
     <thead>
         <tr>
             <th scope="row">@Html.DisplayNameFor(m => firstTestRun.RunNumber)</th>

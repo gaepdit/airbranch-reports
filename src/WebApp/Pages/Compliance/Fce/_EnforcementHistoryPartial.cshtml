@@ -1,7 +1,7 @@
 ﻿@model List<Enforcement>
 @using Domain.Compliance.Models.WorkItems
 
-<h2>Five-Year History of Enforcement Actions</h2>
+<h2 id="enforcement-history">Five-Year History of Enforcement Actions</h2>
 
 @{
     if (Model is not { Count: > 0 })
@@ -13,7 +13,7 @@
     var firstItem = Model.FirstOrDefault()!;
 }
 
-<table class="">
+<table aria-labelledby="enforcement-history">
     <thead>
         <tr>
             <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Id)</th>

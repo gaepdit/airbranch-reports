@@ -20,9 +20,9 @@
     <td>@Html.DisplayFor(m => m.TestDuration)</td>
 </tr>
 <tr>
-    <th scope="row">@Html.DisplayNameFor(m => m.PollutantConcentrationIn)</th>
+    <th scope="row" id="pollutant-concentration">@Html.DisplayNameFor(m => m.PollutantConcentrationIn)</th>
     <td class="table-subtable">
-        <table class="table-subtable-horizontal">
+        <table class="table-subtable-horizontal" aria-labelledby="pollutant-concentration">
             <tbody>
                 <tr>
                     <th scope="row">IN</th>

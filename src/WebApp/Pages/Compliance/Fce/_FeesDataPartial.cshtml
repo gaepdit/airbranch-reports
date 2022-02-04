@@ -1,7 +1,7 @@
 ﻿@model List<FeeYear>
 @using Domain.Compliance.Models.WorkItems
 
-<h2>Five-Year History of Annual Permit Fees</h2>
+<h2 id="permit-fees">Five-Year History of Annual Permit Fees</h2>
 
 @{
     if (Model is not { Count: > 0 })
@@ -13,7 +13,7 @@
     var firstItem = Model.FirstOrDefault()!;
 }
 
-<table class="">
+<table aria-labelledby="permit-fees">
     <thead>
         <tr>
             <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Year)</th>
