@@ -81,7 +81,6 @@ public record class StackTestReportOneStack : BaseStackTestReport
             default:
                 break;
         }
-
     }
 
     #endregion

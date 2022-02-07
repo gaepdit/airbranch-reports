@@ -1,4 +1,4 @@
-using Domain.StackTest.Models;
+﻿using Domain.StackTest.Models;
 using Domain.StackTest.Models.TestRun;
 
 namespace LocalRepository.Data;
@@ -609,6 +609,154 @@ public static class StackTestData
                 },
             },
             ConfidentialParametersCode = "",
+        },
+        new StackTestReportOpacity
+        {
+            DocumentType = DocumentType.Method9Multi,
+            ReferenceNumber = 201801068,
+            Facility = FacilityData.GetFacility("11500021"),
+            Pollutant = "Opacity",
+            Source = "Kiln",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.VeryShort,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
+            ControlEquipmentInfo = TextData.ShortMultiline,
+            ComplianceStatus = "In Compliance",
+            OpacityStandard = "Highest 6-minute average",
+            MaxOperatingCapacityUnits = "Tons/Day",
+            OperatingCapacityUnits = "Tons/Day",
+            AllowableEmissionRateUnits = "% Opacity",
+            TestRuns =
+            {
+                new MethodNineTestRun
+                {
+                    RunNumber = "1",
+                    MaxOperatingCapacity = "270",
+                    OperatingCapacity = "230",
+                    AllowableEmissionRate = "40",
+                    Opacity = "15",
+                    EquipmentItem = TextData.Short,
+                },
+                new MethodNineTestRun
+                {
+                    RunNumber = "2",
+                    MaxOperatingCapacity = "270",
+                    OperatingCapacity = "200",
+                    AllowableEmissionRate = "40",
+                    Opacity = "12",
+                    EquipmentItem = TextData.Short,
+                },
+                new MethodNineTestRun
+                {
+                    RunNumber = "3",
+                    MaxOperatingCapacity = "270",
+                    OperatingCapacity = "210",
+                    AllowableEmissionRate = "40",
+                    Opacity = "20",
+                    EquipmentItem = TextData.Short,
+                },
+                new MethodNineTestRun
+                {
+                    RunNumber = "4",
+                    MaxOperatingCapacity = "270",
+                    OperatingCapacity = "190",
+                    AllowableEmissionRate = "40",
+                    Opacity = "19",
+                    EquipmentItem = TextData.Short,
+                },
+                new MethodNineTestRun
+                {
+                    RunNumber = "5",
+                    MaxOperatingCapacity = "270",
+                    OperatingCapacity = "210",
+                    AllowableEmissionRate = "40",
+                    Opacity = "21",
+                    EquipmentItem = TextData.Short,
+                },
+            },
+        },
+        new StackTestReportOpacity
+        {
+            DocumentType = DocumentType.Method22,
+            ReferenceNumber = 200600052,
+            Facility = FacilityData.GetFacility("31300062"),
+            Pollutant = "Opacity",
+            Source = "Bin",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.VeryShort,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff(2)!.Value.Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff(3)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(4)!.Value.Name,
+            ControlEquipmentInfo = TextData.ShortMultiline,
+            ComplianceStatus = "Not In Compliance",
+            TestDuration = "60 minutes",
+            MaxOperatingCapacityUnits = "Tons/HR",
+            OperatingCapacityUnits = "Tons/HR",
+            TestRuns =
+            {
+                new MethodNineTestRun
+                {
+                    RunNumber = "1",
+                    MaxOperatingCapacity = "3",
+                    OperatingCapacity = "3",
+                    AllowableEmissionRate = "0 % Opacity",
+                    AccumulatedEmissionTime = "20:00",
+                },
+            },
+        },
+        new StackTestReportOpacity
+        {
+            DocumentType = DocumentType.Method9Single,
+            ReferenceNumber = 200700192,
+            Facility = FacilityData.GetFacility("24500002"),
+            Pollutant = "Opacity",
+            Source = "Scrubber",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.VeryShort,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff(1)!.Value.Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
+            ControlEquipmentInfo = TextData.ShortMultiline,
+            ComplianceStatus = "In Compliance",
+            OpacityStandard = "30-minute average",
+            TestDuration = "180 minutes",
+            MaxOperatingCapacityUnits = "UNITS",
+            OperatingCapacityUnits = "UNITS",
+            AllowableEmissionRateUnits = "%",
+            TestRuns =
+            {
+                new MethodNineTestRun
+                {
+                    RunNumber = "1",
+                    MaxOperatingCapacity = "10.1",
+                    OperatingCapacity = "9.9",
+                    AllowableEmissionRate = "40.0",
+                    Opacity = "0.1",
+                },
+            },
         },
     };
 }
