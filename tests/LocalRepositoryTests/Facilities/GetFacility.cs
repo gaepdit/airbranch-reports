@@ -13,7 +13,7 @@ public class GetFacility
     [Test]
     public async Task ReturnsFacilityIfExists()
     {
-        var facility = FacilityData.GetFacilities.First();
+        var facility = FacilityData.Facilities.First();
 
         var repo = new FacilitiesRepository();
         var result = await repo.GetFacilityAsync(facility.Id!);

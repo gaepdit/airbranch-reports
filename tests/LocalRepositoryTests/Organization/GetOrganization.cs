@@ -13,6 +13,6 @@ public class GetOrganization
     {
         var repo = new OrganizationRepository();
         var result = await repo.GetAsync();
-        result.Should().BeEquivalentTo(OrganizationData.GetOrganizationInfo);
+        result.Should().BeEquivalentTo(OrganizationData.Organization);
     }
 }

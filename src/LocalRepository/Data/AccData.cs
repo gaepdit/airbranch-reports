@@ -4,7 +4,7 @@ namespace LocalRepository.Data;
 
 public static class AccData
 {
-    public static IEnumerable<AccReport> GetAccReports => new List<AccReport>
+    public static IEnumerable<AccReport> AccReports => new List<AccReport>
     {
         new() {
             Id = 1,
@@ -20,11 +20,11 @@ public static class AccData
             DateReceived = new DateTime(2001, 1, 2),
             DeviationsReported = false,
             EnforcementRecommended = false,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05100149"),
+            Facility = FacilityData.GetFacility("05100149"),
             PostmarkedByDeadline = true,
             ResubmittalRequested = false,
             SignedByResponsibleOfficial = true,
-            StaffResponsible = StaffData.GetStaff.Single(e => e.Id == 1).Name,
+            StaffResponsible = StaffData.GetStaff(1)!.Value.Name,
             UnreportedDeviationsReported = false,
         },
         new() {
@@ -41,11 +41,11 @@ public static class AccData
             DateReceived = new DateTime(2002, 2, 3),
             DeviationsReported = true,
             EnforcementRecommended = true,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05100149"),
+            Facility = FacilityData.GetFacility("05100149"),
             PostmarkedByDeadline = false,
             ResubmittalRequested = true,
             SignedByResponsibleOfficial = false,
-            StaffResponsible = StaffData.GetStaff.Single(e => e.Id == 2).Name,
+            StaffResponsible = StaffData.GetStaff(2)!.Value.Name,
             UnreportedDeviationsReported = true,
         },
     };

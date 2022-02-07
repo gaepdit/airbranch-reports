@@ -2,7 +2,13 @@
 
 public static class FacilityData
 {
-    public static IEnumerable<Facility> GetFacilities => new List<Facility>
+    public static Facility? GetFacility(string facilityId) =>
+        Facilities.SingleOrDefault(e => e.Id == new ApbFacilityId(facilityId));
+
+    public static Facility? GetFacility(ApbFacilityId facilityId) =>
+        Facilities.SingleOrDefault(e => e.Id == facilityId);
+
+    public static IEnumerable<Facility> Facilities => new List<Facility>
     {
         new()
         {

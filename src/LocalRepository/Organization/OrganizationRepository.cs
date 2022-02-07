@@ -6,5 +6,5 @@ namespace LocalRepository.Organization;
 public class OrganizationRepository : IOrganizationRepository
 {
     public Task<OrganizationInfo> GetAsync() =>
-        Task.FromResult(OrganizationData.GetOrganizationInfo);
+        Task.FromResult(OrganizationData.Organization);
 }
