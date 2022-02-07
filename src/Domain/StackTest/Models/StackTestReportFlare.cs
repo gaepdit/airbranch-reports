@@ -57,7 +57,6 @@ public record class StackTestReportFlare : BaseStackTestReport
 
         AddIfConfidential(26, nameof(MaxOperatingCapacity));
         AddIfConfidential(27, nameof(OperatingCapacity));
-        AddIfConfidential(30, nameof(ApplicableRequirement));
         AddIfConfidential(31, nameof(ControlEquipmentInfo));
         AddIfConfidential(42, nameof(AvgHeatingValue));
         AddIfConfidential(44, nameof(AvgEmissionRateVelocity));

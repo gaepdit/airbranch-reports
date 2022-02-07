@@ -56,7 +56,6 @@ public record class StackTestReportLoadingRack : BaseStackTestReport
 
         AddIfConfidential(26, nameof(MaxOperatingCapacity));
         AddIfConfidential(27, nameof(OperatingCapacity));
-        AddIfConfidential(31, nameof(ApplicableRequirement));
         AddIfConfidential(32, nameof(ControlEquipmentInfo));
         AddIfConfidential(33, nameof(TestDuration));
         AddIfConfidential(34, nameof(PollutantConcentrationIn));
