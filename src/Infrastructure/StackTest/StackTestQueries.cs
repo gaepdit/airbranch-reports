@@ -29,6 +29,7 @@ select convert(int, r.STRREFERENCENUMBER) as ReferenceNumber,
                                           as Comments,
        r.DATRECEIVEDDATE                  as DateReceivedByApb,
        r.STRCONFIDENTIALDATA              as ConfidentialParametersCode,
+       s.STRCOMPLIANCESTATEMENT           as ReportStatement,
 
        i.STRAIRSNUMBER                    as Id,
        f.STRFACILITYNAME                  as Name,
@@ -59,6 +60,8 @@ select convert(int, r.STRREFERENCENUMBER) as ReferenceNumber,
 from ISMPREPORTINFORMATION r
     left join LOOKUPPOLLUTANTS lp
     on r.STRPOLLUTANT = lp.STRPOLLUTANTCODE
+    left join LOOKUPISMPCOMPLIANCESTATUS s
+    on s.STRCOMPLIANCEKEY = r.STRCOMPLIANCESTATUS
 
     left join EPDUSERPROFILES pr
     on pr.NUMUSERID = r.STRREVIEWINGENGINEER

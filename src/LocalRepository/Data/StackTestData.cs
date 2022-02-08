@@ -16,6 +16,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.4.1",
             Comments = "N/A",
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 10, 1),
                 new DateTime(2020, 10, 1)
@@ -87,6 +88,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.4.1",
             Comments = "N/A",
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
@@ -155,6 +157,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.Multiline,
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2016, 9, 1),
                 new DateTime(2016, 10, 1)
@@ -250,6 +253,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.Multiline,
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2016, 9, 1),
                 new DateTime(2016, 10, 1)
@@ -341,6 +345,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.ShortMultiline,
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
@@ -375,6 +380,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.Multiline,
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
@@ -427,6 +433,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.Short,
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
@@ -483,6 +490,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.Multiline,
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
@@ -539,6 +547,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.VeryShort,
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
