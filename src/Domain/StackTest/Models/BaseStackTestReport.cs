@@ -47,6 +47,8 @@ public abstract record class BaseStackTestReport
     [Display(Name = "Other information")]
     public string Comments { get; init; } = "";
 
+    public string ReportStatement { get; init; } = "";
+
     // Test report routing
 
     [Display(Name = "Date(s) of test")]

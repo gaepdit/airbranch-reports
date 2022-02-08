@@ -20,4 +20,8 @@ public static class TextData
         "sesame snaps biscuit dessert cotton candy I love macaroon cake. Ice cream cookie topping " +
         "carrot cake sugar plum ice cream. Shortbread I love ice cream pudding gummi bears. \r\n" +
         "Biscuit carrot cake macaroon marzipan jelly tiramisu danish.";
+
+    public const string ReportStatement = "The following test has been reviewed and was conducted " +
+        "in an acceptable fashion for the purpose intended.";
+
 }
