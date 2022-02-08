@@ -13,13 +13,13 @@ public record class StackTestReportOpacity : BaseStackTestReport
     [Display(Name = "Compliance status")]
     public string ComplianceStatus { get; set; } = "";
 
-    // `OpacityStandard` is used by "Method 9 (Single)" and "Method 9 (Multi.)"
-    // but not by "Method 22"
+    // `OpacityStandard` is used by "Method9Single" and "Method9Multi"
+    // but not by "Method22"
     [Display(Name = "Opacity standard")]
     public string OpacityStandard { get; set; } = "";
 
-    // `EquipmentItem` is used by "Method 9 (Single)" and "Method 22"
-    // but not by "Method 9 (Multi.)"
+    // `EquipmentItem` is used by "Method9Single" and "Method22"
+    // but not by "Method9Multi"
     [Display(Name = "Test duration")]
     public string TestDuration { get; set; } = "";
 
@@ -31,8 +31,8 @@ public record class StackTestReportOpacity : BaseStackTestReport
     [Display(Name = "Operating capacity")]
     public string OperatingCapacityUnits { get; set; } = "";
 
-    // `AllowableEmissionRateUnits` is used by "Method 9 (Single)" and "Method 9 (Multi.)"
-    // but not by "Method 22"
+    // `AllowableEmissionRateUnits` is used by "Method9Single" and "Method9Multi"
+    // but not by "Method22"
     [Display(Name = "Allowable emission rate(s)")]
     public string AllowableEmissionRateUnits { get; set; } = "";
 

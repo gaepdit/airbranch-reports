@@ -10,20 +10,22 @@ public record class MethodNineTestRun : BaseTestRun
     [Display(Name = "Operating capacity")]
     public string OperatingCapacity { get; set; } = "";
 
-    [Display(Name = "Allowable emission rate(s)")]
+    [Display(Name = "Allowable emission rate")]
     public string AllowableEmissionRate { get; set; } = "";
 
-    [Display(Name = "Opacity")]
+    // `Opacity` is used by "Method 9 (Single)" and "Method 9 (Multi.)"
+    // but not by "Method22"
+    [Display(Name = "Opacity (%)")]
     public string Opacity { get; init; } = "";
 
-    // `EquipmentItem` is used by "Method 22"
+    // `EquipmentItem` is used by "Method22"
     // but not by "Method 9 (Single)" or "Method 9 (Multi.)"
     [Display(Name = "Accumulated emission time")]
     public string AccumulatedEmissionTime { get; set; } = "";
 
     // `EquipmentItem` is used by "Method 9 (Multi.)"
-    // but not by "Method 9 (Single)" or "Method 22"
-    [Display(Name = "Equipment item")]
+    // but not by "Method 9 (Single)" or "Method22"
+    [Display(Name = "Equipment list")]
     public string EquipmentItem { get; init; } = "";
 
     #region Confidential info handling
