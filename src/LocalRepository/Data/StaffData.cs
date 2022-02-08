@@ -4,7 +4,10 @@ namespace LocalRepository.Data;
 
 public static class StaffData
 {
-    public static IEnumerable<Staff> GetStaff => new List<Staff>
+    public static Staff? GetStaff(int Id) =>
+        Staff.SingleOrDefault(e => e.Id == Id);
+
+    public static IEnumerable<Staff> Staff => new List<Staff>
     {
         new()
         {

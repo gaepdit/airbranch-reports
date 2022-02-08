@@ -158,4 +158,61 @@ public class GetStackTestReport
             result.Facility!.Id.Should().Be(facilityId);
         });
     }
+
+    [Test]
+    public async Task ReturnsMethod9MultiReportIfExists()
+    {
+        var facilityId = new ApbFacilityId("11500021");
+        var referenceNumber = 201801068;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestReportOpacity>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+            result.DocumentType.Should().Be(DocumentType.Method9Multi);
+        });
+    }
+
+    [Test]
+    public async Task ReturnsMethod9SingleReportIfExists()
+    {
+        var facilityId = new ApbFacilityId("24500002");
+        var referenceNumber = 200700192;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestReportOpacity>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+            result.DocumentType.Should().Be(DocumentType.Method9Single);
+        });
+    }
+
+    [Test]
+    public async Task ReturnsMethod22ReportIfExists()
+    {
+        var facilityId = new ApbFacilityId("31300062");
+        var referenceNumber = 200600052;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestReportOpacity>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+            result.DocumentType.Should().Be(DocumentType.Method22);
+        });
+    }
 }

@@ -4,7 +4,7 @@ namespace LocalRepository.Data;
 
 public static class OrganizationData
 {
-    public static OrganizationInfo GetOrganizationInfo =>
+    public static OrganizationInfo Organization =>
         new()
         {
             NameOfDirector = "Richard E. Dunn",

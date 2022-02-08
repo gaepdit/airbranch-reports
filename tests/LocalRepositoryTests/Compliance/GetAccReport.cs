@@ -13,7 +13,7 @@ public class GetAccReport
     [Test]
     public async Task ReturnsReportIfExists()
     {
-        var report = AccData.GetAccReports.First();
+        var report = AccData.AccReports.First();
 
         var repo = new ComplianceRepository();
         var result = await repo.GetAccReportAsync(report.Facility!.Id!, report.AccReportingYear);

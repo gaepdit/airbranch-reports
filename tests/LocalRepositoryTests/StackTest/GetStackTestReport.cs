@@ -13,7 +13,7 @@ public class GetStackTestReport
     [Test]
     public async Task ReturnsReportIfExists()
     {
-        var report = StackTestData.GetStackTestReports.First();
+        var report = StackTestData.StackTestReports.First();
         report.ParseConfidentialParameters();
 
         var repo = new StackTestRepository();

@@ -5,12 +5,12 @@ namespace LocalRepository.Data;
 
 public static class StackTestData
 {
-    public static IEnumerable<BaseStackTestReport> GetStackTestReports => new List<BaseStackTestReport>
+    public static IEnumerable<BaseStackTestReport> StackTestReports => new List<BaseStackTestReport>
     {
         new StackTestReportOneStack {
             DocumentType = DocumentType.OneStackThreeRuns,
             ReferenceNumber = 201100541,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "12100021"),
+            Facility = FacilityData.GetFacility("12100021"),
             Pollutant = "Total Reduced Sulfur Compounds",
             Source = "Process No. 1",
             ReportType = ReportType.SourceTest,
@@ -22,14 +22,14 @@ public static class StackTestData
                 new DateTime(2020, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2020, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 1).Name,
+            ReviewedByStaff = StaffData.GetStaff(1)!.Value.Name,
             WitnessedByStaff = new List<PersonName>
             {
-                StaffData.GetStaff.Single(s => s.Id == 2).Name,
-                StaffData.GetStaff.Single(s => s.Id == 3).Name,
+                StaffData.GetStaff(2)!.Value.Name,
+                StaffData.GetStaff(3)!.Value.Name,
             },
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+            ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
 
             MaxOperatingCapacity = new ValueWithUnits("100", "tons/hr"),
             OperatingCapacity = new ValueWithUnits("90", "tons/hr"),
@@ -82,7 +82,7 @@ public static class StackTestData
         new StackTestReportOneStack {
             DocumentType = DocumentType.OneStackThreeRuns,
             ReferenceNumber = 202001297,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id!.ShortString == "17900001"),
+            Facility = FacilityData.GetFacility("17900001"),
             Pollutant = "Total Reduced Sulfur Compounds",
             Source = "Process No. 1",
             ReportType = ReportType.SourceTest,
@@ -94,10 +94,10 @@ public static class StackTestData
                 new DateTime(2020, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2020, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 2).Name,
+            ReviewedByStaff = StaffData.GetStaff(2)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+            ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
 
             MaxOperatingCapacity = new ValueWithUnits("100", "tons/hr"),
             OperatingCapacity = new ValueWithUnits("90", "tons/hr"),
@@ -151,7 +151,7 @@ public static class StackTestData
         {
             DocumentType = DocumentType.TwoStackStandard,
             ReferenceNumber = 201600525,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "24500002"),
+            Facility = FacilityData.GetFacility("24500002"),
             Pollutant = "Particulate Matter",
             Source = "Tower",
             ReportType = ReportType.SourceTest,
@@ -163,10 +163,10 @@ public static class StackTestData
                 new DateTime(2016, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2016, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            ReviewedByStaff = StaffData.GetStaff(4)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 6).Name,
+            ComplianceManager = StaffData.GetStaff(5)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(6)!.Value.Name,
 
             MaxOperatingCapacity = new ValueWithUnits("40", "ton/HR"),
             OperatingCapacity = new ValueWithUnits("30", "ton/HR"),
@@ -247,7 +247,7 @@ public static class StackTestData
         {
             DocumentType = DocumentType.TwoStackDre,
             ReferenceNumber = 200400473,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "07300003"),
+            Facility = FacilityData.GetFacility("07300003"),
             Pollutant = "Particulate Matter",
             Source = "Tower",
             ReportType = ReportType.SourceTest,
@@ -259,10 +259,10 @@ public static class StackTestData
                 new DateTime(2016, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2016, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 4).Name,
+            ReviewedByStaff = StaffData.GetStaff(4)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 6).Name,
+            ComplianceManager = StaffData.GetStaff(5)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(6)!.Value.Name,
 
             MaxOperatingCapacity = new ValueWithUnits("40", "ton/HR"),
             OperatingCapacity = new ValueWithUnits("30", "ton/HR"),
@@ -339,7 +339,7 @@ public static class StackTestData
         {
             DocumentType = DocumentType.LoadingRack,
             ReferenceNumber = 201901149,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05900071"),
+            Facility = FacilityData.GetFacility("05900071"),
             Pollutant = "Volatile Organic Compounds",
             Source = "Tank Truck Loading Rack",
             ReportType = ReportType.SourceTest,
@@ -351,10 +351,10 @@ public static class StackTestData
                 new DateTime(2020, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2020, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+            ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
 
             MaxOperatingCapacity = new ValueWithUnits("400,000,000", "GPY"),
             OperatingCapacity = new ValueWithUnits("90,000", "GPY"),
@@ -374,7 +374,7 @@ public static class StackTestData
         {
             DocumentType = DocumentType.PondTreatment,
             ReferenceNumber = 200400023,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "11500021"),
+            Facility = FacilityData.GetFacility("11500021"),
             Pollutant = "Methanol",
             Source = "Pond",
             ReportType = ReportType.SourceTest,
@@ -386,10 +386,10 @@ public static class StackTestData
                 new DateTime(2020, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2020, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+            ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
 
             MaxOperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
             OperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
@@ -427,7 +427,7 @@ public static class StackTestData
         {
             DocumentType = DocumentType.GasConcentration,
             ReferenceNumber = 200400009,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "15300040"),
+            Facility = FacilityData.GetFacility("15300040"),
             Pollutant = "Nitrogen Oxides",
             Source = "Combustion Turbine",
             ReportType = ReportType.SourceTest,
@@ -439,10 +439,10 @@ public static class StackTestData
                 new DateTime(2020, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2020, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+            ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
 
             MaxOperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
             OperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
@@ -484,7 +484,7 @@ public static class StackTestData
         {
             DocumentType = DocumentType.Flare,
             ReferenceNumber = 200400407,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "05700040"),
+            Facility = FacilityData.GetFacility("05700040"),
             Pollutant = "Volatile Organic Compounds",
             Source = "Flare",
             ReportType = ReportType.SourceTest,
@@ -496,10 +496,10 @@ public static class StackTestData
                 new DateTime(2020, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2020, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+            ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
             MaxOperatingCapacity = new ValueWithUnits("100", "%"),
             OperatingCapacity = new ValueWithUnits("100", "%"),
             AllowableEmissionRates = new List<ValueWithUnits>
@@ -541,7 +541,7 @@ public static class StackTestData
         {
             DocumentType = DocumentType.Rata,
             ReferenceNumber = 201200095,
-            Facility = FacilityData.GetFacilities.Single(e => e.Id?.ShortString == "30500001"),
+            Facility = FacilityData.GetFacility("30500001"),
             Pollutant = "Nitrogen Oxides",
             Source = "Boiler",
             ReportType = ReportType.SourceTest,
@@ -553,10 +553,10 @@ public static class StackTestData
                 new DateTime(2020, 10, 1)
             ),
             DateReceivedByApb = new DateTime(2020, 11, 1),
-            ReviewedByStaff = StaffData.GetStaff.Single(s => s.Id == 3).Name,
+            ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
-            ComplianceManager = StaffData.GetStaff.Single(s => s.Id == 4).Name,
-            TestingUnitManager = StaffData.GetStaff.Single(s => s.Id == 5).Name,
+            ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
             ApplicableStandard = TextData.Short,
             Diluent = "Oxygen",
             Units = "LB/MMBTU",
@@ -618,6 +618,157 @@ public static class StackTestData
                 },
             },
             ConfidentialParametersCode = "",
+        },
+        new StackTestReportOpacity
+        {
+            DocumentType = DocumentType.Method9Multi,
+            ReferenceNumber = 201801068,
+            Facility = FacilityData.GetFacility("11500021"),
+            Pollutant = "Opacity",
+            Source = "Kiln",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.VeryShort,
+            ReportStatement = TextData.ReportStatement,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
+            ControlEquipmentInfo = TextData.ShortMultiline,
+            ComplianceStatus = "In Compliance",
+            OpacityStandard = "Highest 6-minute average",
+            MaxOperatingCapacityUnits = "Tons/Day",
+            OperatingCapacityUnits = "Tons/Day",
+            AllowableEmissionRateUnits = "% Opacity",
+            TestRuns =
+            {
+                new OpacityTestRun
+                {
+                    RunNumber = "1",
+                    MaxOperatingCapacity = "270",
+                    OperatingCapacity = "230",
+                    AllowableEmissionRate = "40",
+                    Opacity = "15",
+                    EquipmentItem = TextData.Short,
+                },
+                new OpacityTestRun
+                {
+                    RunNumber = "2",
+                    MaxOperatingCapacity = "270",
+                    OperatingCapacity = "200",
+                    AllowableEmissionRate = "40",
+                    Opacity = "12",
+                    EquipmentItem = TextData.Short,
+                },
+                new OpacityTestRun
+                {
+                    RunNumber = "3",
+                    MaxOperatingCapacity = "270",
+                    OperatingCapacity = "210",
+                    AllowableEmissionRate = "40",
+                    Opacity = "20",
+                    EquipmentItem = TextData.Short,
+                },
+                new OpacityTestRun
+                {
+                    RunNumber = "4",
+                    MaxOperatingCapacity = "270",
+                    OperatingCapacity = "190",
+                    AllowableEmissionRate = "40",
+                    Opacity = "19",
+                    EquipmentItem = TextData.Short,
+                },
+                new OpacityTestRun
+                {
+                    RunNumber = "5",
+                    MaxOperatingCapacity = "270",
+                    OperatingCapacity = "210",
+                    AllowableEmissionRate = "40",
+                    Opacity = "21",
+                    EquipmentItem = TextData.Short,
+                },
+            },
+        },
+        new StackTestReportOpacity
+        {
+            DocumentType = DocumentType.Method22,
+            ReferenceNumber = 200600052,
+            Facility = FacilityData.GetFacility("31300062"),
+            Pollutant = "Opacity",
+            Source = "Bin",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.VeryShort,
+            ReportStatement = TextData.ReportStatement,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff(2)!.Value.Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff(3)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(4)!.Value.Name,
+            ControlEquipmentInfo = TextData.ShortMultiline,
+            ComplianceStatus = "Not In Compliance",
+            TestDuration = "60 minutes",
+            MaxOperatingCapacityUnits = "Tons/HR",
+            OperatingCapacityUnits = "Tons/HR",
+            TestRuns =
+            {
+                new OpacityTestRun
+                {
+                    RunNumber = "1",
+                    MaxOperatingCapacity = "3",
+                    OperatingCapacity = "3",
+                    AllowableEmissionRate = "0 % Opacity",
+                    AccumulatedEmissionTime = "20:00",
+                },
+            },
+        },
+        new StackTestReportOpacity
+        {
+            DocumentType = DocumentType.Method9Single,
+            ReferenceNumber = 200700192,
+            Facility = FacilityData.GetFacility("24500002"),
+            Pollutant = "Opacity",
+            Source = "Scrubber",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            Comments = TextData.VeryShort,
+            ReportStatement = TextData.ReportStatement,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff(1)!.Value.Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
+            ControlEquipmentInfo = TextData.ShortMultiline,
+            ComplianceStatus = "In Compliance",
+            OpacityStandard = "30-minute average",
+            TestDuration = "180 minutes",
+            MaxOperatingCapacityUnits = "UNITS",
+            OperatingCapacityUnits = "UNITS",
+            AllowableEmissionRateUnits = "%",
+            TestRuns =
+            {
+                new OpacityTestRun
+                {
+                    RunNumber = "1",
+                    MaxOperatingCapacity = "10.1",
+                    OperatingCapacity = "9.9",
+                    AllowableEmissionRate = "40.0",
+                    Opacity = "0.1",
+                },
+            },
         },
     };
 }

@@ -13,7 +13,7 @@ public class GetFceReport
     [Test]
     public async Task ReturnsReportIfExists()
     {
-        var report = FceData.GetFceReports.First();
+        var report = FceData.FceReports.First();
 
         var repo = new ComplianceRepository();
         var result = await repo.GetFceReportAsync(report.Facility!.Id!, report.Id);

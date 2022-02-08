@@ -28,6 +28,11 @@ public abstract record class BaseTestRun
         ? GlobalConstants.ConfidentialInfoPlaceholder
         : input;
 
+    protected ValueWithUnits CheckConfidential(ValueWithUnits input, string parameter) =>
+        ConfidentialParameters.Contains(parameter)
+        ? new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, input.Units, input.Preamble)
+        : input;
+
     protected abstract void ParseConfidentialParameters();
     protected void ParseBaseConfidentialParameters()
     {

@@ -86,7 +86,6 @@ public abstract record class BaseStackTestReport
         {
             Pollutant = CheckConfidential(Pollutant, nameof(Pollutant)),
             Source = CheckConfidential(Source, nameof(Source)),
-            ApplicableRequirement = CheckConfidential(ApplicableRequirement, nameof(ApplicableRequirement)),
             Comments = CheckConfidential(Comments, nameof(Comments)),
             TestDates = CheckConfidential(TestDates, nameof(TestDates)),
             DateReceivedByApb = CheckConfidential(DateReceivedByApb, nameof(DateReceivedByApb)),

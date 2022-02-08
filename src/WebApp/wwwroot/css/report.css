@@ -197,6 +197,15 @@ dl.dl-inline {
         margin-left: 0;
     }
 
+.stack-test dl.dl-inline {
+    gap: 0 0.5rem;
+}
+
+    .stack-test dl.dl-inline dt {
+        font-style: normal;
+        font-weight: bold;
+    }
+
 /* ACC layout */
 
 .acc h2 {
@@ -269,6 +278,12 @@ dl.dl-inline {
     text-align: center;
 }
 
+    .stack-test .table-subtable-vertical th:last-child,
+    .stack-test .table-subtable-vertical td:last-child {
+        border-right: none;
+        padding-right: 1rem;
+    }
+
 .stack-test .table-subtable-vertical th[scope=col] {
     padding-left: 1rem;
 }
@@ -297,6 +312,13 @@ dl.dl-inline {
 .stack-test tfoot td {
     border: none;
     padding: 0;
+}
+
+.stack-test th .units {
+    display: table;
+    text-transform: initial;
+    white-space: nowrap;
+    font-weight: normal;
 }
 
 /* FCE layout */

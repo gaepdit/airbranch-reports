@@ -2,7 +2,13 @@
 
 public static class FacilityData
 {
-    public static IEnumerable<Facility> GetFacilities => new List<Facility>
+    public static Facility? GetFacility(string facilityId) =>
+        Facilities.SingleOrDefault(e => e.Id == new ApbFacilityId(facilityId));
+
+    public static Facility? GetFacility(ApbFacilityId facilityId) =>
+        Facilities.SingleOrDefault(e => e.Id == facilityId);
+
+    public static IEnumerable<Facility> Facilities => new List<Facility>
     {
         new()
         {
@@ -257,6 +263,22 @@ public static class FacilityData
                 Street = "123 Main Street",
                 Street2 = "Suite M",
                 City = "Maycomb",
+                State = "GA",
+                PostalCode = "30000",
+            },
+            GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
+        },
+        new()
+        {
+            Id = new ApbFacilityId("31300062"),
+            Name = "Nectarine Corp.",
+            County = "Newton",
+            Description = "Nectarines and More",
+            FacilityAddress = new Address
+            {
+                Street = "123 Main Street",
+                Street2 = "Suite N",
+                City = "North Haverbrook",
                 State = "GA",
                 PostalCode = "30000",
             },

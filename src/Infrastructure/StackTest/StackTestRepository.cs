@@ -62,12 +62,12 @@ public class StackTestRepository : IStackTestRepository
                 break;
             case DocumentType.MemorandumToFile:
                 break;
+
             case DocumentType.Method9Multi:
-                break;
             case DocumentType.Method22:
-                break;
             case DocumentType.Method9Single:
-                break;
+                return await GetOpacityAsync(referenceNumber);
+
             case DocumentType.PTE:
                 break;
 
@@ -163,7 +163,6 @@ public class StackTestRepository : IStackTestRepository
             });
 
         report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
-
         report.TestRuns.AddRange(multi.Read<TwoStackTestRun>());
 
         report.ParseConfidentialParameters();
@@ -303,7 +302,31 @@ public class StackTestRepository : IStackTestRepository
         report.RelativeAccuracyRequiredPercent = r.RelativeAccuracyRequiredPercent;
         report.RelativeAccuracyRequiredLabel = r.RelativeAccuracyRequiredLabel;
         report.ComplianceStatus = r.ComplianceStatus;
+
         report.TestRuns.AddRange(multi.Read<RataTestRun>());
+
+        report.ParseConfidentialParameters();
+        return report;
+    }
+
+    private async Task<StackTestReportOpacity> GetOpacityAsync(int referenceNumber)
+    {
+        var report = await GetBaseStackTestReportAsync<StackTestReportOpacity>(referenceNumber);
+
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestReportOpacity,
+            new { ReferenceNumber = referenceNumber });
+
+        var r = await multi.ReadSingleAsync<StackTestReportOpacity>();
+
+        report.ControlEquipmentInfo = r.ControlEquipmentInfo;
+        report.ComplianceStatus = r.ComplianceStatus;
+        report.OpacityStandard = r.OpacityStandard;
+        report.TestDuration = r.TestDuration;
+        report.MaxOperatingCapacityUnits = r.MaxOperatingCapacityUnits;
+        report.OperatingCapacityUnits = r.OperatingCapacityUnits;
+        report.AllowableEmissionRateUnits = r.AllowableEmissionRateUnits;
+
+        report.TestRuns.AddRange(multi.Read<OpacityTestRun>());
 
         report.ParseConfidentialParameters();
         return report;
