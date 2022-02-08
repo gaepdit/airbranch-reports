@@ -2,7 +2,7 @@
 
 namespace Domain.StackTest.Models.TestRun;
 
-public record class MethodNineTestRun : BaseTestRun
+public record class OpacityTestRun : BaseTestRun
 {
     [Display(Name = "Maximum expected operating capacity")]
     public string MaxOperatingCapacity { get; set; } = "";
@@ -30,8 +30,8 @@ public record class MethodNineTestRun : BaseTestRun
 
     #region Confidential info handling
 
-    public override MethodNineTestRun RedactedTestRun() =>
-       RedactedBaseTestRun<MethodNineTestRun>() with
+    public override OpacityTestRun RedactedTestRun() =>
+       RedactedBaseTestRun<OpacityTestRun>() with
        {
            MaxOperatingCapacity = CheckConfidential(MaxOperatingCapacity, nameof(MaxOperatingCapacity)),
            OperatingCapacity = CheckConfidential(OperatingCapacity, nameof(OperatingCapacity)),

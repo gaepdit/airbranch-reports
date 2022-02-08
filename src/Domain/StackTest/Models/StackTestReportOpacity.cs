@@ -37,7 +37,7 @@ public record class StackTestReportOpacity : BaseStackTestReport
     public string AllowableEmissionRateUnits { get; set; } = "";
 
     [Display(Name = "Test runs")]
-    public List<MethodNineTestRun> TestRuns { get; set; } = new List<MethodNineTestRun>();
+    public List<OpacityTestRun> TestRuns { get; set; } = new List<OpacityTestRun>();
 
     #region Confidential info handling
 

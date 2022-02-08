@@ -629,6 +629,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.VeryShort,
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
@@ -646,7 +647,7 @@ public static class StackTestData
             AllowableEmissionRateUnits = "% Opacity",
             TestRuns =
             {
-                new MethodNineTestRun
+                new OpacityTestRun
                 {
                     RunNumber = "1",
                     MaxOperatingCapacity = "270",
@@ -655,7 +656,7 @@ public static class StackTestData
                     Opacity = "15",
                     EquipmentItem = TextData.Short,
                 },
-                new MethodNineTestRun
+                new OpacityTestRun
                 {
                     RunNumber = "2",
                     MaxOperatingCapacity = "270",
@@ -664,7 +665,7 @@ public static class StackTestData
                     Opacity = "12",
                     EquipmentItem = TextData.Short,
                 },
-                new MethodNineTestRun
+                new OpacityTestRun
                 {
                     RunNumber = "3",
                     MaxOperatingCapacity = "270",
@@ -673,7 +674,7 @@ public static class StackTestData
                     Opacity = "20",
                     EquipmentItem = TextData.Short,
                 },
-                new MethodNineTestRun
+                new OpacityTestRun
                 {
                     RunNumber = "4",
                     MaxOperatingCapacity = "270",
@@ -682,7 +683,7 @@ public static class StackTestData
                     Opacity = "19",
                     EquipmentItem = TextData.Short,
                 },
-                new MethodNineTestRun
+                new OpacityTestRun
                 {
                     RunNumber = "5",
                     MaxOperatingCapacity = "270",
@@ -703,6 +704,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.VeryShort,
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
@@ -719,7 +721,7 @@ public static class StackTestData
             OperatingCapacityUnits = "Tons/HR",
             TestRuns =
             {
-                new MethodNineTestRun
+                new OpacityTestRun
                 {
                     RunNumber = "1",
                     MaxOperatingCapacity = "3",
@@ -739,6 +741,7 @@ public static class StackTestData
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
             Comments = TextData.VeryShort,
+            ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
                 new DateTime(2020, 10, 1)
@@ -757,7 +760,7 @@ public static class StackTestData
             AllowableEmissionRateUnits = "%",
             TestRuns =
             {
-                new MethodNineTestRun
+                new OpacityTestRun
                 {
                     RunNumber = "1",
                     MaxOperatingCapacity = "10.1",
