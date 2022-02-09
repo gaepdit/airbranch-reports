@@ -45,7 +45,7 @@ public abstract record class BaseStackTestReport
     public string ApplicableRequirement { get; init; } = "";
 
     [Display(Name = "Other information")]
-    public string Comments { get; init; } = "";
+    public string Comments { get; set; } = "";
 
     public string ReportStatement { get; init; } = "";
 

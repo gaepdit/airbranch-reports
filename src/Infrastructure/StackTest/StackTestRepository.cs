@@ -59,22 +59,18 @@ public class StackTestRepository : IStackTestRepository
                 return await GetRataAsync(referenceNumber);
 
             case DocumentType.MemorandumStandard:
-                break;
             case DocumentType.MemorandumToFile:
-                break;
+            case DocumentType.PTE:
+                return await GetMemorandumAsync(referenceNumber);
 
             case DocumentType.Method9Multi:
             case DocumentType.Method22:
             case DocumentType.Method9Single:
                 return await GetOpacityAsync(referenceNumber);
 
-            case DocumentType.PTE:
-                break;
-
             default:
                 return null;
         }
-        return null;
     }
 
     private async Task<T> GetBaseStackTestReportAsync<T>(int referenceNumber) where T : BaseStackTestReport
@@ -304,6 +300,31 @@ public class StackTestRepository : IStackTestRepository
         report.ComplianceStatus = r.ComplianceStatus;
 
         report.TestRuns.AddRange(multi.Read<RataTestRun>());
+
+        report.ParseConfidentialParameters();
+        return report;
+    }
+
+    private async Task<StackTestMemorandum> GetMemorandumAsync(int referenceNumber)
+    {
+        var report = await GetBaseStackTestReportAsync<StackTestMemorandum>(referenceNumber);
+
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestMemorandum,
+            new { ReferenceNumber = referenceNumber });
+
+        _ = multi.Read<StackTestMemorandum, ValueWithUnits, ValueWithUnits, StackTestMemorandum>(
+            (r, MaxOperatingCapacity, OperatingCapacity) =>
+            {
+                report.MonitorManufacturer = r.MonitorManufacturer;
+                report.MonitorSerialNumber = r.MonitorSerialNumber;
+                report.MaxOperatingCapacity = MaxOperatingCapacity;
+                report.OperatingCapacity = OperatingCapacity;
+                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
+                report.Comments = r.Comments;
+                return r;
+            });
+
+        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
 
         report.ParseConfidentialParameters();
         return report;
