@@ -4,8 +4,7 @@ namespace Domain.StackTest.Models;
 
 public record class StackTestMemorandum : BaseStackTestReport
 {
-    [Display(Name = "Memorandum")]
-    public string Memorandum { get; set; } = "";
+    // Base stack test report property `Comments` is repurposed to display the memorandum field, "STRMEMORANDUMFIELD"
 
     // Only used by MemorandumToFile
     [Display(Name = "Monitor manufacturer and model")]
@@ -32,7 +31,6 @@ public record class StackTestMemorandum : BaseStackTestReport
     public override StackTestMemorandum RedactedStackTestReport() =>
         RedactedBaseStackTestReport<StackTestMemorandum>() with
         {
-            Memorandum = CheckConfidential(Memorandum, nameof(Memorandum)),
             MonitorManufacturer = CheckConfidential(MonitorManufacturer, nameof(MonitorManufacturer)),
             MonitorSerialNumber = CheckConfidential(MonitorSerialNumber, nameof(MonitorSerialNumber)),
             MaxOperatingCapacity = CheckConfidential(MaxOperatingCapacity, nameof(MaxOperatingCapacity)),
@@ -50,17 +48,17 @@ public record class StackTestMemorandum : BaseStackTestReport
         switch (DocumentType)
         {
             case DocumentType.MemorandumStandard:
-                AddIfConfidential(27, nameof(Memorandum));
+                AddIfConfidential(27, nameof(Comments));
                 break;
 
             case DocumentType.MemorandumToFile:
-                AddIfConfidential(29, nameof(Memorandum));
+                AddIfConfidential(29, nameof(Comments));
                 AddIfConfidential(27, nameof(MonitorManufacturer));
                 AddIfConfidential(28, nameof(MonitorSerialNumber));
                 break;
 
             case DocumentType.PTE:
-                AddIfConfidential(33, nameof(Memorandum));
+                AddIfConfidential(33, nameof(Comments));
                 AddIfConfidential(27, nameof(MaxOperatingCapacity));
                 AddIfConfidential(28, nameof(OperatingCapacity));
                 AddIfConfidential(32, nameof(ControlEquipmentInfo));

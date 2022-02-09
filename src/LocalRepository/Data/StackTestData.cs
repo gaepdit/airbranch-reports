@@ -628,7 +628,6 @@ public static class StackTestData
             Source = "System",
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.Empty,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
@@ -639,7 +638,7 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
-            Memorandum = TextData.LongMultiline,
+            Comments = TextData.LongMultiline,
         },
         new StackTestMemorandum
         {
@@ -650,7 +649,6 @@ public static class StackTestData
             Source = "Monitor",
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.Empty,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
@@ -661,7 +659,7 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
-            Memorandum = TextData.LongMultiline,
+            Comments = TextData.LongMultiline,
             MonitorManufacturer = TextData.Short,
             MonitorSerialNumber = TextData.VeryShort,
         },
@@ -674,7 +672,6 @@ public static class StackTestData
             Source = "System",
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.Empty,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
@@ -685,7 +682,7 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
-            Memorandum = TextData.LongMultiline,
+            Comments = TextData.LongMultiline,
             MaxOperatingCapacity = new ValueWithUnits("100000", "Units"),
             OperatingCapacity = new ValueWithUnits("50000", "Units"),
             AllowableEmissionRates = new List<ValueWithUnits>
