@@ -160,6 +160,63 @@ public class GetStackTestReport
     }
 
     [Test]
+    public async Task ReturnsMemorandumStandardIfExists()
+    {
+        var facilityId = new ApbFacilityId("17900001");
+        var referenceNumber = 200600289;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestMemorandum>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+            result.DocumentType.Should().Be(DocumentType.MemorandumStandard);
+        });
+    }
+
+    [Test]
+    public async Task ReturnsMemorandumToFileIfExists()
+    {
+        var facilityId = new ApbFacilityId("17900001");
+        var referenceNumber = 201500570;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestMemorandum>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+            result.DocumentType.Should().Be(DocumentType.MemorandumToFile);
+        });
+    }
+
+    [Test]
+    public async Task ReturnsMemorandumPteIfExists()
+    {
+        var facilityId = new ApbFacilityId("07300003");
+        var referenceNumber = 200400476;
+        var repo = new StackTestRepository(Global.conn!);
+        var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
+
+        Assert.Multiple(() =>
+        {
+            result.Should().BeOfType<StackTestMemorandum>();
+            result.Should().NotBeNull();
+            result!.ReferenceNumber.Should().Be(referenceNumber);
+            result.Facility.Should().NotBeNull();
+            result.Facility!.Id.Should().Be(facilityId);
+            result.DocumentType.Should().Be(DocumentType.PTE);
+        });
+    }
+
+    [Test]
     public async Task ReturnsMethod9MultiReportIfExists()
     {
         var facilityId = new ApbFacilityId("11500021");

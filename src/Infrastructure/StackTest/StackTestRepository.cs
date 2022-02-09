@@ -29,52 +29,20 @@ public class StackTestRepository : IStackTestRepository
     {
         if (!await StackTestReportExistsAsync(facilityId, referenceNumber)) return null;
 
-        switch (await GetDocumentTypeAsync(referenceNumber))
+        return await GetDocumentTypeAsync(referenceNumber) switch
         {
-            case DocumentType.Unassigned:
-                return null;
-
-            case DocumentType.OneStackTwoRuns:
-            case DocumentType.OneStackThreeRuns:
-            case DocumentType.OneStackFourRuns:
-                return await GetOneStackAsync(referenceNumber);
-
-            case DocumentType.TwoStackStandard:
-            case DocumentType.TwoStackDre:
-                return await GetTwoStackAsync(referenceNumber);
-
-            case DocumentType.LoadingRack:
-                return await GetLoadingRackAsync(referenceNumber);
-
-            case DocumentType.PondTreatment:
-                return await GetPondTreatmentAsync(referenceNumber);
-
-            case DocumentType.GasConcentration:
-                return await GetGasConcentrationAsync(referenceNumber);
-
-            case DocumentType.Flare:
-                return await GetFlareAsync(referenceNumber);
-
-            case DocumentType.Rata:
-                return await GetRataAsync(referenceNumber);
-
-            case DocumentType.MemorandumStandard:
-                break;
-            case DocumentType.MemorandumToFile:
-                break;
-
-            case DocumentType.Method9Multi:
-            case DocumentType.Method22:
-            case DocumentType.Method9Single:
-                return await GetOpacityAsync(referenceNumber);
-
-            case DocumentType.PTE:
-                break;
-
-            default:
-                return null;
-        }
-        return null;
+            DocumentType.Unassigned => null,
+            DocumentType.OneStackTwoRuns or DocumentType.OneStackThreeRuns or DocumentType.OneStackFourRuns => await GetOneStackAsync(referenceNumber),
+            DocumentType.TwoStackStandard or DocumentType.TwoStackDre => await GetTwoStackAsync(referenceNumber),
+            DocumentType.LoadingRack => await GetLoadingRackAsync(referenceNumber),
+            DocumentType.PondTreatment => await GetPondTreatmentAsync(referenceNumber),
+            DocumentType.GasConcentration => await GetGasConcentrationAsync(referenceNumber),
+            DocumentType.Flare => await GetFlareAsync(referenceNumber),
+            DocumentType.Rata => await GetRataAsync(referenceNumber),
+            DocumentType.MemorandumStandard or DocumentType.MemorandumToFile or DocumentType.PTE => await GetMemorandumAsync(referenceNumber),
+            DocumentType.Method9Multi or DocumentType.Method22 or DocumentType.Method9Single => await GetOpacityAsync(referenceNumber),
+            _ => null,
+        };
     }
 
     private async Task<T> GetBaseStackTestReportAsync<T>(int referenceNumber) where T : BaseStackTestReport
@@ -304,6 +272,31 @@ public class StackTestRepository : IStackTestRepository
         report.ComplianceStatus = r.ComplianceStatus;
 
         report.TestRuns.AddRange(multi.Read<RataTestRun>());
+
+        report.ParseConfidentialParameters();
+        return report;
+    }
+
+    private async Task<StackTestMemorandum> GetMemorandumAsync(int referenceNumber)
+    {
+        var report = await GetBaseStackTestReportAsync<StackTestMemorandum>(referenceNumber);
+
+        using var multi = await db.QueryMultipleAsync(StackTestQueries.StackTestMemorandum,
+            new { ReferenceNumber = referenceNumber });
+
+        _ = multi.Read<StackTestMemorandum, ValueWithUnits, ValueWithUnits, StackTestMemorandum>(
+            (r, MaxOperatingCapacity, OperatingCapacity) =>
+            {
+                report.MonitorManufacturer = r.MonitorManufacturer;
+                report.MonitorSerialNumber = r.MonitorSerialNumber;
+                report.MaxOperatingCapacity = MaxOperatingCapacity;
+                report.OperatingCapacity = OperatingCapacity;
+                report.ControlEquipmentInfo = r.ControlEquipmentInfo;
+                report.Comments = r.Comments;
+                return r;
+            });
+
+        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
 
         report.ParseConfidentialParameters();
         return report;

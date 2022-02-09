@@ -11,7 +11,7 @@ public static class AccData
             AccReportingYear = 2018,
             AllDeviationsReported = true,
             AllTitleVConditionsListed = true,
-            Comments = TextData.Multiline,
+            Comments = TextData.LongMultiline,
             CorrectFormsUsed = true,
             CorrectlyFilledOut = true,
             DateAcknowledgmentLetterSent = null,

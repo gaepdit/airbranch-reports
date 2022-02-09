@@ -156,7 +156,7 @@ public static class StackTestData
             Source = "Tower",
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.Multiline,
+            Comments = TextData.LongMultiline,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2016, 9, 1),
@@ -175,7 +175,7 @@ public static class StackTestData
                 new ValueWithUnits("1", "lb/TON"),
                 new ValueWithUnits("20", "LB/HR"),
             },
-            ControlEquipmentInfo = TextData.VeryShort,
+            ControlEquipmentInfo = TextData.None,
             StackOneName = "Inner",
             StackTwoName = "Outer",
             TestRuns = new List<TwoStackTestRun>
@@ -252,7 +252,7 @@ public static class StackTestData
             Source = "Tower",
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.Multiline,
+            Comments = TextData.LongMultiline,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2016, 9, 1),
@@ -271,7 +271,7 @@ public static class StackTestData
                 new ValueWithUnits("1", "lb/TON"),
                 new ValueWithUnits("20", "LB/HR"),
             },
-            ControlEquipmentInfo = TextData.VeryShort,
+            ControlEquipmentInfo = TextData.None,
             StackOneName = "Inlet",
             StackTwoName = "Oulet",
             TestRuns = new List<TwoStackTestRun>
@@ -379,7 +379,7 @@ public static class StackTestData
             Source = "Pond",
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.Multiline,
+            Comments = TextData.LongMultiline,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
@@ -489,7 +489,7 @@ public static class StackTestData
             Source = "Flare",
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.Multiline,
+            Comments = TextData.LongMultiline,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
@@ -546,7 +546,7 @@ public static class StackTestData
             Source = "Boiler",
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.VeryShort,
+            Comments = TextData.None,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
@@ -618,6 +618,78 @@ public static class StackTestData
                 },
             },
             ConfidentialParametersCode = "",
+        },
+        new StackTestMemorandum
+        {
+            DocumentType = DocumentType.MemorandumStandard,
+            ReferenceNumber = 200600289,
+            Facility = FacilityData.GetFacility("17900001"),
+            Pollutant = "Methanol",
+            Source = "System",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            ReportStatement = TextData.ReportStatement,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff(1)!.Value.Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
+            Comments = TextData.LongMultiline,
+        },
+        new StackTestMemorandum
+        {
+            DocumentType = DocumentType.MemorandumToFile,
+            ReferenceNumber = 201500570,
+            Facility = FacilityData.GetFacility("17900001"),
+            Pollutant = "Opacity",
+            Source = "Monitor",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            ReportStatement = TextData.ReportStatement,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff(1)!.Value.Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
+            Comments = TextData.LongMultiline,
+            MonitorManufacturer = TextData.Short,
+            MonitorSerialNumber = TextData.VeryShort,
+        },
+        new StackTestMemorandum
+        {
+            DocumentType = DocumentType.PTE,
+            ReferenceNumber = 200400476,
+            Facility = FacilityData.GetFacility("07300003"),
+            Pollutant = "VOC",
+            Source = "System",
+            ReportType = ReportType.SourceTest,
+            ApplicableRequirement = "Permit Condition 3.1",
+            ReportStatement = TextData.ReportStatement,
+            TestDates = new DateRange(
+                new DateTime(2020, 9, 1),
+                new DateTime(2020, 10, 1)
+            ),
+            DateReceivedByApb = new DateTime(2020, 11, 1),
+            ReviewedByStaff = StaffData.GetStaff(1)!.Value.Name,
+            WitnessedByStaff = new List<PersonName>(),
+            ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
+            TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
+            Comments = TextData.LongMultiline,
+            MaxOperatingCapacity = new ValueWithUnits("100000", "Units"),
+            OperatingCapacity = new ValueWithUnits("50000", "Units"),
+            AllowableEmissionRates = new List<ValueWithUnits>
+            {
+                new ValueWithUnits("100", "%"),
+            },
+            ControlEquipmentInfo = TextData.Long,
         },
         new StackTestReportOpacity
         {
@@ -703,7 +775,7 @@ public static class StackTestData
             Source = "Bin",
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.VeryShort,
+            Comments = TextData.None,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),
@@ -740,7 +812,7 @@ public static class StackTestData
             Source = "Scrubber",
             ReportType = ReportType.SourceTest,
             ApplicableRequirement = "Permit Condition 3.1",
-            Comments = TextData.VeryShort,
+            Comments = TextData.None,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
                 new DateTime(2020, 9, 1),

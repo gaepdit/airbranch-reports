@@ -11,6 +11,12 @@ public abstract record class BaseStackTestReport
     [Display(Name = "Reference Number")]
     public int ReferenceNumber { get; init; }
 
+    [JsonIgnore]
+    public DocumentType DocumentType { get; init; } = DocumentType.Unassigned;
+
+    [Display(Name = "Document type")]
+    public string DocumentTypeName => DocumentType.GetDescription();
+
     public Facility? Facility { get; set; }
 
     [Display(Name = "Pollutant determined")]
@@ -35,17 +41,11 @@ public abstract record class BaseStackTestReport
         _ => "N/A",
     };
 
-    [JsonIgnore]
-    public DocumentType DocumentType { get; init; } = DocumentType.Unassigned;
-
-    [Display(Name = "Document type")]
-    public string DocumentTypeName => DocumentType.GetDescription();
-
     [Display(Name = "Applicable requirement")]
     public string ApplicableRequirement { get; init; } = "";
 
     [Display(Name = "Other information")]
-    public string Comments { get; init; } = "";
+    public string Comments { get; set; } = "";
 
     public string ReportStatement { get; init; } = "";
 

@@ -152,7 +152,7 @@ public static class FceData
             StaffReviewedBy = StaffData.GetStaff(3)!.Value.Name,
             SupportingDataDateRange = new DateRange(new DateTime(2012, 3, 3), new DateTime(2013, 3, 3)),
             WithOnsiteInspection = false,
-            Comments = TextData.VeryShort,
+            Comments = TextData.None,
             DateCompleted = new DateTime(2013, 3, 30),
             Facility = FacilityData.GetFacility("00100001"),
 
