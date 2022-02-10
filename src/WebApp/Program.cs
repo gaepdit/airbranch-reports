@@ -1,3 +1,4 @@
+using Air.WebApp.Platform.Raygun;
 using Domain.Compliance.Repositories;
 using Domain.Facilities.Repositories;
 using Domain.Organization.Repositories;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using Mindscape.Raygun4Net.AspNetCore;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json.Serialization;
@@ -45,6 +47,11 @@ builder.Services
 // Configure HSTS (max age: two years)
 builder.Services.AddHsts(opts => opts.MaxAge = TimeSpan.FromDays(730));
 
+// Configure application monitoring
+builder.Services.AddRaygun(builder.Configuration,
+    new RaygunMiddlewareSettings { ClientProvider = new RaygunClientProvider() });
+builder.Services.AddHttpContextAccessor(); // needed by RaygunScriptPartial
+
 // Configure the data repositories
 if (builder.Environment.IsLocalDev())
 {
@@ -82,7 +89,6 @@ var env = app.Environment;
 if (env.IsDevelopment() || env.IsLocalDev())
 {
     app.UseDeveloperExceptionPage();
-    app.UseStatusCodePages();
 }
 else
 {
@@ -91,9 +97,11 @@ else
 
 if (!env.IsLocalDev())
 {
+    app.UseRaygun();
     app.UseHsts();
 }
 
+app.UseStatusCodePages();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
