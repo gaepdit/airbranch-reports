@@ -1,6 +1,14 @@
 <Project>
-    <PropertyGroup>
-        <BaseOutputPath>$(MSBuildThisFileDirectory)artifacts\$(MSBuildProjectName)\bin\</BaseOutputPath>
-        <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)artifacts\$(MSBuildProjectName)\obj\</BaseIntermediateOutputPath>
-    </PropertyGroup>
+	<PropertyGroup>
+		<BaseOutputPath>$(MSBuildThisFileDirectory)artifacts\$(MSBuildProjectName)\bin\</BaseOutputPath>
+		<BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)artifacts\$(MSBuildProjectName)\obj\</BaseIntermediateOutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<CodeAnalysisRuleSet>$(MSBuildThisFileDirectory).sonarlint\gaepdit_airbranch-reportscsharp.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="$(MSBuildThisFileDirectory).sonarlint\gaepdit_airbranch-reports\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+	</ItemGroup>
 </Project>
