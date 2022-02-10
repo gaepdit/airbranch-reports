@@ -50,6 +50,7 @@ builder.Services.AddHsts(opts => opts.MaxAge = TimeSpan.FromDays(730));
 // Configure application monitoring
 builder.Services.AddRaygun(builder.Configuration,
     new RaygunMiddlewareSettings { ClientProvider = new RaygunClientProvider() });
+builder.Services.AddHttpContextAccessor(); // needed by RaygunScriptPartial
 
 // Configure the data repositories
 if (builder.Environment.IsLocalDev())

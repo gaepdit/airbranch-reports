@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://cdn.skypack.dev/sanitize.css/system-ui.css" />
     </environment>
     @await RenderSectionAsync("Styles", required: false)
+    <partial name="_RaygunScriptsPartial" />
 </head>
 <body class="@ViewBag.BodyCssClass">
     <partial name="_TestSiteBannerPartial" />
