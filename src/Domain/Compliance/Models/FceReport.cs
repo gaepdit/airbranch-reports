@@ -29,7 +29,7 @@ public record class FceReport
     // Supporting compliance data
 
     public List<Inspection> Inspections { get; init; } = new List<Inspection>();
-    public List<RmpInspection> RmpInspections { get; init; } = new List<RmpInspection>();
+    public List<Inspection> RmpInspections { get; init; } = new List<Inspection>();
     public List<Acc> Accs { get; init; } = new List<Acc>();
     public List<Report> Reports { get; init; } = new List<Report>();
     public List<Notification> Notifications { get; init; } = new List<Notification>();

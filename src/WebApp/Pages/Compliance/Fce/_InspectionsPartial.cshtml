@@ -1,19 +1,23 @@
-﻿@model List<Inspection>
+﻿@model (List<Inspection> Inspections, bool IsRmp)
 @using Domain.Compliance.Models.WorkItems
+@{
+    var labelId = Model.IsRmp ? "rmp-inspections" : "inspections";
+    var labelText = Model.IsRmp ? "RMP Inspections" : "Inspections";
+}
 
-<h2 id="inspections">Inspections</h2>
+<h2 id="@labelId">@labelText</h2>
 
 @{
-    if (Model is not { Count: > 0 })
+    if (Model.Inspections is not { Count: > 0 })
     {
         <div class="fce-content">None.</div>
         return;
     }
 
-    var firstItem = Model.FirstOrDefault()!;
+    var firstItem = Model.Inspections.FirstOrDefault()!;
 }
 
-<table aria-labelledby="inspections">
+<table aria-labelledby="@labelId">
     <thead>
         <tr>
             <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Id)</th>
@@ -25,7 +29,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var i in Model)
+        @foreach (var i in Model.Inspections)
         {
             <tr>
                 <th scope="row" rowspan="2">@i.Id</th>

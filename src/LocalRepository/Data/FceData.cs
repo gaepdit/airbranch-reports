@@ -31,7 +31,7 @@ public static class FceData
                 },
             },
 
-            RmpInspections = new List<RmpInspection>
+            RmpInspections = new List<Inspection>
             {
                 new()
                 {

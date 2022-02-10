@@ -86,7 +86,7 @@ public class ComplianceRepository : IComplianceRepository
                 item.InspectionDate = dateRange;
                 return item;
             }));
-        report.RmpInspections.AddRange(multi.Read<RmpInspection, PersonName, DateRange, RmpInspection>(
+        report.RmpInspections.AddRange(multi.Read<Inspection, PersonName, DateRange, Inspection>(
             (item, staff, dateRange) =>
             {
                 item.Inspector = staff;
