@@ -3,30 +3,29 @@ using System.Text.RegularExpressions;
 
 namespace Domain.Facilities.Models;
 
-public record class ApbFacilityId : IEquatable<ApbFacilityId>
+public record ApbFacilityId
 {
-    private readonly string _id;
+    private const string AirsNumberPattern = @"^(04-?13-?)?\d{3}-?\d{5}$";
 
-    public ApbFacilityId(string id)
-    {
-        _id = IsValidAirsNumberFormat(id)
+    public ApbFacilityId(string id) =>
+        ShortString = IsValidAirsNumberFormat(id)
             ? GetNormalizedAirsNumber(id)
             : throw new ArgumentException($"{id} is not a valid AIRS number.");
-    }
+
+    public string FacilityId => $"{ShortString[..3]}-{ShortString[3..8]}";
+
+    [JsonIgnore]
+    public string ShortString { get; }
+
+    [JsonIgnore]
+    public string DbFormattedString => $"0413{ShortString}";
+
+    [JsonIgnore]
+    public string EpaFacilityIdentifier => $"GA00000013{ShortString}";
 
     public static implicit operator ApbFacilityId(string id) => new(id);
 
     public override string ToString() => FacilityId;
-    public string FacilityId => $"{_id[..3]}-{_id[3..8]}";
-
-    [JsonIgnore]
-    public string ShortString => _id;
-    [JsonIgnore]
-    public string DbFormattedString => $"0413{ShortString}";
-    [JsonIgnore]
-    public string EpaFacilityIdentifier => $"GA00000013{ShortString}";
-
-    private const string AirsNumberPattern = @"^(04-?13-?)?\d{3}-?\d{5}$";
 
     // Static methods
 
@@ -35,7 +34,7 @@ public record class ApbFacilityId : IEquatable<ApbFacilityId>
 
     private static string GetNormalizedAirsNumber(string id)
     {
-        id = id.Replace("-", "");
-        return id.Length == 12 ? id.Remove(0, 4) : id;
+        var newId = id.Replace("-", "");
+        return newId.Length == 12 ? newId.Remove(0, 4) : newId;
     }
 }
