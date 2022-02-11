@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	<AssemblyVersion>2022.02.10</AssemblyVersion>
+    <RootNamespace>WebApp</RootNamespace>
     <UserSecretsId>aspnet-WebApp2-75A2DBEE-8438-4D63-B10D-D6E0DE52AF07</UserSecretsId>
   </PropertyGroup>
 
