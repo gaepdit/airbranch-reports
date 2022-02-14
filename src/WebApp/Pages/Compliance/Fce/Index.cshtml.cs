@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp.Pages.Compliance.Fce;
 
-public class FceReportModel : PageModel
+public class IndexModel : PageModel
 {
     public FceReport? Report { get; set; }
     public OrganizationInfo OrganizationInfo { get; set; }
@@ -17,12 +17,12 @@ public class FceReportModel : PageModel
         [FromServices] IComplianceRepository repository,
         [FromServices] IOrganizationRepository orgRepo,
         [FromRoute] string facilityId,
-        [FromRoute] int year)
+        [FromRoute] int id)
     {
         if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId))
             return NotFound("Facility ID is invalid.");
 
-        Report = await repository.GetFceReportAsync(new ApbFacilityId(facilityId), year);
+        Report = await repository.GetFceReportAsync(new ApbFacilityId(facilityId), id);
         if (Report?.Facility is null) return NotFound();
         if (Report.Facility.HeaderData is null) return NotFound();
 
