@@ -2,7 +2,7 @@
 
 namespace Domain.StackTest.Models;
 
-public record class StackTestMemorandum : BaseStackTestReport
+public record StackTestMemorandum : BaseStackTestReport
 {
     // Base stack test report property `Comments` is repurposed to display the memorandum field, "STRMEMORANDUMFIELD"
 
@@ -21,7 +21,7 @@ public record class StackTestMemorandum : BaseStackTestReport
     public ValueWithUnits OperatingCapacity { get; set; }
 
     [Display(Name = "Allowable emission rates")]
-    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new List<ValueWithUnits>();
+    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new();
 
     [Display(Name = "Control equipment and monitoring data")]
     public string ControlEquipmentInfo { get; set; } = "";
@@ -62,9 +62,6 @@ public record class StackTestMemorandum : BaseStackTestReport
                 AddIfConfidential(27, nameof(MaxOperatingCapacity));
                 AddIfConfidential(28, nameof(OperatingCapacity));
                 AddIfConfidential(32, nameof(ControlEquipmentInfo));
-                break;
-
-            default:
                 break;
         }
     }

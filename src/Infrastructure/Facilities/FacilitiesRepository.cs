@@ -8,6 +8,7 @@ namespace Infrastructure.Facilities;
 
 public class FacilitiesRepository : IFacilitiesRepository
 {
+    // ReSharper disable once InconsistentNaming
     private readonly IDbConnection db;
     public FacilitiesRepository(IDbConnection conn) => db = conn;
 
@@ -23,11 +24,11 @@ public class FacilitiesRepository : IFacilitiesRepository
             new { AirsNumber = facilityId.DbFormattedString });
 
         var facility = multi.Read<Facility, Address, GeoCoordinates, FacilityHeaderData, Facility>(
-            (facility, FacilityAddress, GeoCoordinates, HeaderData) =>
+            (facility, facilityAddress, geoCoordinates, headerData) =>
             {
-                facility.FacilityAddress = FacilityAddress;
-                facility.GeoCoordinates = GeoCoordinates;
-                facility.HeaderData = HeaderData;
+                facility.FacilityAddress = facilityAddress;
+                facility.GeoCoordinates = geoCoordinates;
+                facility.HeaderData = headerData;
                 return facility;
             }).Single();
 

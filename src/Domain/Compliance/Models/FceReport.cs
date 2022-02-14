@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Compliance.Models;
 
-public record class FceReport
+public record FceReport
 {
     [Display(Name = "FCE tracking number")]
     public int Id { get; init; }
@@ -28,12 +28,12 @@ public record class FceReport
 
     // Supporting compliance data
 
-    public List<Inspection> Inspections { get; init; } = new List<Inspection>();
-    public List<Inspection> RmpInspections { get; init; } = new List<Inspection>();
-    public List<Acc> Accs { get; init; } = new List<Acc>();
-    public List<Report> Reports { get; init; } = new List<Report>();
-    public List<Notification> Notifications { get; init; } = new List<Notification>();
-    public List<StackTestWork> StackTests { get; init; } = new List<StackTestWork>();
-    public List<FeeYear> FeesHistory { get; init; } = new List<FeeYear>();
-    public List<Enforcement> EnforcementHistory { get; init; } = new List<Enforcement>();
+    public List<Inspection> Inspections { get; init; } = new();
+    public List<Inspection> RmpInspections { get; init; } = new();
+    public List<Acc> Accs { get; init; } = new();
+    public List<Report> Reports { get; init; } = new();
+    public List<Notification> Notifications { get; init; } = new();
+    public List<StackTestWork> StackTests { get; init; } = new();
+    public List<FeeYear> FeesHistory { get; init; } = new();
+    public List<Enforcement> EnforcementHistory { get; init; } = new();
 }

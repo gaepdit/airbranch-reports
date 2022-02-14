@@ -6,9 +6,9 @@ body {
     color: #333;
 }
 
-    body.sans-serif {
-        font-family: 'Arial', sans-serif;
-    }
+body.sans-serif {
+    font-family: 'Arial', sans-serif;
+}
 
 html {
     position: relative;
@@ -40,20 +40,20 @@ html, body {
     margin-bottom: 1rem;
 }
 
-    .table-values-list tr + tr {
-        border-top: 1px solid #777;
-    }
+.table-values-list tr + tr {
+    border-top: 1px solid #777;
+}
 
-    .table-values-list th {
-        font-weight: normal;
-        text-align: left;
-        padding: .25rem 0;
-    }
+.table-values-list th {
+    font-weight: normal;
+    text-align: left;
+    padding: .25rem 0;
+}
 
-    .table-values-list td {
-        text-align: center;
-        padding: .25rem 1rem .25rem 2rem;
-    }
+.table-values-list td {
+    text-align: center;
+    padding: .25rem 1rem .25rem 2rem;
+}
 
 /* Left/right split (halves positioned on left and right margins) */
 
@@ -64,9 +64,9 @@ html, body {
     margin-bottom: 1rem;
 }
 
-    .split-lr > div {
-        flex: 0 1 auto;
-    }
+.split-lr > div {
+    flex: 0 1 auto;
+}
 
 footer.split-lr > div:last-child {
     text-align: right;
@@ -125,7 +125,7 @@ main {
     max-width: 62rem;
     margin: 1rem auto;
     padding: 1.333rem;
-    box-shadow: 0 0 1px rgba(0,0,0,0.12), 0 0 2px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.12), 0 6px 8px rgba(0,0,0,0.12)
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.12), 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12), 0 6px 8px rgba(0, 0, 0, 0.12)
 }
 
 .print-toolbar {
@@ -134,14 +134,14 @@ main {
     padding: .5rem 1.5rem;
     position: sticky;
     top: 0;
-    box-shadow: 0 0 4px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.12), 0 12px 16px rgba(0,0,0,0.04);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.12), 0 12px 16px rgba(0, 0, 0, 0.04);
     backdrop-filter: blur(1px);
 }
 
-    .print-toolbar button {
-        padding: 4px 16px;
-        margin-left: .5rem;
-    }
+.print-toolbar button {
+    padding: 4px 16px;
+    margin-left: .5rem;
+}
 
 /* Memorandum header layout */
 
@@ -183,28 +183,28 @@ dl.dl-inline {
     margin: 0.5rem 0;
 }
 
-    dl.dl-inline dt {
-        grid-column-start: 1;
-        font-style: italic;
-    }
+dl.dl-inline dt {
+    grid-column-start: 1;
+    font-style: italic;
+}
 
-        dl.dl-inline dt::after {
-            content: ":";
-        }
+dl.dl-inline dt::after {
+    content: ":";
+}
 
-    dl.dl-inline dd {
-        grid-column-start: 2;
-        margin-left: 0;
-    }
+dl.dl-inline dd {
+    grid-column-start: 2;
+    margin-left: 0;
+}
 
 .stack-test dl.dl-inline {
     gap: 0 0.5rem;
 }
 
-    .stack-test dl.dl-inline dt {
-        font-style: normal;
-        font-weight: bold;
-    }
+.stack-test dl.dl-inline dt {
+    font-style: normal;
+    font-weight: bold;
+}
 
 /* ACC layout */
 
@@ -243,46 +243,46 @@ dl.dl-inline {
     padding-left: 0;
 }
 
-    .stack-test th[rowspan="2"] {
-        width: 9.5rem;
-    }
+.stack-test th[rowspan="2"] {
+    width: 9.5rem;
+}
 
-        .stack-test th[rowspan="2"] + th,
-        .stack-test th.split-table-header {
-            width: 5rem;
-            padding-left: 0.5rem;
-        }
+.stack-test th[rowspan="2"] + th,
+.stack-test th.split-table-header {
+    width: 5rem;
+    padding-left: 0.5rem;
+}
 
-    .stack-test th[scope=col] {
-        text-align: center;
-        width: auto;
-    }
+.stack-test th[scope=col] {
+    text-align: center;
+    width: auto;
+}
 
-    .stack-test th:last-child,
-    .stack-test td:last-child {
-        border-right: none;
-        padding-right: 0;
-    }
+.stack-test th:last-child,
+.stack-test td:last-child {
+    border-right: none;
+    padding-right: 0;
+}
 
 .stack-test .table-subtable {
     border: none;
     padding: 0;
 }
 
-    .stack-test .table-subtable tbody tr:first-child th,
-    .stack-test .table-subtable tbody tr:first-child td {
-        border-top: none;
-    }
+.stack-test .table-subtable tbody tr:first-child th,
+.stack-test .table-subtable tbody tr:first-child td {
+    border-top: none;
+}
 
 .stack-test .table-subtable-vertical td {
     text-align: center;
 }
 
-    .stack-test .table-subtable-vertical th:last-child,
-    .stack-test .table-subtable-vertical td:last-child {
-        border-right: none;
-        padding-right: 1rem;
-    }
+.stack-test .table-subtable-vertical th:last-child,
+.stack-test .table-subtable-vertical td:last-child {
+    border-right: none;
+    padding-right: 1rem;
+}
 
 .stack-test .table-subtable-vertical th[scope=col] {
     padding-left: 1rem;
@@ -354,24 +354,24 @@ dl.dl-inline {
     font-size: smaller;
 }
 
-    .fce table th {
-        font-weight: normal;
-        text-decoration: underline;
-        text-align: left;
-    }
+.fce table th {
+    font-weight: normal;
+    text-decoration: underline;
+    text-align: left;
+}
 
-        .fce table th.align-right {
-            text-align: right;
-        }
+.fce table th.align-right {
+    text-align: right;
+}
 
-    .fce table tbody th {
-        text-decoration: none;
-    }
+.fce table tbody th {
+    text-decoration: none;
+}
 
-    .fce table th, .fce table td {
-        padding-right: .5rem;
-        vertical-align: baseline;
-    }
+.fce table th, .fce table td {
+    padding-right: .5rem;
+    vertical-align: baseline;
+}
 
 /* Print styles */
 @media print {

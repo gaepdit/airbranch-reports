@@ -6,8 +6,8 @@
     Layout = "_ReportLayout";
     ViewBag.BodyCssClass = "stack-test sans-serif";
 
-    var Report = Model.Report!;
-    ViewData["Title"] = $"Facility {Report.Facility!.Id} - {Report.ReportTypeName} Reference Number: {Report.ReferenceNumber}";
+    var report = Model.Report!;
+    ViewData["Title"] = $"Facility {report.Facility!.Id} - {report.ReportTypeName} Reference Number: {report.ReferenceNumber}";
 }
 
 <div class="page-wrapper">
@@ -18,105 +18,104 @@
 
         @if (Model.ShowConfidentialWarning)
         {
-            <p><strong>NOTICE: This report contains confidential information.</strong></p>
+            <p>
+                <strong>NOTICE: This report contains confidential information.</strong>
+            </p>
         }
-        <div id="str-description">@Report.ReportStatement</div>
+        <div id="str-description">@report.ReportStatement</div>
 
         <table aria-labelledby="memo-subject" aria-describedby="str-description">
             <tbody>
-                <tr class="table-section">
-                    <th scope="row">@Html.DisplayNameFor(m => Report.Facility.Name)</th>
-                    <td>@Report.Facility.Name</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => Report.Facility.FacilityAddress)</th>
-                    <td>@Report.Facility.FacilityAddress.City, @Report.Facility.FacilityAddress.State</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => Report.Source)</th>
-                    <td>@Report.Source</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => Report.Pollutant)</th>
-                    <td>@Report.Pollutant</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => Report.ReviewedByStaff)</th>
-                    <td>@Report.ReviewedByStaff</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => Report.WitnessedByStaff)</th>
-                    <td>@Html.DisplayFor(m => Report.WitnessedByStaff, "PersonCollection")</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => Report.TestDates)</th>
-                    <td>@Html.DisplayFor(m => Report.TestDates)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => Report.DateReceivedByApb)</th>
-                    <td>@Html.DisplayFor(m => Report.DateReceivedByApb)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => Report.ApplicableRequirement)</th>
-                    <td>@Report.ApplicableRequirement</td>
-                </tr>
-                @switch (Report)
-                {
-                    case StackTestReportOneStack _:
-                        <partial name="_OneStackPartial" model="Report" />
-                        break;
+            <tr class="table-section">
+                <th scope="row">@Html.DisplayNameFor(m => report.Facility.Name)</th>
+                <td>@report.Facility.Name</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => report.Facility.FacilityAddress)</th>
+                <td>@report.Facility.FacilityAddress.City, @report.Facility.FacilityAddress.State</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => report.Source)</th>
+                <td>@report.Source</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => report.Pollutant)</th>
+                <td>@report.Pollutant</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => report.ReviewedByStaff)</th>
+                <td>@report.ReviewedByStaff</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => report.WitnessedByStaff)</th>
+                <td>@Html.DisplayFor(m => report.WitnessedByStaff, "PersonCollection")</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => report.TestDates)</th>
+                <td>@Html.DisplayFor(m => report.TestDates)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => report.DateReceivedByApb)</th>
+                <td>@Html.DisplayFor(m => report.DateReceivedByApb)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => report.ApplicableRequirement)</th>
+                <td>@report.ApplicableRequirement</td>
+            </tr>
+            @switch (report)
+            {
+                case StackTestReportOneStack _:
+                    <partial name="_OneStackPartial" model="report" />
+                    break;
 
-                    case StackTestReportTwoStack _:
-                        <partial name="_TwoStackPartial" model="Report" />
-                        break;
+                case StackTestReportTwoStack _:
+                    <partial name="_TwoStackPartial" model="report" />
+                    break;
 
-                    case StackTestReportLoadingRack _:
-                        <partial name="_LoadingRackPartial" model="Report" />
-                        break;
+                case StackTestReportLoadingRack _:
+                    <partial name="_LoadingRackPartial" model="report" />
+                    break;
 
-                    case StackTestReportPondTreatment _:
-                        <partial name="_PondTreatmentPartial" model="Report" />
-                        break;
+                case StackTestReportPondTreatment _:
+                    <partial name="_PondTreatmentPartial" model="report" />
+                    break;
 
-                    case StackTestReportGasConcentration _:
-                        <partial name="_GasConcentrationPartial" model="Report" />
-                        break;
+                case StackTestReportGasConcentration _:
+                    <partial name="_GasConcentrationPartial" model="report" />
+                    break;
 
-                    case StackTestReportFlare _:
-                        <partial name="_FlarePartial" model="Report" />
-                        break;
+                case StackTestReportFlare _:
+                    <partial name="_FlarePartial" model="report" />
+                    break;
 
-                    case StackTestReportRata _:
-                        <partial name="_RataPartial" model="Report" />
-                        break;
+                case StackTestReportRata _:
+                    <partial name="_RataPartial" model="report" />
+                    break;
 
-                    case StackTestReportOpacity _:
-                        <partial name="_OpacityPartial" model="Report" />
-                        break;
+                case StackTestReportOpacity _:
+                    <partial name="_OpacityPartial" model="report" />
+                    break;
 
-                    case StackTestMemorandum _:
-                        <partial name="_MemorandumPartial" model="Report" />
-                        break;
-
-                    default:
-                        break;
-                }
+                case StackTestMemorandum _:
+                    <partial name="_MemorandumPartial" model="report" />
+                    break;
+            }
             </tbody>
             <tfoot>
-                <tr>
-                    <td colspan="2">
-                        <footer class="split-lr">
-                            <div>
-                                <div>cc: @Report.ComplianceManager</div>
-                                <div>AIRS Number: @Report.Facility.Id</div>
-                            </div>
-                            <div>
-                                <div>Reference Number: @Report.ReferenceNumber</div>
-                                <div>Printed: @DateTime.Today.ToString(DisplayFormats.ShortDate)</div>
-                            </div>
-                        </footer>
-                    </td>
-                </tr>
+            <tr>
+                <td colspan="2">
+                    <footer class="split-lr">
+                        <div>
+                            <div>cc: @report.ComplianceManager</div>
+                            <div>AIRS Number: @report.Facility.Id</div>
+                        </div>
+                        <div>
+                            <div>Reference Number: @report.ReferenceNumber</div>
+                            <div>Printed: @DateTime.Today.ToString(DisplayFormats.ShortDate)</div>
+                        </div>
+                    </footer>
+                </td>
+            </tr>
             </tfoot>
         </table>
     </section>

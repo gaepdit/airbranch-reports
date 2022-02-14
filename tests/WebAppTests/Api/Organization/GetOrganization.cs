@@ -7,7 +7,7 @@ using NUnit.Framework;
 using System.Threading.Tasks;
 using WebApp.Api.Organization;
 
-namespace WebAppTests.Api;
+namespace WebAppTests.Api.Organization;
 
 public class GetOrganization
 {
@@ -26,7 +26,7 @@ public class GetOrganization
             response.Result.Should().BeOfType<OkObjectResult>();
             var result = response.Result as OkObjectResult;
             result!.StatusCode.Should().Be(200);
-            result!.Value.Should().BeEquivalentTo(new OrganizationInfo());
+            result.Value.Should().BeEquivalentTo(new OrganizationInfo());
         });
     }
 }

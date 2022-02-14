@@ -1,37 +1,36 @@
 ﻿@model Domain.StackTest.Models.StackTestReportFlare
-@using Domain.StackTest.Models.TestRun
 @{
-    if (Model!.TestRuns is not { Count: > 0 }) return;
+    if (Model.TestRuns is not { Count: > 0 }) return;
     var firstTestRun = Model.TestRuns.FirstOrDefault()!;
 }
 
 <table class="table-subtable-vertical" aria-label="Test run data">
     <thead>
-        <tr>
-            <th scope="row">@Html.DisplayNameFor(m => firstTestRun.RunNumber)</th>
-            @foreach (var r in Model.TestRuns)
-            {
-                <th scope="col">@r.RunNumber</th>
-            }
-            <th scope="col">Average</th>
-        </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.RunNumber)</th>
+        @foreach (var r in Model.TestRuns)
+        {
+            <th scope="col">@r.RunNumber</th>
+        }
+        <th scope="col">Average</th>
+    </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">@Html.DisplayNameFor(m => firstTestRun.HeatingValue) (@Model.AvgHeatingValue.Units)</th>
-            @foreach (var r in Model.TestRuns)
-            {
-                <td>@r.HeatingValue</td>
-            }
-            <td>@Model.AvgHeatingValue.Value</td>
-        </tr>
-        <tr>
-            <th scope="row">@Html.DisplayNameFor(m => firstTestRun.EmissionRateVelocity) (@Model.AvgEmissionRateVelocity.Units)</th>
-            @foreach (var r in Model.TestRuns)
-            {
-                <td>@r.EmissionRateVelocity</td>
-            }
-            <td>@Model.AvgEmissionRateVelocity.Value</td>
-        </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.HeatingValue) (@Model.AvgHeatingValue.Units)</th>
+        @foreach (var r in Model.TestRuns)
+        {
+            <td>@r.HeatingValue</td>
+        }
+        <td>@Model.AvgHeatingValue.Value</td>
+    </tr>
+    <tr>
+        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.EmissionRateVelocity) (@Model.AvgEmissionRateVelocity.Units)</th>
+        @foreach (var r in Model.TestRuns)
+        {
+            <td>@r.EmissionRateVelocity</td>
+        }
+        <td>@Model.AvgEmissionRateVelocity.Value</td>
+    </tr>
     </tbody>
 </table>

@@ -1,5 +1,5 @@
-﻿@model Domain.StackTest.Models.StackTestMemorandum
-@using Domain.StackTest.Models
+﻿@using Domain.StackTest.Models
+@model Domain.StackTest.Models.StackTestMemorandum
 
 @if (Model.DocumentType == DocumentType.PTE)
 {
@@ -17,7 +17,7 @@
     </tr>
     <tr>
         <th scope="row">@Html.DisplayNameFor(m => m.ControlEquipmentInfo)</th>
-        <td class="preserve-linebreaks">@Model!.ControlEquipmentInfo</td>
+        <td class="preserve-linebreaks">@Model.ControlEquipmentInfo</td>
     </tr>
 }
 else if (Model.DocumentType == DocumentType.MemorandumToFile)

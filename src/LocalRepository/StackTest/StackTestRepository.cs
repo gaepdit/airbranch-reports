@@ -8,9 +8,9 @@ public class StackTestRepository : IStackTestRepository
 {
     public Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber) =>
         Task.FromResult(StackTestReports.Any(e =>
-        e.ReferenceNumber == referenceNumber &&
-        e.Facility?.Id == facilityId &&
-        e.DocumentType != DocumentType.Unassigned));
+            e.ReferenceNumber == referenceNumber &&
+            e.Facility?.Id == facilityId &&
+            e.DocumentType != DocumentType.Unassigned));
 
     public Task<DocumentType> GetDocumentTypeAsync(int referenceNumber) =>
         Task.FromResult(StackTestReports.Single(e => e.ReferenceNumber == referenceNumber).DocumentType);

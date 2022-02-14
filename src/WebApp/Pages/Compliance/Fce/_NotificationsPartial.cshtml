@@ -1,5 +1,4 @@
-﻿@model List<Notification>
-@using Domain.Compliance.Models.WorkItems
+﻿@model List<Domain.Compliance.Models.WorkItems.Notification>
 
 <h2 id="notifications">Notifications</h2>
 
@@ -15,30 +14,30 @@
 
 <table aria-labelledby="notifications">
     <thead>
-        <tr>
-            <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Id)</th>
-            <th scope="col">@Html.DisplayNameFor(m => firstItem.DateReceived)</th>
-            <th scope="col">@Html.DisplayNameFor(m => firstItem.Reviewer)</th>
-            <th scope="col">@Html.DisplayNameFor(m => firstItem.Type)</th>
-        </tr>
+    <tr>
+        <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Id)</th>
+        <th scope="col">@Html.DisplayNameFor(m => firstItem.DateReceived)</th>
+        <th scope="col">@Html.DisplayNameFor(m => firstItem.Reviewer)</th>
+        <th scope="col">@Html.DisplayNameFor(m => firstItem.Type)</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var i in Model)
-        {
-            <tr>
-                <th scope="row" rowspan="2">@i.Id</th>
-                <td>@Html.DisplayFor(m => i.DateReceived)</td>
-                <td>@i.Reviewer.SortableFullName</td>
-                <td>@i.Type</td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <dl class="dl-inline">
-                        <dt>@Html.DisplayNameFor(m => firstItem.Comments)</dt>
-                        <dd>@i.Comments</dd>
-                    </dl>
-                </td>
-            </tr>
-        }
+    @foreach (var i in Model)
+    {
+        <tr>
+            <th scope="row" rowspan="2">@i.Id</th>
+            <td>@Html.DisplayFor(m => i.DateReceived)</td>
+            <td>@i.Reviewer.SortableFullName</td>
+            <td>@i.Type</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <dl class="dl-inline">
+                    <dt>@Html.DisplayNameFor(m => firstItem.Comments)</dt>
+                    <dd>@i.Comments</dd>
+                </dl>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>

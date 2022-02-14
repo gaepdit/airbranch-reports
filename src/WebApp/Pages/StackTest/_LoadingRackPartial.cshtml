@@ -13,7 +13,7 @@
 </tr>
 <tr>
     <th scope="row">@Html.DisplayNameFor(m => m.ControlEquipmentInfo)</th>
-    <td class="preserve-linebreaks">@Model!.ControlEquipmentInfo</td>
+    <td class="preserve-linebreaks">@Model.ControlEquipmentInfo</td>
 </tr>
 <tr>
     <th scope="row">@Html.DisplayNameFor(m => m.TestDuration)</th>
@@ -24,14 +24,14 @@
     <td class="table-subtable">
         <table class="table-subtable-horizontal" aria-labelledby="pollutant-concentration">
             <tbody>
-                <tr>
-                    <th scope="row">IN</th>
-                    <td>@Html.DisplayFor(m => m.PollutantConcentrationIn)</td>
-                </tr>
-                <tr>
-                    <th scope="row">OUT</th>
-                    <td>@Html.DisplayFor(m => m.PollutantConcentrationOut)</td>
-                </tr>
+            <tr>
+                <th scope="row">IN</th>
+                <td>@Html.DisplayFor(m => m.PollutantConcentrationIn)</td>
+            </tr>
+            <tr>
+                <th scope="row">OUT</th>
+                <td>@Html.DisplayFor(m => m.PollutantConcentrationOut)</td>
+            </tr>
             </tbody>
         </table>
     </td>
@@ -46,5 +46,5 @@
 </tr>
 <tr>
     <th scope="row">@Html.DisplayNameFor(m => m.Comments)</th>
-    <td class="preserve-linebreaks">@Model!.Comments</td>
+    <td class="preserve-linebreaks">@Model.Comments</td>
 </tr>

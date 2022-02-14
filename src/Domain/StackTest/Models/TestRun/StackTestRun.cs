@@ -2,7 +2,7 @@
 
 namespace Domain.StackTest.Models.TestRun;
 
-public record class StackTestRun : BaseTestRun
+public record StackTestRun : BaseTestRun
 {
     [Display(Name = "Gas temperature (°F)")]
     public string GasTemperature { get; init; } = "";
@@ -25,15 +25,15 @@ public record class StackTestRun : BaseTestRun
     #region Confidential info handling
 
     public override StackTestRun RedactedTestRun() =>
-       RedactedBaseTestRun<StackTestRun>() with
-       {
-           GasTemperature = CheckConfidential(GasTemperature, nameof(GasTemperature)),
-           GasMoisture = CheckConfidential(GasMoisture, nameof(GasMoisture)),
-           GasFlowRateAscfm = CheckConfidential(GasFlowRateAscfm, nameof(GasFlowRateAscfm)),
-           GasFlowRateDscfm = CheckConfidential(GasFlowRateDscfm, nameof(GasFlowRateDscfm)),
-           PollutantConcentration = CheckConfidential(PollutantConcentration, nameof(PollutantConcentration)),
-           EmissionRate = CheckConfidential(EmissionRate, nameof(EmissionRate)),
-       };
+        RedactedBaseTestRun<StackTestRun>() with
+        {
+            GasTemperature = CheckConfidential(GasTemperature, nameof(GasTemperature)),
+            GasMoisture = CheckConfidential(GasMoisture, nameof(GasMoisture)),
+            GasFlowRateAscfm = CheckConfidential(GasFlowRateAscfm, nameof(GasFlowRateAscfm)),
+            GasFlowRateDscfm = CheckConfidential(GasFlowRateDscfm, nameof(GasFlowRateDscfm)),
+            PollutantConcentration = CheckConfidential(PollutantConcentration, nameof(PollutantConcentration)),
+            EmissionRate = CheckConfidential(EmissionRate, nameof(EmissionRate)),
+        };
 
     protected override void ParseConfidentialParameters()
     {

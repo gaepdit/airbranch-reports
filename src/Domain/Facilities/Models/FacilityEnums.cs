@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Domain.Facilities.Models;
 
 /// <summary>
-/// The operational status of a facility.
+///     The operational status of a facility.
 /// </summary>
 /// <remarks>Stored in the database as a single-character string.</remarks>
 public enum FacilityOperatingStatus
@@ -18,9 +19,10 @@ public enum FacilityOperatingStatus
 }
 
 /// <summary>
-/// The source classification of a facility (based on permit type).
+///     The source classification of a facility (based on permit type).
 /// </summary>
 /// <remarks>Stored in the database as a two-character string.</remarks>
+[SuppressMessage("ReSharper", "InconsistentNaming")]
 public enum FacilityClassification
 {
     [Description("Unspecified")] Unspecified,
@@ -32,7 +34,7 @@ public enum FacilityClassification
 }
 
 /// <summary>
-/// The CMS classification of a facility.
+///     The CMS classification of a facility.
 /// </summary>
 /// <remarks>Stored in the database as a nullable one-character string.</remarks>
 public enum FacilityCmsClassification
@@ -45,12 +47,12 @@ public enum FacilityCmsClassification
 }
 
 /// <summary>
-/// Specifies whether a facility is located within a one-hour ozone nonattainment area.
+///     Specifies whether a facility is located within a one-hour ozone nonattainment area.
 /// </summary>
 /// <remarks>
-/// The value of each enumeration member is significant because the members are stored
-/// and retrieved from the database in a coded string (along with EightHourNonattainmentStatus and
-/// PMFineNonattainmentStatus.)
+///     The value of each enumeration member is significant because the members are stored
+///     and retrieved from the database in a coded string (along with EightHourNonattainmentStatus and
+///     PMFineNonattainmentStatus.)
 /// </remarks>
 public enum OneHourOzoneNonattainmentStatus
 {
@@ -60,12 +62,12 @@ public enum OneHourOzoneNonattainmentStatus
 }
 
 /// <summary>
-/// Specifies whether a facility is located within an eight-hour ozone nonattainment area.
+///     Specifies whether a facility is located within an eight-hour ozone nonattainment area.
 /// </summary>
 /// <remarks>
-/// The value of each enumeration member is significant because the members are stored
-/// and retrieved from the database in a coded string (along with OneHourNonattainmentStatus and
-/// PMFineNonattainmentStatus.)
+///     The value of each enumeration member is significant because the members are stored
+///     and retrieved from the database in a coded string (along with OneHourNonattainmentStatus and
+///     PMFineNonattainmentStatus.)
 /// </remarks>
 public enum EightHourOzoneNonattainmentStatus
 {
@@ -75,12 +77,12 @@ public enum EightHourOzoneNonattainmentStatus
 }
 
 /// <summary>
-/// Specifies whether a facility is located within a PM Fine (PM 2.5) nonattainment area.
+///     Specifies whether a facility is located within a PM Fine (PM 2.5) nonattainment area.
 /// </summary>
 /// <remarks>
-/// The value of each enumeration member is significant because the members are stored
-/// and retrieved from the database in a coded string (along with EightHourNonattainmentStatus and
-/// OneHourNonattainmentStatus.)
+///     The value of each enumeration member is significant because the members are stored
+///     and retrieved from the database in a coded string (along with EightHourNonattainmentStatus and
+///     OneHourNonattainmentStatus.)
 /// </remarks>
 public enum PmFineNonattainmentStatus
 {

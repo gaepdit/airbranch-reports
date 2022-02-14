@@ -13,7 +13,7 @@ public class GetAccReport
     {
         var facilityId = "193-00008";
         var year = 2019;
-        var repo = new ComplianceRepository(Global.conn!);
+        var repo = new ComplianceRepository(Global.DbConn!);
         var result = await repo.GetAccReportAsync(facilityId, year);
 
         Assert.Multiple(() =>
@@ -29,7 +29,7 @@ public class GetAccReport
     [Test]
     public async Task ReturnsNullIfNotExists()
     {
-        var repo = new ComplianceRepository(Global.conn!);
+        var repo = new ComplianceRepository(Global.DbConn!);
         var result = await repo.GetAccReportAsync("000-00000", 2019);
 
         result.Should().BeNull();

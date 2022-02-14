@@ -2,7 +2,7 @@
 
 namespace Domain.Compliance.Models.WorkItems;
 
-public record class Notification
+public record Notification
 {
     [Display(Name = "Tracking #")]
     public int Id { get; init; }

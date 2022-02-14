@@ -1,5 +1,4 @@
-﻿@model List<FeeYear>
-@using Domain.Compliance.Models.WorkItems
+﻿@model List<Domain.Compliance.Models.WorkItems.FeeYear>
 
 <h2 id="permit-fees">Five-Year History of Annual Permit Fees</h2>
 
@@ -15,24 +14,24 @@
 
 <table aria-labelledby="permit-fees">
     <thead>
-        <tr>
-            <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Year)</th>
-            <th scope="col" class="align-right">@Html.DisplayNameFor(m => firstItem.InvoicedAmount)</th>
-            <th scope="col" class="align-right">@Html.DisplayNameFor(m => firstItem.AmountPaid)</th>
-            <th scope="col" class="align-right">@Html.DisplayNameFor(m => firstItem.Balance)</th>
-            <th scope="col">@Html.DisplayNameFor(m => firstItem.Status)</th>
-        </tr>
+    <tr>
+        <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Year)</th>
+        <th scope="col" class="align-right">@Html.DisplayNameFor(m => firstItem.InvoicedAmount)</th>
+        <th scope="col" class="align-right">@Html.DisplayNameFor(m => firstItem.AmountPaid)</th>
+        <th scope="col" class="align-right">@Html.DisplayNameFor(m => firstItem.Balance)</th>
+        <th scope="col">@Html.DisplayNameFor(m => firstItem.Status)</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var i in Model)
-        {
-            <tr>
-                <th scope="row">@i.Year</th>
-                <td class="align-right">@Html.DisplayFor(m => i.InvoicedAmount, "Currency")</td>
-                <td class="align-right">@Html.DisplayFor(m => i.AmountPaid, "Currency")</td>
-                <td class="align-right">@Html.DisplayFor(m => i.Balance, "Currency")</td>
-                <td>@i.Status</td>
-            </tr>
-        }
+    @foreach (var i in Model)
+    {
+        <tr>
+            <th scope="row">@i.Year</th>
+            <td class="align-right">@Html.DisplayFor(m => i.InvoicedAmount, "Currency")</td>
+            <td class="align-right">@Html.DisplayFor(m => i.AmountPaid, "Currency")</td>
+            <td class="align-right">@Html.DisplayFor(m => i.Balance, "Currency")</td>
+            <td>@i.Status</td>
+        </tr>
+    }
     </tbody>
 </table>

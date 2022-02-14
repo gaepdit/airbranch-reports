@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.StackTest.Models;
 
-public record class StackTestReportFlare : BaseStackTestReport
+public record StackTestReportFlare : BaseStackTestReport
 {
     // Operating data
 
@@ -14,7 +14,7 @@ public record class StackTestReportFlare : BaseStackTestReport
     public ValueWithUnits OperatingCapacity { get; set; }
 
     [Display(Name = "Allowable emission rate(s)")]
-    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new List<ValueWithUnits>();
+    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new();
 
     [Display(Name = "Control equipment and monitoring data")]
     public string ControlEquipmentInfo { get; set; } = "";
@@ -22,7 +22,7 @@ public record class StackTestReportFlare : BaseStackTestReport
     // Test run data
 
     [Display(Name = "Test runs")]
-    public List<FlareTestRun> TestRuns { get; set; } = new List<FlareTestRun>();
+    public List<FlareTestRun> TestRuns { get; set; } = new();
 
     [Display(Name = "Average heating value")]
     public ValueWithUnits AvgHeatingValue { get; set; }

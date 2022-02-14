@@ -1,10 +1,10 @@
-﻿using Domain.StackTest.Models.TestRun;
+using Domain.StackTest.Models.TestRun;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Domain.StackTest.Models;
 
-public record class StackTestReportRata : BaseStackTestReport
+public record StackTestReportRata : BaseStackTestReport
 {
     [Display(Name = "Applicable standard")]
     public string ApplicableStandard { get; set; } = "";
@@ -18,7 +18,7 @@ public record class StackTestReportRata : BaseStackTestReport
     public string Units { get; set; } = "";
 
     [Display(Name = "Test data")]
-    public List<RataTestRun> TestRuns { get; set; } = new List<RataTestRun>();
+    public List<RataTestRun> TestRuns { get; set; } = new();
 
     [Display(Name = "Accuracy choice ")] // STRACCURACYCHOICE
     [JsonIgnore]

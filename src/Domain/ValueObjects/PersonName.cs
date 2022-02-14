@@ -4,9 +4,9 @@ namespace Domain.ValueObjects;
 
 public record struct PersonName
 (
-    string GivenName, 
-    string FamilyName, 
-    string? Prefix = null, 
+    string GivenName,
+    string FamilyName,
+    string? Prefix = null,
     string? Suffix = null
 )
 {

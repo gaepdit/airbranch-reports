@@ -11,7 +11,7 @@ public class GetOrganization
     [Test]
     public async Task ReturnsOrganization()
     {
-        var repo = new OrganizationRepository(Global.conn!);
+        var repo = new OrganizationRepository(Global.DbConn!);
         var result = await repo.GetAsync();
 
         Assert.Multiple(() =>

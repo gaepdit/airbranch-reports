@@ -1,5 +1,4 @@
-﻿@model List<Acc>
-@using Domain.Compliance.Models.WorkItems
+﻿@model List<Domain.Compliance.Models.WorkItems.Acc>
 
 <h2 id="accs">Annual Compliance Certifications</h2>
 
@@ -15,24 +14,24 @@
 
 <table aria-labelledby="accs">
     <thead>
-        <tr>
-            <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Id)</th>
-            <th scope="col">@Html.DisplayNameFor(m => firstItem.AccReportingYear)</th>
-            <th scope="col">@Html.DisplayNameFor(m => firstItem.ReceivedDate)</th>
-            <th scope="col">@Html.DisplayNameFor(m => firstItem.Reviewer)</th>
-            <th scope="col">@Html.DisplayNameFor(m => firstItem.DeviationsReported)</th>
-        </tr>
+    <tr>
+        <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Id)</th>
+        <th scope="col">@Html.DisplayNameFor(m => firstItem.AccReportingYear)</th>
+        <th scope="col">@Html.DisplayNameFor(m => firstItem.ReceivedDate)</th>
+        <th scope="col">@Html.DisplayNameFor(m => firstItem.Reviewer)</th>
+        <th scope="col">@Html.DisplayNameFor(m => firstItem.DeviationsReported)</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var i in Model)
-        {
-            <tr>
-                <th scope="row">@i.Id</th>
-                <td>@i.AccReportingYear</td>
-                <td>@Html.DisplayFor(m => i.ReceivedDate)</td>
-                <td>@i.Reviewer.SortableFullName</td>
-                <td>@Html.DisplayFor(m => i.DeviationsReported, "BooleanYesNo")</td>
-            </tr>
-        }
+    @foreach (var i in Model)
+    {
+        <tr>
+            <th scope="row">@i.Id</th>
+            <td>@i.AccReportingYear</td>
+            <td>@Html.DisplayFor(m => i.ReceivedDate)</td>
+            <td>@i.Reviewer.SortableFullName</td>
+            <td>@Html.DisplayFor(m => i.DeviationsReported, "BooleanYesNo")</td>
+        </tr>
+    }
     </tbody>
 </table>

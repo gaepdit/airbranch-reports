@@ -8,7 +8,7 @@ using NUnit.Framework;
 using System.Threading.Tasks;
 using WebApp.Api.Compliance;
 
-namespace WebAppTests.Api;
+namespace WebAppTests.Api.Compliance;
 
 public class GetAccReport
 {
@@ -27,7 +27,7 @@ public class GetAccReport
             response.Result.Should().BeOfType<OkObjectResult>();
             var result = response.Result as OkObjectResult;
             result!.StatusCode.Should().Be(200);
-            result!.Value.Should().BeEquivalentTo(new AccReport());
+            result.Value.Should().BeEquivalentTo(new AccReport());
         });
     }
 

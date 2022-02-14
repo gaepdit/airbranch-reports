@@ -1110,5 +1110,4 @@ where convert(int, STRREFERENCENUMBER) = @ReferenceNumber
   and not (t.RunNumber > 1 and trim(t.Opacity) in ('', 'N/A'))
 order by t.RunNumber;
 ";
-
 }

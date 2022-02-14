@@ -8,7 +8,7 @@ using NUnit.Framework;
 using System.Threading.Tasks;
 using WebApp.Api.StackTest;
 
-namespace WebAppTests.Api;
+namespace WebAppTests.Api.StackTest;
 
 public class GetStackTest
 {
@@ -27,7 +27,7 @@ public class GetStackTest
             response.Result.Should().BeOfType<OkObjectResult>();
             var result = response.Result as OkObjectResult;
             result!.StatusCode.Should().Be(200);
-            result!.Value.Should().BeEquivalentTo(new StackTestReportOneStack());
+            result.Value.Should().BeEquivalentTo(new StackTestReportOneStack());
         });
     }
 

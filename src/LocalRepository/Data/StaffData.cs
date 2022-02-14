@@ -1,13 +1,13 @@
-﻿using Domain.Personnel;
+using Domain.Personnel;
 
 namespace LocalRepository.Data;
 
 public static class StaffData
 {
-    public static Staff? GetStaff(int Id) =>
-        Staff.SingleOrDefault(e => e.Id == Id);
+    public static Staff? GetStaff(int id) =>
+        Staff.SingleOrDefault(e => e.Id == id);
 
-    public static IEnumerable<Staff> Staff => new List<Staff>
+    private static IEnumerable<Staff> Staff => new List<Staff>
     {
         new()
         {
@@ -31,7 +31,7 @@ public static class StaffData
         {
             Id = 4,
             EmailAddress = "four@example.net",
-            Name = new PersonName("Dugong", "Sirenia", "Ms.")
+            Name = new PersonName("Dugong", "Sirenia", "Ms."),
         },
         new()
         {

@@ -1,9 +1,9 @@
-﻿using Domain.StackTest.Models.TestRun;
+using Domain.StackTest.Models.TestRun;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.StackTest.Models;
 
-public record class StackTestReportTwoStack : BaseStackTestReport
+public record StackTestReportTwoStack : BaseStackTestReport
 {
     // Operating data
 
@@ -14,7 +14,7 @@ public record class StackTestReportTwoStack : BaseStackTestReport
     public ValueWithUnits OperatingCapacity { get; set; }
 
     [Display(Name = "Allowable emission rate(s)")]
-    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new List<ValueWithUnits>();
+    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new();
 
     [Display(Name = "Control equipment and monitoring data")]
     public string ControlEquipmentInfo { get; set; } = "";
@@ -25,14 +25,16 @@ public record class StackTestReportTwoStack : BaseStackTestReport
     public string StackTwoName { get; set; } = "";
 
     [Display(Name = "Test runs")]
-    public List<TwoStackTestRun> TestRuns { get; set; } = new List<TwoStackTestRun>();
+    public List<TwoStackTestRun> TestRuns { get; set; } = new();
 
     [Display(Name = "Average pollutant concentration")]
     public ValueWithUnits StackOneAvgPollutantConcentration { get; set; }
+
     public ValueWithUnits StackTwoAvgPollutantConcentration { get; set; }
 
     [Display(Name = "Average emission rate")]
     public ValueWithUnits StackOneAvgEmissionRate { get; set; }
+
     public ValueWithUnits StackTwoAvgEmissionRate { get; set; }
 
     // `SumAvgEmissionRate` is only used by Two Stack (Standard)

@@ -372,5 +372,4 @@ where e.STRAOEXECUTED = 'True'
 
 order by EnforcementDate desc, 1 desc;
 ";
-
 }

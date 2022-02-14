@@ -1,8 +1,7 @@
-﻿@model Domain.StackTest.Models.StackTestReportOpacity
-@using Domain.StackTest.Models
-@using Domain.StackTest.Models.TestRun
+﻿@using Domain.StackTest.Models
+@model Domain.StackTest.Models.StackTestReportOpacity
 @{
-    if (Model!.TestRuns is not { Count: 1 }) return;
+    if (Model.TestRuns is not { Count: 1 }) return;
     var run = Model.TestRuns.FirstOrDefault()!;
 }
 

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Domain.StackTest.Models.TestRun;
 
-public abstract record class BaseTestRun
+public abstract record BaseTestRun
 {
     [Display(Name = "Test run #")]
     public string RunNumber { get; init; } = "";
@@ -25,15 +25,16 @@ public abstract record class BaseTestRun
 
     protected string CheckConfidential(string input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? GlobalConstants.ConfidentialInfoPlaceholder
-        : input;
+            ? GlobalConstants.ConfidentialInfoPlaceholder
+            : input;
 
     protected ValueWithUnits CheckConfidential(ValueWithUnits input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, input.Units, input.Preamble)
-        : input;
+            ? new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, input.Units, input.Preamble)
+            : input;
 
     protected abstract void ParseConfidentialParameters();
+
     protected void ParseBaseConfidentialParameters()
     {
         AddIfConfidential(1, nameof(RunNumber));
@@ -61,6 +62,7 @@ public abstract record class BaseTestRun
             r.ParseConfidentialParameters();
             parsedTestRuns.Add(r);
         }
+
         return parsedTestRuns;
     }
 

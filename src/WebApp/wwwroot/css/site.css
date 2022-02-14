@@ -12,14 +12,14 @@ html {
     margin-bottom: 1rem;
 }
 
-    .grid-half > div:first-child {
-        border-right: 1px solid #bbb;
-        padding-right: 1rem;
-    }
+.grid-half > div:first-child {
+    border-right: 1px solid #bbb;
+    padding-right: 1rem;
+}
 
-    .grid-half > div:last-child {
-        padding-left: 1rem;
-    }
+.grid-half > div:last-child {
+    padding-left: 1rem;
+}
 
 @media (min-width: 768px) {
     html {

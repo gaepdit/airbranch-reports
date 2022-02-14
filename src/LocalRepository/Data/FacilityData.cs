@@ -1,4 +1,4 @@
-﻿namespace LocalRepository.Data;
+namespace LocalRepository.Data;
 
 public static class FacilityData
 {
@@ -36,7 +36,7 @@ public static class FacilityData
                 OwnershipType = null,
                 StartupDate = new DateTime(2000, 1, 1),
                 PermitRevocationDate = null,
-                AirPrograms = new List<string> { "SIP", "MACT", },
+                AirPrograms = new List<string> { "SIP", "MACT" },
                 ProgramClassifications = new List<string> { "NSR/PSD Major" },
                 OneHourOzoneNonattainment = OneHourOzoneNonattainmentStatus.Contribute,
                 EightHourOzoneNonattainment = EightHourOzoneNonattainmentStatus.Atlanta,
@@ -69,7 +69,7 @@ public static class FacilityData
                 OwnershipType = "Federal Facility (U.S. Government)",
                 StartupDate = new DateTime(2000, 1, 1),
                 PermitRevocationDate = null,
-                AirPrograms = new List<string> { "SIP", "NSPS", },
+                AirPrograms = new List<string> { "SIP", "NSPS" },
                 ProgramClassifications = new List<string>(),
                 OneHourOzoneNonattainment = OneHourOzoneNonattainmentStatus.No,
                 EightHourOzoneNonattainment = EightHourOzoneNonattainmentStatus.None,
@@ -180,7 +180,7 @@ public static class FacilityData
                 OwnershipType = "Federal Facility (U.S. Government)",
                 StartupDate = new DateTime(2000, 1, 1),
                 PermitRevocationDate = null,
-                AirPrograms = new List<string> { "SIP", "NSPS", },
+                AirPrograms = new List<string> { "SIP", "NSPS" },
                 ProgramClassifications = new List<string>(),
                 OneHourOzoneNonattainment = OneHourOzoneNonattainmentStatus.No,
                 EightHourOzoneNonattainment = EightHourOzoneNonattainmentStatus.None,

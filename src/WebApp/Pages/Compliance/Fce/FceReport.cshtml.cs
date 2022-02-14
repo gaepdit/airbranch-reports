@@ -20,7 +20,7 @@ public class FceReportModel : PageModel
         [FromRoute] int year)
     {
         if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId))
-            return NotFound($"Facility ID is invalid.");
+            return NotFound("Facility ID is invalid.");
 
         Report = await repository.GetFceReportAsync(new ApbFacilityId(facilityId), year);
         if (Report?.Facility is null) return NotFound();

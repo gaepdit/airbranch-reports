@@ -18,17 +18,16 @@ internal class LocalAuthenticationHandler : AuthenticationHandler<Authentication
         UrlEncoder encoder,
         ISystemClock clock,
         IConfiguration configuration)
-        : base(options, logger, encoder, clock)
-    {
+        : base(options, logger, encoder, clock) =>
         _configuration = configuration;
-    }
 
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {
         if (_configuration.GetValue<bool>("AuthenticatedUser"))
         {
             var claims = new[] { new Claim(ClaimTypes.Name, "Local User") };
-            var ticket = new AuthenticationTicket(new ClaimsPrincipal(new ClaimsIdentity(claims, Scheme.Name)), Scheme.Name);
+            var ticket = new AuthenticationTicket(new ClaimsPrincipal(new ClaimsIdentity(claims, Scheme.Name)),
+                Scheme.Name);
             return Task.FromResult(AuthenticateResult.Success(ticket));
         }
 
