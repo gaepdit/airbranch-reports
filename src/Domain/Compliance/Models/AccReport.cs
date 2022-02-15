@@ -2,7 +2,7 @@
 
 namespace Domain.Compliance.Models;
 
-public record class AccReport
+public record AccReport
 {
     public int Id { get; init; }
 

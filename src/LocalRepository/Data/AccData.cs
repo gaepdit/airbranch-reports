@@ -6,7 +6,8 @@ public static class AccData
 {
     public static IEnumerable<AccReport> AccReports => new List<AccReport>
     {
-        new() {
+        new()
+        {
             Id = 1,
             AccReportingYear = 2018,
             AllDeviationsReported = true,
@@ -27,7 +28,8 @@ public static class AccData
             StaffResponsible = StaffData.GetStaff(1)!.Value.Name,
             UnreportedDeviationsReported = false,
         },
-        new() {
+        new()
+        {
             Id = 2,
             AccReportingYear = 2019,
             AllDeviationsReported = false,

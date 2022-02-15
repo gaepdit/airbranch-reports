@@ -8,19 +8,20 @@ namespace Infrastructure.Organization;
 
 public class OrganizationRepository : IOrganizationRepository
 {
+    // ReSharper disable once InconsistentNaming
     private readonly IDbConnection db;
     public OrganizationRepository(IDbConnection conn) => db = conn;
 
     public async Task<OrganizationInfo> GetAsync()
     {
-        var query = @"select STRMANAGEMENTNAME
+        const string query = @"select STRMANAGEMENTNAME
             from LOOKUPAPBMANAGEMENTTYPE
             where STRKEY = 'EpdDirector'
               and STRCURRENTCONTACT = 'C'";
 
-        string director = await db.ExecuteScalarAsync<string>(query);
+        var director = await db.ExecuteScalarAsync<string>(query);
 
-        var organizationInfo = new OrganizationInfo()
+        var organizationInfo = new OrganizationInfo
         {
             NameOfDirector = director,
             Org = "Air Protection Branch",

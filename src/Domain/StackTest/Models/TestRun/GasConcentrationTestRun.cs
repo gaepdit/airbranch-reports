@@ -2,7 +2,7 @@
 
 namespace Domain.StackTest.Models.TestRun;
 
-public record class GasConcentrationTestRun : BaseTestRun
+public record GasConcentrationTestRun : BaseTestRun
 {
     [Display(Name = "Pollutant concentration")]
     public string PollutantConcentration { get; init; } = "";

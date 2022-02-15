@@ -2,7 +2,7 @@
 
 namespace Domain.StackTest.Models.TestRun;
 
-public record class FlareTestRun : BaseTestRun
+public record FlareTestRun : BaseTestRun
 {
     [Display(Name = "Heating value")]
     public string HeatingValue { get; init; } = "";

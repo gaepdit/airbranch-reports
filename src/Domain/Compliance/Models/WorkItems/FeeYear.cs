@@ -2,7 +2,7 @@
 
 namespace Domain.Compliance.Models.WorkItems;
 
-public record class FeeYear
+public record FeeYear
 {
     [Display(Name = "Fee year")]
     public int Year { get; init; }

@@ -1,4 +1,3 @@
-using Air.WebApp.Platform.Raygun;
 using Domain.Compliance.Repositories;
 using Domain.Facilities.Repositories;
 using Domain.Organization.Repositories;
@@ -13,6 +12,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json.Serialization;
 using WebApp.Platform.Local;
+using WebApp.Platform.Raygun;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,11 +22,12 @@ if (builder.Environment.IsLocalDev())
     // When running locally, uses a built-in authenticated user.
     builder.Services
         .AddAuthentication(LocalAuthenticationHandler.BasicAuthenticationScheme)
-        .AddScheme<AuthenticationSchemeOptions, LocalAuthenticationHandler>(LocalAuthenticationHandler.BasicAuthenticationScheme, null);
+        .AddScheme<AuthenticationSchemeOptions, LocalAuthenticationHandler>(
+            LocalAuthenticationHandler.BasicAuthenticationScheme, null);
 }
 else
 {
-    // When running on the server, requires an Azure AD login account (configured in the appsettings file).
+    // When running on the server, requires an Azure AD login account (configured in the app settings file).
     builder.Services
         .AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
@@ -67,9 +68,9 @@ if (builder.Environment.IsLocalDev())
 }
 else
 {
-    // When running on the server, requires a deployed database (configured in the appsettings file).
-    builder.Services.AddScoped<IDbConnection>(
-        db => new SqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
+    // When running on the server, requires a deployed database (configured in the app settings file).
+    builder.Services.AddScoped<IDbConnection>(_ => new SqlConnection(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
 
     builder.Services.AddScoped<IFacilitiesRepository,
         Infrastructure.Facilities.FacilitiesRepository>();
@@ -110,7 +111,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
-// Only needed if API/controllers are to be used:
-app.MapControllers();
+app.MapControllers(); // Only needed if API/controllers are to be used
 
 app.Run();

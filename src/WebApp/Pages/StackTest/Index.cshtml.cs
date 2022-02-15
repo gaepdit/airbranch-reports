@@ -14,7 +14,7 @@ public class IndexModel : PageModel
     public BaseStackTestReport? Report { get; private set; }
     public OrganizationInfo OrganizationInfo { get; private set; }
     public MemoHeader MemoHeader { get; private set; }
-    public bool ShowConfidentialWarning { get; private set; } = false;
+    public bool ShowConfidentialWarning { get; private set; }
 
     public async Task<ActionResult> OnGetAsync(
         [FromServices] IStackTestRepository repository,
@@ -24,7 +24,7 @@ public class IndexModel : PageModel
         [FromQuery] bool includeConfidentialInfo = false)
     {
         if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId))
-            return NotFound($"Facility ID is invalid.");
+            return NotFound("Facility ID is invalid.");
 
         var report = await repository.GetStackTestReportAsync(new ApbFacilityId(facilityId), referenceNumber);
         if (report?.Facility is null) return NotFound();

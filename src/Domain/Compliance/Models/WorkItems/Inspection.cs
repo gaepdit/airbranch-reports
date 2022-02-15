@@ -2,7 +2,7 @@
 
 namespace Domain.Compliance.Models.WorkItems;
 
-public record class Inspection
+public record Inspection
 {
     [Display(Name = "Tracking #")]
     public int Id { get; init; }

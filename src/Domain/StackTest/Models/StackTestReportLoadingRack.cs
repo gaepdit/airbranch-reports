@@ -2,7 +2,7 @@
 
 namespace Domain.StackTest.Models;
 
-public record class StackTestReportLoadingRack : BaseStackTestReport
+public record StackTestReportLoadingRack : BaseStackTestReport
 {
     // Operating data
 
@@ -13,7 +13,7 @@ public record class StackTestReportLoadingRack : BaseStackTestReport
     public ValueWithUnits OperatingCapacity { get; set; }
 
     [Display(Name = "Allowable emission rate(s)")]
-    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new List<ValueWithUnits>();
+    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new();
 
     [Display(Name = "Control equipment and monitoring data")]
     public string ControlEquipmentInfo { get; set; } = "";
@@ -25,6 +25,7 @@ public record class StackTestReportLoadingRack : BaseStackTestReport
 
     [Display(Name = "Pollutant concentration")]
     public ValueWithUnits PollutantConcentrationIn { get; set; }
+
     public ValueWithUnits PollutantConcentrationOut { get; set; }
 
     [Display(Name = "Emission rate")]

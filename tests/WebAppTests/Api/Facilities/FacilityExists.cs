@@ -1,14 +1,13 @@
-using Domain.Facilities.Repositories;
 using Domain.Facilities.Models;
+using Domain.Facilities.Repositories;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using System.Threading.Tasks;
-using WebApp.Api.Compliance;
-using WebApp.Api.Facilities;
+using WebApp.Api.Facility;
 
-namespace WebAppTests.Api;
+namespace WebAppTests.Api.Facilities;
 
 public class FacilityExists
 {
@@ -27,7 +26,7 @@ public class FacilityExists
             response.Result.Should().BeOfType<OkObjectResult>();
             var result = response.Result as OkObjectResult;
             result!.StatusCode.Should().Be(200);
-            result!.Value.Should().BeEquivalentTo(true);
+            result.Value.Should().BeEquivalentTo(true);
         });
     }
 
@@ -46,7 +45,7 @@ public class FacilityExists
             response.Result.Should().BeOfType<OkObjectResult>();
             var result = response.Result as OkObjectResult;
             result!.StatusCode.Should().Be(200);
-            result!.Value.Should().BeEquivalentTo(false);
+            result.Value.Should().BeEquivalentTo(false);
         });
     }
 

@@ -1,5 +1,5 @@
-﻿@model Domain.StackTest.Models.StackTestReportTwoStack
-@using Domain.StackTest.Models
+﻿@using Domain.StackTest.Models
+@model Domain.StackTest.Models.StackTestReportTwoStack
 
 <tr class="table-section">
     <th scope="row">@Html.DisplayNameFor(m => m.MaxOperatingCapacity)</th>
@@ -15,7 +15,7 @@
 </tr>
 <tr>
     <th scope="row">@Html.DisplayNameFor(m => m.ControlEquipmentInfo)</th>
-    <td class="preserve-linebreaks">@Model!.ControlEquipmentInfo</td>
+    <td class="preserve-linebreaks">@Model.ControlEquipmentInfo</td>
 </tr>
 <tr>
     <td colspan="2" class="table-subtable">
@@ -27,18 +27,18 @@
 {
     <tr>
         <th scope="row">@Html.DisplayNameFor(m => m.PercentAllowable)</th>
-        <td>@Model!.PercentAllowable</td>
+        <td>@Model.PercentAllowable</td>
     </tr>
 }
 else // DocumentType.TwoStackDre
 {
     <tr>
         <th scope="row">@Html.DisplayNameFor(m => m.DestructionEfficiency)</th>
-        <td>@Model!.DestructionEfficiency</td>
+        <td>@Model.DestructionEfficiency</td>
     </tr>
 }
 
 <tr>
     <th scope="row">@Html.DisplayNameFor(m => m.Comments)</th>
-    <td class="preserve-linebreaks">@Model!.Comments</td>
+    <td class="preserve-linebreaks">@Model.Comments</td>
 </tr>

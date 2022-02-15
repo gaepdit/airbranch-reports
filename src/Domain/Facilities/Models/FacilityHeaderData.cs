@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Domain.Facilities.Models;
 
-public record class FacilityHeaderData
+public record FacilityHeaderData
 {
     // Operating status
 
@@ -25,7 +25,7 @@ public record class FacilityHeaderData
 
     [JsonIgnore]
     public FacilityClassification ClassificationCode { get; init; }
-    
+
     [Display(Name = "Classification")]
     public string Classification => ClassificationCode.GetDescription();
 
@@ -38,11 +38,11 @@ public record class FacilityHeaderData
     // Industry
 
     /// <summary>
-    /// Facility ownership type.
+    ///     Facility ownership type.
     /// </summary>
     /// <remarks>
-    /// Currently we only track federally-owned facilities, represented by the 
-    /// OwnershipTypeCode "FDF" and description "Federal Facility (U.S. Government)"
+    ///     Currently we only track federally-owned facilities, represented by the
+    ///     OwnershipTypeCode "FDF" and description "Federal Facility (U.S. Government)"
     /// </remarks>
     [Display(Name = "Ownership type")]
     public string? OwnershipType { get; init; }
@@ -76,26 +76,26 @@ public record class FacilityHeaderData
     public bool NspsFeeExempt { get; init; }
 
     /// <summary>
-    /// List of air programs that apply to a facility.
+    ///     List of air programs that apply to a facility.
     /// </summary>
     /// <remarks>
-    /// Possible values:
-    /// SIP, Federal SIP, Non-Federal SIP, CFC Tracking, 
-    /// PSD, NSR, NESHAP, NSPS, FESOP, Acid Precipitation, 
-    /// Native American, MACT, Title V, Risk Management Plan
+    ///     Possible values:
+    ///     SIP, Federal SIP, Non-Federal SIP, CFC Tracking,
+    ///     PSD, NSR, NESHAP, NSPS, FESOP, Acid Precipitation,
+    ///     Native American, MACT, Title V, Risk Management Plan
     /// </remarks>
     [Display(Name = "Air programs")]
-    public List<string> AirPrograms { get; init; } = new List<string>();
+    public List<string> AirPrograms { get; init; } = new();
 
     /// <summary>
-    /// List of air program classifications that apply to a facility.
+    ///     List of air program classifications that apply to a facility.
     /// </summary>
     /// <remarks>
-    /// Possible values:
-    /// NSR/PSD Major, HAPs Major
+    ///     Possible values:
+    ///     NSR/PSD Major, HAPs Major
     /// </remarks>
     [Display(Name = "Program classifications")]
-    public List<string> ProgramClassifications { get; init; } = new List<string>();
+    public List<string> ProgramClassifications { get; init; } = new();
 
     #region Regex patterns
 

@@ -8,12 +8,12 @@
     <environment exclude="Production">
         <link rel="stylesheet" href="https://cdn.skypack.dev/sanitize.css/system-ui.css" />
     </environment>
-    @await RenderSectionAsync("Styles", required: false)
+    @await RenderSectionAsync("Styles", false)
     <partial name="_RaygunScriptsPartial" />
 </head>
 <body class="@ViewBag.BodyCssClass">
-    <partial name="_TestSiteBannerPartial" />
-    @RenderBody()
-    @await RenderSectionAsync("Scripts", required: false)
+<partial name="_TestSiteBannerPartial" />
+@RenderBody()
+@await RenderSectionAsync("Scripts", false)
 </body>
 </html>

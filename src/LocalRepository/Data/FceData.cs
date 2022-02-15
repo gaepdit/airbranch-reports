@@ -7,7 +7,8 @@ public static class FceData
 {
     public static IEnumerable<FceReport> FceReports => new List<FceReport>
     {
-        new() {
+        new()
+        {
             Id = 7136,
             FceYear = 2011,
             StaffReviewedBy = StaffData.GetStaff(1)!.Value.Name,
@@ -23,7 +24,7 @@ public static class FceData
                 {
                     Id = 1,
                     Inspector = StaffData.GetStaff(1)!.Value.Name,
-                    InspectionDate = new DateRange {StartDate = new DateTime(2011, 1, 1)},
+                    InspectionDate = new DateRange { StartDate = new DateTime(2011, 1, 1) },
                     Reason = "Planned Unannounced",
                     FacilityWasOperating = true,
                     ComplianceStatus = "Compliant",
@@ -37,7 +38,7 @@ public static class FceData
                 {
                     Id = 40001,
                     Inspector = StaffData.GetStaff(2)!.Value.Name,
-                    InspectionDate = new DateRange {StartDate = new DateTime(2011, 2, 2)},
+                    InspectionDate = new DateRange { StartDate = new DateTime(2011, 2, 2) },
                     Reason = "Planned Unannounced",
                     FacilityWasOperating = true,
                     ComplianceStatus = "Compliant",
@@ -83,7 +84,7 @@ public static class FceData
 
             Notifications =
             {
-                new()
+                new Notification
                 {
                     Id = 4,
                     DateReceived = new DateTime(2011, 4, 1),
@@ -95,7 +96,7 @@ public static class FceData
 
             StackTests =
             {
-                new()
+                new StackTestWork
                 {
                     Id = 80000,
                     ReferenceNumber = 201100001,
@@ -108,7 +109,7 @@ public static class FceData
 
             FeesHistory =
             {
-                new()
+                new FeeYear
                 {
                     Year = 2011,
                     InvoicedAmount = 100000M,
@@ -116,7 +117,7 @@ public static class FceData
                     Balance = 0.01M,
                     Status = "Partial Payment",
                 },
-                new()
+                new FeeYear
                 {
                     Year = 2010,
                     InvoicedAmount = 4000M,
@@ -128,7 +129,7 @@ public static class FceData
 
             EnforcementHistory =
             {
-                new()
+                new Enforcement
                 {
                     Id = 1000,
                     StaffResponsible = StaffData.GetStaff(6)!.Value.Name,
@@ -137,7 +138,8 @@ public static class FceData
                 },
             },
         },
-        new() {
+        new()
+        {
             Id = 8555,
             FceYear = 2012,
             StaffReviewedBy = StaffData.GetStaff(2)!.Value.Name,
@@ -146,7 +148,8 @@ public static class FceData
             DateCompleted = new DateTime(2012, 2, 28),
             Facility = FacilityData.GetFacility("00100005"),
         },
-        new() {
+        new()
+        {
             Id = 3,
             FceYear = 2013,
             StaffReviewedBy = StaffData.GetStaff(3)!.Value.Name,
@@ -162,7 +165,7 @@ public static class FceData
                 {
                     Id = 11111,
                     Inspector = StaffData.GetStaff(3)!.Value.Name,
-                    InspectionDate = new DateRange {StartDate = new DateTime(2011, 1, 1)},
+                    InspectionDate = new DateRange { StartDate = new DateTime(2011, 1, 1) },
                     Reason = "Joint EPD/EPA",
                     FacilityWasOperating = false,
                     ComplianceStatus = "Deviation(s) Noted",

@@ -7,7 +7,8 @@ public static class StackTestData
 {
     public static IEnumerable<BaseStackTestReport> StackTestReports => new List<BaseStackTestReport>
     {
-        new StackTestReportOneStack {
+        new StackTestReportOneStack
+        {
             DocumentType = DocumentType.OneStackThreeRuns,
             ReferenceNumber = 201100541,
             Facility = FacilityData.GetFacility("12100021"),
@@ -35,12 +36,12 @@ public static class StackTestData
             OperatingCapacity = new ValueWithUnits("90", "tons/hr"),
             AllowableEmissionRates = new List<ValueWithUnits>
             {
-                new ValueWithUnits("0.018", "lb/ton"),
+                new("0.018", "lb/ton"),
             },
             ControlEquipmentInfo = TextData.ShortMultiline,
             TestRuns = new List<StackTestRun>
             {
-                new StackTestRun
+                new()
                 {
                     RunNumber = "1",
                     GasTemperature = "175",
@@ -51,7 +52,7 @@ public static class StackTestData
                     EmissionRate = "0.013",
                     ConfidentialParametersCode = "",
                 },
-                new StackTestRun
+                new()
                 {
                     RunNumber = "2",
                     GasTemperature = "176",
@@ -62,7 +63,7 @@ public static class StackTestData
                     EmissionRate = "0.014",
                     ConfidentialParametersCode = "0000000",
                 },
-                new StackTestRun
+                new()
                 {
                     RunNumber = "3",
                     GasTemperature = "174",
@@ -79,7 +80,8 @@ public static class StackTestData
             PercentAllowable = "75.0",
             ConfidentialParametersCode = "1B000000000000000000000001100000000000011000001100000110101",
         },
-        new StackTestReportOneStack {
+        new StackTestReportOneStack
+        {
             DocumentType = DocumentType.OneStackThreeRuns,
             ReferenceNumber = 202001297,
             Facility = FacilityData.GetFacility("17900001"),
@@ -103,12 +105,12 @@ public static class StackTestData
             OperatingCapacity = new ValueWithUnits("90", "tons/hr"),
             AllowableEmissionRates = new List<ValueWithUnits>
             {
-                new ValueWithUnits("0.018", "lb/ton"),
+                new("0.018", "lb/ton"),
             },
             ControlEquipmentInfo = TextData.ShortMultiline,
             TestRuns = new List<StackTestRun>
             {
-                new StackTestRun
+                new()
                 {
                     RunNumber = "1",
                     GasTemperature = "175",
@@ -119,7 +121,7 @@ public static class StackTestData
                     EmissionRate = "0.013",
                     ConfidentialParametersCode = "",
                 },
-                new StackTestRun
+                new()
                 {
                     RunNumber = "2",
                     GasTemperature = "176",
@@ -130,7 +132,7 @@ public static class StackTestData
                     EmissionRate = "0.014",
                     ConfidentialParametersCode = "",
                 },
-                new StackTestRun
+                new()
                 {
                     RunNumber = "3",
                     GasTemperature = "174",
@@ -172,15 +174,15 @@ public static class StackTestData
             OperatingCapacity = new ValueWithUnits("30", "ton/HR"),
             AllowableEmissionRates = new List<ValueWithUnits>
             {
-                new ValueWithUnits("1", "lb/TON"),
-                new ValueWithUnits("20", "LB/HR"),
+                new("1", "lb/TON"),
+                new("20", "LB/HR"),
             },
             ControlEquipmentInfo = TextData.None,
             StackOneName = "Inner",
             StackTwoName = "Outer",
             TestRuns = new List<TwoStackTestRun>
             {
-                new TwoStackTestRun
+                new()
                 {
                     RunNumber = "1",
                     StackOneGasTemperature = "175",
@@ -198,7 +200,7 @@ public static class StackTestData
                     SumEmissionRate = "0.023",
                     ConfidentialParametersCode = "",
                 },
-                new TwoStackTestRun
+                new()
                 {
                     RunNumber = "2",
                     StackOneGasTemperature = "175",
@@ -216,7 +218,7 @@ public static class StackTestData
                     SumEmissionRate = "0.023",
                     ConfidentialParametersCode = "",
                 },
-                new TwoStackTestRun
+                new()
                 {
                     RunNumber = "3",
                     StackOneGasTemperature = "175",
@@ -235,10 +237,10 @@ public static class StackTestData
                     ConfidentialParametersCode = "",
                 },
             },
-            StackOneAvgPollutantConcentration = new ValueWithUnits("0.03","GR/DSCF"),
-            StackTwoAvgPollutantConcentration = new ValueWithUnits("0.003","GR/DSCF"),
-            StackOneAvgEmissionRate = new ValueWithUnits("4.00","LB/HR"),
-            StackTwoAvgEmissionRate = new ValueWithUnits("3.00","LB/HR"),
+            StackOneAvgPollutantConcentration = new ValueWithUnits("0.03", "GR/DSCF"),
+            StackTwoAvgPollutantConcentration = new ValueWithUnits("0.003", "GR/DSCF"),
+            StackOneAvgEmissionRate = new ValueWithUnits("4.00", "LB/HR"),
+            StackTwoAvgEmissionRate = new ValueWithUnits("3.00", "LB/HR"),
             SumAvgEmissionRate = new ValueWithUnits("7.00", "LB/HR"),
             PercentAllowable = "75.0",
             ConfidentialParametersCode = "0",
@@ -268,15 +270,15 @@ public static class StackTestData
             OperatingCapacity = new ValueWithUnits("30", "ton/HR"),
             AllowableEmissionRates = new List<ValueWithUnits>
             {
-                new ValueWithUnits("1", "lb/TON"),
-                new ValueWithUnits("20", "LB/HR"),
+                new("1", "lb/TON"),
+                new("20", "LB/HR"),
             },
             ControlEquipmentInfo = TextData.None,
             StackOneName = "Inlet",
             StackTwoName = "Oulet",
             TestRuns = new List<TwoStackTestRun>
             {
-                new TwoStackTestRun
+                new()
                 {
                     RunNumber = "1",
                     StackOneGasTemperature = "175",
@@ -293,7 +295,7 @@ public static class StackTestData
                     StackTwoEmissionRate = "0.01",
                     ConfidentialParametersCode = "",
                 },
-                new TwoStackTestRun
+                new()
                 {
                     RunNumber = "2",
                     StackOneGasTemperature = "175",
@@ -310,7 +312,7 @@ public static class StackTestData
                     StackTwoEmissionRate = "0.01",
                     ConfidentialParametersCode = "",
                 },
-                new TwoStackTestRun
+                new()
                 {
                     RunNumber = "3",
                     StackOneGasTemperature = "175",
@@ -328,10 +330,10 @@ public static class StackTestData
                     ConfidentialParametersCode = "",
                 },
             },
-            StackOneAvgPollutantConcentration = new ValueWithUnits("0.03","GR/DSCF"),
-            StackTwoAvgPollutantConcentration = new ValueWithUnits("0.003","GR/DSCF"),
-            StackOneAvgEmissionRate = new ValueWithUnits("4.00","LB/HR"),
-            StackTwoAvgEmissionRate = new ValueWithUnits("3.00","LB/HR"),
+            StackOneAvgPollutantConcentration = new ValueWithUnits("0.03", "GR/DSCF"),
+            StackTwoAvgPollutantConcentration = new ValueWithUnits("0.003", "GR/DSCF"),
+            StackOneAvgEmissionRate = new ValueWithUnits("4.00", "LB/HR"),
+            StackTwoAvgEmissionRate = new ValueWithUnits("3.00", "LB/HR"),
             DestructionEfficiency = "75.0",
             ConfidentialParametersCode = "0",
         },
@@ -360,7 +362,7 @@ public static class StackTestData
             OperatingCapacity = new ValueWithUnits("90,000", "GPY"),
             AllowableEmissionRates = new List<ValueWithUnits>
             {
-                new ValueWithUnits("18", "mg/L"),
+                new("18", "mg/L"),
             },
             ControlEquipmentInfo = TextData.ShortMultiline,
             TestDuration = new ValueWithUnits("6", "Hours"),
@@ -396,21 +398,21 @@ public static class StackTestData
             ControlEquipmentInfo = TextData.ShortMultiline,
             TestRuns = new List<PondTreatmentTestRun>
             {
-                new PondTreatmentTestRun
+                new()
                 {
                     RunNumber = "1",
                     PollutantCollectionRate = "7",
                     TreatmentRate = "7.0",
                     ConfidentialParametersCode = "",
                 },
-                new PondTreatmentTestRun
+                new()
                 {
                     RunNumber = "2",
                     PollutantCollectionRate = "7.4",
                     TreatmentRate = "37",
                     ConfidentialParametersCode = "7.2",
                 },
-                new PondTreatmentTestRun
+                new()
                 {
                     RunNumber = "3",
                     PollutantCollectionRate = "7.8",
@@ -448,26 +450,26 @@ public static class StackTestData
             OperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
             AllowableEmissionRates = new List<ValueWithUnits>
             {
-                new ValueWithUnits("25", "PPM @ 15% O2"),
+                new("25", "PPM @ 15% O2"),
             },
             ControlEquipmentInfo = TextData.ShortMultiline,
             TestRuns = new List<GasConcentrationTestRun>
             {
-                new GasConcentrationTestRun
+                new()
                 {
                     RunNumber = "1",
                     PollutantConcentration = "26",
                     EmissionRate = "22",
                     ConfidentialParametersCode = "",
                 },
-                new GasConcentrationTestRun
+                new()
                 {
                     RunNumber = "2",
                     PollutantConcentration = "26",
                     EmissionRate = "22",
                     ConfidentialParametersCode = "7.2",
                 },
-                new GasConcentrationTestRun
+                new()
                 {
                     RunNumber = "3",
                     PollutantConcentration = "26",
@@ -477,7 +479,7 @@ public static class StackTestData
             },
             AvgPollutantConcentration = new ValueWithUnits("25", "PPM"),
             AvgEmissionRate = new ValueWithUnits("22", "PPM @ 15% O2"),
-            PercentAllowable= "90",
+            PercentAllowable = "90",
             ConfidentialParametersCode = "",
         },
         new StackTestReportFlare
@@ -504,27 +506,27 @@ public static class StackTestData
             OperatingCapacity = new ValueWithUnits("100", "%"),
             AllowableEmissionRates = new List<ValueWithUnits>
             {
-                new ValueWithUnits("80", "ft/sec", "Velocity less than"),
-                new ValueWithUnits("200", "BTU/scf", "Heat Content greater than or equal to"),
+                new("80", "ft/sec", "Velocity less than"),
+                new("200", "BTU/scf", "Heat Content greater than or equal to"),
             },
             ControlEquipmentInfo = TextData.Short,
             TestRuns = new List<FlareTestRun>
             {
-                new FlareTestRun
+                new()
                 {
                     RunNumber = "1",
                     HeatingValue = "400",
                     EmissionRateVelocity = "35",
                     ConfidentialParametersCode = "",
                 },
-                new FlareTestRun
+                new()
                 {
                     RunNumber = "2",
                     HeatingValue = "450",
                     EmissionRateVelocity = "37",
                     ConfidentialParametersCode = "",
                 },
-                new FlareTestRun
+                new()
                 {
                     RunNumber = "3",
                     HeatingValue = "425",
@@ -563,12 +565,12 @@ public static class StackTestData
             RelativeAccuracyCode = "AppStandard",
             RelativeAccuracyPercent = "5.5",
             RelativeAccuracyRequiredPercent = "10",
-            RelativeAccuracyRequiredLabel  = "% of the applicable standard (when the average of " +
-            "the RM test data is less than 50% of the applicable standard).",
+            RelativeAccuracyRequiredLabel = "% of the applicable standard (when the average of " +
+                "the RM test data is less than 50% of the applicable standard).",
             ComplianceStatus = "Pass",
             TestRuns = new List<RataTestRun>
             {
-                new RataTestRun
+                new()
                 {
                     RunNumber = "1",
                     ReferenceMethod = "0.023",
@@ -576,7 +578,7 @@ public static class StackTestData
                     Omitted = false,
                     ConfidentialParametersCode = "",
                 },
-                new RataTestRun
+                new()
                 {
                     RunNumber = "2",
                     ReferenceMethod = "0.023",
@@ -584,7 +586,7 @@ public static class StackTestData
                     Omitted = true,
                     ConfidentialParametersCode = "",
                 },
-                new RataTestRun
+                new()
                 {
                     RunNumber = "3",
                     ReferenceMethod = "0.023",
@@ -592,7 +594,7 @@ public static class StackTestData
                     Omitted = false,
                     ConfidentialParametersCode = "",
                 },
-                new RataTestRun
+                new()
                 {
                     RunNumber = "4",
                     ReferenceMethod = "0.023",
@@ -600,7 +602,7 @@ public static class StackTestData
                     Omitted = false,
                     ConfidentialParametersCode = "",
                 },
-                new RataTestRun
+                new()
                 {
                     RunNumber = "5",
                     ReferenceMethod = "0.023",
@@ -608,7 +610,7 @@ public static class StackTestData
                     Omitted = false,
                     ConfidentialParametersCode = "",
                 },
-                new RataTestRun
+                new()
                 {
                     RunNumber = "6",
                     ReferenceMethod = "0.023",
@@ -687,7 +689,7 @@ public static class StackTestData
             OperatingCapacity = new ValueWithUnits("50000", "Units"),
             AllowableEmissionRates = new List<ValueWithUnits>
             {
-                new ValueWithUnits("100", "%"),
+                new("100", "%"),
             },
             ControlEquipmentInfo = TextData.Long,
         },

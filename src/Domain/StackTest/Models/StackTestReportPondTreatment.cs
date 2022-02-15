@@ -1,9 +1,9 @@
-﻿using Domain.StackTest.Models.TestRun;
+using Domain.StackTest.Models.TestRun;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.StackTest.Models;
 
-public record class StackTestReportPondTreatment : BaseStackTestReport
+public record StackTestReportPondTreatment : BaseStackTestReport
 {
     // Operating data
 
@@ -19,7 +19,7 @@ public record class StackTestReportPondTreatment : BaseStackTestReport
     // Test run data
 
     [Display(Name = "Test runs")]
-    public List<PondTreatmentTestRun> TestRuns { get; set; } = new List<PondTreatmentTestRun>();
+    public List<PondTreatmentTestRun> TestRuns { get; set; } = new();
 
     [Display(Name = "Average pollutant collection rate")]
     public ValueWithUnits AvgPollutantCollectionRate { get; set; }

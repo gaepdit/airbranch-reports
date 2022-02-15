@@ -7,10 +7,10 @@ public static class TextData
     public const string None = "None";
 
     public const string VeryShort = "Croissant";
-    
+
     public const string Short = "Soufflé croissant caramels gummi bears marzipan.";
 
-    public const string ShortMultiline = "Soufflé jelly gummies shortbread.\r\n" + 
+    public const string ShortMultiline = "Soufflé jelly gummies shortbread.\r\n" +
         "Pudding liquorice I love apple pie.";
 
     public const string Long = "Icing toffee bear claw caramels soufflé croissant. Marshmallow " +
@@ -25,5 +25,4 @@ public static class TextData
 
     public const string ReportStatement = "The following test has been reviewed and was conducted " +
         "in an acceptable fashion for the purpose intended.";
-
 }

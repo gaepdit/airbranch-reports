@@ -14,8 +14,9 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("17900001");
         var referenceNumber = 202001297;
-        var repo = new StackTestRepository(Global.conn!);
-        StackTestReportOneStack? stackTestReport = await repo.GetStackTestReportAsync(facilityId, referenceNumber) as StackTestReportOneStack;
+        var repo = new StackTestRepository(Global.DbConn!);
+        var stackTestReport =
+            await repo.GetStackTestReportAsync(facilityId, referenceNumber) as StackTestReportOneStack;
 
         var act = () => stackTestReport!.RedactedStackTestReport();
         act.Should().NotThrow();
@@ -24,7 +25,7 @@ public class GetStackTestReport
     [Test]
     public async Task ReturnsNullIfNotExists()
     {
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync("000-00000", 2019);
 
         result.Should().BeNull();
@@ -35,7 +36,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("121-00021");
         var referenceNumber = 201100541;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -53,7 +54,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("24500002");
         var referenceNumber = 201600525;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -72,7 +73,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("07300003");
         var referenceNumber = 200400473;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -91,7 +92,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("02100090");
         var referenceNumber = 200500014;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -110,7 +111,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("11500021");
         var referenceNumber = 200400023;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -128,7 +129,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("15300040");
         var referenceNumber = 200400009;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -146,7 +147,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("05700040");
         var referenceNumber = 200400407;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -164,7 +165,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("17900001");
         var referenceNumber = 200600289;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -183,7 +184,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("17900001");
         var referenceNumber = 201500570;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -202,7 +203,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("07300003");
         var referenceNumber = 200400476;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -221,7 +222,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("11500021");
         var referenceNumber = 201801068;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -240,7 +241,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("24500002");
         var referenceNumber = 200700192;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>
@@ -259,7 +260,7 @@ public class GetStackTestReport
     {
         var facilityId = new ApbFacilityId("31300062");
         var referenceNumber = 200600052;
-        var repo = new StackTestRepository(Global.conn!);
+        var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
         Assert.Multiple(() =>

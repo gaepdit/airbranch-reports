@@ -7,13 +7,15 @@ namespace DomainTests.Facilities.ApbFacilityIdTests;
 
 public class IsValidAirsNumberFormat
 {
-    [Test, TestCaseSource(nameof(InvalidAirsNumbers))]
+    [Test]
+    [TestCaseSource(nameof(InvalidAirsNumbers))]
     public void RejectsInvalidAirsNumbers(string airs)
     {
         ApbFacilityId.IsValidAirsNumberFormat(airs).Should().BeFalse();
     }
 
-    [Test, TestCaseSource(nameof(ValidAirsNumbers))]
+    [Test]
+    [TestCaseSource(nameof(ValidAirsNumbers))]
     public void AcceptsValidAirsNumbers(string airs)
     {
         ApbFacilityId.IsValidAirsNumberFormat(airs).Should().BeTrue();

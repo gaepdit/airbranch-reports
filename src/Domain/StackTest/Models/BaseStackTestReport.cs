@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Domain.StackTest.Models;
 
-public abstract record class BaseStackTestReport
+public abstract record BaseStackTestReport
 {
     // Basic test report info
 
@@ -61,7 +61,7 @@ public abstract record class BaseStackTestReport
     public PersonName ReviewedByStaff { get; set; }
 
     [Display(Name = "Test witnessed by")]
-    public List<PersonName> WitnessedByStaff { get; set; } = new List<PersonName>();
+    public List<PersonName> WitnessedByStaff { get; set; } = new();
 
     [Display(Name = "Compliance manager")]
     public PersonName ComplianceManager { get; set; }
@@ -97,40 +97,41 @@ public abstract record class BaseStackTestReport
 
     protected string CheckConfidential(string input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? GlobalConstants.ConfidentialInfoPlaceholder
-        : input;
+            ? GlobalConstants.ConfidentialInfoPlaceholder
+            : input;
 
     protected DateTime CheckConfidential(DateTime input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? default
-        : input;
+            ? default
+            : input;
 
     protected DateRange CheckConfidential(DateRange input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? new DateRange(default, null)
-        : input;
+            ? new DateRange(default, null)
+            : input;
 
     protected PersonName CheckConfidential(PersonName input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? new PersonName("", GlobalConstants.ConfidentialInfoPlaceholder)
-        : input;
+            ? new PersonName("", GlobalConstants.ConfidentialInfoPlaceholder)
+            : input;
 
     protected List<PersonName> CheckConfidential(List<PersonName> input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? new List<PersonName> { new PersonName("", GlobalConstants.ConfidentialInfoPlaceholder) }
-        : input;
+            ? new List<PersonName> { new("", GlobalConstants.ConfidentialInfoPlaceholder) }
+            : input;
 
     protected ValueWithUnits CheckConfidential(ValueWithUnits input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, input.Units, input.Preamble)
-        : input;
+            ? new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, input.Units, input.Preamble)
+            : input;
 
     protected List<ValueWithUnits> CheckConfidential(List<ValueWithUnits> input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-        ? new List<ValueWithUnits> { new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, "") }
-        : input;
+            ? new List<ValueWithUnits> { new(GlobalConstants.ConfidentialInfoPlaceholder, "") }
+            : input;
 
     public abstract void ParseConfidentialParameters();
+
     protected void ParseBaseConfidentialParameters()
     {
         AddIfConfidential(15, nameof(Pollutant));

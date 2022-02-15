@@ -2,7 +2,7 @@
 
 namespace Domain.StackTest.Models.TestRun;
 
-public record class RataTestRun : BaseTestRun
+public record RataTestRun : BaseTestRun
 {
     [Display(Name = "Reference method")]
     public string ReferenceMethod { get; init; } = "";

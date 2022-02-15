@@ -2,6 +2,7 @@
 
 namespace Domain.StackTest.Models;
 
+// ReSharper disable once InconsistentNaming
 public enum ReportType
 {
     [Description("Monitor Certification")] MonitorCertification = 1,
@@ -11,6 +12,7 @@ public enum ReportType
     [Description("Source Test")] NA = 5,
 }
 
+// ReSharper disable once InconsistentNaming
 public enum DocumentType
 {
     [Description("Unassigned")] Unassigned = 001,

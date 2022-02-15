@@ -24,7 +24,8 @@ public class StackTestReportExists
     public async Task ReturnsFalseIfNotExists()
     {
         var repo = new StackTestRepository();
-        var result = await repo.StackTestReportExistsAsync(new ApbFacilityId(Constants.FacilityIdThatDoesNotExist), default);
+        var result =
+            await repo.StackTestReportExistsAsync(new ApbFacilityId(Constants.FacilityIdThatDoesNotExist), default);
         result.Should().BeFalse();
     }
 }

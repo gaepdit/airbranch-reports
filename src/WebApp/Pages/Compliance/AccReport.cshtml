@@ -1,5 +1,4 @@
 ﻿@page "~/facility/{facilityId}/acc-report/{year:int}"
-@using WebApp.Platform.Formatting
 @model AccReportModel
 @{
     Layout = "_ReportLayout";
@@ -21,54 +20,54 @@
 
         <table class="table-values-list" aria-describedby="acc-description">
             <tbody>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.DatePostmarked)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.DatePostmarked)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.DateReceived)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.DateReceived)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.PostmarkedByDeadline)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.PostmarkedByDeadline)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.SignedByResponsibleOfficial)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.SignedByResponsibleOfficial)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.CorrectFormsUsed)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.CorrectFormsUsed)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.AllTitleVConditionsListed)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.AllTitleVConditionsListed)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.CorrectlyFilledOut)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.CorrectlyFilledOut)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.DeviationsReported)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.DeviationsReported)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.UnreportedDeviationsReported)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.UnreportedDeviationsReported)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.AllDeviationsReported)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.AllDeviationsReported)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.EnforcementRecommended)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.EnforcementRecommended)</td>
-                </tr>
-                <tr>
-                    <th scope="row">@Html.DisplayNameFor(m => m.Report!.ResubmittalRequested)</th>
-                    <td>@Html.DisplayFor(m => m.Report!.ResubmittalRequested)</td>
-                </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.DatePostmarked)</th>
+                <td>@Html.DisplayFor(m => m.Report!.DatePostmarked)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.DateReceived)</th>
+                <td>@Html.DisplayFor(m => m.Report!.DateReceived)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.PostmarkedByDeadline)</th>
+                <td>@Html.DisplayFor(m => m.Report!.PostmarkedByDeadline)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.SignedByResponsibleOfficial)</th>
+                <td>@Html.DisplayFor(m => m.Report!.SignedByResponsibleOfficial)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.CorrectFormsUsed)</th>
+                <td>@Html.DisplayFor(m => m.Report!.CorrectFormsUsed)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.AllTitleVConditionsListed)</th>
+                <td>@Html.DisplayFor(m => m.Report!.AllTitleVConditionsListed)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.CorrectlyFilledOut)</th>
+                <td>@Html.DisplayFor(m => m.Report!.CorrectlyFilledOut)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.DeviationsReported)</th>
+                <td>@Html.DisplayFor(m => m.Report!.DeviationsReported)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.UnreportedDeviationsReported)</th>
+                <td>@Html.DisplayFor(m => m.Report!.UnreportedDeviationsReported)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.AllDeviationsReported)</th>
+                <td>@Html.DisplayFor(m => m.Report!.AllDeviationsReported)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.EnforcementRecommended)</th>
+                <td>@Html.DisplayFor(m => m.Report!.EnforcementRecommended)</td>
+            </tr>
+            <tr>
+                <th scope="row">@Html.DisplayNameFor(m => m.Report!.ResubmittalRequested)</th>
+                <td>@Html.DisplayFor(m => m.Report!.ResubmittalRequested)</td>
+            </tr>
             </tbody>
         </table>
 

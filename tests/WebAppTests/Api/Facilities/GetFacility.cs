@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using System.Threading.Tasks;
-using WebApp.Api.Facilities;
+using WebApp.Api.Facility;
 
-namespace WebAppTests.Api;
+namespace WebAppTests.Api.Facilities;
 
 public class GetFacility
 {
@@ -26,7 +26,7 @@ public class GetFacility
             response.Result.Should().BeOfType<OkObjectResult>();
             var result = response.Result as OkObjectResult;
             result!.StatusCode.Should().Be(200);
-            result!.Value.Should().BeEquivalentTo(new Facility());
+            result.Value.Should().BeEquivalentTo(new Facility());
         });
     }
 

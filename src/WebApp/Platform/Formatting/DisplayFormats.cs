@@ -6,8 +6,8 @@ public static class DisplayFormats
     public const string ShortDate = "d\u2011MMM\u2011yyyy";
 
     /// <summary>
-    /// DateTime extension method to display a nullable DateTime as a string or display a replacement string
-    /// if the value is null.
+    ///     DateTime extension method to display a nullable DateTime as a string or display a replacement string
+    ///     if the value is null.
     /// </summary>
     /// <param name="dt">The nullable DateTime to display.</param>
     /// <param name="format">The format for displaying the DateTime if it is not null.</param>

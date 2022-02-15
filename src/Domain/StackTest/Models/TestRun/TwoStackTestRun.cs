@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.StackTest.Models.TestRun;
 
-public record class TwoStackTestRun : BaseTestRun
+public record TwoStackTestRun : BaseTestRun
 {
     // `BaseTestRun` includes the `RunNumber` property.
     // The database and IAIP allow each stack to have different run numbers,
@@ -12,26 +12,32 @@ public record class TwoStackTestRun : BaseTestRun
 
     [Display(Name = "Gas temperature (°F)")]
     public string StackOneGasTemperature { get; init; } = "";
+
     public string StackTwoGasTemperature { get; init; } = "";
 
     [Display(Name = "Gas moisture (%)")]
     public string StackOneGasMoisture { get; init; } = "";
+
     public string StackTwoGasMoisture { get; init; } = "";
 
     [Display(Name = "Gas flow rate (ASCFM)")]
     public string StackOneGasFlowRateAscfm { get; init; } = "";
+
     public string StackTwoGasFlowRateAscfm { get; init; } = "";
 
     [Display(Name = "Gas flow rate (DSCFM)")]
     public string StackOneGasFlowRateDscfm { get; init; } = "";
+
     public string StackTwoGasFlowRateDscfm { get; init; } = "";
 
     [Display(Name = "Pollutant concentration")]
     public string StackOnePollutantConcentration { get; init; } = "";
+
     public string StackTwoPollutantConcentration { get; init; } = "";
 
     [Display(Name = "Emission rate")]
     public string StackOneEmissionRate { get; init; } = "";
+
     public string StackTwoEmissionRate { get; init; } = "";
 
     // `SumEmissionRate` is used by Two Stack (Standard) but not by Two Stack (DRE)
@@ -41,9 +47,9 @@ public record class TwoStackTestRun : BaseTestRun
     #region Confidential info handling
 
     public override TwoStackTestRun RedactedTestRun() =>
-       RedactedBaseTestRun<TwoStackTestRun>() with
-       {
-           StackOneGasTemperature = CheckConfidential(StackOneGasTemperature, nameof(StackOneGasTemperature)),
+        RedactedBaseTestRun<TwoStackTestRun>() with
+        {
+            StackOneGasTemperature = CheckConfidential(StackOneGasTemperature, nameof(StackOneGasTemperature)),
            StackOneGasMoisture = CheckConfidential(StackOneGasMoisture, nameof(StackOneGasMoisture)),
            StackOneGasFlowRateAscfm = CheckConfidential(StackOneGasFlowRateAscfm, nameof(StackOneGasFlowRateAscfm)),
            StackOneGasFlowRateDscfm = CheckConfidential(StackOneGasFlowRateDscfm, nameof(StackOneGasFlowRateDscfm)),
@@ -58,7 +64,7 @@ public record class TwoStackTestRun : BaseTestRun
            StackTwoEmissionRate = CheckConfidential(StackTwoEmissionRate, nameof(StackTwoEmissionRate)),
 
            SumEmissionRate = CheckConfidential(SumEmissionRate, nameof(SumEmissionRate)),
-       };
+        };
 
     protected override void ParseConfidentialParameters()
     {

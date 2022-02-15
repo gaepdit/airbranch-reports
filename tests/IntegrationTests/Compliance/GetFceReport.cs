@@ -13,7 +13,7 @@ public class GetFceReport
     {
         var facilityId = "001-00001";
         var id = 7136;
-        var repo = new ComplianceRepository(Global.conn!);
+        var repo = new ComplianceRepository(Global.DbConn!);
         var result = await repo.GetFceReportAsync(facilityId, id);
 
         Assert.Multiple(() =>
@@ -29,7 +29,7 @@ public class GetFceReport
     [Test]
     public async Task ReturnsNullIfNotExists()
     {
-        var repo = new ComplianceRepository(Global.conn!);
+        var repo = new ComplianceRepository(Global.DbConn!);
         var result = await repo.GetFceReportAsync("000-00000", 1);
 
         result.Should().BeNull();

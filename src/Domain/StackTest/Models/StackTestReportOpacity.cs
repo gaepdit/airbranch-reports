@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.StackTest.Models;
 
-public record class StackTestReportOpacity : BaseStackTestReport
+public record StackTestReportOpacity : BaseStackTestReport
 {
     // Operating data
 
@@ -37,7 +37,7 @@ public record class StackTestReportOpacity : BaseStackTestReport
     public string AllowableEmissionRateUnits { get; set; } = "";
 
     [Display(Name = "Test runs")]
-    public List<OpacityTestRun> TestRuns { get; set; } = new List<OpacityTestRun>();
+    public List<OpacityTestRun> TestRuns { get; set; } = new();
 
     #region Confidential info handling
 
@@ -74,9 +74,6 @@ public record class StackTestReportOpacity : BaseStackTestReport
             case DocumentType.Method22:
                 AddIfConfidential(30, nameof(TestDuration));
                 AddIfConfidential(32, nameof(Comments));
-                break;
-
-            default:
                 break;
         }
     }

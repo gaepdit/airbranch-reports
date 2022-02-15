@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Domain;
 using Domain.Compliance.Models;
 using Domain.Compliance.Models.WorkItems;
 using Domain.Compliance.Repositories;
@@ -11,6 +12,7 @@ namespace Infrastructure.Compliance;
 
 public class ComplianceRepository : IComplianceRepository
 {
+    // ReSharper disable once InconsistentNaming
     private readonly IDbConnection db;
     public ComplianceRepository(IDbConnection conn) => db = conn;
 
@@ -61,8 +63,8 @@ public class ComplianceRepository : IComplianceRepository
         {
             AirsNumber = facilityId.DbFormattedString,
             Id = id,
-            Domain.GlobalConstants.FceDataPeriod,
-            Domain.GlobalConstants.FceExtendedDataPeriod,
+            GlobalConstants.FceDataPeriod,
+            GlobalConstants.FceExtendedDataPeriod,
         };
 
         var facilitiesRepository = new FacilitiesRepository(db);
@@ -71,13 +73,13 @@ public class ComplianceRepository : IComplianceRepository
         using var multi = await db.QueryMultipleAsync(ComplianceQueries.GetFceReport, param);
 
         var report = multi.Read<FceReport, PersonName, DateRange, FceReport>(
-        (report, staff, dateRange) =>
-        {
-            report.StaffReviewedBy = staff;
-            report.SupportingDataDateRange = dateRange;
-            report.Facility = facility;
-            return report;
-        }).Single();
+            (report, staff, dateRange) =>
+            {
+                report.StaffReviewedBy = staff;
+                report.SupportingDataDateRange = dateRange;
+                report.Facility = facility;
+                return report;
+            }).Single();
 
         report.Inspections.AddRange(multi.Read<Inspection, PersonName, DateRange, Inspection>(
             (item, staff, dateRange) =>

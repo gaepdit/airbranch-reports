@@ -10,7 +10,7 @@ public class FceReportExists
     [Test]
     public async Task ReturnsTrueIfExists()
     {
-        var repo = new ComplianceRepository(Global.conn!);
+        var repo = new ComplianceRepository(Global.DbConn!);
         var result = await repo.FceReportExistsAsync("00100001", 7136);
         result.Should().BeTrue();
     }
@@ -18,7 +18,7 @@ public class FceReportExists
     [Test]
     public async Task ReturnsFalseIfNotExists()
     {
-        var repo = new ComplianceRepository(Global.conn!);
+        var repo = new ComplianceRepository(Global.DbConn!);
         var result = await repo.FceReportExistsAsync("000-00000", 1);
         result.Should().BeFalse();
     }

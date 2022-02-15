@@ -2,7 +2,7 @@
 
 namespace Domain.Facilities.Models;
 
-public record class Facility
+public record Facility
 {
     // Facility identity
 
