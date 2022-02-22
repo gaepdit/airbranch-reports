@@ -67,6 +67,9 @@ BEGIN
       and year(c.DATACCREPORTINGYEAR) = @Year
       and f.STRAIRSNUMBER = @AirsNumber
 
+    declare @params nvarchar(max) = concat_ws(':', '@AirsNumber', @AirsNumber, '@Year', @Year);
+    exec air.LogReport 'ACC', @params;
+
     return 0;
 END;
 

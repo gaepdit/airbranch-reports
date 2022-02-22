@@ -153,6 +153,9 @@ BEGIN
     where convert(int, STRREFERENCENUMBER) = @ReferenceNumber
     order by Id;
 
+    declare @params nvarchar(max) = concat_ws(':', '@ReferenceNumber', @ReferenceNumber);
+    exec air.LogReport 'StackTestReportOneStack', @params;
+
     return 0;
 END;
 

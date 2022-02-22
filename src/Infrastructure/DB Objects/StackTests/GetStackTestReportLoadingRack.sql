@@ -99,6 +99,9 @@ BEGIN
     where convert(int, t.STRREFERENCENUMBER) = @ReferenceNumber
     order by t.Id;
 
+    declare @params nvarchar(max) = concat_ws(':', '@ReferenceNumber', @ReferenceNumber);
+    exec air.LogReport 'StackTestReportLoadingRack', @params;
+
     return 0;
 END;
 

@@ -180,6 +180,9 @@ BEGIN
       and not (t.RunNumber > 1 and trim(t.Opacity) in ('', 'N/A'))
     order by t.RunNumber;
 
+    declare @params nvarchar(max) = concat_ws(':', '@ReferenceNumber', @ReferenceNumber);
+    exec air.LogReport 'StackTestReportOpacity', @params;
+
     return 0;
 END;
 

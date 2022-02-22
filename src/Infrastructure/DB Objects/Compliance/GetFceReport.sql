@@ -6,9 +6,9 @@ SET QUOTED_IDENTIFIER ON;
 GO
 
 CREATE OR ALTER PROCEDURE air.GetFceReport
-    @AirsNumber varchar(12),
-    @Id       int,
-    @FceDataPeriod int,
+    @AirsNumber            varchar(12),
+    @Id                    int,
+    @FceDataPeriod         int,
     @FceExtendedDataPeriod int
 AS
 
@@ -225,7 +225,7 @@ BEGIN
         inner join dbo.SSCPFCE f
         on f.STRFCENUMBER = @Id
             and a.NUMFEEYEAR between
-               (year(f.DATFCECOMPLETED) - @FceExtendedDataPeriod )
+               (year(f.DATFCECOMPLETED) - @FceExtendedDataPeriod)
                and year(f.DATFCECOMPLETED)
         left join
     (
@@ -343,7 +343,10 @@ BEGIN
       and e.STRAIRSNUMBER = @AirsNumber
 
     order by EnforcementDate desc, 1 desc;
-    
+
+    declare @params nvarchar(max) = concat_ws(':', '@AirsNumber', @AirsNumber, '@Id', @Id);
+    exec air.LogReport 'FCE', @params;
+
     return 0;
 END;
 
