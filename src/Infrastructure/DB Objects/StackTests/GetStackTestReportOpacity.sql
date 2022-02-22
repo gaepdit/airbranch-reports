@@ -27,6 +27,8 @@ When        Who                 What
 BEGIN
     SET NOCOUNT ON;
 
+    declare @InvalidKey varchar(5) = '00000';
+
     select trim(char(13) + char(10) + ' ' from r.STRCONTROLEQUIPMENTDATA)
                                       as ControlEquipmentInfo,
            s.STRCOMPLIANCESTATUS      as ComplianceStatus,
@@ -46,13 +48,13 @@ BEGIN
         on s.STRCOMPLIANCEKEY = r.STRCOMPLIANCESTATUS
         left join LOOKUPUNITS u1
         on u1.STRUNITKEY = d.STRMAXOPERATINGCAPACITYUNIT
-            and u1.STRUNITKEY <> '00000'
+            and u1.STRUNITKEY <> @InvalidKey
         left join LOOKUPUNITS u2
         on u2.STRUNITKEY = d.STROPERATINGCAPACITYUNIT
-            and u2.STRUNITKEY <> '00000'
+            and u2.STRUNITKEY <> @InvalidKey
         left join LOOKUPUNITS u3
         on u3.STRUNITKEY = d.STRALLOWABLEEMISSIONRATEUNIT
-            and u3.STRUNITKEY <> '00000'
+            and u3.STRUNITKEY <> @InvalidKey
     where convert(int, r.STRREFERENCENUMBER) = @ReferenceNumber;
 
     select RunNumber,

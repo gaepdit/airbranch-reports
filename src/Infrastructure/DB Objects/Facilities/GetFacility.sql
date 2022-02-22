@@ -27,6 +27,8 @@ When        Who                 What
 BEGIN
     SET NOCOUNT ON;
 
+    declare @DefaultStatus varchar(5) = '00000';
+
     select f.STRAIRSNUMBER               as Id,
            trim(f.STRFACILITYNAME)       as Name,
            trim(char(13) + char(10) + ' ' from h.STRPLANTDESCRIPTION)
@@ -55,11 +57,11 @@ BEGIN
            h.STRSICCODE                  as Sic,
            h.STRNAICSCODE                as Naics,
            s.STRRMPID                    as RmpId,
-           convert(int, substring(coalesce(h.STRATTAINMENTSTATUS, '00000'), 2, 1))
+           convert(int, substring(coalesce(h.STRATTAINMENTSTATUS, @DefaultStatus), 2, 1))
                                          as OneHourOzoneNonattainment,
-           convert(int, substring(coalesce(h.STRATTAINMENTSTATUS, '00000'), 3, 1))
+           convert(int, substring(coalesce(h.STRATTAINMENTSTATUS, @DefaultStatus), 3, 1))
                                          as EightHourOzoneNonattainment,
-           convert(int, substring(coalesce(h.STRATTAINMENTSTATUS, '00000'), 4, 1))
+           convert(int, substring(coalesce(h.STRATTAINMENTSTATUS, @DefaultStatus), 4, 1))
                                          as PmFineNonattainment,
            s.NspsFeeExempt
     from dbo.APBFACILITYINFORMATION f
@@ -167,7 +169,7 @@ BEGIN
     where t.FacilityId = @AirsNumber
       and AirProgram is not null
     order by t.Sequence;
-    
+
     return 0;
 END;
 

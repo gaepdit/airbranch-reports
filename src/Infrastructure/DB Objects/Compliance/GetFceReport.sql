@@ -34,10 +34,12 @@ When        Who                 What
 BEGIN
     SET NOCOUNT ON;
 
+    declare @FalseString varchar(5) = 'false';
+
     select f.STRFCENUMBER                   as Id,
            f.STRFCEYEAR                     as FceYear,
            convert(date, f.DATFCECOMPLETED) as DateCompleted,
-           convert(bit, IIF(f.STRSITEINSPECTION = 'false', 0, 1))
+           convert(bit, IIF(f.STRSITEINSPECTION = @FalseString, 0, 1))
                                             as WithOnsiteInspection,
            f.STRFCECOMMENTS                 as Comments,
            f.STRREVIEWER                    as Id, -- StaffReviewedBy
@@ -55,7 +57,7 @@ BEGIN
 -- Inspections
     select m.STRTRACKINGNUMBER                     as Id,
            i.STRINSPECTIONREASON                   as Reason,
-           convert(bit, IIF(i.STRFACILITYOPERATING = 'false', 0, 1))
+           convert(bit, IIF(i.STRFACILITYOPERATING = @FalseString, 0, 1))
                                                    as FacilityWasOperating,
            i.STRINSPECTIONCOMPLIANCESTATUS         as ComplianceStatus,
            i.STRINSPECTIONCOMMENTS                 as Comments,
@@ -83,7 +85,7 @@ BEGIN
 -- RmpInspections
     select m.STRTRACKINGNUMBER                     as Id,
            i.STRINSPECTIONREASON                   as Reason,
-           convert(bit, IIF(i.STRFACILITYOPERATING = 'false', 0, 1))
+           convert(bit, IIF(i.STRFACILITYOPERATING = @FalseString, 0, 1))
                                                    as FacilityWasOperating,
            i.STRINSPECTIONCOMPLIANCESTATUS         as ComplianceStatus,
            i.STRINSPECTIONCOMMENTS                 as Comments,

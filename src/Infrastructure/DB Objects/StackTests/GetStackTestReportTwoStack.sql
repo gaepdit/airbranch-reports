@@ -27,6 +27,8 @@ When        Who                 What
 BEGIN
     SET NOCOUNT ON;
 
+    declare @InvalidKey varchar(5) = '00000';
+
     select trim(char(13) + char(10) + ' ' from r.STRCONTROLEQUIPMENTDATA)
                                                as ControlEquipmentInfo,
            trim(d.STRSTACKONENAME)             as StackOneName,
@@ -59,16 +61,16 @@ BEGIN
         on r.STRREFERENCENUMBER = d.STRREFERENCENUMBER
         left join LOOKUPUNITS u1
         on u1.STRUNITKEY = d.STRMAXOPERATINGCAPACITYUNIT
-            and u1.STRUNITKEY <> '00000'
+            and u1.STRUNITKEY <> @InvalidKey
         left join LOOKUPUNITS u2
         on u2.STRUNITKEY = d.STROPERATINGCAPACITYUNIT
-            and u2.STRUNITKEY <> '00000'
+            and u2.STRUNITKEY <> @InvalidKey
         left join LOOKUPUNITS u3
         on u3.STRUNITKEY = d.STRPOLLUTANTCONCENTRATIONUNIT
-            and u3.STRUNITKEY <> '00000'
+            and u3.STRUNITKEY <> @InvalidKey
         left join LOOKUPUNITS u4
         on u4.STRUNITKEY = d.STREMISSIONRATEUNIT
-            and u4.STRUNITKEY <> '00000'
+            and u4.STRUNITKEY <> @InvalidKey
     where convert(int, r.STRREFERENCENUMBER) = @ReferenceNumber;
 
     select trim(t.Value)        as Value,
@@ -93,7 +95,7 @@ BEGIN
         from ISMPREPORTTWOSTACK) t
         inner join LOOKUPUNITS u
         on u.STRUNITKEY = t.UnitCode
-            and u.STRUNITKEY <> '00000'
+            and u.STRUNITKEY <> @InvalidKey
     where convert(int, t.STRREFERENCENUMBER) = @ReferenceNumber
     order by t.Id;
 
