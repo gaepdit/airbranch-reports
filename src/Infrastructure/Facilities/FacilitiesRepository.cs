@@ -13,15 +13,17 @@ public class FacilitiesRepository : IFacilitiesRepository
     public FacilitiesRepository(IDbConnection conn) => db = conn;
 
     public Task<bool> FacilityExistsAsync(ApbFacilityId facilityId) =>
-        db.ExecuteScalarAsync<bool>(FacilitiesQueries.FacilityExists,
-            new { AirsNumber = facilityId.DbFormattedString });
+        db.ExecuteScalarAsync<bool>("air.FacilityExists",
+            new { AirsNumber = facilityId.DbFormattedString },
+            commandType: CommandType.StoredProcedure);
 
     public async Task<Facility?> GetFacilityAsync(ApbFacilityId facilityId)
     {
         if (!await FacilityExistsAsync(facilityId)) return null;
 
-        using var multi = await db.QueryMultipleAsync(FacilitiesQueries.GetFacility,
-            new { AirsNumber = facilityId.DbFormattedString });
+        using var multi = await db.QueryMultipleAsync("air.GetFacility",
+            new { AirsNumber = facilityId.DbFormattedString },
+            commandType: CommandType.StoredProcedure);
 
         var facility = multi.Read<Facility, Address, GeoCoordinates, FacilityHeaderData, Facility>(
             (facility, facilityAddress, geoCoordinates, headerData) =>

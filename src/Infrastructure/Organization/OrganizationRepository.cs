@@ -14,12 +14,9 @@ public class OrganizationRepository : IOrganizationRepository
 
     public async Task<OrganizationInfo> GetAsync()
     {
-        const string query = @"select STRMANAGEMENTNAME
-            from LOOKUPAPBMANAGEMENTTYPE
-            where STRKEY = 'EpdDirector'
-              and STRCURRENTCONTACT = 'C'";
-
-        var director = await db.ExecuteScalarAsync<string>(query);
+        var director = await db.ExecuteScalarAsync<string>("air.GetManagement",
+            new { Type = "EpdDirector" },
+            commandType: CommandType.StoredProcedure);
 
         var organizationInfo = new OrganizationInfo
         {

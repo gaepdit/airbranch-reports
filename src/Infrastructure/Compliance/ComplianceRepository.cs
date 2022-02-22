@@ -17,13 +17,17 @@ public class ComplianceRepository : IComplianceRepository
     public ComplianceRepository(IDbConnection conn) => db = conn;
 
     // ACC
-    public Task<bool> AccReportExistsAsync(ApbFacilityId facilityId, int year) =>
-        db.ExecuteScalarAsync<bool>(ComplianceQueries.AccReportExists,
-            new
-            {
-                AirsNumber = facilityId.DbFormattedString,
-                Year = year,
-            });
+    public Task<bool> AccReportExistsAsync(ApbFacilityId facilityId, int year)
+    {
+        var param = new
+        {
+            AirsNumber = facilityId.DbFormattedString,
+            Year = year,
+        };
+
+        return db.ExecuteScalarAsync<bool>("air.AccReportExists",
+            param, commandType: CommandType.StoredProcedure);
+    }
 
     public async Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int year)
     {
@@ -36,24 +40,29 @@ public class ComplianceRepository : IComplianceRepository
         };
 
         return (await db.QueryAsync<AccReport, Facility, PersonName, AccReport>(
-            ComplianceQueries.GetAccReport,
-            (a, f, n) =>
-            {
-                a.Facility = f;
-                a.StaffResponsible = n;
-                return a;
-            },
-            param)).Single();
+                "air.GetAccReport",
+                (a, f, n) =>
+                {
+                    a.Facility = f;
+                    a.StaffResponsible = n;
+                    return a;
+                },
+                param, commandType: CommandType.StoredProcedure))
+            .Single();
     }
 
     // FCE
-    public Task<bool> FceReportExistsAsync(ApbFacilityId facilityId, int id) =>
-        db.ExecuteScalarAsync<bool>(ComplianceQueries.FceReportExists,
-            new
-            {
-                AirsNumber = facilityId.DbFormattedString,
-                Id = id,
-            });
+    public Task<bool> FceReportExistsAsync(ApbFacilityId facilityId, int id)
+    {
+        var param = new
+        {
+            AirsNumber = facilityId.DbFormattedString,
+            Id = id,
+        };
+
+        return db.ExecuteScalarAsync<bool>("air.FceReportExists",
+            param, commandType: CommandType.StoredProcedure);
+    }
 
     public async Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int id)
     {
@@ -70,7 +79,8 @@ public class ComplianceRepository : IComplianceRepository
         var facilitiesRepository = new FacilitiesRepository(db);
         var facility = await facilitiesRepository.GetFacilityAsync(facilityId);
 
-        using var multi = await db.QueryMultipleAsync(ComplianceQueries.GetFceReport, param);
+        using var multi = await db.QueryMultipleAsync("air.GetFceReport",
+            param, commandType: CommandType.StoredProcedure);
 
         var report = multi.Read<FceReport, PersonName, DateRange, FceReport>(
             (report, staff, dateRange) =>
@@ -88,6 +98,7 @@ public class ComplianceRepository : IComplianceRepository
                 item.InspectionDate = dateRange;
                 return item;
             }));
+
         report.RmpInspections.AddRange(multi.Read<Inspection, PersonName, DateRange, Inspection>(
             (item, staff, dateRange) =>
             {
@@ -95,12 +106,14 @@ public class ComplianceRepository : IComplianceRepository
                 item.InspectionDate = dateRange;
                 return item;
             }));
+
         report.Accs.AddRange(multi.Read<Acc, PersonName, Acc>(
             (item, staff) =>
             {
                 item.Reviewer = staff;
                 return item;
             }));
+
         report.Reports.AddRange(multi.Read<Report, PersonName, DateRange, Report>(
             (item, staff, dateRange) =>
             {
@@ -108,19 +121,23 @@ public class ComplianceRepository : IComplianceRepository
                 item.ReportPeriodDateRange = dateRange;
                 return item;
             }));
+
         report.Notifications.AddRange(multi.Read<Notification, PersonName, Notification>(
             (item, staff) =>
             {
                 item.Reviewer = staff;
                 return item;
             }));
+
         report.StackTests.AddRange(multi.Read<StackTestWork, PersonName, StackTestWork>(
             (item, staff) =>
             {
                 item.Reviewer = staff;
                 return item;
             }));
+
         report.FeesHistory.AddRange(multi.Read<FeeYear>());
+
         report.EnforcementHistory.AddRange(multi.Read<Enforcement, PersonName, Enforcement>(
             (item, staff) =>
             {
