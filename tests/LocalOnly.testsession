@@ -1,0 +1,7 @@
+<SessionState ContinuousTestingMode="0" IsActive="True" Name="Non-infra" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session">
+  <Or>
+    <Project Location="D:\projects\reports\tests\DomainTests" Presentation="&lt;tests&gt;\&lt;DomainTests&gt;" />
+    <Project Location="D:\projects\reports\tests\LocalRepositoryTests" Presentation="&lt;tests&gt;\&lt;LocalRepositoryTests&gt;" />
+    <Project Location="D:\projects\reports\tests\WebAppTests" Presentation="&lt;tests&gt;\&lt;WebAppTests&gt;" />
+  </Or>
+</SessionState>
