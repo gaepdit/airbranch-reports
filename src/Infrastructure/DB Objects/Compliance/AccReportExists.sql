@@ -7,7 +7,7 @@ GO
 
 CREATE OR ALTER PROCEDURE air.AccReportExists
     @AirsNumber varchar(12),
-    @Year       int
+    @Id       int
 AS
 
 /*******************************************************************************
@@ -17,7 +17,7 @@ Overview:   Reports whether an ACC exists for a given facility and year.
 
 Input Parameters:
     @AirsNumber - The facility ID
-    @Year - The ACC year
+    @Id - The tracking number of the ACC
 
 Modification History:
 When        Who                 What
@@ -33,8 +33,8 @@ BEGIN
     from dbo.SSCPITEMMASTER m
         inner join dbo.SSCPACCS c
         on m.STRTRACKINGNUMBER = c.STRTRACKINGNUMBER
-    where STRAIRSNUMBER = @AirsNumber
-      and year(DATACCREPORTINGYEAR) = @Year;
+    where m.STRAIRSNUMBER = @AirsNumber
+      and c.STRTRACKINGNUMBER = @Id;
 
     return 0;
 END;

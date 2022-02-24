@@ -17,12 +17,12 @@ public class ComplianceRepository : IComplianceRepository
     public ComplianceRepository(IDbConnection conn) => db = conn;
 
     // ACC
-    public async Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int year)
+    public async Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int id)
     {
         var param = new
         {
             AirsNumber = facilityId.DbFormattedString,
-            Year = year,
+            Id = id,
         };
 
         if (!await db.ExecuteScalarAsync<bool>("air.AccReportExists",

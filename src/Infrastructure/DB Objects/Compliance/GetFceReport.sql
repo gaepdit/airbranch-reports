@@ -19,7 +19,7 @@ Overview:   Retrieves an FCE report for a given facility and FCE ID.
 
 Input Parameters:
     @AirsNumber - The facility ID
-    @Id - The FCE ID
+    @Id - The tracking number of the FCE
     @FceDataPeriod - The number of years covered by the FCE
     @FceExtendedDataPeriod - The number of years of additional data retrieved
         (fees history and enforcement history)

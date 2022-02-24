@@ -8,9 +8,9 @@ namespace LocalRepository.Compliance;
 public class ComplianceRepository : IComplianceRepository
 {
     // ACC
-    public Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int year) =>
-        AccReports.Any(e => e.Facility?.Id == facilityId && e.AccReportingYear == year)
-            ? Task.FromResult(AccReports.SingleOrDefault(e => e.Facility?.Id == facilityId && e.AccReportingYear == year))
+    public Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int id) =>
+        AccReports.Any(e => e.Facility?.Id == facilityId && e.Id == id)
+            ? Task.FromResult(AccReports.SingleOrDefault(e => e.Facility?.Id == facilityId && e.Id == id))
             : Task.FromResult(null as AccReport);
 
     // FCE

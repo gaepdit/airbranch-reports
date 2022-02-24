@@ -7,7 +7,7 @@ GO
 
 CREATE OR ALTER PROCEDURE air.GetAccReport
     @AirsNumber varchar(12),
-    @Year       int
+    @Id       int
 AS
 
 /*******************************************************************************
@@ -17,7 +17,7 @@ Overview:   Retrieves an ACC report for a given facility and year.
 
 Input Parameters:
     @AirsNumber - The facility ID
-    @Year - The ACC year
+    @Id - The tracking number of the ACC
 
 Modification History:
 When        Who                 What
@@ -63,10 +63,10 @@ BEGIN
         left join dbo.LOOKUPCOUNTYINFORMATION AS l
         ON substring(f.STRAIRSNUMBER, 5, 3) = l.STRCOUNTYCODE
     where m.STRDELETE is null
-      and year(c.DATACCREPORTINGYEAR) = @Year
+      and c.STRTRACKINGNUMBER = @Id
       and f.STRAIRSNUMBER = @AirsNumber
 
-    declare @params nvarchar(max) = concat_ws(':', '@AirsNumber', @AirsNumber, '@Year', @Year);
+    declare @params nvarchar(max) = concat_ws(':', '@AirsNumber', @AirsNumber, '@Id', @Id);
     exec air.LogReport 'ACC', @params;
 
     return 0;
