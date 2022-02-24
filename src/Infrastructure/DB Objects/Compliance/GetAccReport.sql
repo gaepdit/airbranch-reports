@@ -31,7 +31,6 @@ BEGIN
 
     select c.STRTRACKINGNUMBER                                            as Id,
            convert(date, m.DATRECEIVEDDATE)                               as DateReceived,
-           convert(date, m.DATCOMPLETEDATE)                               as DateComplete,
            convert(date, m.DATACKNOLEDGMENTLETTERSENT)                    as DateAcknowledgmentLetterSent,
            c.STRCOMMENTS                                                  as Comments,
            year(c.DATACCREPORTINGYEAR)                                    as AccReportingYear,
