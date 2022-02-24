@@ -11,7 +11,7 @@ public class GetFacility
     [Test]
     public async Task ReturnsFacilityIfExists()
     {
-        var facilityId = "001-00001";
+        var facilityId = new ApbFacilityId("17900001");
         var repo = new FacilitiesRepository(Global.DbConn!);
         var result = await repo.GetFacilityAsync(facilityId);
 
@@ -20,7 +20,7 @@ public class GetFacility
             result.Should().BeOfType<Facility>();
             result.Should().NotBeNull();
             result!.Id.Should().NotBeNull();
-            result.Id!.ToString().Should().Be(facilityId);
+            result.Id!.Should().Be(facilityId);
         });
     }
 

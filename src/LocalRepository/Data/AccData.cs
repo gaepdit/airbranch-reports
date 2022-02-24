@@ -8,7 +8,7 @@ public static class AccData
     {
         new()
         {
-            Id = 1,
+            Id = 77863,
             AccReportingYear = 2018,
             AllDeviationsReported = true,
             AllTitleVConditionsListed = true,
@@ -16,7 +16,6 @@ public static class AccData
             CorrectFormsUsed = true,
             CorrectlyFilledOut = true,
             DateAcknowledgmentLetterSent = null,
-            DateCompleted = new DateTime(2001, 11, 23),
             DatePostmarked = new DateTime(2001, 1, 1),
             DateReceived = new DateTime(2001, 1, 2),
             DeviationsReported = false,
@@ -30,7 +29,7 @@ public static class AccData
         },
         new()
         {
-            Id = 2,
+            Id = 83966,
             AccReportingYear = 2019,
             AllDeviationsReported = false,
             AllTitleVConditionsListed = false,
@@ -38,7 +37,6 @@ public static class AccData
             CorrectFormsUsed = false,
             CorrectlyFilledOut = false,
             DateAcknowledgmentLetterSent = new DateTime(2001, 11, 22),
-            DateCompleted = new DateTime(2002, 2, 23),
             DatePostmarked = new DateTime(2002, 2, 2),
             DateReceived = new DateTime(2002, 2, 3),
             DeviationsReported = true,

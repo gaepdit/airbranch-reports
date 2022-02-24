@@ -1,4 +1,5 @@
 using Domain.Compliance.Models;
+using Domain.Facilities.Models;
 using FluentAssertions;
 using Infrastructure.Compliance;
 using NUnit.Framework;
@@ -11,8 +12,8 @@ public class GetFceReport
     [Test]
     public async Task ReturnsReportIfExists()
     {
-        var facilityId = "001-00001";
-        var id = 7136;
+        var facilityId = new ApbFacilityId("001-00001");
+        const int id = 7136;
         var repo = new ComplianceRepository(Global.DbConn!);
         var result = await repo.GetFceReportAsync(facilityId, id);
 
@@ -22,7 +23,7 @@ public class GetFceReport
             result.Should().NotBeNull();
             result!.Id.Should().Be(id);
             result.Facility.Should().NotBeNull();
-            result.Facility!.Id!.ToString().Should().Be(facilityId);
+            result.Facility!.Id!.Should().Be(facilityId);
         });
     }
 

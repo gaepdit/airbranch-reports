@@ -16,7 +16,7 @@ public class GetAccReport
         var report = AccData.AccReports.First();
 
         var repo = new ComplianceRepository();
-        var result = await repo.GetAccReportAsync(report.Facility!.Id!, report.AccReportingYear);
+        var result = await repo.GetAccReportAsync(report.Facility!.Id!, report.Id);
         result.Should().BeEquivalentTo(report);
     }
 

@@ -17,7 +17,7 @@ Overview:   Reports whether an FCE exists for a given facility and FCE ID.
 
 Input Parameters:
     @AirsNumber - The facility ID
-    @Id - The FCE ID
+    @Id - The tracking number of the FCE
 
 Modification History:
 When        Who                 What

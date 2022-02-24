@@ -1,4 +1,5 @@
 using Domain.Compliance.Models;
+using Domain.Facilities.Models;
 using FluentAssertions;
 using Infrastructure.Compliance;
 using NUnit.Framework;
@@ -11,18 +12,18 @@ public class GetAccReport
     [Test]
     public async Task ReturnsReportIfExists()
     {
-        var facilityId = "193-00008";
-        var year = 2019;
+        var facilityId = new ApbFacilityId("05100149");
+        const int id = 77863;
         var repo = new ComplianceRepository(Global.DbConn!);
-        var result = await repo.GetAccReportAsync(facilityId, year);
+        var result = await repo.GetAccReportAsync(facilityId, id);
 
         Assert.Multiple(() =>
         {
             result.Should().BeOfType<AccReport>();
             result.Should().NotBeNull();
-            result!.AccReportingYear.Should().Be(year);
+            result!.Id.Should().Be(id);
             result.Facility.Should().NotBeNull();
-            result.Facility!.Id!.ToString().Should().Be(facilityId);
+            result.Facility!.Id!.Should().Be(facilityId);
         });
     }
 
@@ -30,7 +31,7 @@ public class GetAccReport
     public async Task ReturnsNullIfNotExists()
     {
         var repo = new ComplianceRepository(Global.DbConn!);
-        var result = await repo.GetAccReportAsync("000-00000", 2019);
+        var result = await repo.GetAccReportAsync("000-00000", 1);
 
         result.Should().BeNull();
     }

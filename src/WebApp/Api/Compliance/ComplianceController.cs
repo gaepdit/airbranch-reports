@@ -10,14 +10,14 @@ namespace WebApp.Api.Compliance;
 [Produces("application/json")]
 public class ComplianceController : ControllerBase
 {
-    [HttpGet("acc-report/{year:int}")]
+    [HttpGet("acc-report/{id:int}")]
     public async Task<ActionResult<AccReport>> GetAccReportAsync(
         [FromServices] IComplianceRepository repository,
         [FromRoute] string facilityId,
-        [FromRoute] int year)
+        [FromRoute] int id)
     {
         if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId)) return BadRequest();
-        var report = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), year);
+        var report = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), id);
         return report is null
             ? NotFound()
             : Ok(report);

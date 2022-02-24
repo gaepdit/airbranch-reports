@@ -17,42 +17,7 @@ public class ComplianceRepository : IComplianceRepository
     public ComplianceRepository(IDbConnection conn) => db = conn;
 
     // ACC
-    public Task<bool> AccReportExistsAsync(ApbFacilityId facilityId, int year)
-    {
-        var param = new
-        {
-            AirsNumber = facilityId.DbFormattedString,
-            Year = year,
-        };
-
-        return db.ExecuteScalarAsync<bool>("air.AccReportExists",
-            param, commandType: CommandType.StoredProcedure);
-    }
-
-    public async Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int year)
-    {
-        if (!await AccReportExistsAsync(facilityId, year)) return null;
-
-        var param = new
-        {
-            AirsNumber = facilityId.DbFormattedString,
-            Year = year,
-        };
-
-        return (await db.QueryAsync<AccReport, Facility, PersonName, AccReport>(
-                "air.GetAccReport",
-                (a, f, n) =>
-                {
-                    a.Facility = f;
-                    a.StaffResponsible = n;
-                    return a;
-                },
-                param, commandType: CommandType.StoredProcedure))
-            .Single();
-    }
-
-    // FCE
-    public Task<bool> FceReportExistsAsync(ApbFacilityId facilityId, int id)
+    public async Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int id)
     {
         var param = new
         {
@@ -60,13 +25,37 @@ public class ComplianceRepository : IComplianceRepository
             Id = id,
         };
 
-        return db.ExecuteScalarAsync<bool>("air.FceReportExists",
-            param, commandType: CommandType.StoredProcedure);
+        if (!await db.ExecuteScalarAsync<bool>("air.AccReportExists",
+                param, commandType: CommandType.StoredProcedure))
+            return null;
+
+        return (await db.QueryAsync<AccReport, Facility, PersonName, AccReport>(
+                "air.GetAccReport",
+                (report, facility, staff) =>
+                {
+                    report.Facility = facility;
+                    report.StaffResponsible = staff;
+                    return report;
+                },
+                param, commandType: CommandType.StoredProcedure))
+            .Single();
     }
 
+    // FCE
     public async Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int id)
     {
-        if (!await FceReportExistsAsync(facilityId, id)) return null;
+        var existParam = new
+        {
+            AirsNumber = facilityId.DbFormattedString,
+            Id = id,
+        };
+
+        if (!await db.ExecuteScalarAsync<bool>("air.FceReportExists",
+                existParam, commandType: CommandType.StoredProcedure))
+            return null;
+
+        var facilitiesRepository = new FacilitiesRepository(db);
+        var facility = await facilitiesRepository.GetFacilityAsync(facilityId);
 
         var param = new
         {
@@ -75,9 +64,6 @@ public class ComplianceRepository : IComplianceRepository
             GlobalConstants.FceDataPeriod,
             GlobalConstants.FceExtendedDataPeriod,
         };
-
-        var facilitiesRepository = new FacilitiesRepository(db);
-        var facility = await facilitiesRepository.GetFacilityAsync(facilityId);
 
         using var multi = await db.QueryMultipleAsync("air.GetFceReport",
             param, commandType: CommandType.StoredProcedure);

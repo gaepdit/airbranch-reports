@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApp.Platform.Models;
 
-namespace WebApp.Pages.Compliance;
+namespace WebApp.Pages.Compliance.Acc;
 
-public class AccReportModel : PageModel
+public class IndexModel : PageModel
 {
     public AccReport? Report { get; set; }
     public OrganizationInfo OrganizationInfo { get; set; }
@@ -19,12 +19,12 @@ public class AccReportModel : PageModel
         [FromServices] IComplianceRepository repository,
         [FromServices] IOrganizationRepository orgRepo,
         [FromRoute] string facilityId,
-        [FromRoute] int year)
+        [FromRoute] int id)
     {
         if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId))
             return NotFound("Facility ID is invalid.");
 
-        Report = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), year);
+        Report = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), id);
         if (Report?.Facility is null) return NotFound();
 
         OrganizationInfo = await orgRepo.GetAsync();
