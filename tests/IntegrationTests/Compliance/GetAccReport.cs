@@ -11,8 +11,8 @@ public class GetAccReport
     [Test]
     public async Task ReturnsReportIfExists()
     {
-        var facilityId = "193-00008";
-        var year = 2019;
+        const string facilityId = "193-00008";
+        const int year = 2019;
         var repo = new ComplianceRepository(Global.DbConn!);
         var result = await repo.GetAccReportAsync(facilityId, year);
 
