@@ -21,6 +21,7 @@ Modification History:
 When        Who                 What
 ----------  ------------------  ------------------------------------------------
 2022-02-22  DWaldron            Initial version
+2022-02-24  DWaldron            Exclude deleted stack tests
 
 *******************************************************************************/
 
@@ -28,8 +29,9 @@ BEGIN
     SET NOCOUNT ON;
 
     select convert(int, STRDOCUMENTTYPE) as DocumentType
-    from ISMPREPORTINFORMATION
+    from dbo.ISMPREPORTINFORMATION
     where STRREFERENCENUMBER = @ReferenceNumber
+      and STRDELETE is null
 
     return 0;
 END;

@@ -12,7 +12,7 @@ public class GetDocumentType
     [Test]
     public async Task ReturnsDocumentTypeIfExists()
     {
-        var referenceNumber = 201100541;
+        const int referenceNumber = 201100541;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetDocumentTypeAsync(referenceNumber);
         result.Should().Be(DocumentType.OneStackThreeRuns);

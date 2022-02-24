@@ -13,6 +13,7 @@ public enum ReportType
 }
 
 // ReSharper disable once InconsistentNaming
+// Values from the "ISMPDOCUMENTTYPE" table
 public enum DocumentType
 {
     [Description("Unassigned")] Unassigned = 001,

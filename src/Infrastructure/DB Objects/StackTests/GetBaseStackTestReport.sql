@@ -21,6 +21,7 @@ Modification History:
 When        Who                 What
 ----------  ------------------  ------------------------------------------------
 2022-02-22  DWaldron            Initial version
+2022-02-24  DWaldron            Exclude deleted stack tests
 
 *******************************************************************************/
 
@@ -65,52 +66,55 @@ BEGIN
            'TestDates'                        as Id,
            r.DATTESTDATESTART                 as StartDate,
            r.DATTESTDATEEND                   as EndDate
-    from ISMPREPORTINFORMATION r
-        left join LOOKUPPOLLUTANTS lp
+    from dbo.ISMPREPORTINFORMATION r
+        left join dbo.LOOKUPPOLLUTANTS lp
         on r.STRPOLLUTANT = lp.STRPOLLUTANTCODE
-        left join LOOKUPISMPCOMPLIANCESTATUS s
+        left join dbo.LOOKUPISMPCOMPLIANCESTATUS s
         on s.STRCOMPLIANCEKEY = r.STRCOMPLIANCESTATUS
 
-        left join EPDUSERPROFILES pr
+        left join dbo.EPDUSERPROFILES pr
         on pr.NUMUSERID = r.STRREVIEWINGENGINEER
-        left join EPDUSERPROFILES pc
+        left join dbo.EPDUSERPROFILES pc
         on pc.NUMUSERID = r.STRCOMPLIANCEMANAGER
-        left join EPDUSERPROFILES pt
+        left join dbo.EPDUSERPROFILES pt
         on pt.NUMUSERID = convert(int, r.NUMREVIEWINGMANAGER)
 
-        inner join ISMPMASTER i
+        inner join dbo.ISMPMASTER i
         on i.STRREFERENCENUMBER = r.STRREFERENCENUMBER
-        inner join APBFACILITYINFORMATION f
+        inner join dbo.APBFACILITYINFORMATION f
         on f.STRAIRSNUMBER = i.STRAIRSNUMBER
         left join dbo.LOOKUPCOUNTYINFORMATION lc
         on substring(f.STRAIRSNUMBER, 5, 3) = lc.STRCOUNTYCODE
-    where STRDOCUMENTTYPE <> '001'
+    where r.STRDOCUMENTTYPE <> '001'
+      and r.STRDELETE is null
       and r.STRREFERENCENUMBER = @ReferenceNumber;
 
     select w.WitnessId     as Id,
-           pw.STRFIRSTNAME as GivenName,
-           pw.STRLASTNAME  as FamilyName
-    from ISMPREPORTINFORMATION r
+           p.STRFIRSTNAME as GivenName,
+           p.STRLASTNAME  as FamilyName
+    from dbo.ISMPREPORTINFORMATION r
         inner join(select STRREFERENCENUMBER,
                           convert(int, STRWITNESSINGENGINEER)
                               as WitnessId
-                   from ISMPREPORTINFORMATION
+                   from dbo.ISMPREPORTINFORMATION
                    where STRWITNESSINGENGINEER <> 0
                    union
                    select STRREFERENCENUMBER,
                           convert(int, STRWITNESSINGENGINEER2)
-                   from ISMPREPORTINFORMATION
+                   from dbo.ISMPREPORTINFORMATION
                    where STRWITNESSINGENGINEER2 <> 0
                    union
                    select STRREFERENCENUMBER,
                           convert(int, STRWITNESSINGENGINEER)
-                   from ISMPWITNESSINGENG
+                   from dbo.ISMPWITNESSINGENG
                    where STRWITNESSINGENGINEER <> 0) w
         on r.STRREFERENCENUMBER = w.STRREFERENCENUMBER
-        left join EPDUSERPROFILES pw
-        on pw.NUMUSERID = w.WitnessId
-    where r.STRREFERENCENUMBER = @ReferenceNumber;
-    
+        left join dbo.EPDUSERPROFILES p
+        on p.NUMUSERID = w.WitnessId
+    where r.STRDOCUMENTTYPE <> '001'
+      and r.STRDELETE is null
+      and r.STRREFERENCENUMBER = @ReferenceNumber;
+
     return 0;
 END;
 

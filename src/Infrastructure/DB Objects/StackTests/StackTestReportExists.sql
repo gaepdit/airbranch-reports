@@ -24,6 +24,7 @@ Modification History:
 When        Who                 What
 ----------  ------------------  ------------------------------------------------
 2022-02-22  DWaldron            Initial version
+2022-02-24  DWaldron            Exclude deleted stack tests
 
 *******************************************************************************/
 
@@ -35,6 +36,7 @@ BEGIN
         inner join ISMPREPORTINFORMATION r
         on m.STRREFERENCENUMBER = r.STRREFERENCENUMBER
     where r.STRDOCUMENTTYPE <> '001'
+      and r.STRDELETE is null
       and m.STRAIRSNUMBER = @AirsNumber
       and convert(int, m.STRREFERENCENUMBER) = @ReferenceNumber
 

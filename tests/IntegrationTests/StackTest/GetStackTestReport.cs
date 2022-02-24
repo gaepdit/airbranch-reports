@@ -12,11 +12,9 @@ public class GetStackTestReport
     [Test]
     public async Task ParsingConfidentialInfoDoesNotFail()
     {
-        var facilityId = new ApbFacilityId("17900001");
-        var referenceNumber = 202001297;
         var repo = new StackTestRepository(Global.DbConn!);
-        var stackTestReport =
-            await repo.GetStackTestReportAsync(facilityId, referenceNumber) as StackTestReportOneStack;
+        var stackTestReport = await repo.GetStackTestReportAsync("17900001", 202001297)
+            as StackTestReportOneStack;
 
         var act = () => stackTestReport!.RedactedStackTestReport();
         act.Should().NotThrow();
@@ -26,8 +24,23 @@ public class GetStackTestReport
     public async Task ReturnsNullIfNotExists()
     {
         var repo = new StackTestRepository(Global.DbConn!);
-        var result = await repo.GetStackTestReportAsync("000-00000", 2019);
+        var result = await repo.GetStackTestReportAsync("000-00000", 1);
+        result.Should().BeNull();
+    }
 
+    [Test]
+    public async Task ReturnsNullIfUnassignedDocumentType()
+    {
+        var repo = new StackTestRepository(Global.DbConn!);
+        var result = await repo.GetStackTestReportAsync("095-00085", 202101068);
+        result.Should().BeNull();
+    }
+
+    [Test]
+    public async Task ReturnsNullIfTestDeleted()
+    {
+        var repo = new StackTestRepository(Global.DbConn!);
+        var result = await repo.GetStackTestReportAsync("05900059", 202000278);
         result.Should().BeNull();
     }
 
@@ -35,7 +48,7 @@ public class GetStackTestReport
     public async Task ReturnsOneStackReportIfExists()
     {
         var facilityId = new ApbFacilityId("121-00021");
-        var referenceNumber = 201100541;
+        const int referenceNumber = 201100541;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -53,7 +66,7 @@ public class GetStackTestReport
     public async Task ReturnsTwoStackStandardReportIfExists()
     {
         var facilityId = new ApbFacilityId("24500002");
-        var referenceNumber = 201600525;
+        const int referenceNumber = 201600525;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -72,7 +85,7 @@ public class GetStackTestReport
     public async Task ReturnsTwoStackDreReportIfExists()
     {
         var facilityId = new ApbFacilityId("07300003");
-        var referenceNumber = 200400473;
+        const int referenceNumber = 200400473;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -91,7 +104,7 @@ public class GetStackTestReport
     public async Task ReturnsLoadingRackReportIfExists()
     {
         var facilityId = new ApbFacilityId("02100090");
-        var referenceNumber = 200500014;
+        const int referenceNumber = 200500014;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -110,7 +123,7 @@ public class GetStackTestReport
     public async Task ReturnsPondTreatmentReportIfExists()
     {
         var facilityId = new ApbFacilityId("11500021");
-        var referenceNumber = 200400023;
+        const int referenceNumber = 200400023;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -128,7 +141,7 @@ public class GetStackTestReport
     public async Task ReturnsGasConcentrationReportIfExists()
     {
         var facilityId = new ApbFacilityId("15300040");
-        var referenceNumber = 200400009;
+        const int referenceNumber = 200400009;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -146,7 +159,7 @@ public class GetStackTestReport
     public async Task ReturnsFlareReportIfExists()
     {
         var facilityId = new ApbFacilityId("05700040");
-        var referenceNumber = 200400407;
+        const int referenceNumber = 200400407;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -164,7 +177,7 @@ public class GetStackTestReport
     public async Task ReturnsMemorandumStandardIfExists()
     {
         var facilityId = new ApbFacilityId("17900001");
-        var referenceNumber = 200600289;
+        const int referenceNumber = 200600289;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -183,7 +196,7 @@ public class GetStackTestReport
     public async Task ReturnsMemorandumToFileIfExists()
     {
         var facilityId = new ApbFacilityId("17900001");
-        var referenceNumber = 201500570;
+        const int referenceNumber = 201500570;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -202,7 +215,7 @@ public class GetStackTestReport
     public async Task ReturnsMemorandumPteIfExists()
     {
         var facilityId = new ApbFacilityId("07300003");
-        var referenceNumber = 200400476;
+        const int referenceNumber = 200400476;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -221,7 +234,7 @@ public class GetStackTestReport
     public async Task ReturnsMethod9MultiReportIfExists()
     {
         var facilityId = new ApbFacilityId("11500021");
-        var referenceNumber = 201801068;
+        const int referenceNumber = 201801068;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -240,7 +253,7 @@ public class GetStackTestReport
     public async Task ReturnsMethod9SingleReportIfExists()
     {
         var facilityId = new ApbFacilityId("24500002");
-        var referenceNumber = 200700192;
+        const int referenceNumber = 200700192;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
@@ -259,7 +272,7 @@ public class GetStackTestReport
     public async Task ReturnsMethod22ReportIfExists()
     {
         var facilityId = new ApbFacilityId("31300062");
-        var referenceNumber = 200600052;
+        const int referenceNumber = 200600052;
         var repo = new StackTestRepository(Global.DbConn!);
         var result = await repo.GetStackTestReportAsync(facilityId, referenceNumber);
 
