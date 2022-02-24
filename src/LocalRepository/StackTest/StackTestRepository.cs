@@ -6,21 +6,19 @@ namespace LocalRepository.StackTest;
 
 public class StackTestRepository : IStackTestRepository
 {
-    public Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber) =>
-        Task.FromResult(StackTestReports.Any(e =>
+    private static bool StackTestReportExists(ApbFacilityId facilityId, int referenceNumber) =>
+        StackTestReports.Any(e =>
             e.ReferenceNumber == referenceNumber &&
             e.Facility?.Id == facilityId &&
-            e.DocumentType != DocumentType.Unassigned));
+            e.DocumentType != DocumentType.Unassigned);
 
-    public Task<DocumentType> GetDocumentTypeAsync(int referenceNumber) =>
-        Task.FromResult(StackTestReports.Single(e => e.ReferenceNumber == referenceNumber).DocumentType);
-
-    public async Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
+    public Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
     {
-        if (!await StackTestReportExistsAsync(facilityId, referenceNumber)) return null;
+        if (!StackTestReportExists(facilityId, referenceNumber))
+            return Task.FromResult(null as BaseStackTestReport);
 
-        var result = StackTestReports.Single(e => e.ReferenceNumber == referenceNumber);
-        result.ParseConfidentialParameters();
-        return result;
+        var result = StackTestReports.SingleOrDefault(e => e.ReferenceNumber == referenceNumber);
+        result?.ParseConfidentialParameters();
+        return Task.FromResult(result);
     }
 }
