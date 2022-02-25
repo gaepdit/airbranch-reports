@@ -10,67 +10,69 @@
 </div>
 
 <div class="grid-half">
-    <div>
-        <h2>API quick links</h2>
+    <environment exclude="Staging,Production">
+        <div>
+            <h2>API quick links</h2>
 
-        <ul>
-            <li><a asp-controller="Facility" asp-action="Get" asp-route-facilityId="001-00001">Facility</a></li>
-            <li><a asp-controller="Facility" asp-action="Exists" asp-route-facilityId="001-00001">Facility exists</a></li>
-            <li><a asp-controller="Compliance" asp-action="GetAccReport" asp-route-facilityId="051-00149" asp-route-id="83966">ACC report</a></li>
-            <li><a asp-controller="Organization" asp-action="Get">Organization</a></li>
-            <li>
-                Stack tests
-                <ul>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="12100021" asp-route-referenceNumber="201100541">One Stack</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="12100021" asp-route-referenceNumber="201100541" asp-route-includeConfidentialInfo="true">One Stack, show confidential info</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="17900001" asp-route-referenceNumber="202001297">One Stack, alternate</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="05900071" asp-route-referenceNumber="201901149">Loading Rack</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="05900071" asp-route-referenceNumber="201901149" asp-route-includeConfidentialInfo="true">Loading Rack, show confidential info</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="05700040" asp-route-referenceNumber="200400407">Flare</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="24500002" asp-route-referenceNumber="201600525">Two Stack, Standard</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="07300003" asp-route-referenceNumber="200400473">Two Stack, DRE</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="11500021" asp-route-referenceNumber="200400023">Pond treatment</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="15300040" asp-route-referenceNumber="200400009">Gas concentration</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="30500001" asp-route-referenceNumber="201200095">RATA</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="17900001" asp-route-referenceNumber="200600289">Memorandum, Standard</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="17900001" asp-route-referenceNumber="201500570">Memorandum, To File</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="07300003" asp-route-referenceNumber="200400476">Memorandum, PTE</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="11500021" asp-route-referenceNumber="201801068">Method 9 Multi</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="31300062" asp-route-referenceNumber="200600052">Method 22</a></li>
-                    <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="24500002" asp-route-referenceNumber="200700192">Method 9 Single</a></li>
-                </ul>
-            </li>
-            <li><a asp-controller="Compliance" asp-action="GetFceReport" asp-route-facilityId="00100001" asp-route-id="7136">FCE report 1</a></li>
-            <li><a asp-controller="Compliance" asp-action="GetFceReport" asp-route-facilityId="00100005" asp-route-id="8555">FCE report 2</a></li>
-        </ul>
-    </div>
-
+            <ul>
+                <li><a asp-controller="Facility" asp-action="Get" asp-route-facilityId="001-00001">Facility</a></li>
+                <li><a asp-controller="Facility" asp-action="Exists" asp-route-facilityId="001-00001">Facility exists</a></li>
+                <li><a asp-controller="Compliance" asp-action="GetAccReport" asp-route-facilityId="051-00149" asp-route-id="83966">ACC report</a></li>
+                <li><a asp-controller="Organization" asp-action="Get">Organization</a></li>
+                <li>
+                    Stack tests
+                    <ul>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="12100021" asp-route-referenceNumber="201100541">One Stack</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="12100021" asp-route-referenceNumber="201100541" asp-route-includeConfidentialInfo="true">One Stack, show confidential info</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="17900001" asp-route-referenceNumber="202001297">One Stack, alternate</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="05900071" asp-route-referenceNumber="201901149">Loading Rack</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="05900071" asp-route-referenceNumber="201901149" asp-route-includeConfidentialInfo="true">Loading Rack, show confidential info</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="05700040" asp-route-referenceNumber="200400407">Flare</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="24500002" asp-route-referenceNumber="201600525">Two Stack, Standard</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="07300003" asp-route-referenceNumber="200400473">Two Stack, DRE</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="11500021" asp-route-referenceNumber="200400023">Pond treatment</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="15300040" asp-route-referenceNumber="200400009">Gas concentration</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="30500001" asp-route-referenceNumber="201200095">RATA</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="17900001" asp-route-referenceNumber="200600289">Memorandum, Standard</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="17900001" asp-route-referenceNumber="201500570">Memorandum, To File</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="07300003" asp-route-referenceNumber="200400476">Memorandum, PTE</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="11500021" asp-route-referenceNumber="201801068">Method 9 Multi</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="31300062" asp-route-referenceNumber="200600052">Method 22</a></li>
+                        <li><a asp-controller="StackTest" asp-action="Get" asp-route-facilityId="24500002" asp-route-referenceNumber="200700192">Method 9 Single</a></li>
+                    </ul>
+                </li>
+                <li><a asp-controller="Compliance" asp-action="GetFceReport" asp-route-facilityId="00100001" asp-route-id="7136">FCE report 1</a></li>
+                <li><a asp-controller="Compliance" asp-action="GetFceReport" asp-route-facilityId="00100005" asp-route-id="8555">FCE report 2</a></li>
+            </ul>
+        </div>
+    </environment>
+    
     <div>
         <h2>Page quick links</h2>
 
         <ul>
-            <li><a asp-page="/Compliance/Acc/Index" asp-route-facilityId="051-00149" asp-route-id="83966" >ACC report</a></li>
+            <li><a asp-page="/Compliance/Acc/Index" asp-route-facilityId="051-00149" asp-route-id="83966">ACC report</a></li>
             <li>
-                Stack tests
-                <ul>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="12100021" asp-route-referenceNumber="201100541">One Stack 1</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="12100021" asp-route-referenceNumber="201100541" asp-route-includeConfidentialInfo="true">One Stack 1, show confidential info</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="17900001" asp-route-referenceNumber="202001297">One Stack 2</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="05900071" asp-route-referenceNumber="201901149">Loading Rack</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="05900071" asp-route-referenceNumber="201901149" asp-route-includeConfidentialInfo="true">Loading Rack, show confidential info</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="05700040" asp-route-referenceNumber="200400407">Flare</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="24500002" asp-route-referenceNumber="201600525">Two Stack, Standard</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="07300003" asp-route-referenceNumber="200400473">Two Stack, DRE</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="11500021" asp-route-referenceNumber="200400023">Pond treatment</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="15300040" asp-route-referenceNumber="200400009">Gas concentration</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="30500001" asp-route-referenceNumber="201200095">RATA</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="17900001" asp-route-referenceNumber="200600289">Memorandum, Standard</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="17900001" asp-route-referenceNumber="201500570">Memorandum, To File</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="07300003" asp-route-referenceNumber="200400476">Memorandum, PTE</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="11500021" asp-route-referenceNumber="201801068">Method 9 Multi</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="31300062" asp-route-referenceNumber="200600052">Method 22</a></li>
-                    <li><a asp-page="/StackTest/Index" asp-route-facilityId="24500002" asp-route-referenceNumber="200700192">Method 9 Single</a></li>
-                </ul>
+            Stack tests
+            <ul>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="12100021" asp-route-referenceNumber="201100541">One Stack 1</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="12100021" asp-route-referenceNumber="201100541" asp-route-includeConfidentialInfo="true">One Stack 1, show confidential info</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="17900001" asp-route-referenceNumber="202001297">One Stack 2</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="05900071" asp-route-referenceNumber="201901149">Loading Rack</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="05900071" asp-route-referenceNumber="201901149" asp-route-includeConfidentialInfo="true">Loading Rack, show confidential info</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="05700040" asp-route-referenceNumber="200400407">Flare</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="24500002" asp-route-referenceNumber="201600525">Two Stack, Standard</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="07300003" asp-route-referenceNumber="200400473">Two Stack, DRE</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="11500021" asp-route-referenceNumber="200400023">Pond treatment</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="15300040" asp-route-referenceNumber="200400009">Gas concentration</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="30500001" asp-route-referenceNumber="201200095">RATA</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="17900001" asp-route-referenceNumber="200600289">Memorandum, Standard</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="17900001" asp-route-referenceNumber="201500570">Memorandum, To File</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="07300003" asp-route-referenceNumber="200400476">Memorandum, PTE</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="11500021" asp-route-referenceNumber="201801068">Method 9 Multi</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="31300062" asp-route-referenceNumber="200600052">Method 22</a></li>
+                <li><a asp-page="/StackTest/Index" asp-route-facilityId="24500002" asp-route-referenceNumber="200700192">Method 9 Single</a></li>
+            </ul>
             <li><a asp-page="/Compliance/Fce/Index" asp-route-facilityId="00100001" asp-route-id="7136">FCE report 1</a></li>
             <li><a asp-page="/Compliance/Fce/Index" asp-route-facilityId="00100005" asp-route-id="8555">FCE report 2</a></li>
         </ul>
