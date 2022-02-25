@@ -1,11 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp.Pages;
 
 public class IndexModel : PageModel
 {
-    public void OnGet()
+    public IActionResult OnGet(
+        [FromServices] IWebHostEnvironment env,
+        [FromServices] IConfiguration configuration)
     {
-        // Method intentionally left empty.
+        if (!env.IsProduction()) return Page();
+
+        return Redirect(configuration["HomePageRedirectDestination"] ??
+            throw new ArgumentException("The HomePageRedirectDestination setting is missing"));
     }
 }
