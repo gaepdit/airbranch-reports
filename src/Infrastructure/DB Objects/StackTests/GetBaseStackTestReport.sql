@@ -22,6 +22,7 @@ When        Who                 What
 ----------  ------------------  ------------------------------------------------
 2022-02-22  DWaldron            Initial version
 2022-02-24  DWaldron            Exclude deleted stack tests
+2022-02-24  DWaldron            NUMREVIEWINGMANAGER was converted to int
 
 *******************************************************************************/
 
@@ -77,7 +78,7 @@ BEGIN
         left join dbo.EPDUSERPROFILES pc
         on pc.NUMUSERID = r.STRCOMPLIANCEMANAGER
         left join dbo.EPDUSERPROFILES pt
-        on pt.NUMUSERID = convert(int, r.NUMREVIEWINGMANAGER)
+        on pt.NUMUSERID = r.NUMREVIEWINGMANAGER
 
         inner join dbo.ISMPMASTER i
         on i.STRREFERENCENUMBER = r.STRREFERENCENUMBER
