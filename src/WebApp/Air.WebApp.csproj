@@ -29,4 +29,7 @@
     <ProjectReference Include="..\LocalRepository\LocalRepository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="web.*.config" CopyToPublishDirectory="Never" />
+  </ItemGroup>
 </Project>
