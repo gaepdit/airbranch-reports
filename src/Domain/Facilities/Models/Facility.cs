@@ -9,7 +9,7 @@ public record Facility
     [Display(Name = "AIRS Number")]
     public ApbFacilityId? Id { get; init; }
 
-    [Display(Name = "Facility name")]
+    [Display(Name = "Company name")]
     public string Name { get; init; } = "";
 
     [Display(Name = "Facility description")]
@@ -17,7 +17,7 @@ public record Facility
 
     // Location
 
-    [Display(Name = "Facility address")]
+    [Display(Name = "Company address")]
     public Address FacilityAddress { get; set; }
 
     [Display(Name = "County")]
