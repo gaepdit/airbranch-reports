@@ -17,7 +17,7 @@ using WebApp.Platform.Raygun;
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure authentication
-if (builder.Environment.IsLocalDev())
+if (builder.Environment.IsLocalEnv())
 {
     // When running locally, uses a built-in authenticated user.
     builder.Services
@@ -54,7 +54,7 @@ builder.Services.AddRaygun(builder.Configuration,
 builder.Services.AddHttpContextAccessor(); // needed by RaygunScriptPartial
 
 // Configure the data repositories
-if (builder.Environment.IsLocalDev())
+if (builder.Environment.IsLocalEnv())
 {
     // Uses sample data when running locally.
     builder.Services.AddScoped<IFacilitiesRepository,
@@ -87,19 +87,15 @@ var app = builder.Build();
 var env = app.Environment;
 
 // Configure the HTTP request pipeline.
-if (env.IsDevelopment() || env.IsLocalDev())
+if (env.IsDevelopment() || env.IsLocalEnv())
 {
     app.UseDeveloperExceptionPage();
 }
 else
 {
     app.UseExceptionHandler("/Error");
-}
-
-if (!env.IsLocalDev())
-{
-    app.UseRaygun();
     app.UseHsts();
+    app.UseRaygun();
 }
 
 app.UseStatusCodePages();

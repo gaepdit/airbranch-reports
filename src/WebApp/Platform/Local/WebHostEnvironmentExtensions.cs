@@ -2,5 +2,5 @@
 
 internal static class WebHostEnvironmentExtensions
 {
-    internal static bool IsLocalDev(this IWebHostEnvironment env) => env.IsEnvironment("Local");
+    internal static bool IsLocalEnv(this IWebHostEnvironment env) => env.IsEnvironment("Local");
 }
