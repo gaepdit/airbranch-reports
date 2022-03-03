@@ -20,13 +20,13 @@ There are also corresponding unit test projects.
 
 ## Development
 
-Run locally by choosing one of the "Local" launch profiles or connect to a database by choosing one of the "Dev Server" profiles. 
+Run locally by choosing the "Local" launch profile or connect to the dev database by choosing the "Dev Server" profiles. 
 
 ### Local 
 
- In this configuration, no database is used -- sample data is provided in the `LocalRepository/Data` folder. 
+ In this configuration, no database is used -- sample data is provided in the "LocalRepository/Data" folder. 
  
- No authentication provider is enabled, either. The `AuthenticatedUser` setting in the `appsettings.Local.json` file can be used to set whether the application runs with an authenticated user or not.
+ No authentication provider is enabled, either. The `AuthenticatedUser` setting in the "appsettings.Local.json" file can be used to set whether the application runs with an authenticated user or not.
 
  ```json
 {
@@ -36,23 +36,8 @@ Run locally by choosing one of the "Local" launch profiles or connect to a datab
 
  ### Dev Server
 
- To use the Dev Server configuration, add a file named `appsettings.Development.json` and provide a database connection string and Azure AD configuration settings.
-
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": ""
-  },
-  "AzureAd": {
-    "Instance": "https://login.microsoftonline.com/",
-    "Domain": "qualified.domain.name",
-    "TenantId": "00000000-0000-0000-0000-000000000000",
-    "ClientId": "00000000-0000-0000-00000000000000000",
-    "CallbackPath": "/signin-oidc"
-  }
-}
-```
+ To use the Dev Server configuration, copy the file named "appsettings.Development.json" from the "app-config" repo into the "src/WebApp" folder. In this configuration, the existing SQL Server `airbranch` database will be used.
 
 ## Testing
 
-The Domain, LocalRepository, and WebApp test projects all run using local data. To run the Integration tests, add a file named `IntegrationTests/testsettings.json` and provide a database connection string.
+The Domain, LocalRepository, and WebApp test projects all run using local data. To run the Infrastructure integration tests, copy the file named "testsettings.json" from the "app-config" repo into the "tests/IntegrationTests" folder.
