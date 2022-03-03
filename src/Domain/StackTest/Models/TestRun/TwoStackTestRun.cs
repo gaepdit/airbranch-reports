@@ -20,10 +20,10 @@ public record TwoStackTestRun : BaseTestRun
 
     public string StackTwoGasMoisture { get; init; } = "";
 
-    [Display(Name = "Gas flow rate (ASCFM)")]
-    public string StackOneGasFlowRateAscfm { get; init; } = "";
+    [Display(Name = "Gas flow rate (ACFM)")]
+    public string StackOneGasFlowRateAcfm { get; init; } = "";
 
-    public string StackTwoGasFlowRateAscfm { get; init; } = "";
+    public string StackTwoGasFlowRateAcfm { get; init; } = "";
 
     [Display(Name = "Gas flow rate (DSCFM)")]
     public string StackOneGasFlowRateDscfm { get; init; } = "";
@@ -51,14 +51,14 @@ public record TwoStackTestRun : BaseTestRun
         {
             StackOneGasTemperature = CheckConfidential(StackOneGasTemperature, nameof(StackOneGasTemperature)),
            StackOneGasMoisture = CheckConfidential(StackOneGasMoisture, nameof(StackOneGasMoisture)),
-           StackOneGasFlowRateAscfm = CheckConfidential(StackOneGasFlowRateAscfm, nameof(StackOneGasFlowRateAscfm)),
+           StackOneGasFlowRateAcfm = CheckConfidential(StackOneGasFlowRateAcfm, nameof(StackOneGasFlowRateAcfm)),
            StackOneGasFlowRateDscfm = CheckConfidential(StackOneGasFlowRateDscfm, nameof(StackOneGasFlowRateDscfm)),
            StackOnePollutantConcentration = CheckConfidential(StackOnePollutantConcentration, nameof(StackOnePollutantConcentration)),
            StackOneEmissionRate = CheckConfidential(StackOneEmissionRate, nameof(StackOneEmissionRate)),
 
            StackTwoGasTemperature = CheckConfidential(StackTwoGasTemperature, nameof(StackTwoGasTemperature)),
            StackTwoGasMoisture = CheckConfidential(StackTwoGasMoisture, nameof(StackTwoGasMoisture)),
-           StackTwoGasFlowRateAscfm = CheckConfidential(StackTwoGasFlowRateAscfm, nameof(StackTwoGasFlowRateAscfm)),
+           StackTwoGasFlowRateAcfm = CheckConfidential(StackTwoGasFlowRateAcfm, nameof(StackTwoGasFlowRateAcfm)),
            StackTwoGasFlowRateDscfm = CheckConfidential(StackTwoGasFlowRateDscfm, nameof(StackTwoGasFlowRateDscfm)),
            StackTwoPollutantConcentration = CheckConfidential(StackTwoPollutantConcentration, nameof(StackTwoPollutantConcentration)),
            StackTwoEmissionRate = CheckConfidential(StackTwoEmissionRate, nameof(StackTwoEmissionRate)),
@@ -74,14 +74,14 @@ public record TwoStackTestRun : BaseTestRun
 
         AddIfConfidential(2, nameof(StackOneGasTemperature));
         AddIfConfidential(3, nameof(StackOneGasMoisture));
-        AddIfConfidential(4, nameof(StackOneGasFlowRateAscfm));
+        AddIfConfidential(4, nameof(StackOneGasFlowRateAcfm));
         AddIfConfidential(5, nameof(StackOneGasFlowRateDscfm));
         AddIfConfidential(6, nameof(StackOnePollutantConcentration));
         AddIfConfidential(7, nameof(StackOneEmissionRate));
 
         AddIfConfidential(8, nameof(StackTwoGasTemperature));
         AddIfConfidential(9, nameof(StackTwoGasMoisture));
-        AddIfConfidential(10, nameof(StackTwoGasFlowRateAscfm));
+        AddIfConfidential(10, nameof(StackTwoGasFlowRateAcfm));
         AddIfConfidential(11, nameof(StackTwoGasFlowRateDscfm));
         AddIfConfidential(12, nameof(StackTwoPollutantConcentration));
         AddIfConfidential(13, nameof(StackTwoEmissionRate));

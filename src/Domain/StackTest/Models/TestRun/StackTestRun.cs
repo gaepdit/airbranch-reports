@@ -10,8 +10,8 @@ public record StackTestRun : BaseTestRun
     [Display(Name = "Gas moisture (%)")]
     public string GasMoisture { get; init; } = "";
 
-    [Display(Name = "Gas flow rate (ASCFM)")]
-    public string GasFlowRateAscfm { get; init; } = "";
+    [Display(Name = "Gas flow rate (ACFM)")]
+    public string GasFlowRateAcfm { get; init; } = "";
 
     [Display(Name = "Gas flow rate (DSCFM)")]
     public string GasFlowRateDscfm { get; init; } = "";
@@ -29,7 +29,7 @@ public record StackTestRun : BaseTestRun
         {
             GasTemperature = CheckConfidential(GasTemperature, nameof(GasTemperature)),
             GasMoisture = CheckConfidential(GasMoisture, nameof(GasMoisture)),
-            GasFlowRateAscfm = CheckConfidential(GasFlowRateAscfm, nameof(GasFlowRateAscfm)),
+            GasFlowRateAcfm = CheckConfidential(GasFlowRateAcfm, nameof(GasFlowRateAcfm)),
             GasFlowRateDscfm = CheckConfidential(GasFlowRateDscfm, nameof(GasFlowRateDscfm)),
             PollutantConcentration = CheckConfidential(PollutantConcentration, nameof(PollutantConcentration)),
             EmissionRate = CheckConfidential(EmissionRate, nameof(EmissionRate)),
@@ -43,7 +43,7 @@ public record StackTestRun : BaseTestRun
 
         AddIfConfidential(2, nameof(GasTemperature));
         AddIfConfidential(3, nameof(GasMoisture));
-        AddIfConfidential(4, nameof(GasFlowRateAscfm));
+        AddIfConfidential(4, nameof(GasFlowRateAcfm));
         AddIfConfidential(5, nameof(GasFlowRateDscfm));
         AddIfConfidential(6, nameof(PollutantConcentration));
         AddIfConfidential(7, nameof(EmissionRate));
