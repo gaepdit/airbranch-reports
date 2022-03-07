@@ -58,7 +58,7 @@ BEGIN
         on u3.STRUNITKEY = d.STRPOLLUTANTCONCENTRATIONUNIT
             and u3.STRUNITKEY <> @InvalidKey
         left join LOOKUPUNITS u4
-        on u4.STRUNITKEY = d.STRTREATMENTRATEUNIT
+        on u4.STRUNITKEY = d.STREMISSIONRATEUNIT
             and u4.STRUNITKEY <> @InvalidKey
     where convert(int, r.STRREFERENCENUMBER) = @ReferenceNumber;
 

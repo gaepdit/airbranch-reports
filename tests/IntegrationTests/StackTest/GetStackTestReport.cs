@@ -152,6 +152,7 @@ public class GetStackTestReport
             result!.ReferenceNumber.Should().Be(referenceNumber);
             result.Facility.Should().NotBeNull();
             result.Facility!.Id.Should().Be(facilityId);
+            ((StackTestReportGasConcentration)result).AvgEmissionRate.Units.Should().Be("PPM @ 15% O2");
         });
     }
 
