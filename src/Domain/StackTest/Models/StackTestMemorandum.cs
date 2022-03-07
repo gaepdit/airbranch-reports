@@ -20,7 +20,7 @@ public record StackTestMemorandum : BaseStackTestReport
     [Display(Name = "Operating capacity")]
     public ValueWithUnits OperatingCapacity { get; set; }
 
-    [Display(Name = "Allowable emission rates")]
+    [Display(Name = "Allowable emission rate(s)")]
     public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new();
 
     [Display(Name = "Control equipment and monitoring data")]
