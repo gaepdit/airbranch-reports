@@ -30,17 +30,17 @@ BEGIN
     declare @InvalidKey varchar(5) = '00000';
 
     select trim(char(13) + char(10) + ' ' from r.STRCONTROLEQUIPMENTDATA)
-                                      as ControlEquipmentInfo,
-           s.STRCOMPLIANCESTATUS      as ComplianceStatus,
-           iif(d.STROPACITYSTANDARD = '6', 'Highest 6-minute average',
-               '30-minute average')   as OpacityStandard,
+                                           as ControlEquipmentInfo,
+           s.STRCOMPLIANCESTATUS           as ComplianceStatus,
+           iif(d.STROPACITYSTANDARD = '30', '30-minute average',
+               'Highest 6-minute average') as OpacityStandard,
            iif(trim(d.STROPACITYTESTDURATION) = '', '',
                concat(trim(d.STROPACITYTESTDURATION), ' minutes'))
-                                      as TestDuration,
-           u1.STRUNITDESCRIPTION      as MaxOperatingCapacityUnits,
-           u2.STRUNITDESCRIPTION      as OperatingCapacityUnits,
+                                           as TestDuration,
+           u1.STRUNITDESCRIPTION           as MaxOperatingCapacityUnits,
+           u2.STRUNITDESCRIPTION           as OperatingCapacityUnits,
            iif(r.STRDOCUMENTTYPE = '015', '',
-               u3.STRUNITDESCRIPTION) as AllowableEmissionRateUnits
+               u3.STRUNITDESCRIPTION)      as AllowableEmissionRateUnits
     from ISMPREPORTINFORMATION r
         inner join ISMPREPORTOPACITY d
         on d.STRREFERENCENUMBER = r.STRREFERENCENUMBER

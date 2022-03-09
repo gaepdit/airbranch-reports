@@ -37,7 +37,7 @@
             @Html.DisplayNameFor(m => run.Opacity)
             <span class="units">(@Model.OpacityStandard)</span>
         </th>
-        <td>@run.Opacity</td>
+        <td>@run.Opacity @Model.AllowableEmissionRateUnits</td>
     </tr>
 }
 else // DocumentType.Method22
