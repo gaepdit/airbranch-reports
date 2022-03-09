@@ -12,8 +12,8 @@ namespace WebApp.Pages.Compliance.Acc;
 public class IndexModel : PageModel
 {
     public AccReport? Report { get; set; }
-    public OrganizationInfo OrganizationInfo { get; set; }
-    public MemoHeader MemoHeader { get; set; }
+    public OrganizationInfo OrganizationInfo { get; private set; }
+    public MemoHeader MemoHeader { get; private set; }
 
     public async Task<ActionResult> OnGetAsync(
         [FromServices] IComplianceRepository repository,
@@ -31,7 +31,7 @@ public class IndexModel : PageModel
 
         MemoHeader = new MemoHeader
         {
-            Date = Report.DateAcknowledgmentLetterSent,
+            Date = Report.DateComplete,
             From = Report.StaffResponsible.DisplayName,
             Subject = $"Title V Annual Certification for {Report.AccReportingYear}" + Environment.NewLine +
                 $"{Report.Facility.Name}, {Report.Facility.FacilityAddress.City}" + Environment.NewLine +

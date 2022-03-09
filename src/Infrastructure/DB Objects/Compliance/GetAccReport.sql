@@ -7,7 +7,7 @@ GO
 
 CREATE OR ALTER PROCEDURE air.GetAccReport
     @AirsNumber varchar(12),
-    @Id       int
+    @Id         int
 AS
 
 /*******************************************************************************
@@ -23,6 +23,7 @@ Modification History:
 When        Who                 What
 ----------  ------------------  ------------------------------------------------
 2022-02-22  DWaldron            Initial version
+2022-03-09  DWaldron            Use Date Complete for memo date (#49)
 
 *******************************************************************************/
 
@@ -31,7 +32,7 @@ BEGIN
 
     select c.STRTRACKINGNUMBER                                            as Id,
            convert(date, m.DATRECEIVEDDATE)                               as DateReceived,
-           convert(date, m.DATACKNOLEDGMENTLETTERSENT)                    as DateAcknowledgmentLetterSent,
+           convert(date, m.DATCOMPLETEDATE)                               as DateComplete,
            c.STRCOMMENTS                                                  as Comments,
            year(c.DATACCREPORTINGYEAR)                                    as AccReportingYear,
            convert(date, c.DATPOSTMARKDATE)                               as DatePostmarked,

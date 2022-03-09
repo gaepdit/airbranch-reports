@@ -18,8 +18,8 @@ public record AccReport
     [Display(Name = "Date initial certification received")]
     public DateTime DateReceived { get; init; }
 
-    [Display(Name = "Date acknowledgment letter sent")]
-    public DateTime? DateAcknowledgmentLetterSent { get; init; }
+    [Display(Name = "Date complete")]
+    public DateTime? DateComplete { get; init; }
 
     public string Comments { get; init; } = "";
 
