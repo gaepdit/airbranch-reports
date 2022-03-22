@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewData["Title"]</title>
     <partial name="_FaviconPartial" />
-    <environment exclude="Production">
-        <link rel="stylesheet" href="https://cdn.skypack.dev/sanitize.css/system-ui.css" />
-    </environment>
+    <link rel="stylesheet" href="https://cdn.skypack.dev/sanitize.css/system-ui.css" />
     @await RenderSectionAsync("Styles", false)
     <partial name="_RaygunScriptsPartial" />
 </head>

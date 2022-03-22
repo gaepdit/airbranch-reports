@@ -137,6 +137,8 @@ main {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.12), 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12), 0 6px 8px rgba(0, 0, 0, 0.12)
 }
 
+/* Print toolbar */
+
 .print-toolbar {
     background: #eeed;
     text-align: right;
@@ -148,6 +150,7 @@ main {
 }
 
 .print-toolbar button {
+    font-family: system-ui;
     padding: 4px 16px;
     margin-left: .5rem;
 }
