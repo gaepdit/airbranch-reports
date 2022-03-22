@@ -17,7 +17,7 @@
     </tr>
     <tr>
         <th scope="row">@Html.DisplayNameFor(m => m.ControlEquipmentInfo)</th>
-        <td class="preserve-linebreaks">@Model.ControlEquipmentInfo</td>
+        <td class="preserve-whitespace">@Model.ControlEquipmentInfo</td>
     </tr>
 }
 else if (Model.DocumentType == DocumentType.MemorandumToFile)
@@ -34,5 +34,5 @@ else if (Model.DocumentType == DocumentType.MemorandumToFile)
 
 <tr>
     <th scope="row">Memorandum</th>
-    <td class="preserve-linebreaks">@Model.Comments</td>
+    <td class="preserve-whitespace">@Model.Comments</td>
 </tr>

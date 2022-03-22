@@ -21,8 +21,8 @@ html, body {
 
 /* Text utilities */
 
-.preserve-linebreaks {
-    white-space: pre-line;
+.preserve-whitespace {
+    white-space: pre-wrap;
 }
 
 .no-wrap {
