@@ -1,8 +1,9 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 
 namespace Domain.StackTest.Models;
 
 // ReSharper disable once InconsistentNaming
+// Values from the "ISMPREPORTTYPE" table
 public enum ReportType
 {
     [Description("Monitor Certification")] MonitorCertification = 1,
