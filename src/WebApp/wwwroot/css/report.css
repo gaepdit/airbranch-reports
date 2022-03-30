@@ -327,7 +327,6 @@ dl.dl-inline dd {
 }
 
 .stack-test th .units {
-    display: table;
     text-transform: initial;
     white-space: nowrap;
     font-weight: normal;

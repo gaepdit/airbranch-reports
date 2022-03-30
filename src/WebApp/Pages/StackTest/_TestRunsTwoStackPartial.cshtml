@@ -18,7 +18,10 @@
     </thead>
     <tbody>
     <tr>
-        <th scope="row" rowspan="2">@Html.DisplayNameFor(m => firstTestRun.StackOneGasTemperature)</th>
+        <th scope="row" rowspan="2">
+            @Html.DisplayNameFor(m => firstTestRun.StackOneGasTemperature)
+            <span class="units">(°F)</span>
+        </th>
         <th scope="row">@Model.StackOneName</th>
         @foreach (var r in Model.TestRuns)
         {
@@ -36,7 +39,10 @@
     </tr>
 
     <tr>
-        <th scope="row" rowspan="2">@Html.DisplayNameFor(m => firstTestRun.StackOneGasMoisture)</th>
+        <th scope="row" rowspan="2">
+            @Html.DisplayNameFor(m => firstTestRun.StackOneGasMoisture)
+            <span class="units">(%)</span>
+        </th>
         <th scope="row">@Model.StackOneName</th>
         @foreach (var r in Model.TestRuns)
         {
@@ -54,7 +60,10 @@
     </tr>
 
     <tr>
-        <th scope="row" rowspan="2">@Html.DisplayNameFor(m => firstTestRun.StackOneGasFlowRateAcfm)</th>
+        <th scope="row" rowspan="2">
+            @Html.DisplayNameFor(m => firstTestRun.StackOneGasFlowRateAcfm)
+            <span class="units">(ACFM)</span>
+        </th>
         <th scope="row">@Model.StackOneName</th>
         @foreach (var r in Model.TestRuns)
         {
@@ -72,7 +81,10 @@
     </tr>
 
     <tr>
-        <th scope="row" rowspan="2">@Html.DisplayNameFor(m => firstTestRun.StackOneGasFlowRateDscfm)</th>
+        <th scope="row" rowspan="2">
+            @Html.DisplayNameFor(m => firstTestRun.StackOneGasFlowRateDscfm)
+            <span class="units">(DSCFM)</span>
+        </th>
         <th scope="row">@Model.StackOneName</th>
         @foreach (var r in Model.TestRuns)
         {
@@ -92,7 +104,7 @@
     <tr>
         <th scope="row" rowspan="2">
             @Html.DisplayNameFor(m => firstTestRun.StackOnePollutantConcentration)
-            (@Model.StackOneAvgPollutantConcentration.Units)
+            <span class="units">(@Model.StackOneAvgPollutantConcentration.Units)</span>
         </th>
         <th scope="row">@Model.StackOneName</th>
         @foreach (var r in Model.TestRuns)
@@ -113,7 +125,7 @@
     <tr>
         <th scope="row" rowspan="2">
             @Html.DisplayNameFor(m => firstTestRun.StackOneEmissionRate)
-            (@Model.StackOneAvgEmissionRate.Units)
+            <span class="units">(@Model.StackOneAvgEmissionRate.Units)</span>
         </th>
         <th scope="row">@Model.StackOneName</th>
         @foreach (var r in Model.TestRuns)
@@ -136,7 +148,7 @@
         <tr>
             <th scope="row" colspan="2">
                 @Html.DisplayNameFor(m => firstTestRun.SumEmissionRate)
-                (@Model.SumAvgEmissionRate.Units)
+                <span class="units">(@Model.SumAvgEmissionRate.Units)</span>
             </th>
             @foreach (var r in Model.TestRuns)
             {

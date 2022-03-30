@@ -15,7 +15,7 @@ public record OpacityTestRun : BaseTestRun
 
     // `Opacity` is used by "Method 9 (Single)" and "Method 9 (Multi.)"
     // but not by "Method22"
-    [Display(Name = "Opacity (%)")]
+    [Display(Name = "Opacity")]
     public string Opacity { get; init; } = "";
 
     // `EquipmentItem` is used by "Method22"

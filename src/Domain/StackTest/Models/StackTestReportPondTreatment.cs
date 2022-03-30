@@ -27,7 +27,7 @@ public record StackTestReportPondTreatment : BaseStackTestReport
     [Display(Name = "Average treatment rate")]
     public ValueWithUnits AvgTreatmentRate { get; set; }
 
-    [Display(Name = "Destruction efficiency (%)")]
+    [Display(Name = "Destruction efficiency")]
     public string DestructionEfficiency { get; set; } = "";
 
     #region Confidential info handling

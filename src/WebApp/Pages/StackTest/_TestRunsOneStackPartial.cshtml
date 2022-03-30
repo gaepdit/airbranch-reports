@@ -17,7 +17,10 @@
     </thead>
     <tbody>
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.GasTemperature)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => firstTestRun.GasTemperature)
+            <span class="units">(°F)</span>
+        </th>
         @foreach (var r in Model.TestRuns)
         {
             <td>@r.GasTemperature</td>
@@ -25,7 +28,10 @@
         <td></td>
     </tr>
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.GasMoisture)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => firstTestRun.GasMoisture)
+            <span class="units">(%)</span>
+        </th>
         @foreach (var r in Model.TestRuns)
         {
             <td>@r.GasMoisture</td>
@@ -33,7 +39,10 @@
         <td></td>
     </tr>
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.GasFlowRateAcfm)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => firstTestRun.GasFlowRateAcfm)
+            <span class="units">(ACFM)</span>
+        </th>
         @foreach (var r in Model.TestRuns)
         {
             <td>@r.GasFlowRateAcfm</td>
@@ -41,7 +50,10 @@
         <td></td>
     </tr>
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.GasFlowRateDscfm)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => firstTestRun.GasFlowRateDscfm)
+            <span class="units">(DSCFM)</span>
+        </th>
         @foreach (var r in Model.TestRuns)
         {
             <td>@r.GasFlowRateDscfm</td>
@@ -49,7 +61,10 @@
         <td></td>
     </tr>
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.PollutantConcentration) (@Model.AvgPollutantConcentration.Units)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => firstTestRun.PollutantConcentration)
+            <span class="units">(@Model.AvgPollutantConcentration.Units)</span>
+        </th>
         @foreach (var r in Model.TestRuns)
         {
             <td>@r.PollutantConcentration</td>
@@ -57,7 +72,10 @@
         <td>@Model.AvgPollutantConcentration.Value</td>
     </tr>
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.EmissionRate) (@Model.AvgEmissionRate.Units)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => firstTestRun.EmissionRate)
+            <span class="units">(@Model.AvgEmissionRate.Units)</span>
+        </th>
         @foreach (var r in Model.TestRuns)
         {
             <td>@r.EmissionRate</td>

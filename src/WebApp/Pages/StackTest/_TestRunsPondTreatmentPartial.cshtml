@@ -17,7 +17,10 @@
     </thead>
     <tbody>
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.PollutantCollectionRate) (@Model.AvgPollutantCollectionRate.Units)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => firstTestRun.PollutantCollectionRate)
+            <span class="units">(@Model.AvgPollutantCollectionRate.Units)</span>
+        </th>
         @foreach (var r in Model.TestRuns)
         {
             <td>@r.PollutantCollectionRate</td>
@@ -25,7 +28,10 @@
         <td>@Model.AvgPollutantCollectionRate.Value</td>
     </tr>
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.TreatmentRate) (@Model.AvgTreatmentRate.Units)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => firstTestRun.TreatmentRate)
+            <span class="units">(@Model.AvgTreatmentRate.Units)</span>
+        </th>
         @foreach (var r in Model.TestRuns)
         {
             <td>@r.TreatmentRate</td>

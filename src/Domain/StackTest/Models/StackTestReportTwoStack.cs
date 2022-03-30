@@ -42,11 +42,11 @@ public record StackTestReportTwoStack : BaseStackTestReport
     public ValueWithUnits SumAvgEmissionRate { get; set; }
 
     // `PercentAllowable` is only used by Two Stack (Standard)
-    [Display(Name = "Percent allowable (%)")]
+    [Display(Name = "Percent allowable")]
     public string PercentAllowable { get; set; } = "";
 
     // `DestructionEfficiency` is only used by Two Stack (DRE)
-    [Display(Name = "Destruction efficiency (%)")]
+    [Display(Name = "Destruction efficiency")]
     public string DestructionEfficiency { get; set; } = "";
 
     #region Confidential info handling

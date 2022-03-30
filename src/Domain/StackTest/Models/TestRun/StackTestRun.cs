@@ -4,16 +4,16 @@ namespace Domain.StackTest.Models.TestRun;
 
 public record StackTestRun : BaseTestRun
 {
-    [Display(Name = "Gas temperature (°F)")]
+    [Display(Name = "Gas temperature")]
     public string GasTemperature { get; init; } = "";
 
-    [Display(Name = "Gas moisture (%)")]
+    [Display(Name = "Gas moisture")]
     public string GasMoisture { get; init; } = "";
 
-    [Display(Name = "Gas flow rate (ACFM)")]
+    [Display(Name = "Gas flow rate")]
     public string GasFlowRateAcfm { get; init; } = "";
 
-    [Display(Name = "Gas flow rate (DSCFM)")]
+    [Display(Name = "Gas flow rate")]
     public string GasFlowRateDscfm { get; init; } = "";
 
     [Display(Name = "Pollutant concentration")]

@@ -90,7 +90,7 @@ BEGIN
     select trim(RunNumber)                        as RunNumber,
            trim(GasTemperature)                   as GasTemperature,
            trim(GasMoisture)                      as GasMoisture,
-           trim(GasFlowRateAcfm)                 as GasFlowRateAcfm,
+           trim(GasFlowRateAcfm)                  as GasFlowRateAcfm,
            trim(GasFlowRateDscfm)                 as GasFlowRateDscfm,
            trim(PollutantConcentration)           as PollutantConcentration,
            trim(EmissionRate)                     as EmissionRate,

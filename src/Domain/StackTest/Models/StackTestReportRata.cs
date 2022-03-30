@@ -20,7 +20,7 @@ public record StackTestReportRata : BaseStackTestReport
     [Display(Name = "Test data")]
     public List<RataTestRun> TestRuns { get; set; } = new();
 
-    [Display(Name = "Accuracy choice ")] // STRACCURACYCHOICE
+    [Display(Name = "Accuracy choice")] // STRACCURACYCHOICE
     [JsonIgnore]
     public string RelativeAccuracyCode { get; set; } = "";
 

@@ -30,7 +30,7 @@ public record StackTestReportGasConcentration : BaseStackTestReport
     [Display(Name = "Average emission rate")]
     public ValueWithUnits AvgEmissionRate { get; set; }
 
-    [Display(Name = "Percent allowable (%)")]
+    [Display(Name = "Percent allowable")]
     public string PercentAllowable { get; set; } = "";
 
     #region Confidential info handling

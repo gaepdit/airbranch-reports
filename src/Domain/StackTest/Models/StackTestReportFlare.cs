@@ -30,7 +30,7 @@ public record StackTestReportFlare : BaseStackTestReport
     [Display(Name = "Average emission rate velocity")]
     public ValueWithUnits AvgEmissionRateVelocity { get; set; }
 
-    [Display(Name = "Percent allowable (%)")]
+    [Display(Name = "Percent allowable")]
     public string PercentAllowable { get; set; } = "";
 
     #region Confidential info handling

@@ -144,7 +144,7 @@ public static class StackTestData
                     ConfidentialParametersCode = "",
                 },
             },
-            AvgPollutantConcentration = new ValueWithUnits("17.1", "ppm"),
+            AvgPollutantConcentration = new ValueWithUnits("17.1", "µg/m3"),
             AvgEmissionRate = new ValueWithUnits("0.013", "lb/ton"),
             PercentAllowable = "75.0",
             ConfidentialParametersCode = "0",

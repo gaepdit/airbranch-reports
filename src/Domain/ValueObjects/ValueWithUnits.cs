@@ -8,5 +8,7 @@ public record struct ValueWithUnits
 )
 {
     public override string ToString() =>
-        string.Join(" ", new[] { Preamble, Value, Units }.Where(s => !string.IsNullOrEmpty(s)));
+        string.Join(
+            Units == "%" ? "" : " ",
+            new[] { Preamble, Value, Units }.Where(s => !string.IsNullOrEmpty(s)));
 }

@@ -26,14 +26,20 @@
 @if (Model.DocumentType == DocumentType.TwoStackStandard)
 {
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => m.PercentAllowable)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => m.PercentAllowable)
+            <span class="units">(%)</span>
+        </th>
         <td>@Model.PercentAllowable</td>
     </tr>
 }
 else // DocumentType.TwoStackDre
 {
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => m.DestructionEfficiency)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => m.DestructionEfficiency)
+            <span class="units">(%)</span>
+        </th>
         <td>@Model.DestructionEfficiency</td>
     </tr>
 }

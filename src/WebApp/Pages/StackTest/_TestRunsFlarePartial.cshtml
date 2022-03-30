@@ -17,7 +17,10 @@
     </thead>
     <tbody>
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.HeatingValue) (@Model.AvgHeatingValue.Units)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => firstTestRun.HeatingValue)
+            <span class="units">(@Model.AvgHeatingValue.Units)</span>
+        </th>
         @foreach (var r in Model.TestRuns)
         {
             <td>@r.HeatingValue</td>
@@ -25,7 +28,10 @@
         <td>@Model.AvgHeatingValue.Value</td>
     </tr>
     <tr>
-        <th scope="row">@Html.DisplayNameFor(m => firstTestRun.EmissionRateVelocity) (@Model.AvgEmissionRateVelocity.Units)</th>
+        <th scope="row">
+            @Html.DisplayNameFor(m => firstTestRun.EmissionRateVelocity)
+            <span class="units">(@Model.AvgEmissionRateVelocity.Units)</span>
+        </th>
         @foreach (var r in Model.TestRuns)
         {
             <td>@r.EmissionRateVelocity</td>

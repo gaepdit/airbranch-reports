@@ -10,22 +10,22 @@ public record TwoStackTestRun : BaseTestRun
     // Stack Two run numbers are not used:
     // `public string StackTwoRunNumber { get; init; } = "";`
 
-    [Display(Name = "Gas temperature (°F)")]
+    [Display(Name = "Gas temperature")]
     public string StackOneGasTemperature { get; init; } = "";
 
     public string StackTwoGasTemperature { get; init; } = "";
 
-    [Display(Name = "Gas moisture (%)")]
+    [Display(Name = "Gas moisture")]
     public string StackOneGasMoisture { get; init; } = "";
 
     public string StackTwoGasMoisture { get; init; } = "";
 
-    [Display(Name = "Gas flow rate (ACFM)")]
+    [Display(Name = "Gas flow rate")]
     public string StackOneGasFlowRateAcfm { get; init; } = "";
 
     public string StackTwoGasFlowRateAcfm { get; init; } = "";
 
-    [Display(Name = "Gas flow rate (DSCFM)")]
+    [Display(Name = "Gas flow rate")]
     public string StackOneGasFlowRateDscfm { get; init; } = "";
 
     public string StackTwoGasFlowRateDscfm { get; init; } = "";
