@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewData["Title"]</title>
     <partial name="_FaviconPartial" />
-    <link rel="stylesheet" href="https://cdn.skypack.dev/sanitize.css/system-ui.css" />
     @await RenderSectionAsync("Styles", false)
+    <link rel="stylesheet" href="https://cdn.skypack.dev/-/sanitize.css@v13.0.0-9hf8PtILaGjq3949IzOc/dist=es2019,mode=raw/system-ui.css" />
     <partial name="_RaygunScriptsPartial" />
 </head>
 <body class="@ViewBag.BodyCssClass">
