@@ -26,3 +26,38 @@ html {
         font-size: 16px;
     }
 }
+
+.banner-test-site {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    opacity: .9;
+    color: #333;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: system-ui;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 0 4px white;
+    background: repeating-linear-gradient(135deg, #f6da52bb, #f6da52bb 10px, #ffef80bb 10px, #ffef80bb 20px);
+    box-shadow: 0 4px 8px rgba(130, 106, 15, 0.37);
+}
+
+/* Print styles */
+@media print {
+    html, body {
+        font-size: 12px;
+        color: #000;
+    }
+
+    .banner-test-site {
+        position: static;
+        box-shadow: none;
+        text-shadow: none;
+        border: 1px solid;
+    }
+
+    .banner-test-site::after {
+        content: "—Not for public distribution";
+    }
+}
