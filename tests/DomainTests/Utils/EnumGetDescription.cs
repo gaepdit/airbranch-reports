@@ -1,7 +1,6 @@
 ﻿using Domain.Utils;
 using FluentAssertions;
 using NUnit.Framework;
-using System.Diagnostics.CodeAnalysis;
 
 namespace DomainTests.Utils;
 

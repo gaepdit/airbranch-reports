@@ -23,15 +23,13 @@ internal class LocalAuthenticationHandler : AuthenticationHandler<Authentication
 
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {
-        if (_configuration.GetValue<bool>("AuthenticatedUser"))
-        {
-            var claims = new[] { new Claim(ClaimTypes.Name, "Local User") };
-            var ticket = new AuthenticationTicket(new ClaimsPrincipal(new ClaimsIdentity(claims, Scheme.Name)),
-                Scheme.Name);
-            return Task.FromResult(AuthenticateResult.Success(ticket));
-        }
+        if (!_configuration.GetValue<bool>("AuthenticatedUser"))
+            return Task.FromResult(AuthenticateResult.Fail("Invalid"));
 
-        return Task.FromResult(AuthenticateResult.Fail("Invalid"));
+        var claims = new[] { new Claim(ClaimTypes.Name, "Local User") };
+        var ticket = new AuthenticationTicket(
+            new ClaimsPrincipal(new ClaimsIdentity(claims, Scheme.Name)), Scheme.Name);
+        return Task.FromResult(AuthenticateResult.Success(ticket));
     }
 
     protected override async Task HandleChallengeAsync(AuthenticationProperties properties)

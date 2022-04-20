@@ -1,35 +1,44 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyVersion>2022.3.30</AssemblyVersion>
-    <RootNamespace>WebApp</RootNamespace>
-    <UserSecretsId>aspnet-WebApp2-75A2DBEE-8438-4D63-B10D-D6E0DE52AF07</UserSecretsId>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <AssemblyVersion>2022.3.30</AssemblyVersion>
+        <RootNamespace>WebApp</RootNamespace>
+        <UserSecretsId>aspnet-WebApp2-75A2DBEE-8438-4D63-B10D-D6E0DE52AF07</UserSecretsId>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AsyncFixer" Version="1.5.1" Condition="'$(Configuration)' == 'Debug'">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-	<PackageReference Include="Microsoft.Identity.Web" Version="1.23.1" />
-    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.23.1" />
-    <PackageReference Include="Mindscape.Raygun4Net.AspNetCore" Version="6.6.5" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.36.1.44192">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="AsyncFixer" Version="1.5.1" Condition="'$(Configuration)' == 'Debug'">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Identity.Web" Version="1.23.1" />
+        <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.23.1" />
+        <PackageReference Include="Mindscape.Raygun4Net.AspNetCore" Version="6.6.6" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.37.0.45539">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\LocalRepository\LocalRepository.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Domain\Domain.csproj" />
+        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+        <ProjectReference Include="..\LocalRepository\LocalRepository.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="web.*.config" CopyToPublishDirectory="Never" />
-  </ItemGroup>
+    <ItemGroup>
+        <Content Update="appsettings.Development.json" CopyToPublishDirectory="Never">
+            <DependentUpon>appsettings.json</DependentUpon>
+        </Content>
+        <Content Update="appsettings.Local.json" CopyToPublishDirectory="Never">
+            <DependentUpon>appsettings.json</DependentUpon>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Update="web.*.config" CopyToPublishDirectory="Never" />
+    </ItemGroup>
 </Project>

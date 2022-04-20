@@ -1,9 +1,9 @@
-﻿@inject IConfiguration _configuration
-@inject IHttpContextAccessor _contextAccessor
+﻿@inject IConfiguration Configuration
+@inject IHttpContextAccessor ContextAccessor
 @{
     var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-    var apiKey = _configuration["RaygunSettings:ApiKey"];
-    var identity = _contextAccessor.HttpContext?.User.Identity;
+    var apiKey = Configuration["RaygunSettings:ApiKey"];
+    var identity = ContextAccessor.HttpContext?.User.Identity;
 }
 
 <script type="text/javascript">
