@@ -13,8 +13,13 @@ using System.Data.SqlClient;
 using System.Text.Json.Serialization;
 using WebApp.Platform.Local;
 using WebApp.Platform.Raygun;
+using WebApp.Platform.SecurityHeaders;
+using WebApp.Platform.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Set Application Settings
+builder.Configuration.GetSection(ApplicationSettings.RaygunSettingsSection).Bind(ApplicationSettings.Raygun);
 
 // Configure authentication
 if (builder.Environment.IsLocalEnv())
@@ -57,14 +62,10 @@ builder.Services.AddHttpContextAccessor(); // needed by RaygunScriptPartial
 if (builder.Environment.IsLocalEnv())
 {
     // Uses sample data when running locally.
-    builder.Services.AddScoped<IFacilitiesRepository,
-        LocalRepository.Facilities.FacilitiesRepository>();
-    builder.Services.AddScoped<IOrganizationRepository,
-        LocalRepository.Organization.OrganizationRepository>();
-    builder.Services.AddScoped<IComplianceRepository,
-        LocalRepository.Compliance.ComplianceRepository>();
-    builder.Services.AddScoped<IStackTestRepository,
-        LocalRepository.StackTest.StackTestRepository>();
+    builder.Services.AddScoped<IFacilitiesRepository, LocalRepository.Facilities.FacilitiesRepository>();
+    builder.Services.AddScoped<IOrganizationRepository, LocalRepository.Organization.OrganizationRepository>();
+    builder.Services.AddScoped<IComplianceRepository, LocalRepository.Compliance.ComplianceRepository>();
+    builder.Services.AddScoped<IStackTestRepository, LocalRepository.StackTest.StackTestRepository>();
 }
 else
 {
@@ -72,14 +73,10 @@ else
     builder.Services.AddScoped<IDbConnection>(_ => new SqlConnection(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
-    builder.Services.AddScoped<IFacilitiesRepository,
-        Infrastructure.Facilities.FacilitiesRepository>();
-    builder.Services.AddScoped<IOrganizationRepository,
-        Infrastructure.Organization.OrganizationRepository>();
-    builder.Services.AddScoped<IComplianceRepository,
-        Infrastructure.Compliance.ComplianceRepository>();
-    builder.Services.AddScoped<IStackTestRepository,
-        Infrastructure.StackTest.StackTestRepository>();
+    builder.Services.AddScoped<IFacilitiesRepository, Infrastructure.Facilities.FacilitiesRepository>();
+    builder.Services.AddScoped<IOrganizationRepository, Infrastructure.Organization.OrganizationRepository>();
+    builder.Services.AddScoped<IComplianceRepository, Infrastructure.Compliance.ComplianceRepository>();
+    builder.Services.AddScoped<IStackTestRepository, Infrastructure.StackTest.StackTestRepository>();
 }
 
 // Build the application
@@ -97,6 +94,9 @@ else
     app.UseHsts();
     app.UseRaygun();
 }
+
+// Configure security HTTP headers
+app.UseSecurityHeaders(policies => policies.AddSecurityHeaderPolicies());
 
 app.UseStatusCodePages();
 app.UseHttpsRedirection();

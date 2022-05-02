@@ -12,3 +12,6 @@
 <main role="main">
     @RenderBody()
 </main>
+<script asp-add-content-to-csp>
+document.getElementById('print-button').addEventListener('click', function () { window.print(); return false; }, false);
+</script>
