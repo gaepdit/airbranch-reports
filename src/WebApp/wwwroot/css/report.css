@@ -147,12 +147,32 @@ main {
     top: 0;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.12), 0 12px 16px rgba(0, 0, 0, 0.04);
     backdrop-filter: blur(1px);
+    font-family: system-ui;
 }
 
 .print-toolbar button {
     font-family: system-ui;
     padding: 4px 16px;
     margin-left: .5rem;
+    margin-right: 1.5rem;
+}
+
+.print-toolbar summary {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    padding: 0 3px 2px 3px;
+    border-radius: 3px;
+    color: cornflowerblue;
+    font-size: x-large;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.print-toolbar summary:hover,
+.print-toolbar summary:focus {
+    color: white;
+    background-color: cornflowerblue;
 }
 
 /* Memorandum header layout */
