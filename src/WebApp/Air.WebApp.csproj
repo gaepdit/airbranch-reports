@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <AssemblyVersion>2022.3.30</AssemblyVersion>
+        <AssemblyVersion>2022.5.3</AssemblyVersion>
         <RootNamespace>WebApp</RootNamespace>
         <UserSecretsId>aspnet-WebApp2-75A2DBEE-8438-4D63-B10D-D6E0DE52AF07</UserSecretsId>
     </PropertyGroup>
