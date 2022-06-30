@@ -7,7 +7,11 @@ This application creates various printable reports used or provided by the Georg
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_airbranch-reports&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=gaepdit_airbranch-reports)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_airbranch-reports&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=gaepdit_airbranch-reports)
 
-## Project organization
+## Info for Developers
+
+The Air Reports application is written using .NET 6.
+
+### Project organization
 
 The solution contains four projects:
 
@@ -18,11 +22,11 @@ The solution contains four projects:
 
 There are also corresponding unit test projects.
 
-## Development
+### Launch profiles
 
 Run locally by choosing the "Local" launch profile or connect to the dev database by choosing the "Dev Server" profiles. 
 
-### Local 
+#### Local launch profile
 
  In this configuration, no database is used -- sample data is provided in the "LocalRepository/Data" folder. 
  
@@ -34,10 +38,10 @@ Run locally by choosing the "Local" launch profile or connect to the dev databas
 }
 ```
 
- ### Dev Server
+ #### Dev Server launch profile
 
  To use the Dev Server configuration, copy the file named "appsettings.Development.json" from the "app-config" repo into the "src/WebApp" folder. In this configuration, the existing SQL Server `airbranch` database will be used.
 
-## Testing
+### Testing
 
 The Domain, LocalRepository, and WebApp test projects all run using local data. To run the Infrastructure integration tests, copy the file named "testsettings.json" from the "app-config" repo into the "tests/IntegrationTests" folder.
