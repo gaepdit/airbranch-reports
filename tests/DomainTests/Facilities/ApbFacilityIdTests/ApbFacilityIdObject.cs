@@ -1,6 +1,4 @@
 using Domain.Facilities.Models;
-using FluentAssertions;
-using NUnit.Framework;
 using System;
 
 namespace DomainTests.Facilities.ApbFacilityIdTests;
@@ -55,7 +53,7 @@ public class ApbFacilityIdObject
     [Test]
     public void ThrowsOnInvalidAirsNumber()
     {
-        var id = "abc";
+        const string id = "abc";
         var act = () => new ApbFacilityId(id);
         act.Should().Throw<ArgumentException>().WithMessage($"{id} is not a valid AIRS number.");
     }

@@ -1,6 +1,4 @@
 using Domain.Facilities.Models;
-using FluentAssertions;
-using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace DomainTests.Facilities.ApbFacilityIdTests;
@@ -21,7 +19,7 @@ public class IsValidAirsNumberFormat
         ApbFacilityId.IsValidAirsNumberFormat(airs).Should().BeTrue();
     }
 
-    public static IEnumerable<string> InvalidAirsNumbers()
+    private static IEnumerable<string> InvalidAirsNumbers()
     {
         yield return "";
         yield return "111";
@@ -34,7 +32,7 @@ public class IsValidAirsNumberFormat
         yield return "0001-00001";
     }
 
-    public static IEnumerable<string> ValidAirsNumbers()
+    private static IEnumerable<string> ValidAirsNumbers()
     {
         yield return "00100001";
         yield return "001-00001";

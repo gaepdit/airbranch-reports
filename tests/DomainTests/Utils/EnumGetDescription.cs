@@ -1,6 +1,4 @@
 ﻿using Domain.Utils;
-using FluentAssertions;
-using NUnit.Framework;
 
 namespace DomainTests.Utils;
 
