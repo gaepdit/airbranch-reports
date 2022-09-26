@@ -12,9 +12,8 @@ namespace Infrastructure.Compliance;
 
 public class ComplianceRepository : IComplianceRepository
 {
-    // ReSharper disable once InconsistentNaming
-    private readonly IDbConnection db;
-    public ComplianceRepository(IDbConnection conn) => db = conn;
+    private readonly IDbConnection _db;
+    public ComplianceRepository(IDbConnection conn) => _db = conn;
 
     // ACC
     public async Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int id)
@@ -25,11 +24,11 @@ public class ComplianceRepository : IComplianceRepository
             Id = id,
         };
 
-        if (!await db.ExecuteScalarAsync<bool>("air.AccReportExists",
+        if (!await _db.ExecuteScalarAsync<bool>("air.AccReportExists",
                 param, commandType: CommandType.StoredProcedure))
             return null;
 
-        return (await db.QueryAsync<AccReport, Facility, PersonName, AccReport>(
+        return (await _db.QueryAsync<AccReport, Facility, PersonName, AccReport>(
                 "air.GetAccReport",
                 (report, facility, staff) =>
                 {
@@ -50,11 +49,11 @@ public class ComplianceRepository : IComplianceRepository
             Id = id,
         };
 
-        if (!await db.ExecuteScalarAsync<bool>("air.FceReportExists",
+        if (!await _db.ExecuteScalarAsync<bool>("air.FceReportExists",
                 existParam, commandType: CommandType.StoredProcedure))
             return null;
 
-        var facilitiesRepository = new FacilitiesRepository(db);
+        var facilitiesRepository = new FacilitiesRepository(_db);
         var facility = await facilitiesRepository.GetFacilityAsync(facilityId);
 
         var param = new
@@ -65,7 +64,7 @@ public class ComplianceRepository : IComplianceRepository
             GlobalConstants.FceExtendedDataPeriod,
         };
 
-        using var multi = await db.QueryMultipleAsync("air.GetFceReport",
+        using var multi = await _db.QueryMultipleAsync("air.GetFceReport",
             param, commandType: CommandType.StoredProcedure);
 
         var report = multi.Read<FceReport, PersonName, DateRange, FceReport>(

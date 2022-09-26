@@ -10,12 +10,11 @@ namespace Infrastructure.StackTest;
 
 public class StackTestRepository : IStackTestRepository
 {
-    // ReSharper disable once InconsistentNaming
-    private readonly IDbConnection db;
-    public StackTestRepository(IDbConnection conn) => db = conn;
+    private readonly IDbConnection _db;
+    public StackTestRepository(IDbConnection conn) => _db = conn;
 
     public Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber) =>
-        db.ExecuteScalarAsync<bool>("air.StackTestReportExists",
+        _db.ExecuteScalarAsync<bool>("air.StackTestReportExists",
             new
             {
                 AirsNumber = facilityId.DbFormattedString,
@@ -24,7 +23,7 @@ public class StackTestRepository : IStackTestRepository
             commandType: CommandType.StoredProcedure);
 
     public Task<DocumentType> GetDocumentTypeAsync(int referenceNumber) =>
-        db.QuerySingleAsync<DocumentType>("air.GetStackTestDocumentType",
+        _db.QuerySingleAsync<DocumentType>("air.GetStackTestDocumentType",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 
@@ -53,7 +52,7 @@ public class StackTestRepository : IStackTestRepository
 
     private async Task<T> GetBaseStackTestReportAsync<T>(int referenceNumber) where T : BaseStackTestReport
     {
-        using var multi = await db.QueryMultipleAsync("air.GetBaseStackTestReport",
+        using var multi = await _db.QueryMultipleAsync("air.GetBaseStackTestReport",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 
@@ -78,7 +77,7 @@ public class StackTestRepository : IStackTestRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportOneStack>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync("air.GetStackTestReportOneStack",
+        using var multi = await _db.QueryMultipleAsync("air.GetStackTestReportOneStack",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 
@@ -107,7 +106,7 @@ public class StackTestRepository : IStackTestRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportTwoStack>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync("air.GetStackTestReportTwoStack",
+        using var multi = await _db.QueryMultipleAsync("air.GetStackTestReportTwoStack",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 
@@ -152,7 +151,7 @@ public class StackTestRepository : IStackTestRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportLoadingRack>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync("air.GetStackTestReportLoadingRack",
+        using var multi = await _db.QueryMultipleAsync("air.GetStackTestReportLoadingRack",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 
@@ -192,7 +191,7 @@ public class StackTestRepository : IStackTestRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportPondTreatment>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync("air.GetStackTestReportPondTreatment",
+        using var multi = await _db.QueryMultipleAsync("air.GetStackTestReportPondTreatment",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 
@@ -220,7 +219,7 @@ public class StackTestRepository : IStackTestRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportGasConcentration>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync("air.GetStackTestReportGasConcentration",
+        using var multi = await _db.QueryMultipleAsync("air.GetStackTestReportGasConcentration",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 
@@ -249,7 +248,7 @@ public class StackTestRepository : IStackTestRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportFlare>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync("air.GetStackTestReportFlare",
+        using var multi = await _db.QueryMultipleAsync("air.GetStackTestReportFlare",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 
@@ -278,7 +277,7 @@ public class StackTestRepository : IStackTestRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportRata>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync("air.GetStackTestReportRata",
+        using var multi = await _db.QueryMultipleAsync("air.GetStackTestReportRata",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 
@@ -303,7 +302,7 @@ public class StackTestRepository : IStackTestRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestMemorandum>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync("air.GetStackTestMemorandum",
+        using var multi = await _db.QueryMultipleAsync("air.GetStackTestMemorandum",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 
@@ -329,7 +328,7 @@ public class StackTestRepository : IStackTestRepository
     {
         var report = await GetBaseStackTestReportAsync<StackTestReportOpacity>(referenceNumber);
 
-        using var multi = await db.QueryMultipleAsync("air.GetStackTestReportOpacity",
+        using var multi = await _db.QueryMultipleAsync("air.GetStackTestReportOpacity",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 

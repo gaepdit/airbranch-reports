@@ -8,12 +8,11 @@ namespace Infrastructure.Facilities;
 
 public class FacilitiesRepository : IFacilitiesRepository
 {
-    // ReSharper disable once InconsistentNaming
-    private readonly IDbConnection db;
-    public FacilitiesRepository(IDbConnection conn) => db = conn;
+    private readonly IDbConnection _db;
+    public FacilitiesRepository(IDbConnection conn) => _db = conn;
 
     public Task<bool> FacilityExistsAsync(ApbFacilityId facilityId) =>
-        db.ExecuteScalarAsync<bool>("air.FacilityExists",
+        _db.ExecuteScalarAsync<bool>("air.FacilityExists",
             new { AirsNumber = facilityId.DbFormattedString },
             commandType: CommandType.StoredProcedure);
 
@@ -21,7 +20,7 @@ public class FacilitiesRepository : IFacilitiesRepository
     {
         if (!await FacilityExistsAsync(facilityId)) return null;
 
-        using var multi = await db.QueryMultipleAsync("air.GetFacility",
+        using var multi = await _db.QueryMultipleAsync("air.GetFacility",
             new { AirsNumber = facilityId.DbFormattedString },
             commandType: CommandType.StoredProcedure);
 

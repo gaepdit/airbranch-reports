@@ -8,13 +8,12 @@ namespace Infrastructure.Organization;
 
 public class OrganizationRepository : IOrganizationRepository
 {
-    // ReSharper disable once InconsistentNaming
-    private readonly IDbConnection db;
-    public OrganizationRepository(IDbConnection conn) => db = conn;
+    private readonly IDbConnection _db;
+    public OrganizationRepository(IDbConnection conn) => _db = conn;
 
     public async Task<OrganizationInfo> GetAsync()
     {
-        var director = await db.ExecuteScalarAsync<string>("air.GetManagement",
+        var director = await _db.ExecuteScalarAsync<string>("air.GetManagement",
             new { Type = "EpdDirector" },
             commandType: CommandType.StoredProcedure);
 
