@@ -1,4 +1,5 @@
 using Domain.Facilities.Models;
+using System;
 using System.Collections.Generic;
 
 namespace DomainTests.Facilities.ApbFacilityIdTests;
@@ -10,6 +11,13 @@ public class IsValidAirsNumberFormat
     public void RejectsInvalidAirsNumbers(string airs)
     {
         ApbFacilityId.IsValidAirsNumberFormat(airs).Should().BeFalse();
+    }
+
+    [Test]
+    public void NullAirsNumberThrowsException()
+    {
+        var act = () => ApbFacilityId.IsValidAirsNumberFormat(null!).Should().BeFalse();
+        act.Should().Throw<ArgumentNullException>().WithMessage("Value cannot be null. (Parameter 'input')");
     }
 
     [Test]

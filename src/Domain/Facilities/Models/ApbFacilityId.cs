@@ -5,6 +5,7 @@ namespace Domain.Facilities.Models;
 
 public record ApbFacilityId
 {
+    // Test at https://regex101.com/r/2uYyHl
     private const string AirsNumberPattern = @"^(04-?13-?)?\d{3}-?\d{5}$";
 
     public ApbFacilityId(string id) =>
@@ -29,8 +30,7 @@ public record ApbFacilityId
 
     // Static methods
 
-    public static bool IsValidAirsNumberFormat(string id) =>
-        !string.IsNullOrWhiteSpace(id) && Regex.IsMatch(id, AirsNumberPattern);
+    public static bool IsValidAirsNumberFormat(string id) => Regex.IsMatch(id, AirsNumberPattern);
 
     private static string GetNormalizedAirsNumber(string id)
     {
