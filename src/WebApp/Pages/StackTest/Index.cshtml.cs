@@ -23,18 +23,26 @@ public class IndexModel : PageModel
         [FromRoute] int referenceNumber,
         [FromQuery] bool includeConfidentialInfo = false)
     {
-        if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId))
-            return NotFound("Facility ID is invalid.");
-
-        var report = await repository.GetStackTestReportAsync(new ApbFacilityId(facilityId), referenceNumber);
-        if (report?.Facility is null) return NotFound();
-
-        if (includeConfidentialInfo && (User.Identity == null || !User.Identity.IsAuthenticated))
+        if (includeConfidentialInfo && User.Identity is not { IsAuthenticated: true })
             return Challenge();
 
-        Report = includeConfidentialInfo ? report : report.RedactedStackTestReport();
+        ApbFacilityId airs;
+        try
+        {
+            airs = new ApbFacilityId(facilityId);
+        }
+        catch (ArgumentException)
+        {
+            return NotFound("Facility ID is invalid.");
+        }
 
-        OrganizationInfo = await orgRepo.GetAsync();
+        var getReportTask = repository.GetStackTestReportAsync(airs, referenceNumber);
+        var getOrgTask = orgRepo.GetAsync();
+
+        var report = await getReportTask;
+        if (report?.Facility is null) return NotFound();
+
+        Report = includeConfidentialInfo ? report : report.RedactedStackTestReport();
 
         MemoHeader = new MemoHeader
         {
@@ -45,6 +53,7 @@ public class IndexModel : PageModel
         };
 
         ShowConfidentialWarning = includeConfidentialInfo && Report.ConfidentialParameters.Any();
+        OrganizationInfo = await getOrgTask;
 
         return Page();
     }

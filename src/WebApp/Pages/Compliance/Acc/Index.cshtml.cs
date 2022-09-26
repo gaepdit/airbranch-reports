@@ -21,13 +21,21 @@ public class IndexModel : PageModel
         [FromRoute] string facilityId,
         [FromRoute] int id)
     {
-        if (!ApbFacilityId.IsValidAirsNumberFormat(facilityId))
+        ApbFacilityId airs;
+        try
+        {
+            airs = new ApbFacilityId(facilityId);
+        }
+        catch (ArgumentException)
+        {
             return NotFound("Facility ID is invalid.");
+        }
 
-        Report = await repository.GetAccReportAsync(new ApbFacilityId(facilityId), id);
+        var getAccReportTask = repository.GetAccReportAsync(airs, id);
+        var getOrgTask = orgRepo.GetAsync();
+
+        Report = await getAccReportTask;
         if (Report?.Facility is null) return NotFound();
-
-        OrganizationInfo = await orgRepo.GetAsync();
 
         MemoHeader = new MemoHeader
         {
@@ -37,6 +45,8 @@ public class IndexModel : PageModel
                 $"{Report.Facility.Name}, {Report.Facility.FacilityAddress.City}" + Environment.NewLine +
                 $"AIRS # {Report.Facility.Id}",
         };
+
+        OrganizationInfo = await getOrgTask;
 
         return Page();
     }
