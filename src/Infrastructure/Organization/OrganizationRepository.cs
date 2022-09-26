@@ -2,18 +2,21 @@
 using Domain.Organization.Models;
 using Domain.Organization.Repositories;
 using Domain.ValueObjects;
+using Infrastructure.DbConnection;
 using System.Data;
 
 namespace Infrastructure.Organization;
 
 public class OrganizationRepository : IOrganizationRepository
 {
-    private readonly IDbConnection _db;
-    public OrganizationRepository(IDbConnection conn) => _db = conn;
+    private readonly IDbConnectionFactory _db;
+    public OrganizationRepository(IDbConnectionFactory db) => _db = db;
 
     public async Task<OrganizationInfo> GetAsync()
     {
-        var director = await _db.ExecuteScalarAsync<string>("air.GetManagement",
+        using var db = _db.Create();
+
+        var director = await db.ExecuteScalarAsync<string>("air.GetManagement",
             new { Type = "EpdDirector" },
             commandType: CommandType.StoredProcedure);
 

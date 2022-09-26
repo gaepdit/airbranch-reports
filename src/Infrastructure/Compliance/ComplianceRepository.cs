@@ -5,6 +5,7 @@ using Domain.Compliance.Models.WorkItems;
 using Domain.Compliance.Repositories;
 using Domain.Facilities.Models;
 using Domain.ValueObjects;
+using Infrastructure.DbConnection;
 using Infrastructure.Facilities;
 using System.Data;
 
@@ -12,11 +13,20 @@ namespace Infrastructure.Compliance;
 
 public class ComplianceRepository : IComplianceRepository
 {
-    private readonly IDbConnection _db;
-    public ComplianceRepository(IDbConnection conn) => _db = conn;
+    private readonly IDbConnectionFactory _db;
+    public ComplianceRepository(IDbConnectionFactory db) => _db = db;
 
     // ACC
     public async Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int id)
+    {
+        var getReportExistsTask = ReportExistsAsync("air.AccReportExists", facilityId, id);
+        var getAccReportTask = GetAccReportDocumentAsync(facilityId, id);
+
+        if (!await getReportExistsTask) return null;
+        return await getAccReportTask;
+    }
+
+    private async Task<AccReport?> GetAccReportDocumentAsync(ApbFacilityId facilityId, int id)
     {
         var param = new
         {
@@ -24,37 +34,35 @@ public class ComplianceRepository : IComplianceRepository
             Id = id,
         };
 
-        if (!await _db.ExecuteScalarAsync<bool>("air.AccReportExists",
-                param, commandType: CommandType.StoredProcedure))
-            return null;
+        using var db = _db.Create();
 
-        return (await _db.QueryAsync<AccReport, Facility, PersonName, AccReport>(
-                "air.GetAccReport",
-                (report, facility, staff) =>
-                {
-                    report.Facility = facility;
-                    report.StaffResponsible = staff;
-                    return report;
-                },
-                param, commandType: CommandType.StoredProcedure))
-            .Single();
+        return (await db.QueryAsync<AccReport, Facility, PersonName, AccReport>(
+            "air.GetAccReport",
+            (report, facility, staff) =>
+            {
+                report.Facility = facility;
+                report.StaffResponsible = staff;
+                return report;
+            },
+            param, commandType: CommandType.StoredProcedure)).Single();
+    }
+
+    private async Task<bool> ReportExistsAsync(string proc, ApbFacilityId facilityId, int reportId)
+    {
+        var param = new
+        {
+            AirsNumber = facilityId.DbFormattedString,
+            Id = reportId,
+        };
+
+        using var db = _db.Create();
+        return await db.ExecuteScalarAsync<bool>(proc, param, commandType: CommandType.StoredProcedure);
     }
 
     // FCE
     public async Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int id)
     {
-        var existParam = new
-        {
-            AirsNumber = facilityId.DbFormattedString,
-            Id = id,
-        };
-
-        if (!await _db.ExecuteScalarAsync<bool>("air.FceReportExists",
-                existParam, commandType: CommandType.StoredProcedure))
-            return null;
-
-        var facilitiesRepository = new FacilitiesRepository(_db);
-        var facility = await facilitiesRepository.GetFacilityAsync(facilityId);
+        var getFacilityTask = new FacilitiesRepository(_db).GetFacilityAsync(facilityId);
 
         var param = new
         {
@@ -64,8 +72,16 @@ public class ComplianceRepository : IComplianceRepository
             GlobalConstants.FceExtendedDataPeriod,
         };
 
-        using var multi = await _db.QueryMultipleAsync("air.GetFceReport",
+        using var db = _db.Create();
+
+        var getFceReportTask = db.QueryMultipleAsync("air.GetFceReport",
             param, commandType: CommandType.StoredProcedure);
+
+        if (!await ReportExistsAsync("air.FceReportExists", facilityId, id)) return null;
+
+        using var multi = await getFceReportTask;
+
+        var facility = await getFacilityTask;
 
         var report = multi.Read<FceReport, PersonName, DateRange, FceReport>(
             (report, staff, dateRange) =>
