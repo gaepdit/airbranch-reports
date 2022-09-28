@@ -13,7 +13,7 @@ public class GetDocumentType
     public async Task ReturnsDocumentTypeIfExists()
     {
         const int referenceNumber = 201100541;
-        var repo = new StackTestRepository(Global.DbConn!);
+        var repo = new StackTestRepository(Global.DbConnectionFactory!);
         var result = await repo.GetDocumentTypeAsync(referenceNumber);
         result.Should().Be(DocumentType.OneStackThreeRuns);
     }
@@ -21,7 +21,7 @@ public class GetDocumentType
     [Test]
     public async Task ThrowsIfNotExists()
     {
-        var repo = new StackTestRepository(Global.DbConn!);
+        var repo = new StackTestRepository(Global.DbConnectionFactory!);
         Func<Task> action = async () => await repo.GetDocumentTypeAsync(default);
         (await action.Should().ThrowAsync<InvalidOperationException>())
             .WithMessage("Sequence contains no elements");

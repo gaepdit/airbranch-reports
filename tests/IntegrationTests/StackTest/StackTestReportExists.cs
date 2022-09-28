@@ -10,7 +10,7 @@ public class StackTestReportExists
     [Test]
     public async Task ReturnsTrueIfExists()
     {
-        var repo = new StackTestRepository(Global.DbConn!);
+        var repo = new StackTestRepository(Global.DbConnectionFactory!);
         var result = await repo.StackTestReportExistsAsync("12100021", 201100541);
         result.Should().BeTrue();
     }
@@ -18,7 +18,7 @@ public class StackTestReportExists
     [Test]
     public async Task ReturnsFalseIfNotExists()
     {
-        var repo = new StackTestRepository(Global.DbConn!);
+        var repo = new StackTestRepository(Global.DbConnectionFactory!);
         var result = await repo.StackTestReportExistsAsync("000-00000", 1);
         result.Should().BeFalse();
     }
@@ -26,15 +26,15 @@ public class StackTestReportExists
     [Test]
     public async Task ReturnsFalseIfUnassignedDocumentType()
     {
-        var repo = new StackTestRepository(Global.DbConn!);
-        var result = await repo.StackTestReportExistsAsync("095-00085", 202101068);
+        var repo = new StackTestRepository(Global.DbConnectionFactory!);
+        var result = await repo.StackTestReportExistsAsync("041312700006", 19648);
         result.Should().BeFalse();
     }
 
     [Test]
     public async Task ReturnsFalseIfTestDeleted()
     {
-        var repo = new StackTestRepository(Global.DbConn!);
+        var repo = new StackTestRepository(Global.DbConnectionFactory!);
         var result = await repo.StackTestReportExistsAsync("05900059", 202000278);
         result.Should().BeFalse();
     }

@@ -2,14 +2,13 @@ using Domain.Compliance.Repositories;
 using Domain.Facilities.Repositories;
 using Domain.Organization.Repositories;
 using Domain.StackTest.Repositories;
+using Infrastructure.DbConnection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Mindscape.Raygun4Net.AspNetCore;
-using System.Data;
-using System.Data.SqlClient;
 using System.Text.Json.Serialization;
 using WebApp.Platform.Local;
 using WebApp.Platform.Raygun;
@@ -70,8 +69,10 @@ if (builder.Environment.IsLocalEnv())
 else
 {
     // When running on the server, requires a deployed database (configured in the app settings file).
-    builder.Services.AddScoped<IDbConnection>(_ => new SqlConnection(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+    // (Note: this pattern works because we only have a single DB connection string.
+    // See https://stackoverflow.com/a/47403685/212978 for more info.)
+    builder.Services.AddTransient<IDbConnectionFactory, DbConnectionFactory>(_ =>
+        new DbConnectionFactory(builder.Configuration.GetConnectionString("DefaultConnection")));
 
     builder.Services.AddScoped<IFacilitiesRepository, Infrastructure.Facilities.FacilitiesRepository>();
     builder.Services.AddScoped<IOrganizationRepository, Infrastructure.Organization.OrganizationRepository>();

@@ -1,22 +1,18 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Infrastructure.DbConnection;
+using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
-using System.Data;
-using System.Data.SqlClient;
 
 namespace IntegrationTests;
 
 [SetUpFixture]
 public class Global
 {
-    internal static IDbConnection? DbConn;
+    internal static IDbConnectionFactory? DbConnectionFactory;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
         var config = new ConfigurationBuilder().AddJsonFile("testsettings.json").Build();
-        DbConn = new SqlConnection(config.GetConnectionString("DefaultConnection"));
+        DbConnectionFactory = new DbConnectionFactory(config.GetConnectionString("DefaultConnection"));
     }
-
-    [OneTimeTearDown]
-    public void OneTimeTearDown() => DbConn?.Dispose();
 }

@@ -14,7 +14,7 @@ public class GetAccReport
     {
         var facilityId = new ApbFacilityId("05100149");
         const int id = 77863;
-        var repo = new ComplianceRepository(Global.DbConn!);
+        var repo = new ComplianceRepository(Global.DbConnectionFactory!);
         var result = await repo.GetAccReportAsync(facilityId, id);
 
         Assert.Multiple(() =>
@@ -30,7 +30,7 @@ public class GetAccReport
     [Test]
     public async Task ReturnsNullIfNotExists()
     {
-        var repo = new ComplianceRepository(Global.DbConn!);
+        var repo = new ComplianceRepository(Global.DbConnectionFactory!);
         var result = await repo.GetAccReportAsync("000-00000", 1);
 
         result.Should().BeNull();

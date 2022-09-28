@@ -2,29 +2,35 @@
 using Domain.Facilities.Models;
 using Domain.Facilities.Repositories;
 using Domain.ValueObjects;
+using Infrastructure.DbConnection;
 using System.Data;
 
 namespace Infrastructure.Facilities;
 
 public class FacilitiesRepository : IFacilitiesRepository
 {
-    // ReSharper disable once InconsistentNaming
-    private readonly IDbConnection db;
-    public FacilitiesRepository(IDbConnection conn) => db = conn;
+    private readonly IDbConnectionFactory _db;
+    public FacilitiesRepository(IDbConnectionFactory db) => _db = db;
 
-    public Task<bool> FacilityExistsAsync(ApbFacilityId facilityId) =>
-        db.ExecuteScalarAsync<bool>("air.FacilityExists",
+    public async Task<bool> FacilityExistsAsync(ApbFacilityId facilityId)
+    {
+        using var db = _db.Create();
+        return await db.ExecuteScalarAsync<bool>("air.FacilityExists",
             new { AirsNumber = facilityId.DbFormattedString },
             commandType: CommandType.StoredProcedure);
+    }
 
     public async Task<Facility?> GetFacilityAsync(ApbFacilityId facilityId)
     {
-        if (!await FacilityExistsAsync(facilityId)) return null;
+        using var db = _db.Create();
 
-        using var multi = await db.QueryMultipleAsync("air.GetFacility",
+        var varMultiTask = db.QueryMultipleAsync("air.GetFacility",
             new { AirsNumber = facilityId.DbFormattedString },
             commandType: CommandType.StoredProcedure);
 
+        if (!await FacilityExistsAsync(facilityId)) return null;
+
+        using var multi = await varMultiTask;
         var facility = multi.Read<Facility, Address, GeoCoordinates, FacilityHeaderData, Facility>(
             (facility, facilityAddress, geoCoordinates, headerData) =>
             {

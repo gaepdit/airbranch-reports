@@ -12,7 +12,7 @@ public class GetFacility
     public async Task ReturnsFacilityIfExists()
     {
         var facilityId = new ApbFacilityId("17900001");
-        var repo = new FacilitiesRepository(Global.DbConn!);
+        var repo = new FacilitiesRepository(Global.DbConnectionFactory!);
         var result = await repo.GetFacilityAsync(facilityId);
 
         Assert.Multiple(() =>
@@ -27,7 +27,7 @@ public class GetFacility
     [Test]
     public async Task ReturnsNullIfNotExists()
     {
-        var repo = new FacilitiesRepository(Global.DbConn!);
+        var repo = new FacilitiesRepository(Global.DbConnectionFactory!);
         var result = await repo.GetFacilityAsync("000-00000");
 
         result.Should().BeNull();
