@@ -43,5 +43,7 @@
 
     <ItemGroup>
         <Content Update="web.*.config" CopyToPublishDirectory="Never" />
+        <Content Include="wwwroot\.well-known\security.txt" CopyToPublishDirectory="PreserveNewest" />
     </ItemGroup>
+
 </Project>
