@@ -31,7 +31,7 @@ internal static class SecurityHeaders
             .ReportSample();
         builder.AddStyleSrc()
             .Self()
-            .From("https://cdn.skypack.dev/-/bootstrap@v5.1.3-zDaehFjX8IjUKEwwoLlL/")
+            .From("https://cdn.skypack.dev/-/bootstrap@v5.2.2-rQQzEZiIuMxXgDelisA1/")
             .From("https://cdn.skypack.dev/-/sanitize.css@v13.0.0-9hf8PtILaGjq3949IzOc/")
             .ReportSample();
         builder.AddImgSrc().Self();
