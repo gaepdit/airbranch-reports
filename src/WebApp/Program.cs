@@ -50,7 +50,8 @@ builder.Services
     .AddMicrosoftIdentityUI();
 
 // Configure HSTS (max age: two years)
-builder.Services.AddHsts(opts => opts.MaxAge = TimeSpan.FromDays(730));
+if (builder.Environment.IsLocalEnv())
+    builder.Services.AddHsts(opts => opts.MaxAge = TimeSpan.FromDays(730));
 
 // Configure application monitoring
 builder.Services.AddRaygun(builder.Configuration,
