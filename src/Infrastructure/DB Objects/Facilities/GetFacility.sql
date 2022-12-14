@@ -68,10 +68,12 @@ BEGIN
         on f.STRAIRSNUMBER = h.STRAIRSNUMBER
         inner join APBSUPPLAMENTALDATA s
         on f.STRAIRSNUMBER = s.STRAIRSNUMBER
+        inner join dbo.AFSFACILITYDATA a
+        on f.STRAIRSNUMBER = a.STRAIRSNUMBER
         left join dbo.LOOKUPCOUNTYINFORMATION lc
         on substring(f.STRAIRSNUMBER, 5, 3) = lc.STRCOUNTYCODE
-    where f.STRAIRSNUMBER = @AirsNumber
-      and iaip_facility.FacilityHasBeenApproved(@AirsNumber) = 1;
+    where a.STRAIRSNUMBER = @AirsNumber
+      and STRUPDATESTATUS in ('A', 'C');
 
     select t.AirProgram
     from (select 1             as Sequence,

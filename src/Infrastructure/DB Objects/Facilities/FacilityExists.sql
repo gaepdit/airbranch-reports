@@ -26,7 +26,10 @@ When        Who                 What
 BEGIN
     SET NOCOUNT ON;
 
-    SELECT iaip_facility.FacilityHasBeenApproved(@AirsNumber) as Result;
+    select convert(bit, count(*))
+    from dbo.AFSFACILITYDATA
+    where STRAIRSNUMBER = @AirsNumber
+      and STRUPDATESTATUS in ('A', 'C');
 
 END;
 
