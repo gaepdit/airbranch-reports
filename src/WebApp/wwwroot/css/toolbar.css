@@ -1,4 +1,6 @@
-﻿/* styling of the tooltip display */
+﻿/* Source: https://stackdiary.com/hover-tooltip-javascript/ */
+
+/* styling of the tooltip display */
 p#tooltip-text {
     display: none;
     position: absolute;
