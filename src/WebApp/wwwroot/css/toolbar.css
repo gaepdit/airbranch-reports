@@ -1,7 +1,7 @@
 ﻿/* Source: https://stackdiary.com/hover-tooltip-javascript/ */
 
 /* styling of the tooltip display */
-p#tooltip-text {
+#tooltip-text {
     display: none;
     position: absolute;
     right: 1rem;
@@ -15,7 +15,7 @@ p#tooltip-text {
 }
 
 /* optional styling to add a "wedge" to the tooltip */
-p#tooltip-text:before {
+#tooltip-text:before {
     content: "";
     position: absolute;
     bottom: 100%;
@@ -23,6 +23,10 @@ p#tooltip-text:before {
     margin-left: -8px;
     border: 8px solid transparent;
     border-bottom: 8px solid #00732c;
+}
+
+#print-button:hover + #tooltip-text, #print-button:focus + #tooltip-text {
+    display: block;
 }
 
 @keyframes fadeIn {

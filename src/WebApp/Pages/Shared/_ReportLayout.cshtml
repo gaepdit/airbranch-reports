@@ -15,18 +15,4 @@
 <script asp-add-content-to-csp>
 document.getElementById('print-button').addEventListener('click', function () { window.print(); return false; }, false);
 
-// selecting the elements for which we want to add a tooltip
-const print_button = document.getElementById("print-button");
-const tooltip = document.getElementById("tooltip-text");
-
-// change display to 'block' on mouseover
-print_button.addEventListener('mouseover', () => {
-  tooltip.style.display = 'block';
-}, false);
-
-// change display to 'none' on mouseleave
-print_button.addEventListener('mouseleave', () => {
-  tooltip.style.display = 'none';
-}, false);
-
 </script>
