@@ -1,0 +1,90 @@
+﻿/* Print toolbar */
+.print-toolbar {
+    background: #eeed;
+    text-align: right;
+    padding: .5rem 1.5rem;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.12), 0 12px 16px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(1px);
+    font-family: system-ui;
+}
+
+.print-toolbar button {
+    padding: 4px 16px;
+    margin-left: .5rem;
+}
+
+/* styling of the tooltip display */
+#tooltip-text {
+    position: absolute;
+    z-index: 1;
+
+    /* Visually hide */
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    right: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+
+    /* Style */
+    background: #004D1D;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 2px;
+    animation: fadeIn 0.6s;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+#tooltip-text ul {
+    padding-left: 2rem;
+    margin-right: 8px;
+}
+
+#tooltip-text li {
+    margin-bottom: 1rem;
+}
+
+/* optional styling to add a "wedge" to the tooltip */
+/* Source: https://stackdiary.com/hover-tooltip-javascript/ */
+#tooltip-text:before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 2rem;
+    margin-left: -8px;
+    border: 8px solid transparent;
+    border-bottom: 8px solid #004D1D;
+}
+
+#print-button:hover + #tooltip-text, #print-button:focus + #tooltip-text {
+    /* Un-hide */
+    height: auto;
+    padding: 8px;
+    margin: 1rem 0 0 0;
+    right: 0.9rem;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    width: 31rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Print styles */
+@media print {
+    .print-toolbar {
+        display: none !important;
+    }
+}
