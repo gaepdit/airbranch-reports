@@ -1,6 +1,15 @@
 ﻿<div class="print-toolbar">
-    <link rel="stylesheet" href="~/css/toolbar.css" type="text/css" />
-    <button id="print-button">🖨️ Print</button>
-    <p id="tooltip-text">&#8226; <b>To save the file as PDF</b>: Change the "Destination" to the "Save as PDF" option.<br> 
-        &#8226; <b>To hide the date/url headers and footers on the printout</b>: Click on "More Settings", scroll all the way down to the bottom, and <mark>uncheck</mark> "Headers and footers"</p>
+    <button id="print-button" type="button" aria-details="tooltip-text">🖨️ Print</button>
+    <div id="tooltip-text">
+        <ul>
+            <li>
+                <strong>To save the file as PDF:</strong> Select the Print button and change the “Destination” to the
+                “Save as PDF” option.
+            </li>
+            <li>
+                <strong>To hide the date/url headers and footers on the printout:</strong> Select “More Settings,”
+                scroll all the way down to the bottom, and <em>uncheck</em> “Headers and footers.”
+            </li>
+        </ul>
+    </div>
 </div>
