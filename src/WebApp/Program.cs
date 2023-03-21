@@ -46,7 +46,7 @@ else
 }
 
 // Persist data protection keys
-var keysFolder = Path.Combine(builder.Configuration["PersistedFilesBasePath"], "DataProtectionKeys");
+var keysFolder = Path.Combine(builder.Configuration["PersistedFilesBasePath"] ?? "./", "DataProtectionKeys");
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(Directory.CreateDirectory(keysFolder));
 builder.Services.AddAuthorization();
@@ -80,8 +80,10 @@ else
     // When running on the server, requires a deployed database (configured in the app settings file).
     // (Note: this pattern works because we only have a single DB connection string.
     // See https://stackoverflow.com/a/47403685/212978 for more info.)
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+        ?? throw new ArgumentException("Connection string missing.");
     builder.Services.AddTransient<IDbConnectionFactory, DbConnectionFactory>(_ =>
-        new DbConnectionFactory(builder.Configuration.GetConnectionString("DefaultConnection")));
+        new DbConnectionFactory(connectionString));
 
     builder.Services.AddScoped<IFacilitiesRepository, Infrastructure.Facilities.FacilitiesRepository>();
     builder.Services.AddScoped<IOrganizationRepository, Infrastructure.Organization.OrganizationRepository>();
