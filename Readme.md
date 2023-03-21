@@ -9,7 +9,7 @@ This application creates various printable reports used or provided by the Georg
 
 ## Info for Developers
 
-The Air Reports application is written using .NET 6.
+The Air Reports application is written using .NET 7.
 
 ### Project organization
 

@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/.artifacts/Air.WebApp/bin/Debug/net6.0/Air.WebApp.dll",
+            "program": "${workspaceFolder}/.artifacts/Air.WebApp/bin/Debug/net7.0/Air.WebApp.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/WebApp",
             "stopAtEntry": false,
