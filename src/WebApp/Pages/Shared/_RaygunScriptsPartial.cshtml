@@ -1,4 +1,4 @@
-﻿@inject IConfiguration Configuration
+﻿@using WebApp.Platform.Settings;
 @inject IHttpContextAccessor ContextAccessor
 @{
     var identity = ContextAccessor.HttpContext?.User.Identity;
@@ -12,7 +12,7 @@
     e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
 </script>
 <script asp-add-content-to-csp>
-    rg4js('apiKey', '@Configuration["RaygunSettings:ApiKey"]');
+    rg4js('apiKey', '@ApplicationSettings.RaygunSettings.ApiKey');
     rg4js('enableCrashReporting', true);
     rg4js('withTags', ['@Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")']);
     @if (identity?.IsAuthenticated == true)

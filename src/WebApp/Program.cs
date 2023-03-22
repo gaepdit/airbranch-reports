@@ -18,12 +18,20 @@ using WebApp.Platform.Settings;
 var builder = WebApplication.CreateBuilder(args);
 
 // Set Application Settings
-builder.Configuration.GetSection(ApplicationSettings.RaygunSettingsSection).Bind(ApplicationSettings.Raygun);
+builder.Configuration.GetSection(nameof(ApplicationSettings.RaygunSettings)).Bind(ApplicationSettings.RaygunSettings);
+if (builder.Environment.IsDevelopment())
+{
+    builder.Configuration.GetSection(nameof(ApplicationSettings.DevOptions)).Bind(ApplicationSettings.DevOptions);
+}
+else
+{
+    ApplicationSettings.DevOptions = ApplicationSettings.ProductionDefault;
+}
 
 // Configure authentication
-if (builder.Environment.IsLocalEnv())
+if (ApplicationSettings.DevOptions.UseLocalAuth)
 {
-    // When running locally, uses a built-in authenticated user.
+    // Optionally handles authentication internally.
     builder.Services
         .AddAuthentication(LocalAuthenticationHandler.BasicAuthenticationScheme)
         .AddScheme<AuthenticationSchemeOptions, LocalAuthenticationHandler>(
@@ -50,7 +58,7 @@ builder.Services
     .AddMicrosoftIdentityUI();
 
 // Configure HSTS (max age: two years)
-if (builder.Environment.IsLocalEnv())
+if (!builder.Environment.IsDevelopment())
     builder.Services.AddHsts(opts => opts.MaxAge = TimeSpan.FromDays(730));
 
 // Configure application monitoring
@@ -59,7 +67,7 @@ builder.Services.AddRaygun(builder.Configuration,
 builder.Services.AddHttpContextAccessor(); // needed by RaygunScriptPartial
 
 // Configure the data repositories
-if (builder.Environment.IsLocalEnv())
+if (ApplicationSettings.DevOptions.UseLocalData)
 {
     // Uses sample data when running locally.
     builder.Services.AddScoped<IFacilitiesRepository, LocalRepository.Facilities.FacilitiesRepository>();
@@ -86,7 +94,7 @@ var app = builder.Build();
 var env = app.Environment;
 
 // Configure the HTTP request pipeline.
-if (env.IsDevelopment() || env.IsLocalEnv())
+if (env.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }

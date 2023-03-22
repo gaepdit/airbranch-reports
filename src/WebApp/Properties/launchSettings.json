@@ -8,16 +8,7 @@
     }
   },
   "profiles": {
-    "WebApp Local": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:44380;http://localhost:40139",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Local"
-      }
-    },
-    "WebApp Dev Server": {
+    "WebApp": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

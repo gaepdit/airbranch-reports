@@ -13,9 +13,9 @@ internal static class SecurityHeaders
         policies.RemoveServerHeader();
         policies.AddContentSecurityPolicy(builder => builder.CspBuilder());
         policies.AddCustomHeader("Reporting-Endpoints",
-            $"default=\"https://report-to-api.raygun.com/reports?apikey={ApplicationSettings.Raygun.ApiKey}\",csp-endpoint=\"https://report-to-api.raygun.com/reports-csp?apikey={ApplicationSettings.Raygun.ApiKey}\"");
+            $"default=\"https://report-to-api.raygun.com/reports?apikey={ApplicationSettings.RaygunSettings.ApiKey}\",csp-endpoint=\"https://report-to-api.raygun.com/reports-csp?apikey={ApplicationSettings.RaygunSettings.ApiKey}\"");
         policies.AddCustomHeader("Report-To",
-            $"{{\"group\":\"default\",\"max_age\":10886400,\"endpoints\":[{{\"url\":\"https://report-to-api.raygun.com/reports?apikey={ApplicationSettings.Raygun.ApiKey}\"}}]}},{{\"group\":\"csp-endpoint\",\"max_age\":10886400,\"endpoints\":[{{\"url\":\"https://report-to-api.raygun.com/reports-csp?apikey={ApplicationSettings.Raygun.ApiKey}\"}}]}}");
+            $"{{\"group\":\"default\",\"max_age\":10886400,\"endpoints\":[{{\"url\":\"https://report-to-api.raygun.com/reports?apikey={ApplicationSettings.RaygunSettings.ApiKey}\"}}]}},{{\"group\":\"csp-endpoint\",\"max_age\":10886400,\"endpoints\":[{{\"url\":\"https://report-to-api.raygun.com/reports-csp?apikey={ApplicationSettings.RaygunSettings.ApiKey}\"}}]}}");
     }
 
 #pragma warning disable S1075 // "URIs should not be hardcoded"
@@ -43,7 +43,7 @@ internal static class SecurityHeaders
         builder.AddManifestSrc().Self();
         builder.AddFrameAncestors().None();
         builder.AddReportUri()
-            .To($"https://report-to-api.raygun.com/reports-csp?apikey={ApplicationSettings.Raygun.ApiKey}");
+            .To($"https://report-to-api.raygun.com/reports-csp?apikey={ApplicationSettings.RaygunSettings.ApiKey}");
         builder.AddCustomDirective("report-to", "csp-endpoint");
     }
 #pragma warning restore S1075

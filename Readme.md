@@ -22,25 +22,21 @@ The solution contains four projects:
 
 There are also corresponding unit test projects.
 
-### Launch profiles
+### Dev Settings
 
-Run locally by choosing the "Local" launch profile or connect to the dev database by choosing the "Dev Server" profiles. 
+Configure the app when running locally by adding a `DevOptions` section to an app settings file:
 
-#### Local launch profile
-
- In this configuration, no database is used -- sample data is provided in the "LocalRepository/Data" folder. 
- 
- No authentication provider is enabled, either. The `AuthenticatedUser` setting in the "appsettings.Local.json" file can be used to set whether the application runs with an authenticated user or not.
-
- ```json
-{
-  "AuthenticatedUser": true
-}
+```json
+  "DevOptions": {
+    "UseLocalData": true,
+    "UseLocalAuth": true,
+    "LocalAuthSucceeds": false
+  },
 ```
 
- #### Dev Server launch profile
-
- To use the Dev Server configuration, copy the file named "appsettings.Development.json" from the "app-config" repo into the "src/WebApp" folder. In this configuration, the existing SQL Server `airbranch` database will be used.
+* `UseLocalData`: When `true`, no database is used. Instead, sample data is used from the "LocalRepository/Data" folder. When `false`, a database connection string is used to connect to a database.
+* `UseLocalAuth`: When `true`, no external authentication provider is enabled. When `false`, Azure AD is used for authentication.
+  * `LocalAuthSucceeds`: Only used with `UseLocalAuth = true`. When `true`, local authentication is successful. When `false`, local authentication fails.
 
 ### Testing
 
