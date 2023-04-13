@@ -13,6 +13,6 @@ public class Global
     public void OneTimeSetUp()
     {
         var config = new ConfigurationBuilder().AddJsonFile("testsettings.json").Build();
-        DbConnectionFactory = new DbConnectionFactory(config.GetConnectionString("DefaultConnection"));
+        DbConnectionFactory = new DbConnectionFactory(config.GetConnectionString("DefaultConnection")!);
     }
 }

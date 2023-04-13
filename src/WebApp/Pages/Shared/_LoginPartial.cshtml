@@ -4,7 +4,15 @@
     string greeting;
     if (User.HasClaim(c => c.Type == "name"))
     {
-        greeting = User.FindFirstValue("name").Split(',')[1];
+        var name = User.FindFirstValue("name") ?? "";
+        if (name.Contains(','))
+        {
+            greeting = name.Split(',')[1];
+        }
+        else
+        {
+            greeting = name;
+        }
     }
     else
     {
