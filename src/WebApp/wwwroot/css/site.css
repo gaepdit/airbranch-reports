@@ -48,6 +48,7 @@ html {
     html, body {
         font-size: 12px;
         color: #000;
+        background: #fff;
     }
 
     .banner-test-site {
