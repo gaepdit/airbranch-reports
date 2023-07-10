@@ -11,16 +11,13 @@ namespace WebApp.Platform.Local;
 internal class LocalAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
 {
     public const string BasicAuthenticationScheme = "BasicAuthentication";
-    private readonly IConfiguration _configuration;
 
     public LocalAuthenticationHandler(
         IOptionsMonitor<AuthenticationSchemeOptions> options,
         ILoggerFactory logger,
         UrlEncoder encoder,
-        ISystemClock clock,
-        IConfiguration configuration)
-        : base(options, logger, encoder, clock) =>
-        _configuration = configuration;
+        ISystemClock clock)
+        : base(options, logger, encoder, clock) { }
 
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {

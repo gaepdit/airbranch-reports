@@ -1,6 +1,5 @@
 using Domain.Compliance.Repositories;
 using Domain.Facilities.Repositories;
-using Domain.Organization.Repositories;
 using Domain.StackTest.Repositories;
 using Infrastructure.DbConnection;
 using Microsoft.AspNetCore.Authentication;
@@ -19,6 +18,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Set Application Settings
 builder.Configuration.GetSection(nameof(ApplicationSettings.RaygunSettings)).Bind(ApplicationSettings.RaygunSettings);
+builder.Configuration.GetSection(nameof(ApplicationSettings.OrganizationInfo)).Bind(ApplicationSettings.OrganizationInfo);
+
 if (builder.Environment.IsDevelopment())
 {
     builder.Configuration.GetSection(nameof(ApplicationSettings.DevOptions)).Bind(ApplicationSettings.DevOptions);
@@ -71,7 +72,6 @@ if (ApplicationSettings.DevOptions.UseLocalData)
 {
     // Uses sample data when running locally.
     builder.Services.AddScoped<IFacilitiesRepository, LocalRepository.Facilities.FacilitiesRepository>();
-    builder.Services.AddScoped<IOrganizationRepository, LocalRepository.Organization.OrganizationRepository>();
     builder.Services.AddScoped<IComplianceRepository, LocalRepository.Compliance.ComplianceRepository>();
     builder.Services.AddScoped<IStackTestRepository, LocalRepository.StackTest.StackTestRepository>();
 }
@@ -86,7 +86,6 @@ else
         new DbConnectionFactory(connectionString));
 
     builder.Services.AddScoped<IFacilitiesRepository, Infrastructure.Facilities.FacilitiesRepository>();
-    builder.Services.AddScoped<IOrganizationRepository, Infrastructure.Organization.OrganizationRepository>();
     builder.Services.AddScoped<IComplianceRepository, Infrastructure.Compliance.ComplianceRepository>();
     builder.Services.AddScoped<IStackTestRepository, Infrastructure.StackTest.StackTestRepository>();
 }

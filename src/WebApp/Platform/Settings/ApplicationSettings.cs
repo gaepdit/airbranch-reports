@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using WebApp.Platform.Models;
 
 namespace WebApp.Platform.Settings;
 
@@ -6,6 +7,7 @@ public static class ApplicationSettings
 {
     public static RaygunSettings RaygunSettings { get; } = new();
     public static DevOptions DevOptions { get; set; } = new();
+    public static OrganizationInfo OrganizationInfo { get; set; } = new();
 
     public static readonly DevOptions ProductionDefault = new()
     {

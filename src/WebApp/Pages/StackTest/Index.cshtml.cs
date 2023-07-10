@@ -1,6 +1,4 @@
 using Domain.Facilities.Models;
-using Domain.Organization.Models;
-using Domain.Organization.Repositories;
 using Domain.StackTest.Models;
 using Domain.StackTest.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -12,13 +10,11 @@ namespace WebApp.Pages.StackTest;
 public class IndexModel : PageModel
 {
     public BaseStackTestReport? Report { get; private set; }
-    public OrganizationInfo OrganizationInfo { get; private set; }
     public MemoHeader MemoHeader { get; private set; }
     public bool ShowConfidentialWarning { get; private set; }
 
     public async Task<ActionResult> OnGetAsync(
         [FromServices] IStackTestRepository repository,
-        [FromServices] IOrganizationRepository orgRepo,
         [FromRoute] string facilityId,
         [FromRoute] int referenceNumber,
         [FromQuery] bool includeConfidentialInfo = false)
@@ -36,10 +32,7 @@ public class IndexModel : PageModel
             return NotFound("Facility ID is invalid.");
         }
 
-        var getReportTask = repository.GetStackTestReportAsync(airs, referenceNumber);
-        var getOrgTask = orgRepo.GetAsync();
-
-        var report = await getReportTask;
+        var report = await repository.GetStackTestReportAsync(airs, referenceNumber);
         if (report?.Facility is null) return NotFound();
 
         Report = includeConfidentialInfo ? report : report.RedactedStackTestReport();
@@ -53,7 +46,6 @@ public class IndexModel : PageModel
         };
 
         ShowConfidentialWarning = includeConfidentialInfo && Report.ConfidentialParameters.Any();
-        OrganizationInfo = await getOrgTask;
 
         return Page();
     }
