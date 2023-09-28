@@ -12,24 +12,26 @@ CREATE OR ALTER PROCEDURE air.GetFceReport
     @FceExtendedDataPeriod int
 AS
 
-/*******************************************************************************
+/**************************************************************************************************
 
 Author:     Doug Waldron
-Overview:   Retrieves an FCE report for a given facility and FCE ID.
+Overview:   
+  Retrieves an FCE report for a given facility and FCE ID.
 
 Input Parameters:
-    @AirsNumber - The facility ID
-    @Id - The tracking number of the FCE
-    @FceDataPeriod - The number of years covered by the FCE
-    @FceExtendedDataPeriod - The number of years of additional data retrieved
-        (fees history and enforcement history)
+  @AirsNumber - The facility ID
+  @Id - The tracking number of the FCE
+  @FceDataPeriod - The number of years covered by the FCE
+  @FceExtendedDataPeriod - The number of years of additional data retrieved
+    (fees history and enforcement history)
 
 Modification History:
 When        Who                 What
-----------  ------------------  ------------------------------------------------
+----------  ------------------  -------------------------------------------------------------------
 2022-02-22  DWaldron            Initial version
+2023-09-28  DWaldron            Ensure date ranges are inclusive (airbranch-reports#92)
 
-*******************************************************************************/
+***************************************************************************************************/
 
 BEGIN
     SET NOCOUNT ON;
@@ -72,7 +74,7 @@ BEGIN
         on m.STRTRACKINGNUMBER = i.STRTRACKINGNUMBER
         inner join dbo.SSCPFCE f
         on f.STRFCENUMBER = @Id
-            and i.DATINSPECTIONDATESTART between
+            and convert(date, i.DATINSPECTIONDATESTART) between
                dateadd(year, -@FceDataPeriod, convert(date, f.DATFCECOMPLETED))
                and convert(date, f.DATFCECOMPLETED)
         left join dbo.EPDUSERPROFILES as p
@@ -100,7 +102,7 @@ BEGIN
         on m.STRTRACKINGNUMBER = i.STRTRACKINGNUMBER
         inner join dbo.SSCPFCE f
         on f.STRFCENUMBER = @Id
-            and i.DATINSPECTIONDATESTART between
+            and convert(date, i.DATINSPECTIONDATESTART) between
                dateadd(year, -@FceDataPeriod, convert(date, f.DATFCECOMPLETED))
                and convert(date, f.DATFCECOMPLETED)
         left join dbo.EPDUSERPROFILES as p
@@ -110,7 +112,7 @@ BEGIN
       and m.STRDELETE is null
     order by i.DATINSPECTIONDATESTART desc;
 
--- Accs
+-- ACCs
     select m.STRTRACKINGNUMBER         as Id,
            year(a.DATACCREPORTINGYEAR) as AccReportingYear,
            m.DATRECEIVEDDATE           as ReceivedDate,
@@ -125,7 +127,7 @@ BEGIN
         on a.STRTRACKINGNUMBER = m.STRTRACKINGNUMBER
         inner join dbo.SSCPFCE f
         on f.STRFCENUMBER = @Id
-            and DATRECEIVEDDATE between
+            and convert(date, m.DATRECEIVEDDATE) between
                dateadd(year, -@FceDataPeriod, convert(date, f.DATFCECOMPLETED))
                and convert(date, f.DATFCECOMPLETED)
     where m.STREVENTTYPE = '04'
@@ -152,7 +154,7 @@ BEGIN
         on r.STRTRACKINGNUMBER = m.STRTRACKINGNUMBER
         inner join dbo.SSCPFCE f
         on f.STRFCENUMBER = @Id
-            and m.DATRECEIVEDDATE between
+            and convert(date, m.DATRECEIVEDDATE) between
                dateadd(year, -@FceDataPeriod, convert(date, f.DATFCECOMPLETED))
                and convert(date, f.DATFCECOMPLETED)
     where m.STREVENTTYPE = '01'
@@ -176,7 +178,7 @@ BEGIN
         on n.STRTRACKINGNUMBER = m.STRTRACKINGNUMBER
         inner join dbo.SSCPFCE f
         on f.STRFCENUMBER = @Id
-            and m.DATRECEIVEDDATE between
+            and convert(date, m.DATRECEIVEDDATE) between
                dateadd(year, -@FceDataPeriod, convert(date, f.DATFCECOMPLETED))
                and convert(date, f.DATFCECOMPLETED)
         left join dbo.LOOKUPSSCPNOTIFICATIONS AS l
@@ -205,7 +207,7 @@ BEGIN
         on i.STRREFERENCENUMBER = t.STRREFERENCENUMBER
         inner join dbo.SSCPFCE f
         on f.STRFCENUMBER = @Id
-            and m.DATRECEIVEDDATE between
+            and convert(date, m.DATRECEIVEDDATE) between
                dateadd(year, -@FceDataPeriod, convert(date, f.DATFCECOMPLETED))
                and convert(date, f.DATFCECOMPLETED)
         left join dbo.LOOKUPPOLLUTANTS as lp
@@ -230,25 +232,21 @@ BEGIN
                (year(f.DATFCECOMPLETED) - @FceExtendedDataPeriod)
                and year(f.DATFCECOMPLETED)
         left join
-    (
-        select STRAIRSNUMBER,
-               NUMFEEYEAR,
-               sum(convert(decimal(10, 2), NUMAMOUNT)) as InvoicedAmount
-        from dbo.FS_FEEINVOICE
-        where ACTIVE = '1'
-        group by STRAIRSNUMBER, NUMFEEYEAR
-    ) as inv
+    (select STRAIRSNUMBER,
+            NUMFEEYEAR,
+            sum(convert(decimal(10, 2), NUMAMOUNT)) as InvoicedAmount
+     from dbo.FS_FEEINVOICE
+     where ACTIVE = '1'
+     group by STRAIRSNUMBER, NUMFEEYEAR) as inv
         on a.STRAIRSNUMBER = inv.STRAIRSNUMBER
             and a.NUMFEEYEAR = inv.NUMFEEYEAR
         left join
-    (
-        select STRAIRSNUMBER,
-               NUMFEEYEAR,
-               sum(convert(decimal(10, 2), NUMPAYMENT)) as AmountPaid
-        from dbo.FS_TRANSACTIONS
-        where ACTIVE = '1'
-        group by STRAIRSNUMBER, NUMFEEYEAR
-    ) as trx
+    (select STRAIRSNUMBER,
+            NUMFEEYEAR,
+            sum(convert(decimal(10, 2), NUMPAYMENT)) as AmountPaid
+     from dbo.FS_TRANSACTIONS
+     where ACTIVE = '1'
+     group by STRAIRSNUMBER, NUMFEEYEAR) as trx
         on a.STRAIRSNUMBER = trx.STRAIRSNUMBER
             and a.NUMFEEYEAR = trx.NUMFEEYEAR
         left join dbo.FSLK_ADMIN_STATUS as ls
@@ -269,9 +267,9 @@ BEGIN
         on e.NUMSTAFFRESPONSIBLE = p.NUMUSERID
         inner join dbo.SSCPFCE f
         on f.STRFCENUMBER = @Id
-            and e.DATLONSENT between
+            and convert(date, e.DATLONSENT) between
                dateadd(year, -@FceExtendedDataPeriod, f.DATFCECOMPLETED)
-               and f.DATFCECOMPLETED
+               and convert(date, f.DATFCECOMPLETED)
     where e.STRLONSENT = 'True'
       and e.STRAFSKEYACTIONNUMBER is null
       and (e.IsDeleted = 0 or e.IsDeleted is null)
@@ -289,9 +287,9 @@ BEGIN
         on e.NUMSTAFFRESPONSIBLE = p.NUMUSERID
         inner join dbo.SSCPFCE f
         on f.STRFCENUMBER = @Id
-            and e.DATNOVSENT between
+            and convert(date, e.DATNOVSENT) between
                dateadd(year, -@FceExtendedDataPeriod, f.DATFCECOMPLETED)
-               and f.DATFCECOMPLETED
+               and convert(date, f.DATFCECOMPLETED)
     where e.STRNOVSENT = 'True'
       and e.STRAFSNOVSENTNUMBER is not null
       and e.STRAFSKEYACTIONNUMBER is not null
@@ -312,9 +310,9 @@ BEGIN
         on e.NUMSTAFFRESPONSIBLE = p.NUMUSERID
         inner join dbo.SSCPFCE f
         on f.STRFCENUMBER = @Id
-            and e.DATCOEXECUTED between
+            and convert(date, e.DATCOEXECUTED) between
                dateadd(year, -@FceExtendedDataPeriod, f.DATFCECOMPLETED)
-               and f.DATFCECOMPLETED
+               and convert(date, f.DATFCECOMPLETED)
     where e.STRCOEXECUTED = 'True'
       and e.STRAFSCOEXECUTEDNUMBER is not null
       and e.STRAFSKEYACTIONNUMBER is not null
@@ -335,9 +333,9 @@ BEGIN
         on e.NUMSTAFFRESPONSIBLE = p.NUMUSERID
         inner join dbo.SSCPFCE f
         on f.STRFCENUMBER = @Id
-            and e.DATAOEXECUTED between
+            and convert(date, e.DATAOEXECUTED) between
                dateadd(year, -@FceExtendedDataPeriod, f.DATFCECOMPLETED)
-               and f.DATFCECOMPLETED
+               and convert(date, f.DATFCECOMPLETED)
     where e.STRAOEXECUTED = 'True'
       and e.STRAFSAOTOAGNUMBER is not null
       and e.STRAFSKEYACTIONNUMBER is not null
