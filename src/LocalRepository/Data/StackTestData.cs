@@ -5,6 +5,8 @@ namespace LocalRepository.Data;
 
 public static class StackTestData
 {
+    private const string EpdDirector = "David B. Dove";
+
     public static IEnumerable<BaseStackTestReport> StackTestReports => new List<BaseStackTestReport>
     {
         new StackTestReportOneStack
@@ -31,6 +33,7 @@ public static class StackTestData
             },
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
+            EpdDirector = EpdDirector,
 
             MaxOperatingCapacity = new ValueWithUnits("100", "tons/hr"),
             OperatingCapacity = new ValueWithUnits("90", "tons/hr"),
@@ -100,6 +103,7 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
+            EpdDirector = EpdDirector,
 
             MaxOperatingCapacity = new ValueWithUnits("100", "tons/hr"),
             OperatingCapacity = new ValueWithUnits("90", "tons/hr"),
@@ -169,6 +173,7 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(5)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(6)!.Value.Name,
+            EpdDirector = EpdDirector,
 
             MaxOperatingCapacity = new ValueWithUnits("40", "ton/HR"),
             OperatingCapacity = new ValueWithUnits("30", "ton/HR"),
@@ -265,6 +270,7 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(5)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(6)!.Value.Name,
+            EpdDirector = EpdDirector,
 
             MaxOperatingCapacity = new ValueWithUnits("40", "ton/HR"),
             OperatingCapacity = new ValueWithUnits("30", "ton/HR"),
@@ -357,6 +363,7 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
+            EpdDirector = EpdDirector,
 
             MaxOperatingCapacity = new ValueWithUnits("400,000,000", "GPY"),
             OperatingCapacity = new ValueWithUnits("90,000", "GPY"),
@@ -392,6 +399,7 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
+            EpdDirector = EpdDirector,
 
             MaxOperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
             OperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
@@ -445,6 +453,7 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
+            EpdDirector = EpdDirector,
 
             MaxOperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
             OperatingCapacity = new ValueWithUnits("2000", "Tons/Day"),
@@ -502,6 +511,8 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
+            EpdDirector = EpdDirector,
+
             MaxOperatingCapacity = new ValueWithUnits("100", "%"),
             OperatingCapacity = new ValueWithUnits("100", "%"),
             AllowableEmissionRates = new List<ValueWithUnits>
@@ -559,6 +570,8 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
+            EpdDirector = EpdDirector,
+
             ApplicableStandard = TextData.Short,
             Diluent = "Oxygen",
             Units = "LB/MMBTU",
@@ -640,6 +653,8 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
+            EpdDirector = EpdDirector,
+
             Comments = TextData.LongMultiline,
         },
         new StackTestMemorandum
@@ -661,6 +676,8 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
+            EpdDirector = EpdDirector,
+
             Comments = TextData.LongMultiline,
             MonitorManufacturer = TextData.Short,
             MonitorSerialNumber = TextData.VeryShort,
@@ -684,6 +701,8 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
+            EpdDirector = EpdDirector,
+
             Comments = TextData.LongMultiline,
             MaxOperatingCapacity = new ValueWithUnits("100000", "Units"),
             OperatingCapacity = new ValueWithUnits("50000", "Units"),
@@ -713,6 +732,8 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(5)!.Value.Name,
+            EpdDirector = EpdDirector,
+
             ControlEquipmentInfo = TextData.ShortMultiline,
             ComplianceStatus = "In Compliance",
             OpacityStandard = "Highest 6-minute average",
@@ -788,6 +809,8 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(3)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(4)!.Value.Name,
+            EpdDirector = EpdDirector,
+
             ControlEquipmentInfo = TextData.ShortMultiline,
             ComplianceStatus = "Not In Compliance",
             TestDuration = "60 minutes",
@@ -825,6 +848,8 @@ public static class StackTestData
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
             TestingUnitManager = StaffData.GetStaff(3)!.Value.Name,
+            EpdDirector = EpdDirector,
+
             ControlEquipmentInfo = TextData.ShortMultiline,
             ComplianceStatus = "In Compliance",
             OpacityStandard = "30-minute average",

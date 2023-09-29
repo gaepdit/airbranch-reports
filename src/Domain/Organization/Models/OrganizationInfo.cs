@@ -1,12 +1,9 @@
-﻿using Domain.ValueObjects;
-using JetBrains.Annotations;
+﻿namespace Domain.Organization.Models;
 
-namespace WebApp.Platform.Models;
-
-public class OrganizationInfo
+public record OrganizationInfo
 {
-    public string NameOfDirector { get; [UsedImplicitly] init; } = string.Empty;
-    public string TitleOfDirector { get; [UsedImplicitly] init; }= string.Empty;
+    public string NameOfDirector { get; init; } = string.Empty;
+
     public static string Org => "Air Protection Branch";
 
     public static Address OrgAddress => new()

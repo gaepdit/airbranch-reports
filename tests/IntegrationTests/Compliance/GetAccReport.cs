@@ -2,6 +2,7 @@ using Domain.Compliance.Models;
 using Domain.Facilities.Models;
 using FluentAssertions;
 using Infrastructure.Compliance;
+using Infrastructure.Facilities;
 using NUnit.Framework;
 using System.Threading.Tasks;
 
@@ -14,7 +15,9 @@ public class GetAccReport
     {
         var facilityId = new ApbFacilityId("05100149");
         const int id = 77863;
-        var repo = new ComplianceRepository(Global.DbConnectionFactory!);
+        var facilitiesRepo = new FacilitiesRepository(Global.DbConnectionFactory!);
+        var repo = new ComplianceRepository(Global.DbConnectionFactory!, facilitiesRepo);
+
         var result = await repo.GetAccReportAsync(facilityId, id);
 
         Assert.Multiple(() =>
@@ -30,7 +33,8 @@ public class GetAccReport
     [Test]
     public async Task ReturnsNullIfNotExists()
     {
-        var repo = new ComplianceRepository(Global.DbConnectionFactory!);
+        var facilitiesRepo = new FacilitiesRepository(Global.DbConnectionFactory!);
+        var repo = new ComplianceRepository(Global.DbConnectionFactory!, facilitiesRepo);
         var result = await repo.GetAccReportAsync("000-00000", 1);
 
         result.Should().BeNull();

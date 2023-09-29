@@ -2,14 +2,12 @@
 GO
 SET ANSI_NULLS ON;
 GO
-SET QUOTED_IDENTIFIER ON;
-GO
 
 CREATE OR ALTER PROCEDURE air.GetBaseStackTestReport
     @ReferenceNumber int
 AS
 
-/*******************************************************************************
+/**************************************************************************************************
 
 Author:     Doug Waldron
 Overview:   Retrieves common information for a given stack test.
@@ -19,12 +17,13 @@ Input Parameters:
 
 Modification History:
 When        Who                 What
-----------  ------------------  ------------------------------------------------
+----------  ------------------  -------------------------------------------------------------------
 2022-02-22  DWaldron            Initial version
 2022-02-24  DWaldron            Exclude deleted stack tests
-2022-02-24  DWaldron            NUMREVIEWINGMANAGER was converted to int
+2022-02-24  DWaldron            `NUMREVIEWINGMANAGER` was converted to int
+2023-09-29  DWaldron            Include EPD Director to use in report header (#91)
 
-*******************************************************************************/
+***************************************************************************************************/
 
 BEGIN
     SET NOCOUNT ON;
@@ -40,6 +39,7 @@ BEGIN
            r.DATRECEIVEDDATE                  as DateReceivedByApb,
            r.STRCONFIDENTIALDATA              as ConfidentialParametersCode,
            s.STRCOMPLIANCESTATEMENT           as ReportStatement,
+           r.STRDIRECTOR                      as EpdDirector,
 
            i.STRAIRSNUMBER                    as Id,
            f.STRFACILITYNAME                  as Name,

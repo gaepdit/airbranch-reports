@@ -4,6 +4,7 @@ using Domain.Compliance.Models;
 using Domain.Compliance.Models.WorkItems;
 using Domain.Compliance.Repositories;
 using Domain.Facilities.Models;
+using Domain.Facilities.Repositories;
 using Domain.ValueObjects;
 using Infrastructure.DbConnection;
 using Infrastructure.Facilities;
@@ -14,7 +15,12 @@ namespace Infrastructure.Compliance;
 public class ComplianceRepository : IComplianceRepository
 {
     private readonly IDbConnectionFactory _db;
-    public ComplianceRepository(IDbConnectionFactory db) => _db = db;
+    private readonly IFacilitiesRepository _facilitiesRepository;
+    public ComplianceRepository(IDbConnectionFactory db, IFacilitiesRepository facilitiesRepository)
+    {
+        _db = db;
+        _facilitiesRepository = facilitiesRepository;
+    }
 
     // ACC
     public async Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int id)
@@ -62,7 +68,7 @@ public class ComplianceRepository : IComplianceRepository
     // FCE
     public async Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int id)
     {
-        var getFacilityTask = new FacilitiesRepository(_db).GetFacilityAsync(facilityId);
+        var getFacilityTask = _facilitiesRepository.GetFacilityAsync(facilityId);
 
         var param = new
         {

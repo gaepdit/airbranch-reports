@@ -69,6 +69,9 @@ public abstract record BaseStackTestReport
     [Display(Name = "Testing unit manager")]
     public PersonName TestingUnitManager { get; set; }
 
+    [Display(Name = "Director")]
+    public string EpdDirector { get; set; } = string.Empty;
+
     #region Confidential info handling
 
     // For documentation of the ConfidentialParametersCode string, see:
