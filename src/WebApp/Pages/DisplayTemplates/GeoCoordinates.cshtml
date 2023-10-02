@@ -1,6 +1,10 @@
-﻿@model Domain.ValueObjects.GeoCoordinates?
+﻿@using System.Globalization
+@model Domain.ValueObjects.GeoCoordinates?
 
 @if (Model is not null)
 {
-    <div aria-label="Geographic coordinates">Lat: @Model.Value.Latitude, Long: @Model.Value.Longitude</div>
+    <div aria-label="Geographic coordinates">
+        Lat: @Model.Value.Latitude.ToString("F6", CultureInfo.InvariantCulture),
+        Long: @Model.Value.Longitude.ToString("F6", CultureInfo.InvariantCulture)
+    </div>
 }

@@ -26,8 +26,8 @@
     @foreach (var i in Model)
     {
         <tr>
-            <th scope="row" rowspan="2">@i.Id</th>
-            <td>@i.ReferenceNumber</td>
+            <th scope="row" rowspan="2">@i.Id.ToString()</th>
+            <td>@i.ReferenceNumber.ToString()</td>
             <td>@Html.DisplayFor(m => i.ReceivedDate)</td>
             <td>@i.Reviewer.SortableFullName</td>
             <td>@i.ComplianceStatus</td>

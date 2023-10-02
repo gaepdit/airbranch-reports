@@ -5,7 +5,7 @@
     Layout = "_ReportLayout";
     ViewBag.BodyCssClass = "acc";
 
-    ViewData["Title"] = $"Facility {Model.Report!.Facility!.Id} - Title V ACC Memo: {Model.Report.AccReportingYear}";
+    ViewData["Title"] = $"Facility {Model.Report!.Facility!.Id} - Title V ACC Memo: {Model.Report.AccReportingYear.ToString()}";
 }
 
 <div class="page-wrapper">
@@ -16,7 +16,7 @@
         <p id="acc-description">
             Condition 8.14.1 of each Title V Permit requires the company to submit an annual compliance
             certification by January 30 or February 28 each calendar year. After reviewing the compliance
-            certification for the year @Model.Report.AccReportingYear for the above facility, I have determined the following:
+            certification for the year @Model.Report.AccReportingYear.ToString() for the above facility, I have determined the following:
         </p>
 
         <table class="table-values-list" aria-describedby="acc-description">

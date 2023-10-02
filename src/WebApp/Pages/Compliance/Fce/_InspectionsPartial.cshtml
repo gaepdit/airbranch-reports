@@ -31,7 +31,7 @@
     @foreach (var i in Model.Inspections)
     {
         <tr>
-            <th scope="row" rowspan="2">@i.Id</th>
+            <th scope="row" rowspan="2">@i.Id.ToString()</th>
             <td>@Html.DisplayFor(m => i.InspectionDate)</td>
             <td>@i.Inspector.SortableFullName</td>
             <td>@i.Reason</td>

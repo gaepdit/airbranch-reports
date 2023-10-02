@@ -2,17 +2,10 @@
 @using WebApp.Platform.Settings;
 @{
     string greeting;
-    if (User.HasClaim(c => c.Type == "name"))
+    if (User.HasClaim(claim => claim.Type == "name"))
     {
         var name = User.FindFirstValue("name") ?? "";
-        if (name.Contains(','))
-        {
-            greeting = name.Split(',')[1];
-        }
-        else
-        {
-            greeting = name;
-        }
+        greeting = name.Contains(',') ? name.Split(',')[1] : name;
     }
     else
     {

@@ -7,7 +7,7 @@
     ViewBag.BodyCssClass = "stack-test sans-serif";
 
     var report = Model.Report!;
-    ViewData["Title"] = $"Facility {report.Facility!.Id} - {report.ReportTypeName} Reference Number: {report.ReferenceNumber}";
+    ViewData["Title"] = $"Facility {report.Facility!.Id} - {report.ReportTypeName} Reference Number: {report.ReferenceNumber.ToString()}";
 }
 
 <div class="page-wrapper">
@@ -44,7 +44,7 @@
             </tr>
             <tr>
                 <th scope="row">@Html.DisplayNameFor(m => report.ReviewedByStaff)</th>
-                <td>@report.ReviewedByStaff</td>
+                <td>@report.ReviewedByStaff.DisplayName</td>
             </tr>
             <tr>
                 <th scope="row">@Html.DisplayNameFor(m => report.WitnessedByStaff)</th>
@@ -106,11 +106,11 @@
                 <td colspan="2">
                     <footer class="split-lr">
                         <div>
-                            <div>cc: @report.ComplianceManager</div>
+                            <div>cc: @report.ComplianceManager.DisplayName</div>
                             <div>AIRS Number: @report.Facility.Id</div>
                         </div>
                         <div>
-                            <div>Reference Number: @report.ReferenceNumber</div>
+                            <div>Reference Number: @report.ReferenceNumber.ToString()</div>
                             <div>Printed: @DateTime.Today.ToString(DisplayFormats.ShortDate)</div>
                         </div>
                     </footer>

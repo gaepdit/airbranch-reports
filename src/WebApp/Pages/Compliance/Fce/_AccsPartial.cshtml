@@ -26,8 +26,8 @@
     @foreach (var i in Model)
     {
         <tr>
-            <th scope="row">@i.Id</th>
-            <td>@i.AccReportingYear</td>
+            <th scope="row">@i.Id.ToString()</th>
+            <td>@i.AccReportingYear.ToString()</td>
             <td>@Html.DisplayFor(m => i.ReceivedDate)</td>
             <td>@i.Reviewer.SortableFullName</td>
             <td>@Html.DisplayFor(m => i.DeviationsReported, "BooleanYesNo")</td>
