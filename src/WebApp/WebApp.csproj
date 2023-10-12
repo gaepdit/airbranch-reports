@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
         <AssemblyVersion>2023.10.2</AssemblyVersion>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>WebApp</RootNamespace>
         <UserSecretsId>aspnet-WebApp2-75A2DBEE-8438-4D63-B10D-D6E0DE52AF07</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" />
-        <PackageReference Include="Microsoft.Identity.Web.UI" />
-        <PackageReference Include="Mindscape.Raygun4Net.AspNetCore" />
-        <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" />
-        <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers" />
+        <PackageReference Include="JetBrains.Annotations"/>
+        <PackageReference Include="Microsoft.Identity.Web.UI"/>
+        <PackageReference Include="Mindscape.Raygun4Net.AspNetCore"/>
+        <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders"/>
+        <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers"/>
         <PackageReference Include="SonarAnalyzer.CSharp">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,16 +22,24 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Domain\Domain.csproj" />
-        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-        <ProjectReference Include="..\LocalRepository\LocalRepository.csproj" />
+        <ProjectReference Include="..\Domain\Domain.csproj"/>
+        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj"/>
+        <ProjectReference Include="..\LocalRepository\LocalRepository.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Content Update="appsettings.Development.json" CopyToPublishDirectory="Never">
+        <Content Update="appsettings.Development.json">
             <DependentUpon>appsettings.json</DependentUpon>
+            <CopyToPublishDirectory>Never</CopyToPublishDirectory>
         </Content>
-        <Content Update="web.*.config" CopyToPublishDirectory="Never" />
+        <Content Update="web.*.config" CopyToPublishDirectory="Never"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <MsDeploySkipRules Include="SkipAppSettings">
+            <ObjectName>filePath</ObjectName>
+            <AbsolutePath>appsettings.*.json</AbsolutePath>
+        </MsDeploySkipRules>
     </ItemGroup>
 
 </Project>
