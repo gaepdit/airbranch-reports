@@ -30,8 +30,8 @@ internal static class SecurityHeaders
             .ReportSample();
         builder.AddStyleSrc()
             .Self()
-            .From("https://cdn.skypack.dev/-/bootstrap@v5.2.2-rQQzEZiIuMxXgDelisA1/")
-            .From("https://cdn.skypack.dev/-/sanitize.css@v13.0.0-9hf8PtILaGjq3949IzOc/")
+            .From("https://cdn.jsdelivr.net/npm/sanitize.css@13.0.0/sanitize.min.css")
+            .From("https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css")
             .ReportSample();
         builder.AddImgSrc().Self();
         builder.AddConnectSrc()
