@@ -3,10 +3,13 @@ using System.Text.RegularExpressions;
 
 namespace Domain.Facilities.Models;
 
-public record ApbFacilityId
+public partial record ApbFacilityId
 {
-    // Test at https://regex101.com/r/2uYyHl
-    private const string AirsNumberPattern = @"^(04-?13-?)?\d{3}-?\d{5}$";
+    // Test at https://regex101.com/r/2uYyHl/4
+    private const string AirsNumberPattern = @"^(?>04-?13-?)?\d{3}-?\d{5}$";
+
+    [GeneratedRegex(AirsNumberPattern)]
+    private static partial Regex AirsNumberRegex();
 
     public ApbFacilityId(string id) =>
         ShortString = IsValidAirsNumberFormat(id)
@@ -30,7 +33,7 @@ public record ApbFacilityId
 
     // Static methods
 
-    public static bool IsValidAirsNumberFormat(string id) => Regex.IsMatch(id, AirsNumberPattern);
+    public static bool IsValidAirsNumberFormat(string id) => AirsNumberRegex().IsMatch(id);
 
     private static string GetNormalizedAirsNumber(string id)
     {

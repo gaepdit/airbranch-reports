@@ -16,9 +16,15 @@ using WebApp.Platform.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Set default timeout for regular expressions.
+// https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices#use-time-out-values
+// ReSharper disable once HeapView.BoxingAllocation
+AppDomain.CurrentDomain.SetData("REGEX_DEFAULT_MATCH_TIMEOUT", TimeSpan.FromMilliseconds(100));
+
 // Set Application Settings
 builder.Configuration.GetSection(nameof(ApplicationSettings.RaygunSettings)).Bind(ApplicationSettings.RaygunSettings);
-builder.Configuration.GetSection(nameof(ApplicationSettings.OrganizationInfo)).Bind(ApplicationSettings.OrganizationInfo);
+builder.Configuration.GetSection(nameof(ApplicationSettings.OrganizationInfo))
+    .Bind(ApplicationSettings.OrganizationInfo);
 
 if (builder.Environment.IsDevelopment())
 {
@@ -80,7 +86,7 @@ else
     // When running on the server, requires a deployed database (configured in the app settings file).
     // (Note: this pattern works because we only have a single DB connection string.
     // See https://stackoverflow.com/a/47403685/212978 for more info.)
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
         ?? throw new ArgumentException("Connection string missing.");
     builder.Services.AddTransient<IDbConnectionFactory, DbConnectionFactory>(_ =>
         new DbConnectionFactory(connectionString));
