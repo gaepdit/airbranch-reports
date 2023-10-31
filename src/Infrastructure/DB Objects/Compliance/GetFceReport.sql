@@ -342,7 +342,7 @@ BEGIN
       and (e.IsDeleted = 0 or e.IsDeleted is null)
       and e.STRAIRSNUMBER = @AirsNumber
 
-    order by EnforcementDate desc, 1 desc;
+    order by EnforcementDate desc, Id desc;
 
     declare @params nvarchar(max) = concat_ws(':', '@AirsNumber', @AirsNumber, '@Id', @Id);
     exec air.LogReport 'FCE', @params;
