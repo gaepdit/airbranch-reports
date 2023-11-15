@@ -7,7 +7,6 @@ using Domain.Facilities.Models;
 using Domain.Facilities.Repositories;
 using Domain.ValueObjects;
 using Infrastructure.DbConnection;
-using Infrastructure.Facilities;
 using System.Data;
 
 namespace Infrastructure.Compliance;
@@ -16,6 +15,7 @@ public class ComplianceRepository : IComplianceRepository
 {
     private readonly IDbConnectionFactory _db;
     private readonly IFacilitiesRepository _facilitiesRepository;
+
     public ComplianceRepository(IDbConnectionFactory db, IFacilitiesRepository facilitiesRepository)
     {
         _db = db;

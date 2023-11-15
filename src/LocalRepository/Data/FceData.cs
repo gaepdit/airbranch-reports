@@ -12,10 +12,13 @@ public static class FceData
             Id = 7136,
             FceYear = 2011,
             StaffReviewedBy = StaffData.GetStaff(1)!.Value.Name,
-            SupportingDataDateRange = new DateRange(new DateTime(2010, 1, 1), new DateTime(2011, 1, 1)),
+            SupportingDataDateRange = new DateRange(
+                new DateTime(2010, 1, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2011, 1, 1, 0, 0, 0, DateTimeKind.Local)
+            ),
             WithOnsiteInspection = true,
             Comments = "In compliance.",
-            DateCompleted = new DateTime(2011, 1, 30),
+            DateCompleted = new DateTime(2011, 1, 30, 0, 0, 0, DateTimeKind.Local),
             Facility = FacilityData.GetFacility("00100001"),
 
             Inspections = new List<Inspection>
@@ -24,7 +27,8 @@ public static class FceData
                 {
                     Id = 1,
                     Inspector = StaffData.GetStaff(1)!.Value.Name,
-                    InspectionDate = new DateRange { StartDate = new DateTime(2011, 1, 1) },
+                    InspectionDate =
+                        new DateRange { StartDate = new DateTime(2011, 1, 1, 0, 0, 0, DateTimeKind.Local) },
                     Reason = "Planned Unannounced",
                     FacilityWasOperating = true,
                     ComplianceStatus = "Compliant",
@@ -38,7 +42,8 @@ public static class FceData
                 {
                     Id = 40001,
                     Inspector = StaffData.GetStaff(2)!.Value.Name,
-                    InspectionDate = new DateRange { StartDate = new DateTime(2011, 2, 2) },
+                    InspectionDate =
+                        new DateRange { StartDate = new DateTime(2011, 2, 2, 0, 0, 0, DateTimeKind.Local) },
                     Reason = "Planned Unannounced",
                     FacilityWasOperating = true,
                     ComplianceStatus = "Compliant",
@@ -52,7 +57,7 @@ public static class FceData
                 {
                     Id = 2,
                     AccReportingYear = 2011,
-                    ReceivedDate = new DateTime(2011, 3, 1),
+                    ReceivedDate = new DateTime(2011, 3, 1, 0, 0, 0, DateTimeKind.Local),
                     Reviewer = StaffData.GetStaff(3)!.Value.Name,
                     DeviationsReported = true,
                 },
@@ -64,8 +69,11 @@ public static class FceData
                 {
                     Id = 200,
                     ReportPeriod = "Second Semiannual",
-                    ReportPeriodDateRange = new DateRange(new DateTime(2019, 7, 1), new DateTime(2019, 12, 31)),
-                    ReceivedDate = new DateTime(2020, 2, 1),
+                    ReportPeriodDateRange = new DateRange(
+                        new DateTime(2019, 7, 1, 0, 0, 0, DateTimeKind.Local),
+                        new DateTime(2019, 12, 31, 0, 0, 0, DateTimeKind.Local)
+                    ),
+                    ReceivedDate = new DateTime(2020, 2, 1, 0, 0, 0, DateTimeKind.Local),
                     Reviewer = StaffData.GetStaff(2)!.Value.Name,
                     DeviationsReported = true,
                     Comments = TextData.Long,
@@ -74,8 +82,11 @@ public static class FceData
                 {
                     Id = 300,
                     ReportPeriod = "Annual",
-                    ReportPeriodDateRange = new DateRange(new DateTime(2019, 1, 1), new DateTime(2019, 12, 31)),
-                    ReceivedDate = new DateTime(2020, 3, 1),
+                    ReportPeriodDateRange = new DateRange(
+                        new DateTime(2019, 1, 1, 0, 0, 0, DateTimeKind.Local),
+                        new DateTime(2019, 12, 31, 0, 0, 0, DateTimeKind.Local)
+                    ),
+                    ReceivedDate = new DateTime(2020, 3, 1, 0, 0, 0, DateTimeKind.Local),
                     Reviewer = StaffData.GetStaff(3)!.Value.Name,
                     DeviationsReported = false,
                     Comments = TextData.Empty,
@@ -87,7 +98,7 @@ public static class FceData
                 new Notification
                 {
                     Id = 4,
-                    DateReceived = new DateTime(2011, 4, 1),
+                    DateReceived = new DateTime(2011, 4, 1, 0, 0, 0, DateTimeKind.Local),
                     Reviewer = StaffData.GetStaff(4)!.Value.Name,
                     Type = "N/A",
                     Comments = TextData.ShortMultiline,
@@ -100,7 +111,7 @@ public static class FceData
                 {
                     Id = 80000,
                     ReferenceNumber = 201100001,
-                    ReceivedDate = new DateTime(2011, 5, 1),
+                    ReceivedDate = new DateTime(2011, 5, 1, 0, 0, 0, DateTimeKind.Local),
                     Reviewer = StaffData.GetStaff(5)!.Value.Name,
                     ComplianceStatus = "In Compliance",
                     SourceTested = TextData.Short,
@@ -133,7 +144,7 @@ public static class FceData
                 {
                     Id = 1000,
                     StaffResponsible = StaffData.GetStaff(6)!.Value.Name,
-                    EnforcementDate = new DateTime(2011, 7, 1),
+                    EnforcementDate = new DateTime(2011, 7, 1, 0, 0, 0, DateTimeKind.Local),
                     EnforcementType = "Letter of Noncompliance",
                 },
             },
@@ -143,9 +154,12 @@ public static class FceData
             Id = 8555,
             FceYear = 2012,
             StaffReviewedBy = StaffData.GetStaff(2)!.Value.Name,
-            SupportingDataDateRange = new DateRange(new DateTime(2011, 2, 2), new DateTime(2012, 2, 2)),
+            SupportingDataDateRange = new DateRange(
+                new DateTime(2011, 2, 2, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2012, 2, 2, 0, 0, 0, DateTimeKind.Local)
+            ),
             WithOnsiteInspection = false,
-            DateCompleted = new DateTime(2012, 2, 28),
+            DateCompleted = new DateTime(2012, 2, 28, 0, 0, 0, DateTimeKind.Local),
             Facility = FacilityData.GetFacility("00100005"),
         },
         new()
@@ -153,10 +167,13 @@ public static class FceData
             Id = 3,
             FceYear = 2013,
             StaffReviewedBy = StaffData.GetStaff(3)!.Value.Name,
-            SupportingDataDateRange = new DateRange(new DateTime(2012, 3, 3), new DateTime(2013, 3, 3)),
+            SupportingDataDateRange = new DateRange(
+                new DateTime(2012, 3, 3, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2013, 3, 3, 0, 0, 0, DateTimeKind.Local)
+            ),
             WithOnsiteInspection = false,
             Comments = TextData.None,
-            DateCompleted = new DateTime(2013, 3, 30),
+            DateCompleted = new DateTime(2013, 3, 30, 0, 0, 0, DateTimeKind.Local),
             Facility = FacilityData.GetFacility("00100001"),
 
             Inspections = new List<Inspection>
@@ -165,7 +182,8 @@ public static class FceData
                 {
                     Id = 11111,
                     Inspector = StaffData.GetStaff(3)!.Value.Name,
-                    InspectionDate = new DateRange { StartDate = new DateTime(2011, 1, 1) },
+                    InspectionDate =
+                        new DateRange { StartDate = new DateTime(2011, 1, 1, 0, 0, 0, DateTimeKind.Local) },
                     Reason = "Joint EPD/EPA",
                     FacilityWasOperating = false,
                     ComplianceStatus = "Deviation(s) Noted",
@@ -174,7 +192,10 @@ public static class FceData
                 {
                     Id = 22222,
                     Inspector = StaffData.GetStaff(4)!.Value.Name,
-                    InspectionDate = new DateRange(new DateTime(2013, 3, 1), new DateTime(2013, 3, 3)),
+                    InspectionDate = new DateRange(
+                        new DateTime(2013, 3, 1, 0, 0, 0, DateTimeKind.Local),
+                        new DateTime(2013, 3, 3, 0, 0, 0, DateTimeKind.Local)
+                    ),
                     Reason = "Complaint Investigation",
                     FacilityWasOperating = true,
                     ComplianceStatus = "Compliant",
