@@ -21,10 +21,10 @@ public static class StackTestData
             Comments = "N/A",
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 10, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(1)!.Value.Name,
             WitnessedByStaff = new List<PersonName>
             {
@@ -95,10 +95,10 @@ public static class StackTestData
             Comments = "N/A",
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(2)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
@@ -165,10 +165,10 @@ public static class StackTestData
             Comments = TextData.LongMultiline,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2016, 9, 1),
-                new DateTime(2016, 10, 1)
+                new DateTime(2016, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2016, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2016, 11, 1),
+            DateReceivedByApb = new DateTime(2016, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(4)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(5)!.Value.Name,
@@ -262,10 +262,10 @@ public static class StackTestData
             Comments = TextData.LongMultiline,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2016, 9, 1),
-                new DateTime(2016, 10, 1)
+                new DateTime(2016, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2016, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2016, 11, 1),
+            DateReceivedByApb = new DateTime(2016, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(4)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(5)!.Value.Name,
@@ -355,10 +355,10 @@ public static class StackTestData
             Comments = TextData.ShortMultiline,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
@@ -391,10 +391,10 @@ public static class StackTestData
             Comments = TextData.LongMultiline,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
@@ -445,10 +445,10 @@ public static class StackTestData
             Comments = TextData.Short,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
@@ -503,10 +503,10 @@ public static class StackTestData
             Comments = TextData.LongMultiline,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
@@ -562,10 +562,10 @@ public static class StackTestData
             Comments = TextData.None,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
@@ -645,10 +645,10 @@ public static class StackTestData
             ApplicableRequirement = "Permit Condition 3.1",
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(1)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
@@ -668,10 +668,10 @@ public static class StackTestData
             ApplicableRequirement = "Permit Condition 3.1",
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(1)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
@@ -693,10 +693,10 @@ public static class StackTestData
             ApplicableRequirement = "Permit Condition 3.1",
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(1)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
@@ -724,10 +724,10 @@ public static class StackTestData
             Comments = TextData.VeryShort,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(3)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(4)!.Value.Name,
@@ -801,10 +801,10 @@ public static class StackTestData
             Comments = TextData.None,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(2)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(3)!.Value.Name,
@@ -840,10 +840,10 @@ public static class StackTestData
             Comments = TextData.None,
             ReportStatement = TextData.ReportStatement,
             TestDates = new DateRange(
-                new DateTime(2020, 9, 1),
-                new DateTime(2020, 10, 1)
+                new DateTime(2020, 9, 1, 0, 0, 0, DateTimeKind.Local),
+                new DateTime(2020, 10, 1, 0, 0, 0, DateTimeKind.Local)
             ),
-            DateReceivedByApb = new DateTime(2020, 11, 1),
+            DateReceivedByApb = new DateTime(2020, 11, 1, 0, 0, 0, DateTimeKind.Local),
             ReviewedByStaff = StaffData.GetStaff(1)!.Value.Name,
             WitnessedByStaff = new List<PersonName>(),
             ComplianceManager = StaffData.GetStaff(2)!.Value.Name,
