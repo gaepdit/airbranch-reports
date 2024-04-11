@@ -9,14 +9,11 @@ using System.Data;
 
 namespace Infrastructure.StackTest;
 
-public class StackTestRepository : IStackTestRepository
+public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepository
 {
-    private readonly IDbConnectionFactory _dbFactory;
-    public StackTestRepository(IDbConnectionFactory dbFactory) => _dbFactory = dbFactory;
-
     public async Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber)
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
         return await db.ExecuteScalarAsync<bool>("air.StackTestReportExists",
             new
             {
@@ -28,7 +25,7 @@ public class StackTestRepository : IStackTestRepository
 
     public async Task<DocumentType> GetDocumentTypeAsync(int referenceNumber)
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
         return await db.QuerySingleAsync<DocumentType>("air.GetStackTestDocumentType",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
@@ -62,7 +59,7 @@ public class StackTestRepository : IStackTestRepository
 
     private async Task<T> GetBaseStackTestReportAsync<T>(int referenceNumber) where T : BaseStackTestReport
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
 
         await using var multi = await db.QueryMultipleAsync("air.GetBaseStackTestReport",
             new { ReferenceNumber = referenceNumber },
@@ -87,7 +84,7 @@ public class StackTestRepository : IStackTestRepository
 
     private async Task<StackTestReportOneStack> GetOneStackAsync(int referenceNumber)
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
 
         var getMultiTask = db.QueryMultipleAsync("air.GetStackTestReportOneStack",
             new { ReferenceNumber = referenceNumber },
@@ -119,7 +116,7 @@ public class StackTestRepository : IStackTestRepository
 
     private async Task<StackTestReportTwoStack> GetTwoStackAsync(int referenceNumber)
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
 
         var getMultiTask = db.QueryMultipleAsync("air.GetStackTestReportTwoStack",
             new { ReferenceNumber = referenceNumber },
@@ -167,7 +164,7 @@ public class StackTestRepository : IStackTestRepository
 
     private async Task<StackTestReportLoadingRack> GetLoadingRackAsync(int referenceNumber)
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
 
         var getMultiTask = db.QueryMultipleAsync("air.GetStackTestReportLoadingRack",
             new { ReferenceNumber = referenceNumber },
@@ -210,7 +207,7 @@ public class StackTestRepository : IStackTestRepository
 
     private async Task<StackTestReportPondTreatment> GetPondTreatmentAsync(int referenceNumber)
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
 
         var getMultiTask = db.QueryMultipleAsync("air.GetStackTestReportPondTreatment",
             new { ReferenceNumber = referenceNumber },
@@ -241,7 +238,7 @@ public class StackTestRepository : IStackTestRepository
 
     private async Task<StackTestReportGasConcentration> GetGasConcentrationAsync(int referenceNumber)
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
 
         var getMultiTask = db.QueryMultipleAsync("air.GetStackTestReportGasConcentration",
             new { ReferenceNumber = referenceNumber },
@@ -273,7 +270,7 @@ public class StackTestRepository : IStackTestRepository
 
     private async Task<StackTestReportFlare> GetFlareAsync(int referenceNumber)
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
 
         var getMultiTask = db.QueryMultipleAsync("air.GetStackTestReportFlare",
             new { ReferenceNumber = referenceNumber },
@@ -305,7 +302,7 @@ public class StackTestRepository : IStackTestRepository
 
     private async Task<StackTestReportRata> GetRataAsync(int referenceNumber)
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
 
         var getMultiTask = db.QueryMultipleAsync("air.GetStackTestReportRata",
             new { ReferenceNumber = referenceNumber },
@@ -333,7 +330,7 @@ public class StackTestRepository : IStackTestRepository
 
     private async Task<StackTestMemorandum> GetMemorandumAsync(int referenceNumber)
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
 
         var getMultiTask = db.QueryMultipleAsync("air.GetStackTestMemorandum",
             new { ReferenceNumber = referenceNumber },
@@ -362,7 +359,7 @@ public class StackTestRepository : IStackTestRepository
 
     private async Task<StackTestReportOpacity> GetOpacityAsync(int referenceNumber)
     {
-        using var db = _dbFactory.Create();
+        using var db = dbf.Create();
 
         var getMultiTask = db.QueryMultipleAsync("air.GetStackTestReportOpacity",
             new { ReferenceNumber = referenceNumber },

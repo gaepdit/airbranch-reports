@@ -7,14 +7,11 @@ using System.Data;
 
 namespace Infrastructure.Facilities;
 
-public class FacilitiesRepository : IFacilitiesRepository
+public class FacilitiesRepository(IDbConnectionFactory dbf) : IFacilitiesRepository
 {
-    private readonly IDbConnectionFactory _db;
-    public FacilitiesRepository(IDbConnectionFactory db) => _db = db;
-
     public async Task<bool> FacilityExistsAsync(ApbFacilityId facilityId)
     {
-        using var db = _db.Create();
+        using var db = dbf.Create();
         return await db.ExecuteScalarAsync<bool>("air.FacilityExists",
             new { AirsNumber = facilityId.DbFormattedString },
             commandType: CommandType.StoredProcedure);
@@ -22,7 +19,7 @@ public class FacilitiesRepository : IFacilitiesRepository
 
     public async Task<Facility?> GetFacilityAsync(ApbFacilityId facilityId)
     {
-        using var db = _db.Create();
+        using var db = dbf.Create();
 
         var varMultiTask = db.QueryMultipleAsync("air.GetFacility",
             new { AirsNumber = facilityId.DbFormattedString },

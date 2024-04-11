@@ -11,17 +11,9 @@ using System.Data;
 
 namespace Infrastructure.Compliance;
 
-public class ComplianceRepository : IComplianceRepository
+public class ComplianceRepository(IDbConnectionFactory dbf, IFacilitiesRepository facilitiesRepository)
+    : IComplianceRepository
 {
-    private readonly IDbConnectionFactory _db;
-    private readonly IFacilitiesRepository _facilitiesRepository;
-
-    public ComplianceRepository(IDbConnectionFactory db, IFacilitiesRepository facilitiesRepository)
-    {
-        _db = db;
-        _facilitiesRepository = facilitiesRepository;
-    }
-
     // ACC
     public async Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int id)
     {
@@ -40,7 +32,7 @@ public class ComplianceRepository : IComplianceRepository
             Id = id,
         };
 
-        using var db = _db.Create();
+        using var db = dbf.Create();
 
         return (await db.QueryAsync<AccReport, Facility, PersonName, AccReport>(
             "air.GetAccReport",
@@ -61,14 +53,14 @@ public class ComplianceRepository : IComplianceRepository
             Id = reportId,
         };
 
-        using var db = _db.Create();
+        using var db = dbf.Create();
         return await db.ExecuteScalarAsync<bool>(proc, param, commandType: CommandType.StoredProcedure);
     }
 
     // FCE
     public async Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int id)
     {
-        var getFacilityTask = _facilitiesRepository.GetFacilityAsync(facilityId);
+        var getFacilityTask = facilitiesRepository.GetFacilityAsync(facilityId);
 
         var param = new
         {
@@ -78,7 +70,7 @@ public class ComplianceRepository : IComplianceRepository
             GlobalConstants.FceExtendedDataPeriod,
         };
 
-        using var db = _db.Create();
+        using var db = dbf.Create();
 
         var getFceReportTask = db.QueryMultipleAsync("air.GetFceReport",
             param, commandType: CommandType.StoredProcedure);
