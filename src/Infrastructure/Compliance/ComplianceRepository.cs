@@ -85,7 +85,7 @@ public class ComplianceRepository : IComplianceRepository
 
         if (!await ReportExistsAsync("air.FceReportExists", facilityId, id)) return null;
 
-        using var multi = await getFceReportTask;
+        await using var multi = await getFceReportTask;
 
         var facility = await getFacilityTask;
 

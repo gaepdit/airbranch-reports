@@ -30,7 +30,7 @@ public class FacilitiesRepository : IFacilitiesRepository
 
         if (!await FacilityExistsAsync(facilityId)) return null;
 
-        using var multi = await varMultiTask;
+        await using var multi = await varMultiTask;
         var facility = multi.Read<Facility, Address, GeoCoordinates, FacilityHeaderData, Facility>(
             (facility, facilityAddress, geoCoordinates, headerData) =>
             {

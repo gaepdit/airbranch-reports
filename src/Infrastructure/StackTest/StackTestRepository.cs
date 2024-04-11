@@ -64,7 +64,7 @@ public class StackTestRepository : IStackTestRepository
     {
         using var db = _dbFactory.Create();
 
-        using var multi = await db.QueryMultipleAsync("air.GetBaseStackTestReport",
+        await using var multi = await db.QueryMultipleAsync("air.GetBaseStackTestReport",
             new { ReferenceNumber = referenceNumber },
             commandType: CommandType.StoredProcedure);
 
@@ -95,7 +95,7 @@ public class StackTestRepository : IStackTestRepository
 
         var report = await GetBaseStackTestReportAsync<StackTestReportOneStack>(referenceNumber);
 
-        using var multi = await getMultiTask;
+        await using var multi = await getMultiTask;
         _ = multi
             .Read<StackTestReportOneStack, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits,
                 StackTestReportOneStack>(
@@ -126,7 +126,7 @@ public class StackTestRepository : IStackTestRepository
             commandType: CommandType.StoredProcedure);
 
         var report = await GetBaseStackTestReportAsync<StackTestReportTwoStack>(referenceNumber);
-        using var multi = await getMultiTask;
+        await using var multi = await getMultiTask;
 
         _ = multi.Read(
             new[]
@@ -175,7 +175,7 @@ public class StackTestRepository : IStackTestRepository
 
         var report = await GetBaseStackTestReportAsync<StackTestReportLoadingRack>(referenceNumber);
 
-        using var multi = await getMultiTask;
+        await using var multi = await getMultiTask;
         _ = multi.Read(
             new[]
             {
@@ -218,7 +218,7 @@ public class StackTestRepository : IStackTestRepository
 
         var report = await GetBaseStackTestReportAsync<StackTestReportPondTreatment>(referenceNumber);
 
-        using var multi = await getMultiTask;
+        await using var multi = await getMultiTask;
         _ = multi
             .Read<StackTestReportPondTreatment, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits,
                 StackTestReportPondTreatment>(
@@ -249,7 +249,7 @@ public class StackTestRepository : IStackTestRepository
 
         var report = await GetBaseStackTestReportAsync<StackTestReportGasConcentration>(referenceNumber);
 
-        using var multi = await getMultiTask;
+        await using var multi = await getMultiTask;
         _ = multi
             .Read<StackTestReportGasConcentration, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits,
                 StackTestReportGasConcentration>(
@@ -281,7 +281,7 @@ public class StackTestRepository : IStackTestRepository
 
         var report = await GetBaseStackTestReportAsync<StackTestReportFlare>(referenceNumber);
 
-        using var multi = await getMultiTask;
+        await using var multi = await getMultiTask;
         _ = multi
             .Read<StackTestReportFlare, ValueWithUnits, ValueWithUnits, ValueWithUnits, ValueWithUnits,
                 StackTestReportFlare>(
@@ -313,7 +313,7 @@ public class StackTestRepository : IStackTestRepository
 
         var report = await GetBaseStackTestReportAsync<StackTestReportRata>(referenceNumber);
 
-        using var multi = await getMultiTask;
+        await using var multi = await getMultiTask;
         var r = await multi.ReadSingleAsync<StackTestReportRata>();
 
         report.ApplicableStandard = r.ApplicableStandard;
@@ -341,7 +341,7 @@ public class StackTestRepository : IStackTestRepository
 
         var report = await GetBaseStackTestReportAsync<StackTestMemorandum>(referenceNumber);
 
-        using var multi = await getMultiTask;
+        await using var multi = await getMultiTask;
         _ = multi.Read<StackTestMemorandum, ValueWithUnits, ValueWithUnits, StackTestMemorandum>(
             (r, maxOperatingCapacity, operatingCapacity) =>
             {
@@ -370,7 +370,7 @@ public class StackTestRepository : IStackTestRepository
 
         var report = await GetBaseStackTestReportAsync<StackTestReportOpacity>(referenceNumber);
 
-        using var multi = await getMultiTask;
+        await using var multi = await getMultiTask;
         var r = await multi.ReadSingleAsync<StackTestReportOpacity>();
 
         report.ControlEquipmentInfo = r.ControlEquipmentInfo;
