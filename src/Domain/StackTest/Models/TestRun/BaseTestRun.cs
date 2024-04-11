@@ -13,9 +13,9 @@ public abstract record BaseTestRun
     [JsonIgnore]
     public string ConfidentialParametersCode { protected get; init; } = "";
 
-    public ICollection<string> ConfidentialParameters { get; protected set; } = new HashSet<string>();
+    protected ICollection<string> ConfidentialParameters { get; set; } = new HashSet<string>();
 
-    public abstract BaseTestRun RedactedTestRun();
+    protected abstract BaseTestRun RedactedTestRun();
 
     protected T RedactedBaseTestRun<T>() where T : BaseTestRun =>
         (T)this with

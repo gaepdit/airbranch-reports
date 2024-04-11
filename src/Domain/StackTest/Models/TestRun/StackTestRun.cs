@@ -24,7 +24,7 @@ public record StackTestRun : BaseTestRun
 
     #region Confidential info handling
 
-    public override StackTestRun RedactedTestRun() =>
+    protected override StackTestRun RedactedTestRun() =>
         RedactedBaseTestRun<StackTestRun>() with
         {
             GasTemperature = CheckConfidential(GasTemperature, nameof(GasTemperature)),

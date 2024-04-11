@@ -14,7 +14,7 @@ public record RataTestRun : BaseTestRun
 
     #region Confidential info handling
 
-    public override RataTestRun RedactedTestRun() =>
+    protected override RataTestRun RedactedTestRun() =>
         RedactedBaseTestRun<RataTestRun>() with
         {
             ReferenceMethod = CheckConfidential(ReferenceMethod, nameof(ReferenceMethod)),

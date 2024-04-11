@@ -30,7 +30,7 @@ public record OpacityTestRun : BaseTestRun
 
     #region Confidential info handling
 
-    public override OpacityTestRun RedactedTestRun() =>
+    protected override OpacityTestRun RedactedTestRun() =>
         RedactedBaseTestRun<OpacityTestRun>() with
         {
             MaxOperatingCapacity = CheckConfidential(MaxOperatingCapacity, nameof(MaxOperatingCapacity)),

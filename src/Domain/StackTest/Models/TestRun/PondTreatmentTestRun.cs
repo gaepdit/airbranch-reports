@@ -12,7 +12,7 @@ public record PondTreatmentTestRun : BaseTestRun
 
     #region Confidential info handling
 
-    public override PondTreatmentTestRun RedactedTestRun() =>
+    protected override PondTreatmentTestRun RedactedTestRun() =>
         RedactedBaseTestRun<PondTreatmentTestRun>() with
         {
             PollutantCollectionRate = CheckConfidential(PollutantCollectionRate, nameof(PollutantCollectionRate)),

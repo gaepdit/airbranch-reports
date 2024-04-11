@@ -12,7 +12,7 @@ public record FlareTestRun : BaseTestRun
 
     #region Confidential info handling
 
-    public override FlareTestRun RedactedTestRun() =>
+    protected override FlareTestRun RedactedTestRun() =>
         RedactedBaseTestRun<FlareTestRun>() with
         {
             HeatingValue = CheckConfidential(HeatingValue, nameof(HeatingValue)),
