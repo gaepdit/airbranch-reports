@@ -4,6 +4,7 @@ using Domain.StackTest.Models;
 using Domain.StackTest.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebApp.Platform.Formatting;
 using WebApp.Platform.Models;
 using WebApp.Platform.Settings;
 
@@ -22,8 +23,11 @@ public class IndexModel : PageModel
         [FromRoute] int referenceNumber,
         [FromQuery] bool includeConfidentialInfo = false)
     {
-        if (includeConfidentialInfo && User.Identity is not { IsAuthenticated: true })
-            return Challenge();
+        if (includeConfidentialInfo)
+        {
+            if (User.Identity is not { IsAuthenticated: true }) return Challenge();
+            if (User.Identity.Name is null || !User.Identity.Name.IsValidDnrEmail()) return Forbid();
+        }
 
         ApbFacilityId airs;
         try
