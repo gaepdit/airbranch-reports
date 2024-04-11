@@ -14,7 +14,7 @@ public record StackTestReportFlare : BaseStackTestReport
     public ValueWithUnits OperatingCapacity { get; set; }
 
     [Display(Name = "Allowable emission rate(s)")]
-    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new();
+    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = [];
 
     [Display(Name = "Control equipment and monitoring data")]
     public string ControlEquipmentInfo { get; set; } = "";
@@ -22,7 +22,7 @@ public record StackTestReportFlare : BaseStackTestReport
     // Test run data
 
     [Display(Name = "Test runs")]
-    public List<FlareTestRun> TestRuns { get; set; } = new();
+    public List<FlareTestRun> TestRuns { get; set; } = [];
 
     [Display(Name = "Average heating value")]
     public ValueWithUnits AvgHeatingValue { get; set; }

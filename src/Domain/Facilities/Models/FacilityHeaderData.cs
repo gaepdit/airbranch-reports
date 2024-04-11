@@ -85,7 +85,7 @@ public record FacilityHeaderData
     ///     Native American, MACT, Title V, Risk Management Plan
     /// </remarks>
     [Display(Name = "Air programs")]
-    public List<string> AirPrograms { get; init; } = new();
+    public List<string> AirPrograms { get; init; } = [];
 
     /// <summary>
     ///     List of air program classifications that apply to a facility.
@@ -95,7 +95,7 @@ public record FacilityHeaderData
     ///     NSR/PSD Major, HAPs Major
     /// </remarks>
     [Display(Name = "Program classifications")]
-    public List<string> ProgramClassifications { get; init; } = new();
+    public List<string> ProgramClassifications { get; init; } = [];
 
     #region Regex patterns
 

@@ -14,7 +14,7 @@ public record StackTestReportTwoStack : BaseStackTestReport
     public ValueWithUnits OperatingCapacity { get; set; }
 
     [Display(Name = "Allowable emission rate(s)")]
-    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new();
+    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = [];
 
     [Display(Name = "Control equipment and monitoring data")]
     public string ControlEquipmentInfo { get; set; } = "";
@@ -25,7 +25,7 @@ public record StackTestReportTwoStack : BaseStackTestReport
     public string StackTwoName { get; set; } = "";
 
     [Display(Name = "Test runs")]
-    public List<TwoStackTestRun> TestRuns { get; set; } = new();
+    public List<TwoStackTestRun> TestRuns { get; set; } = [];
 
     [Display(Name = "Average pollutant concentration")]
     public ValueWithUnits StackOneAvgPollutantConcentration { get; set; }

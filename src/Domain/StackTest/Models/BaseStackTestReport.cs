@@ -61,7 +61,7 @@ public abstract record BaseStackTestReport
     public PersonName ReviewedByStaff { get; set; }
 
     [Display(Name = "Test witnessed by")]
-    public List<PersonName> WitnessedByStaff { get; set; } = new();
+    public List<PersonName> WitnessedByStaff { get; init; } = [];
 
     [Display(Name = "Compliance manager")]
     public PersonName ComplianceManager { get; set; }
@@ -70,7 +70,7 @@ public abstract record BaseStackTestReport
     public PersonName TestingUnitManager { get; set; }
 
     [Display(Name = "Director")]
-    public string EpdDirector { get; set; } = string.Empty;
+    public string EpdDirector { get; init; } = string.Empty;
 
     #region Confidential info handling
 
@@ -80,7 +80,7 @@ public abstract record BaseStackTestReport
     [JsonIgnore]
     public string ConfidentialParametersCode { protected get; init; } = "";
 
-    public ICollection<string> ConfidentialParameters { get; protected set; } = new HashSet<string>();
+    public ICollection<string> ConfidentialParameters { get; protected set; } = [];
 
     public abstract BaseStackTestReport RedactedStackTestReport();
 
@@ -120,17 +120,17 @@ public abstract record BaseStackTestReport
 
     protected List<PersonName> CheckConfidential(List<PersonName> input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-            ? new List<PersonName> { new("", GlobalConstants.ConfidentialInfoPlaceholder) }
+            ? [new PersonName("", GlobalConstants.ConfidentialInfoPlaceholder)]
             : input;
 
     protected ValueWithUnits CheckConfidential(ValueWithUnits input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-            ? new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, input.Units, input.Preamble)
+            ? input with { Value = GlobalConstants.ConfidentialInfoPlaceholder }
             : input;
 
     protected List<ValueWithUnits> CheckConfidential(List<ValueWithUnits> input, string parameter) =>
         ConfidentialParameters.Contains(parameter)
-            ? new List<ValueWithUnits> { new(GlobalConstants.ConfidentialInfoPlaceholder, "") }
+            ? [new ValueWithUnits(GlobalConstants.ConfidentialInfoPlaceholder, "")]
             : input;
 
     public abstract void ParseConfidentialParameters();

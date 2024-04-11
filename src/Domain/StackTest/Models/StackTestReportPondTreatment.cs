@@ -19,7 +19,7 @@ public record StackTestReportPondTreatment : BaseStackTestReport
     // Test run data
 
     [Display(Name = "Test runs")]
-    public List<PondTreatmentTestRun> TestRuns { get; set; } = new();
+    public List<PondTreatmentTestRun> TestRuns { get; set; } = [];
 
     [Display(Name = "Average pollutant collection rate")]
     public ValueWithUnits AvgPollutantCollectionRate { get; set; }

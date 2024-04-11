@@ -21,7 +21,7 @@ public record StackTestMemorandum : BaseStackTestReport
     public ValueWithUnits OperatingCapacity { get; set; }
 
     [Display(Name = "Allowable emission rate(s)")]
-    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = new();
+    public List<ValueWithUnits> AllowableEmissionRates { get; init; } = [];
 
     [Display(Name = "Control equipment and monitoring data")]
     public string ControlEquipmentInfo { get; set; } = "";

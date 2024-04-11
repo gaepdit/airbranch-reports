@@ -5,13 +5,13 @@ namespace Domain.StackTest.Models.TestRun;
 public record OpacityTestRun : BaseTestRun
 {
     [Display(Name = "Maximum expected operating capacity")]
-    public string MaxOperatingCapacity { get; set; } = "";
+    public string MaxOperatingCapacity { get; init; } = "";
 
     [Display(Name = "Operating capacity")]
-    public string OperatingCapacity { get; set; } = "";
+    public string OperatingCapacity { get; init; } = "";
 
     [Display(Name = "Allowable emission rate")]
-    public string AllowableEmissionRate { get; set; } = "";
+    public string AllowableEmissionRate { get; init; } = "";
 
     // `Opacity` is used by "Method 9 (Single)" and "Method 9 (Multi.)"
     // but not by "Method22"
@@ -21,7 +21,7 @@ public record OpacityTestRun : BaseTestRun
     // `EquipmentItem` is used by "Method22"
     // but not by "Method 9 (Single)" or "Method 9 (Multi.)"
     [Display(Name = "Accumulated emission time")]
-    public string AccumulatedEmissionTime { get; set; } = "";
+    public string AccumulatedEmissionTime { get; init; } = "";
 
     // `EquipmentItem` is used by "Method 9 (Multi.)"
     // but not by "Method 9 (Single)" or "Method22"

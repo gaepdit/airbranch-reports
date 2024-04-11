@@ -10,7 +10,7 @@ public record RataTestRun : BaseTestRun
     [Display(Name = "CMS")]
     public string Cms { get; init; } = "";
 
-    public bool Omitted { get; init; } = false;
+    public bool Omitted { get; init; }
 
     #region Confidential info handling
 

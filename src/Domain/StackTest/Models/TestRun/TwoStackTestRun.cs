@@ -42,7 +42,7 @@ public record TwoStackTestRun : BaseTestRun
 
     // `SumEmissionRate` is used by Two Stack (Standard) but not by Two Stack (DRE)
     [Display(Name = "Total")]
-    public string SumEmissionRate { get; set; } = "";
+    public string SumEmissionRate { get; init; } = "";
 
     #region Confidential info handling
 
