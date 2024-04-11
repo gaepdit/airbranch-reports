@@ -12,7 +12,7 @@ public record GasConcentrationTestRun : BaseTestRun
 
     #region Confidential info handling
 
-    public override GasConcentrationTestRun RedactedTestRun() =>
+    protected override GasConcentrationTestRun RedactedTestRun() =>
         RedactedBaseTestRun<GasConcentrationTestRun>() with
         {
             PollutantConcentration = CheckConfidential(PollutantConcentration, nameof(PollutantConcentration)),

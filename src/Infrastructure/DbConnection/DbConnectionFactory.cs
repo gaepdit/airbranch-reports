@@ -3,9 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Infrastructure.DbConnection;
 
-public class DbConnectionFactory : IDbConnectionFactory
+public class DbConnectionFactory(string connectionString) : IDbConnectionFactory
 {
-    private readonly string _connectionString;
-    public DbConnectionFactory(string connectionString) => _connectionString = connectionString;
-    public IDbConnection Create() => new SqlConnection(_connectionString);
+    public IDbConnection Create() => new SqlConnection(connectionString);
 }

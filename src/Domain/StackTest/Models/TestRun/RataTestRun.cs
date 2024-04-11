@@ -10,11 +10,11 @@ public record RataTestRun : BaseTestRun
     [Display(Name = "CMS")]
     public string Cms { get; init; } = "";
 
-    public bool Omitted { get; init; } = false;
+    public bool Omitted { get; init; }
 
     #region Confidential info handling
 
-    public override RataTestRun RedactedTestRun() =>
+    protected override RataTestRun RedactedTestRun() =>
         RedactedBaseTestRun<RataTestRun>() with
         {
             ReferenceMethod = CheckConfidential(ReferenceMethod, nameof(ReferenceMethod)),

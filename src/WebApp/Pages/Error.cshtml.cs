@@ -6,12 +6,8 @@ namespace WebApp.Pages;
 
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 [IgnoreAntiforgeryToken]
-public class ErrorModel : PageModel
+public class ErrorModel(ILogger<ErrorModel> logger) : PageModel
 {
-    private readonly ILogger<ErrorModel> _logger;
-
-    public ErrorModel(ILogger<ErrorModel> logger) => _logger = logger;
-
     public string? RequestId { get; private set; }
 
     public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
@@ -19,6 +15,6 @@ public class ErrorModel : PageModel
     public void OnGet()
     {
         RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-        _logger.LogInformation("RequestId: {RequestId}", RequestId);
+        logger.LogInformation("RequestId: {RequestId}", RequestId);
     }
 }

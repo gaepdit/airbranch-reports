@@ -28,12 +28,12 @@ public record FceReport
 
     // Supporting compliance data
 
-    public List<Inspection> Inspections { get; init; } = new();
-    public List<Inspection> RmpInspections { get; init; } = new();
-    public List<Acc> Accs { get; init; } = new();
-    public List<Report> Reports { get; init; } = new();
-    public List<Notification> Notifications { get; init; } = new();
-    public List<StackTestWork> StackTests { get; init; } = new();
-    public List<FeeYear> FeesHistory { get; init; } = new();
-    public List<Enforcement> EnforcementHistory { get; init; } = new();
+    public List<Inspection> Inspections { get; init; } = [];
+    public List<Inspection> RmpInspections { get; init; } = [];
+    public List<Acc> Accs { get; init; } = [];
+    public List<Report> Reports { get; init; } = [];
+    public List<Notification> Notifications { get; init; } = [];
+    public List<StackTestWork> StackTests { get; init; } = [];
+    public List<FeeYear> FeesHistory { get; init; } = [];
+    public List<Enforcement> EnforcementHistory { get; init; } = [];
 }
