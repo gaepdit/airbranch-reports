@@ -21,9 +21,9 @@ public static class FceData
             DateCompleted = new DateTime(2011, 1, 30, 0, 0, 0, DateTimeKind.Local),
             Facility = FacilityData.GetFacility("00100001"),
 
-            Inspections = new List<Inspection>
-            {
-                new()
+            Inspections =
+            [
+                new Inspection
                 {
                     Id = 1,
                     Inspector = StaffData.GetStaff(1)!.Value.Name,
@@ -33,12 +33,12 @@ public static class FceData
                     FacilityWasOperating = true,
                     ComplianceStatus = "Compliant",
                     Comments = TextData.Long,
-                },
-            },
+                }
+            ],
 
-            RmpInspections = new List<Inspection>
-            {
-                new()
+            RmpInspections =
+            [
+                new Inspection
                 {
                     Id = 40001,
                     Inspector = StaffData.GetStaff(2)!.Value.Name,
@@ -48,24 +48,24 @@ public static class FceData
                     FacilityWasOperating = true,
                     ComplianceStatus = "Compliant",
                     Comments = TextData.VeryShort,
-                },
-            },
+                }
+            ],
 
-            Accs = new List<Acc>
-            {
-                new()
+            Accs =
+            [
+                new Acc
                 {
                     Id = 2,
                     AccReportingYear = 2011,
                     ReceivedDate = new DateTime(2011, 3, 1, 0, 0, 0, DateTimeKind.Local),
                     Reviewer = StaffData.GetStaff(3)!.Value.Name,
                     DeviationsReported = true,
-                },
-            },
+                }
+            ],
 
-            Reports = new List<Report>
-            {
-                new()
+            Reports =
+            [
+                new Report
                 {
                     Id = 200,
                     ReportPeriod = "Second Semiannual",
@@ -78,7 +78,8 @@ public static class FceData
                     DeviationsReported = true,
                     Comments = TextData.Long,
                 },
-                new()
+
+                new Report
                 {
                     Id = 300,
                     ReportPeriod = "Annual",
@@ -90,8 +91,8 @@ public static class FceData
                     Reviewer = StaffData.GetStaff(3)!.Value.Name,
                     DeviationsReported = false,
                     Comments = TextData.Empty,
-                },
-            },
+                }
+            ],
 
             Notifications =
             {
@@ -176,9 +177,9 @@ public static class FceData
             DateCompleted = new DateTime(2013, 3, 30, 0, 0, 0, DateTimeKind.Local),
             Facility = FacilityData.GetFacility("00100001"),
 
-            Inspections = new List<Inspection>
-            {
-                new()
+            Inspections =
+            [
+                new Inspection
                 {
                     Id = 11111,
                     Inspector = StaffData.GetStaff(3)!.Value.Name,
@@ -188,7 +189,8 @@ public static class FceData
                     FacilityWasOperating = false,
                     ComplianceStatus = "Deviation(s) Noted",
                 },
-                new()
+
+                new Inspection
                 {
                     Id = 22222,
                     Inspector = StaffData.GetStaff(4)!.Value.Name,
@@ -199,8 +201,8 @@ public static class FceData
                     Reason = "Complaint Investigation",
                     FacilityWasOperating = true,
                     ComplianceStatus = "Compliant",
-                },
-            },
+                }
+            ],
         },
     };
 }
