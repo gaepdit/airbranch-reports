@@ -8,7 +8,9 @@ using WebApp.Platform.Settings;
 namespace WebApp.Platform.Local;
 
 // Provides an authenticated user when running locally
-internal class LocalAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger,
+internal class LocalAuthenticationHandler(
+    IOptionsMonitor<AuthenticationSchemeOptions> options,
+    ILoggerFactory logger,
     UrlEncoder encoder) : AuthenticationHandler<AuthenticationSchemeOptions>(options, logger, encoder)
 {
     public const string BasicAuthenticationScheme = "BasicAuthentication";

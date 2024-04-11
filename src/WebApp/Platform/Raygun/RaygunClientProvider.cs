@@ -13,10 +13,7 @@ public class RaygunClientProvider : DefaultRaygunAspNetCoreClientProvider
 
         client.SendingMessage += (_, args) =>
         {
-            args.Message.Details.Tags = args.Message.Details.Tags is null
-                ? new List<string>()
-                : args.Message.Details.Tags.ToList();
-
+            args.Message.Details.Tags = args.Message.Details.Tags is null ? [] : args.Message.Details.Tags.ToList();
             args.Message.Details.Tags.Add(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
         };
 
