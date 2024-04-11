@@ -2,9 +2,9 @@ using Domain.Facilities.Models;
 using Domain.Organization.Models;
 using Domain.StackTest.Models;
 using Domain.StackTest.Repositories;
+using Domain.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebApp.Platform.Formatting;
 using WebApp.Platform.Models;
 using WebApp.Platform.Settings;
 
@@ -26,7 +26,7 @@ public class IndexModel : PageModel
         if (includeConfidentialInfo)
         {
             if (User.Identity is not { IsAuthenticated: true }) return Challenge();
-            if (User.Identity.Name is null || !User.Identity.Name.IsValidDnrEmail()) return Forbid();
+            if (User.Identity.Name is null || !User.Identity.Name.IsValidEmailDomain()) return Forbid();
         }
 
         ApbFacilityId airs;
