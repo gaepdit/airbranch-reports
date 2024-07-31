@@ -6,6 +6,7 @@ namespace Domain.Facilities.Models;
 public partial record ApbFacilityId
 {
     // Test at https://regex101.com/r/2uYyHl/4
+    // language:regex
     private const string AirsNumberPattern = @"^(?>04-?13-?)?\d{3}-?\d{5}$";
 
     [GeneratedRegex(AirsNumberPattern)]
