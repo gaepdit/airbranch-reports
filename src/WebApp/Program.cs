@@ -2,15 +2,18 @@ using Domain.Compliance.Repositories;
 using Domain.Facilities.Repositories;
 using Domain.StackTest.Repositories;
 using Infrastructure.DbConnection;
+using LocalRepository.Compliance;
+using LocalRepository.Facilities;
+using LocalRepository.StackTest;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using Mindscape.Raygun4Net;
 using Mindscape.Raygun4Net.AspNetCore;
 using System.Text.Json.Serialization;
 using WebApp.Platform.Local;
-using WebApp.Platform.Raygun;
 using WebApp.Platform.SecurityHeaders;
 using WebApp.Platform.Settings;
 
@@ -22,18 +25,7 @@ var builder = WebApplication.CreateBuilder(args);
 AppDomain.CurrentDomain.SetData("REGEX_DEFAULT_MATCH_TIMEOUT", TimeSpan.FromMilliseconds(100));
 
 // Set Application Settings
-builder.Configuration.GetSection(nameof(ApplicationSettings.RaygunSettings)).Bind(ApplicationSettings.RaygunSettings);
-builder.Configuration.GetSection(nameof(ApplicationSettings.OrganizationInfo))
-    .Bind(ApplicationSettings.OrganizationInfo);
-
-if (builder.Environment.IsDevelopment())
-{
-    builder.Configuration.GetSection(nameof(ApplicationSettings.DevOptions)).Bind(ApplicationSettings.DevOptions);
-}
-else
-{
-    ApplicationSettings.DevOptions = ApplicationSettings.ProductionDefault;
-}
+ApplicationSettings.BindSettings(builder);
 
 // Configure authentication
 if (ApplicationSettings.DevOptions.UseLocalAuth)
@@ -68,18 +60,34 @@ builder.Services
 if (!builder.Environment.IsDevelopment())
     builder.Services.AddHsts(opts => opts.MaxAge = TimeSpan.FromDays(730));
 
-// Configure application monitoring
-builder.Services.AddRaygun(builder.Configuration,
-    new RaygunMiddlewareSettings { ClientProvider = new RaygunClientProvider() });
-builder.Services.AddHttpContextAccessor(); // needed by RaygunScriptPartial
+// Configure application monitoring.
+if (!string.IsNullOrEmpty(ApplicationSettings.RaygunSettings.ApiKey))
+{
+    builder.Services.AddSingleton(provider =>
+    {
+        var client = new RaygunClient(provider.GetService<RaygunSettings>()!,
+            provider.GetService<IRaygunUserProvider>()!);
+        client.SendingMessage += (_, eventArgs) =>
+            eventArgs.Message.Details.Tags.Add(builder.Environment.EnvironmentName);
+        return client;
+    });
+    builder.Services.AddRaygun(opts =>
+    {
+        opts.ApiKey = ApplicationSettings.RaygunSettings.ApiKey;
+        opts.ApplicationVersion = ApplicationSettings.RaygunSettings.InformationalVersion;
+        opts.IgnoreFormFieldNames = ["*Password"];
+        opts.EnvironmentVariables.Add("ASPNETCORE_*");
+    });
+    builder.Services.AddRaygunUserProvider();
+}
 
 // Configure the data repositories
 if (ApplicationSettings.DevOptions.UseLocalData)
 {
     // Uses sample data when running locally.
-    builder.Services.AddScoped<IFacilitiesRepository, LocalRepository.Facilities.FacilitiesRepository>();
-    builder.Services.AddScoped<IComplianceRepository, LocalRepository.Compliance.ComplianceRepository>();
-    builder.Services.AddScoped<IStackTestRepository, LocalRepository.StackTest.StackTestRepository>();
+    builder.Services.AddScoped<IFacilitiesRepository, FacilitiesRepository>();
+    builder.Services.AddScoped<IComplianceRepository, ComplianceRepository>();
+    builder.Services.AddScoped<IStackTestRepository, StackTestRepository>();
 }
 else
 {
@@ -87,7 +95,7 @@ else
     // (Note: this pattern works because we only have a single DB connection string.
     // See https://stackoverflow.com/a/47403685/212978 for more info.)
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-        ?? throw new ArgumentException("Connection string missing.");
+                           ?? throw new ArgumentException("Connection string missing.");
     builder.Services.AddTransient<IDbConnectionFactory, DbConnectionFactory>(_ =>
         new DbConnectionFactory(connectionString));
 
@@ -126,4 +134,4 @@ app.UseAuthorization();
 app.MapRazorPages();
 app.MapControllers(); // Only needed if API/controllers are to be used
 
-app.Run();
+await app.RunAsync();
