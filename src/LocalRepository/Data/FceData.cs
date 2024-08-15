@@ -99,7 +99,7 @@ public static class FceData
                 new Notification
                 {
                     Id = 4,
-                    DateReceived = new DateTime(2011, 4, 1, 0, 0, 0, DateTimeKind.Local),
+                    ReceivedDate = new DateTime(2011, 4, 1, 0, 0, 0, DateTimeKind.Local),
                     Reviewer = StaffData.GetStaff(4)!.Value.Name,
                     Type = "N/A",
                     Comments = TextData.ShortMultiline,

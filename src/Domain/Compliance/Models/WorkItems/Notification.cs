@@ -8,7 +8,7 @@ public record Notification
     public int Id { get; init; }
 
     [Display(Name = "Date received")]
-    public DateTime DateReceived { get; init; }
+    public DateTime ReceivedDate { get; init; }
 
     public PersonName Reviewer { get; set; }
 

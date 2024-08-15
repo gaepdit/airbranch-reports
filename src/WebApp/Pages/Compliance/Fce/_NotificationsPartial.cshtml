@@ -16,7 +16,7 @@
     <thead>
     <tr>
         <th scope="col" class="no-wrap">@Html.DisplayNameFor(m => firstItem.Id)</th>
-        <th scope="col">@Html.DisplayNameFor(m => firstItem.DateReceived)</th>
+        <th scope="col">@Html.DisplayNameFor(m => firstItem.ReceivedDate)</th>
         <th scope="col">@Html.DisplayNameFor(m => firstItem.Reviewer)</th>
         <th scope="col">@Html.DisplayNameFor(m => firstItem.Type)</th>
     </tr>
@@ -26,7 +26,7 @@
     {
         <tr>
             <th scope="row" rowspan="2">@i.Id</th>
-            <td>@Html.DisplayFor(m => i.DateReceived)</td>
+            <td>@Html.DisplayFor(m => i.ReceivedDate)</td>
             <td>@i.Reviewer.SortableFullName</td>
             <td>@i.Type</td>
         </tr>
