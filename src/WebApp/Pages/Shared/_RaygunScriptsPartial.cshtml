@@ -1,7 +1,10 @@
-﻿@using WebApp.Platform.Settings;
-@inject IHttpContextAccessor ContextAccessor
+﻿@using WebApp.Platform.Settings
 @{
-    var identity = ContextAccessor.HttpContext?.User.Identity;
+    var apiKey = ApplicationSettings.RaygunSettings.ApiKey;
+    var setVersion = ApplicationSettings.RaygunSettings.InformationalVersion;
+    if (string.IsNullOrEmpty(apiKey)) return;
+    var identifier = User.Identity?.Name;
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "unknown";
 }
 
 <script>
@@ -12,12 +15,13 @@
     e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
 </script>
 <script asp-add-content-to-csp>
-    rg4js('apiKey', '@ApplicationSettings.RaygunSettings.ApiKey');
+    rg4js('apiKey', '@apiKey');
+    rg4js('setVersion', '@setVersion');
     rg4js('enableCrashReporting', true);
-    rg4js('withTags', ['@Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")']);
-    @if (identity?.IsAuthenticated == true)
+    rg4js('withTags', ['@environment']);
+    @if (identifier is not null)
     {
-        @:rg4js('setUser', {isAnonymous: false, identifier: '@identity.Name'});
+        @:rg4js('setUser', {isAnonymous: false, identifier: '@identifier'});
     }
 </script>
 <environment include="Production">
