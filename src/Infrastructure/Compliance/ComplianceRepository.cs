@@ -34,11 +34,12 @@ public class ComplianceRepository(IDbConnectionFactory dbf, IFacilitiesRepositor
 
         using var db = dbf.Create();
 
-        return (await db.QueryAsync<AccReport, Facility, PersonName, AccReport>(
+        return (await db.QueryAsync<AccReport, Facility, Address, PersonName, AccReport>(
             "air.GetAccReport",
-            (report, facility, staff) =>
+            (report, facility, address, staff) =>
             {
                 report.Facility = facility;
+                report.Facility.FacilityAddress = address;
                 report.StaffResponsible = staff;
                 return report;
             },
