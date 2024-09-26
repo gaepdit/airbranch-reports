@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Domain.Facilities.Models;
 
@@ -6,8 +7,11 @@ public record Facility
 {
     // Facility identity
 
+    [JsonIgnore]
     [Display(Name = "AIRS Number")]
     public FacilityId? Id { get; init; }
+
+    public string? FacilityId => Id?.FormattedId;
 
     [Display(Name = "Company name")]
     public string Name { get; init; } = "";

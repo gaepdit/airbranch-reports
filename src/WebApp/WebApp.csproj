@@ -11,6 +11,7 @@
 
     <ItemGroup>
         <PackageReference Include="JetBrains.Annotations"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
         <PackageReference Include="Microsoft.Identity.Web.UI"/>
         <PackageReference Include="Mindscape.Raygun4Net.AspNetCore"/>
         <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders"/>
@@ -19,6 +20,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Swashbuckle.AspNetCore"/>
     </ItemGroup>
 
     <ItemGroup>
