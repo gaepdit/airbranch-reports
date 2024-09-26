@@ -15,10 +15,10 @@ public class IndexModel : PageModel
         [FromRoute] string facilityId,
         [FromRoute] int id)
     {
-        ApbFacilityId airs;
+        FacilityId airs;
         try
         {
-            airs = new ApbFacilityId(facilityId);
+            airs = new FacilityId(facilityId);
         }
         catch (ArgumentException)
         {

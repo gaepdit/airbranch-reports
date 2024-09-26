@@ -24,7 +24,7 @@ public class FacilityExists
     public async Task ReturnsFalseIfNotExists()
     {
         var repo = new FacilitiesRepository();
-        var result = await repo.FacilityExistsAsync(new ApbFacilityId(Constants.FacilityIdThatDoesNotExist));
+        var result = await repo.FacilityExistsAsync(new FacilityId(Constants.FacilityIdThatDoesNotExist));
         result.Should().BeFalse();
     }
 }

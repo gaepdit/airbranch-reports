@@ -2,6 +2,6 @@
 
 public interface IFacilitiesRepository
 {
-    Task<bool> FacilityExistsAsync(ApbFacilityId facilityId);
-    Task<Facility?> GetFacilityAsync(ApbFacilityId facilityId);
+    Task<bool> FacilityExistsAsync(string id);
+    Task<Facility?> GetFacilityAsync(FacilityId id);
 }

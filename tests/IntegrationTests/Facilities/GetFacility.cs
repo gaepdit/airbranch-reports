@@ -11,7 +11,7 @@ public class GetFacility
     [Test]
     public async Task ReturnsFacilityIfExists()
     {
-        var facilityId = new ApbFacilityId("17900001");
+        var facilityId = new FacilityId("17900001");
         var repo = new FacilitiesRepository(Global.DbConnectionFactory!);
         var result = await repo.GetFacilityAsync(facilityId);
 

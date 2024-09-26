@@ -11,7 +11,7 @@ namespace Infrastructure.StackTest;
 
 public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepository
 {
-    public async Task<bool> StackTestReportExistsAsync(ApbFacilityId facilityId, int referenceNumber)
+    public async Task<bool> StackTestReportExistsAsync(FacilityId facilityId, int referenceNumber)
     {
         using var db = dbf.Create();
         return await db.ExecuteScalarAsync<bool>("air.StackTestReportExists",
@@ -31,7 +31,7 @@ public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepositor
             commandType: CommandType.StoredProcedure);
     }
 
-    public async Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
+    public async Task<BaseStackTestReport?> GetStackTestReportAsync(FacilityId facilityId, int referenceNumber)
     {
         var getDocumentTypeTask = GetDocumentTypeAsync(referenceNumber);
         var getStackTestReportExistsTask = StackTestReportExistsAsync(facilityId, referenceNumber);

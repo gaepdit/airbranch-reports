@@ -29,10 +29,10 @@ public class IndexModel : PageModel
             if (User.Identity.Name is null || !User.Identity.Name.IsValidEmailDomain()) return Forbid();
         }
 
-        ApbFacilityId airs;
+        FacilityId airs;
         try
         {
-            airs = new ApbFacilityId(facilityId);
+            airs = new FacilityId(facilityId);
         }
         catch (ArgumentException)
         {

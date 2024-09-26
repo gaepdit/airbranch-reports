@@ -3,16 +3,16 @@ namespace LocalRepository.Data;
 public static class FacilityData
 {
     public static Facility? GetFacility(string facilityId) =>
-        Facilities.SingleOrDefault(e => e.Id == new ApbFacilityId(facilityId));
+        Facilities.SingleOrDefault(e => e.Id == new FacilityId(facilityId));
 
-    public static Facility? GetFacility(ApbFacilityId facilityId) =>
+    public static Facility? GetFacility(FacilityId facilityId) =>
         Facilities.SingleOrDefault(e => e.Id == facilityId);
 
     public static IEnumerable<Facility> Facilities => new List<Facility>
     {
         new()
         {
-            Id = new ApbFacilityId("00100001"),
+            Id = new FacilityId("00100001"),
             Name = "Apple Corp",
             County = "Appling",
             Description = "Apples and more",
@@ -46,7 +46,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("12100021"),
+            Id = new FacilityId("12100021"),
             Name = "Banana Corp",
             County = "Bibb",
             Description = "Bananas and more",
@@ -79,7 +79,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("05100149"),
+            Id = new FacilityId("05100149"),
             Name = "Cranberry Corp",
             County = "Clay",
             Description = "Cranberries and more",
@@ -110,7 +110,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("17900001"),
+            Id = new FacilityId("17900001"),
             Name = "Date Corp",
             County = "Dade",
             Description = "Dates and times",
@@ -125,7 +125,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("05900071"),
+            Id = new FacilityId("05900071"),
             Name = "Elderberry Inc.",
             County = "Early",
             Description = "Your mother was a hamster and your father smelt of elderberries!",
@@ -140,7 +140,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("05700040"),
+            Id = new FacilityId("05700040"),
             Name = "Fruit Inc.",
             County = "Floyd",
             Description = "Nothing but fruit",
@@ -156,7 +156,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("00100005"),
+            Id = new FacilityId("00100005"),
             Name = "Guava Inc.",
             County = "Glynn",
             Description = "Guavalicious",
@@ -190,7 +190,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("24500002"),
+            Id = new FacilityId("24500002"),
             Name = "Huckleberry LLC",
             County = "Hall",
             Description = "Huckleberries & Chuckleberries",
@@ -206,7 +206,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("07300003"),
+            Id = new FacilityId("07300003"),
             Name = "Indian Fig Co.",
             County = "Irwin",
             Description = "Prickly pears",
@@ -222,7 +222,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("11500021"),
+            Id = new FacilityId("11500021"),
             Name = "Juniper Berry Co.",
             County = "Jones",
             Description = "Genièvre",
@@ -238,7 +238,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("15300040"),
+            Id = new FacilityId("15300040"),
             Name = "Lingonberry LLC",
             County = "Lee",
             Description = "Lingonberries",
@@ -254,7 +254,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("30500001"),
+            Id = new FacilityId("30500001"),
             Name = "Muscadine Inc.",
             County = "McIntosh",
             Description = "Jellies and Jams",
@@ -270,7 +270,7 @@ public static class FacilityData
         },
         new()
         {
-            Id = new ApbFacilityId("31300062"),
+            Id = new FacilityId("31300062"),
             Name = "Nectarine Corp.",
             County = "Newton",
             Description = "Nectarines and More",

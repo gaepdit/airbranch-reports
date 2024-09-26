@@ -41,16 +41,16 @@ BEGIN
            s.STRCOMPLIANCESTATEMENT           as ReportStatement,
            r.STRDIRECTOR                      as EpdDirector,
 
-           i.STRAIRSNUMBER                    as Id,
+           right(i.STRAIRSNUMBER, 8)          as Id,
            f.STRFACILITYNAME                  as Name,
            lc.STRCOUNTYNAME                   as County,
 
-           'FacilityAddress'       as Id,
+           'FacilityAddress'                  as Id,
            dbo.NullIfNaOrEmpty(f.STRFACILITYSTREET1)
-                                   as Street,
+                                              as Street,
            dbo.NullIfNaOrEmpty(f.STRFACILITYSTREET2)
-                                   as Street2,
-           trim(f.STRFACILITYCITY) as City,
+                                              as Street2,
+           trim(f.STRFACILITYCITY)            as City,
            f.STRFACILITYSTATE                 as State,
            f.STRFACILITYZIPCODE               as PostalCode,
 
@@ -92,7 +92,7 @@ BEGIN
       and r.STRDELETE is null
       and r.STRREFERENCENUMBER = @ReferenceNumber;
 
-    select w.WitnessId     as Id,
+    select w.WitnessId    as Id,
            p.STRFIRSTNAME as GivenName,
            p.STRLASTNAME  as FamilyName
     from dbo.ISMPREPORTINFORMATION r

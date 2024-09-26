@@ -27,7 +27,7 @@ public class StackTestReportExists
     public async Task ReturnsFalseIfUnassignedDocumentType()
     {
         var repo = new StackTestRepository(Global.DbConnectionFactory!);
-        var result = await repo.StackTestReportExistsAsync("041312700006", 19648);
+        var result = await repo.StackTestReportExistsAsync("12700006", 19648);
         result.Should().BeFalse();
     }
 

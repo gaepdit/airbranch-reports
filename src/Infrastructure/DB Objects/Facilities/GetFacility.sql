@@ -28,7 +28,7 @@ BEGIN
 
     declare @DefaultStatus varchar(5) = '00000';
 
-    select f.STRAIRSNUMBER               as Id,
+    select right(f.STRAIRSNUMBER, 8)     as Id,
            trim(f.STRFACILITYNAME)       as Name,
            trim(char(13) + char(10) + ' ' from h.STRPLANTDESCRIPTION)
                                          as Description,

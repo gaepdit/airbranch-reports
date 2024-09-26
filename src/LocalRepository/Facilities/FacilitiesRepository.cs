@@ -5,9 +5,12 @@ namespace LocalRepository.Facilities;
 
 public class FacilitiesRepository : IFacilitiesRepository
 {
-    public Task<bool> FacilityExistsAsync(ApbFacilityId facilityId) =>
-        Task.FromResult(FacilityData.Facilities.Any(e => e.Id == facilityId));
+    public Task<bool> FacilityExistsAsync(string id) =>
+        Task.FromResult(FacilityId.IsValidFormat(id) && FacilityExists(id));
 
-    public async Task<Facility?> GetFacilityAsync(ApbFacilityId facilityId) =>
-        await FacilityExistsAsync(facilityId) ? GetFacility(facilityId) : null;
+    private static bool FacilityExists(FacilityId id) =>
+        FacilityData.Facilities.Any(e => e.Id == id);
+
+    public Task<Facility?> GetFacilityAsync(FacilityId id) =>
+        Task.FromResult(FacilityExists(id) ? GetFacility(id) : null);
 }

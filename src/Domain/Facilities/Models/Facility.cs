@@ -7,7 +7,7 @@ public record Facility
     // Facility identity
 
     [Display(Name = "AIRS Number")]
-    public ApbFacilityId? Id { get; init; }
+    public FacilityId? Id { get; init; }
 
     [Display(Name = "Company name")]
     public string Name { get; init; } = "";

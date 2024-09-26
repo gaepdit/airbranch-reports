@@ -15,7 +15,7 @@ public class ComplianceRepository(IDbConnectionFactory dbf, IFacilitiesRepositor
     : IComplianceRepository
 {
     // ACC
-    public async Task<AccReport?> GetAccReportAsync(ApbFacilityId facilityId, int id)
+    public async Task<AccReport?> GetAccReportAsync(FacilityId facilityId, int id)
     {
         var getReportExistsTask = ReportExistsAsync("air.AccReportExists", facilityId, id);
         var getAccReportTask = GetAccReportDocumentAsync(facilityId, id);
@@ -24,7 +24,7 @@ public class ComplianceRepository(IDbConnectionFactory dbf, IFacilitiesRepositor
         return await getAccReportTask;
     }
 
-    private async Task<AccReport?> GetAccReportDocumentAsync(ApbFacilityId facilityId, int id)
+    private async Task<AccReport?> GetAccReportDocumentAsync(FacilityId facilityId, int id)
     {
         var param = new
         {
@@ -46,7 +46,7 @@ public class ComplianceRepository(IDbConnectionFactory dbf, IFacilitiesRepositor
             param, commandType: CommandType.StoredProcedure)).Single();
     }
 
-    private async Task<bool> ReportExistsAsync(string proc, ApbFacilityId facilityId, int reportId)
+    private async Task<bool> ReportExistsAsync(string proc, FacilityId facilityId, int reportId)
     {
         var param = new
         {
@@ -59,7 +59,7 @@ public class ComplianceRepository(IDbConnectionFactory dbf, IFacilitiesRepositor
     }
 
     // FCE
-    public async Task<FceReport?> GetFceReportAsync(ApbFacilityId facilityId, int id)
+    public async Task<FceReport?> GetFceReportAsync(FacilityId facilityId, int id)
     {
         var getFacilityTask = facilitiesRepository.GetFacilityAsync(facilityId);
 

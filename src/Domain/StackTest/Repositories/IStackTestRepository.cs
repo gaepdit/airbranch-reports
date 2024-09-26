@@ -4,5 +4,5 @@ namespace Domain.StackTest.Repositories;
 
 public interface IStackTestRepository
 {
-    Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber);
+    Task<BaseStackTestReport?> GetStackTestReportAsync(FacilityId facilityId, int referenceNumber);
 }
