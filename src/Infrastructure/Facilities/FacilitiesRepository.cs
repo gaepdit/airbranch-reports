@@ -37,8 +37,8 @@ public class FacilitiesRepository(IDbConnectionFactory dbf) : IFacilitiesReposit
                 return facility;
             }).Single();
 
-        facility.HeaderData!.AirPrograms.AddRange(multi.Read<string>());
-        facility.HeaderData!.ProgramClassifications.AddRange(multi.Read<string>());
+        facility.HeaderData!.AirPrograms.AddRange(await multi.ReadAsync<string>());
+        facility.HeaderData!.ProgramClassifications.AddRange(await multi.ReadAsync<string>());
 
         return facility;
     }

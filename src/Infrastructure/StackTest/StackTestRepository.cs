@@ -77,7 +77,7 @@ public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepositor
                 return report;
             }).Single();
 
-        report.WitnessedByStaff.AddRange(multi.Read<PersonName>());
+        report.WitnessedByStaff.AddRange(await multi.ReadAsync<PersonName>());
 
         return report;
     }
@@ -107,8 +107,8 @@ public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepositor
                     return r;
                 });
 
-        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
-        report.TestRuns.AddRange(multi.Read<StackTestRun>());
+        report.AllowableEmissionRates.AddRange(await multi.ReadAsync<ValueWithUnits>());
+        report.TestRuns.AddRange(await multi.ReadAsync<StackTestRun>());
 
         report.ParseConfidentialParameters();
         return report;
@@ -155,8 +155,8 @@ public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepositor
                 return r;
             });
 
-        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
-        report.TestRuns.AddRange(multi.Read<TwoStackTestRun>());
+        report.AllowableEmissionRates.AddRange(await multi.ReadAsync<ValueWithUnits>());
+        report.TestRuns.AddRange(await multi.ReadAsync<TwoStackTestRun>());
 
         report.ParseConfidentialParameters();
         return report;
@@ -199,7 +199,7 @@ public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepositor
                 return r;
             });
 
-        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
+        report.AllowableEmissionRates.AddRange(await multi.ReadAsync<ValueWithUnits>());
 
         report.ParseConfidentialParameters();
         return report;
@@ -230,7 +230,7 @@ public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepositor
                     return r;
                 });
 
-        report.TestRuns.AddRange(multi.Read<PondTreatmentTestRun>());
+        report.TestRuns.AddRange(await multi.ReadAsync<PondTreatmentTestRun>());
 
         report.ParseConfidentialParameters();
         return report;
@@ -261,8 +261,8 @@ public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepositor
                     return r;
                 });
 
-        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
-        report.TestRuns.AddRange(multi.Read<GasConcentrationTestRun>());
+        report.AllowableEmissionRates.AddRange(await multi.ReadAsync<ValueWithUnits>());
+        report.TestRuns.AddRange(await multi.ReadAsync<GasConcentrationTestRun>());
 
         report.ParseConfidentialParameters();
         return report;
@@ -293,8 +293,8 @@ public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepositor
                     return r;
                 });
 
-        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
-        report.TestRuns.AddRange(multi.Read<FlareTestRun>());
+        report.AllowableEmissionRates.AddRange(await multi.ReadAsync<ValueWithUnits>());
+        report.TestRuns.AddRange(await multi.ReadAsync<FlareTestRun>());
 
         report.ParseConfidentialParameters();
         return report;
@@ -322,7 +322,7 @@ public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepositor
         report.RelativeAccuracyRequiredLabel = r.RelativeAccuracyRequiredLabel;
         report.ComplianceStatus = r.ComplianceStatus;
 
-        report.TestRuns.AddRange(multi.Read<RataTestRun>());
+        report.TestRuns.AddRange(await multi.ReadAsync<RataTestRun>());
 
         report.ParseConfidentialParameters();
         return report;
@@ -351,7 +351,7 @@ public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepositor
                 return r;
             });
 
-        report.AllowableEmissionRates.AddRange(multi.Read<ValueWithUnits>());
+        report.AllowableEmissionRates.AddRange(await multi.ReadAsync<ValueWithUnits>());
 
         report.ParseConfidentialParameters();
         return report;
@@ -378,7 +378,7 @@ public class StackTestRepository(IDbConnectionFactory dbf) : IStackTestRepositor
         report.OperatingCapacityUnits = r.OperatingCapacityUnits;
         report.AllowableEmissionRateUnits = r.AllowableEmissionRateUnits;
 
-        report.TestRuns.AddRange(multi.Read<OpacityTestRun>());
+        report.TestRuns.AddRange(await multi.ReadAsync<OpacityTestRun>());
 
         report.ParseConfidentialParameters();
         return report;

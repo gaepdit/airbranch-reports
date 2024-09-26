@@ -136,7 +136,7 @@ public class ComplianceRepository(IDbConnectionFactory dbf, IFacilitiesRepositor
                 return item;
             }));
 
-        report.FeesHistory.AddRange(multi.Read<FeeYear>());
+        report.FeesHistory.AddRange(await multi.ReadAsync<FeeYear>());
 
         report.EnforcementHistory.AddRange(multi.Read<Enforcement, PersonName, Enforcement>(
             (item, staff) =>
