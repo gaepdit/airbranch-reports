@@ -24,6 +24,7 @@ When        Who                 What
 ----------  ------------------  ------------------------------------------------
 2022-02-22  DWaldron            Initial version
 2022-03-09  DWaldron            Use Date Complete for memo date (#49)
+2024-09-26  DWaldron            Fix City display
 
 *******************************************************************************/
 
@@ -48,9 +49,15 @@ BEGIN
            convert(bit, IIF(c.STRRESUBMITTALREQUIRED = 'True', 1, 0))     as ResubmittalRequested,
            f.STRAIRSNUMBER                                                as Id,
            f.STRFACILITYNAME                                              as Name,
-           f.STRFACILITYCITY                                              as City,
-           f.STRFACILITYSTATE                                             as State,
            l.STRCOUNTYNAME                                                as County,
+           'FacilityAddress'       as Id,
+           dbo.NullIfNaOrEmpty(f.STRFACILITYSTREET1)
+                                   as Street,
+           dbo.NullIfNaOrEmpty(f.STRFACILITYSTREET2)
+                                   as Street2,
+           trim(f.STRFACILITYCITY) as City,
+           f.STRFACILITYSTATE      as State,
+           f.STRFACILITYZIPCODE    as PostalCode,
            convert(int, m.STRRESPONSIBLESTAFF)                            as Id,
            p.STRFIRSTNAME                                                 as GivenName,
            p.STRLASTNAME                                                  as FamilyName

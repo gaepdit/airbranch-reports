@@ -45,10 +45,12 @@ BEGIN
            f.STRFACILITYNAME                  as Name,
            lc.STRCOUNTYNAME                   as County,
 
-           'Address'                          as Id,
-           f.STRFACILITYSTREET1               as Street,
-           f.STRFACILITYSTREET2               as Street2,
-           f.STRFACILITYCITY                  as City,
+           'FacilityAddress'       as Id,
+           dbo.NullIfNaOrEmpty(f.STRFACILITYSTREET1)
+                                   as Street,
+           dbo.NullIfNaOrEmpty(f.STRFACILITYSTREET2)
+                                   as Street2,
+           trim(f.STRFACILITYCITY) as City,
            f.STRFACILITYSTATE                 as State,
            f.STRFACILITYZIPCODE               as PostalCode,
 
