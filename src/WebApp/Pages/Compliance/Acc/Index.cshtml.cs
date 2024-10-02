@@ -28,7 +28,7 @@ public class IndexModel : PageModel
         }
 
         Report = await repository.GetAccReportAsync(airs, id);
-        if (Report?.Facility is null) return NotFound();
+        if (Report?.Facility?.Id is null) return NotFound();
 
         MemoHeader = new MemoHeader
         {

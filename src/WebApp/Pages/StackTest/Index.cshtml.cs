@@ -40,7 +40,7 @@ public class IndexModel : PageModel
         }
 
         var report = await repository.GetStackTestReportAsync(airs, referenceNumber);
-        if (report?.Facility is null) return NotFound();
+        if (report?.Facility?.Id is null) return NotFound();
 
         Report = includeConfidentialInfo ? report : report.RedactedStackTestReport();
         MemoHeader = new MemoHeader
