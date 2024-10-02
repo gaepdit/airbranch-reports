@@ -32,17 +32,17 @@ public class FacilitiesRepository(IDbConnectionFactory dbf) : IFacilitiesReposit
         if (!await FacilityExistsAsync(id)) return null;
 
         await using var multi = await varMultiTask;
-        var facility = multi.Read<Facility, Address, GeoCoordinates, FacilityHeaderData, Facility>(
-            (facility, facilityAddress, geoCoordinates, headerData) =>
+        var facility = multi.Read<Facility, Address, GeoCoordinates, RegulatoryData, Facility>(
+            (facility, facilityAddress, geoCoordinates, regulatoryData) =>
             {
                 facility.FacilityAddress = facilityAddress;
                 facility.GeoCoordinates = geoCoordinates;
-                facility.HeaderData = headerData;
+                facility.RegulatoryData = regulatoryData;
                 return facility;
             }).Single();
 
-        facility.HeaderData!.AirPrograms.AddRange(await multi.ReadAsync<string>());
-        facility.HeaderData!.ProgramClassifications.AddRange(await multi.ReadAsync<string>());
+        facility.RegulatoryData!.AirPrograms.AddRange(await multi.ReadAsync<string>());
+        facility.RegulatoryData!.ProgramClassifications.AddRange(await multi.ReadAsync<string>());
 
         return facility;
     }

@@ -44,7 +44,7 @@ BEGIN
            'GeoCoordinates'              as Id,
            f.NUMFACILITYLATITUDE         as Latitude,
            f.NUMFACILITYLONGITUDE        as Longitude,
-           'HeaderData'                  as Id,
+           'RegulatoryData'                  as Id,
            h.STROPERATIONALSTATUS        as OperatingStatusCode,
            h.DATSTARTUPDATE              as StartupDate,
            h.DATSHUTDOWNDATE             as PermitRevocationDate,

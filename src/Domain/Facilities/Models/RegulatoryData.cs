@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Domain.Facilities.Models;
 
-public record FacilityHeaderData
+public record RegulatoryData
 {
     // Operating status
 

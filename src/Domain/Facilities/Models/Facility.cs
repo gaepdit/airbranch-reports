@@ -13,6 +13,8 @@ public record Facility
 
     public string? FacilityId => Id?.FormattedId;
 
+    // Description
+
     [Display(Name = "Company name")]
     public string Name { get; init; } = "";
 
@@ -32,5 +34,5 @@ public record Facility
 
     // Regulatory data
 
-    public FacilityHeaderData? HeaderData { get; set; }
+    public RegulatoryData? RegulatoryData { get; set; }
 }

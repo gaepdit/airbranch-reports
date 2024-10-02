@@ -25,7 +25,7 @@ public static class FacilityData
                 PostalCode = "30000",
             },
             GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
-            HeaderData = new FacilityHeaderData
+            RegulatoryData = new RegulatoryData
             {
                 OperatingStatusCode = FacilityOperatingStatus.O,
                 ClassificationCode = FacilityClassification.A,
@@ -58,7 +58,7 @@ public static class FacilityData
                 State = "GA",
                 PostalCode = "30000",
             },
-            HeaderData = new FacilityHeaderData
+            RegulatoryData = new RegulatoryData
             {
                 OperatingStatusCode = FacilityOperatingStatus.O,
                 ClassificationCode = FacilityClassification.SM,
@@ -92,7 +92,7 @@ public static class FacilityData
                 PostalCode = "30000",
             },
             GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
-            HeaderData = new FacilityHeaderData
+            RegulatoryData = new RegulatoryData
             {
                 OperatingStatusCode = FacilityOperatingStatus.X,
                 ClassificationCode = FacilityClassification.Unspecified,
@@ -169,7 +169,7 @@ public static class FacilityData
                 PostalCode = "30000",
             },
             GeoCoordinates = new GeoCoordinates(34.1M, -84.5M),
-            HeaderData = new FacilityHeaderData
+            RegulatoryData = new RegulatoryData
             {
                 OperatingStatusCode = FacilityOperatingStatus.O,
                 ClassificationCode = FacilityClassification.SM,

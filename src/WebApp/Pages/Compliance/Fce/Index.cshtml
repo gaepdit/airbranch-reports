@@ -7,7 +7,7 @@
 
     var report = Model.Report!;
     var facility = report.Facility!;
-    var header = facility.HeaderData!;
+    var header = facility.RegulatoryData!;
 
     ViewData["Title"] = $"Facility {facility.Id} - FCE Report: {report.FceYear.ToString()}";
 }
