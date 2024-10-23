@@ -2,15 +2,13 @@
 GO
 SET ANSI_NULLS ON;
 GO
-SET QUOTED_IDENTIFIER ON;
-GO
 
 CREATE OR ALTER PROCEDURE air.GetAccReport
     @AirsNumber varchar(12),
     @Id         int
 AS
 
-/*******************************************************************************
+/**************************************************************************************************
 
 Author:     Doug Waldron
 Overview:   Retrieves an ACC report for a given facility and year.
@@ -21,12 +19,14 @@ Input Parameters:
 
 Modification History:
 When        Who                 What
-----------  ------------------  ------------------------------------------------
+----------  ------------------  -------------------------------------------------------------------
 2022-02-22  DWaldron            Initial version
 2022-03-09  DWaldron            Use Date Complete for memo date (#49)
 2024-09-26  DWaldron            Fix City display
+2024-10-22  DWaldron            When multiple submittals exist, show data from first submittal and 
+                                aggregate comments from all submittals. (#106)
 
-*******************************************************************************/
+***************************************************************************************************/
 
 BEGIN
     SET NOCOUNT ON;
@@ -34,7 +34,15 @@ BEGIN
     select c.STRTRACKINGNUMBER                                            as Id,
            convert(date, m.DATRECEIVEDDATE)                               as DateReceived,
            convert(date, m.DATCOMPLETEDATE)                               as DateComplete,
-           c.STRCOMMENTS                                                  as Comments,
+           IIF((select count(*) from dbo.SSCPACCSHISTORY where STRTRACKINGNUMBER = @Id) > 1,
+               (select string_agg(concat('(', convert(date, DATMODIFINGDATE), ')', CHAR(13) + CHAR(10), STRCOMMENTS),
+                                  CHAR(13) + CHAR(10) + CHAR(13) + CHAR(10) + '---' + CHAR(13) + CHAR(10) + CHAR(13) +
+                                  CHAR(10))
+                                  within group ( order by STRSUBMITTALNUMBER)
+                from dbo.SSCPACCSHISTORY
+                where STRTRACKINGNUMBER = @Id),
+               c.STRCOMMENTS
+           )                                                              as Comments,
            year(c.DATACCREPORTINGYEAR)                                    as AccReportingYear,
            convert(date, c.DATPOSTMARKDATE)                               as DatePostmarked,
            convert(bit, IIF(c.STRPOSTMARKEDONTIME = 'True', 1, 0))        as PostmarkedByDeadline,
@@ -50,19 +58,19 @@ BEGIN
            f.STRAIRSNUMBER                                                as Id,
            f.STRFACILITYNAME                                              as Name,
            l.STRCOUNTYNAME                                                as County,
-           'FacilityAddress'       as Id,
+           'FacilityAddress'                                              as Id,
            dbo.NullIfNaOrEmpty(f.STRFACILITYSTREET1)
-                                   as Street,
+                                                                          as Street,
            dbo.NullIfNaOrEmpty(f.STRFACILITYSTREET2)
-                                   as Street2,
-           trim(f.STRFACILITYCITY) as City,
-           f.STRFACILITYSTATE      as State,
-           f.STRFACILITYZIPCODE    as PostalCode,
+                                                                          as Street2,
+           trim(f.STRFACILITYCITY)                                        as City,
+           f.STRFACILITYSTATE                                             as State,
+           f.STRFACILITYZIPCODE                                           as PostalCode,
            convert(int, m.STRRESPONSIBLESTAFF)                            as Id,
            p.STRFIRSTNAME                                                 as GivenName,
            p.STRLASTNAME                                                  as FamilyName
     from dbo.SSCPITEMMASTER AS m
-        inner join dbo.SSCPACCS AS c
+        inner join dbo.SSCPACCSHISTORY AS c
         ON c.STRTRACKINGNUMBER = m.STRTRACKINGNUMBER
         left join dbo.EPDUSERPROFILES AS p
         ON m.STRRESPONSIBLESTAFF = p.NUMUSERID
@@ -73,11 +81,10 @@ BEGIN
     where m.STRDELETE is null
       and c.STRTRACKINGNUMBER = @Id
       and f.STRAIRSNUMBER = @AirsNumber
+      and c.STRSUBMITTALNUMBER = 1
 
     declare @params nvarchar(max) = concat_ws(':', '@AirsNumber', @AirsNumber, '@Id', @Id);
     exec air.LogReport 'ACC', @params;
 
-    return 0;
-END;
-
+END
 GO
