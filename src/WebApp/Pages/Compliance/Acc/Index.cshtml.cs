@@ -17,10 +17,10 @@ public class IndexModel : PageModel
         [FromRoute] string facilityId,
         [FromRoute] int id)
     {
-        ApbFacilityId airs;
+        FacilityId airs;
         try
         {
-            airs = new ApbFacilityId(facilityId);
+            airs = new FacilityId(facilityId);
         }
         catch (ArgumentException)
         {
@@ -28,15 +28,15 @@ public class IndexModel : PageModel
         }
 
         Report = await repository.GetAccReportAsync(airs, id);
-        if (Report?.Facility is null) return NotFound();
+        if (Report?.Facility?.Id is null) return NotFound();
 
         MemoHeader = new MemoHeader
         {
             Date = Report.DateComplete,
             From = Report.StaffResponsible.DisplayName,
             Subject = $"Title V Annual Certification for {Report.AccReportingYear}" + Environment.NewLine +
-                $"{Report.Facility.Name}, {Report.Facility.FacilityAddress.City}" + Environment.NewLine +
-                $"AIRS # {Report.Facility.Id}",
+                      $"{Report.Facility.Name}, {Report.Facility.FacilityAddress.City}" + Environment.NewLine +
+                      $"AIRS # {Report.Facility.Id}",
         };
 
         return Page();

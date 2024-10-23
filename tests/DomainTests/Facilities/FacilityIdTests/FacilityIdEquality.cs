@@ -1,14 +1,14 @@
 using Domain.Facilities.Models;
 
-namespace DomainTests.Facilities.ApbFacilityIdTests;
+namespace DomainTests.Facilities.FacilityIdTests;
 
-public class ApbFacilityIdEquality
+public class FacilityIdEquality
 {
     [Test]
     public void IsTrueForEquivalentAirsNumbers()
     {
-        var airs1 = new ApbFacilityId("12345678");
-        var airs2 = new ApbFacilityId("123-45678");
+        var airs1 = new FacilityId("12345678");
+        var airs2 = new FacilityId("123-45678");
         Assert.Multiple(() =>
         {
             (airs1 == airs2).Should().BeTrue();
@@ -19,8 +19,8 @@ public class ApbFacilityIdEquality
     [Test]
     public void IsFalseForDifferentAirsNumbers()
     {
-        var airs1 = new ApbFacilityId("12345678");
-        var airs2 = new ApbFacilityId("87654321");
+        var airs1 = new FacilityId("12345678");
+        var airs2 = new FacilityId("87654321");
         Assert.Multiple(() =>
         {
             (airs1 == airs2).Should().BeFalse();

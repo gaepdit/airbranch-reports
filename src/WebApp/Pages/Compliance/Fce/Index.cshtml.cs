@@ -15,10 +15,10 @@ public class IndexModel : PageModel
         [FromRoute] string facilityId,
         [FromRoute] int id)
     {
-        ApbFacilityId airs;
+        FacilityId airs;
         try
         {
-            airs = new ApbFacilityId(facilityId);
+            airs = new FacilityId(facilityId);
         }
         catch (ArgumentException)
         {
@@ -26,8 +26,7 @@ public class IndexModel : PageModel
         }
 
         Report = await complianceRepo.GetFceReportAsync(airs, id);
-        if (Report?.Facility is null) return NotFound();
-        if (Report.Facility.HeaderData is null) return NotFound();
+        if (Report?.Facility?.Id is null || Report.Facility?.RegulatoryData is null) return NotFound();
 
         return Page();
     }

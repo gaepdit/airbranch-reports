@@ -24,7 +24,7 @@ public class GetFacility
     public async Task ReturnsNullIfNotExists()
     {
         var repo = new FacilitiesRepository();
-        var result = await repo.GetFacilityAsync(new ApbFacilityId(Constants.FacilityIdThatDoesNotExist));
+        var result = await repo.GetFacilityAsync(new FacilityId(Constants.FacilityIdThatDoesNotExist));
         result.Should().BeNull();
     }
 }

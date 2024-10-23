@@ -24,7 +24,7 @@ public class GetAccReport
     public async Task ReturnsNullIfNotExists()
     {
         var repo = new ComplianceRepository();
-        var result = await repo.GetAccReportAsync(new ApbFacilityId(Constants.FacilityIdThatDoesNotExist), default);
+        var result = await repo.GetAccReportAsync(new FacilityId(Constants.FacilityIdThatDoesNotExist), default);
         result.Should().BeNull();
     }
 }

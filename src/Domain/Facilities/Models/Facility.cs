@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Domain.Facilities.Models;
 
@@ -6,8 +7,13 @@ public record Facility
 {
     // Facility identity
 
+    [JsonIgnore]
     [Display(Name = "AIRS Number")]
-    public ApbFacilityId? Id { get; init; }
+    public FacilityId? Id { get; init; }
+
+    public string? FacilityId => Id?.FormattedId;
+
+    // Description
 
     [Display(Name = "Company name")]
     public string Name { get; init; } = "";
@@ -28,5 +34,5 @@ public record Facility
 
     // Regulatory data
 
-    public FacilityHeaderData? HeaderData { get; set; }
+    public RegulatoryData? RegulatoryData { get; set; }
 }

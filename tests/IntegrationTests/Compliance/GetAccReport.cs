@@ -13,7 +13,7 @@ public class GetAccReport
     [Test]
     public async Task ReturnsReportIfExists()
     {
-        var facilityId = new ApbFacilityId("05100149");
+        var facilityId = new FacilityId("05100149");
         const int id = 77863;
         var facilitiesRepo = new FacilitiesRepository(Global.DbConnectionFactory!);
         var repo = new ComplianceRepository(Global.DbConnectionFactory!, facilitiesRepo);
