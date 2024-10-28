@@ -15,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using Mindscape.Raygun4Net;
 using Mindscape.Raygun4Net.AspNetCore;
 using System.Text.Json.Serialization;
+using WebApp.Api;
 using WebApp.Platform.Local;
 using WebApp.Platform.SecurityHeaders;
 using WebApp.Platform.Settings;
@@ -154,31 +155,7 @@ app.UseSwagger(options => { options.RouteTemplate = "api-docs/{documentName}/ope
 // Map endpoints.
 app.MapRazorPages();
 app.MapControllers();
-
-// Add minimal APIs for retrieving facility data.
-app.MapGet("/api/facility/{id}",
-    async (IFacilitiesRepository repo, string id) =>
-    {
-        if (!FacilityId.IsValidFormat(id)) return Results.NotFound();
-        var facility = await repo.GetFacilityAsync(new FacilityId(id));
-        return facility is not null ? Results.Ok(facility) : Results.NotFound();
-    }
-).WithName("GetFacility").WithOpenApi();
-
-app.MapGet("/api/facility/exists/{id}",
-    async (IFacilitiesRepository repo, string id) =>
-        Results.Ok(await repo.FacilityExistsAsync(id))
-).WithName("FacilityExists").WithOpenApi();
-
-// Add minimal APIs for retrieving stack test data.
-app.MapGet("/api/stacktest/{facilityId}/{referenceNumber:int}",
-    async (IStackTestRepository repo, string facilityId, int referenceNumber) =>
-    {
-        if (!FacilityId.IsValidFormat(facilityId)) return Results.NotFound();
-        var report = await repo.GetStackTestReportAsync(new FacilityId(facilityId), referenceNumber);
-        return report is not null ? Results.Ok(report) : Results.NotFound();
-    }
-).WithName("GetStackTestReport").WithOpenApi();
+app.MapApi();
 
 // Make it so.
 await app.RunAsync();
