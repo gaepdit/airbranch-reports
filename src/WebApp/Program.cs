@@ -56,9 +56,24 @@ builder.Services
     .AddJsonOptions(opts => opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()))
     .AddMicrosoftIdentityUI();
 
-// Configure HSTS (max age: two years)
+// Configure HSTS (max age: two years) and HTTPS redirection.
 if (!builder.Environment.IsDevelopment())
+{
     builder.Services.AddHsts(opts => opts.MaxAge = TimeSpan.FromDays(730));
+    builder.Services.AddHttpsRedirection(options =>
+    {
+        options.HttpsPort = 443;
+        options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+    });
+}
+else
+{
+    builder.Services.AddHttpsRedirection(options =>
+    {
+        options.HttpsPort = 443;
+        options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+    });
+}
 
 // Configure application monitoring.
 if (!string.IsNullOrEmpty(ApplicationSettings.RaygunSettings.ApiKey))
