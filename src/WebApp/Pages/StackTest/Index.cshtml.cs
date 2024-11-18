@@ -29,10 +29,10 @@ public class IndexModel : PageModel
             if (User.Identity.Name is null || !User.Identity.Name.IsValidEmailDomain()) return Forbid();
         }
 
-        ApbFacilityId airs;
+        FacilityId airs;
         try
         {
-            airs = new ApbFacilityId(facilityId);
+            airs = new FacilityId(facilityId);
         }
         catch (ArgumentException)
         {
@@ -40,7 +40,7 @@ public class IndexModel : PageModel
         }
 
         var report = await repository.GetStackTestReportAsync(airs, referenceNumber);
-        if (report?.Facility is null) return NotFound();
+        if (report?.Facility?.Id is null) return NotFound();
 
         Report = includeConfidentialInfo ? report : report.RedactedStackTestReport();
         MemoHeader = new MemoHeader

@@ -55,7 +55,7 @@ BEGIN
            convert(bit, IIF(c.STRENFORCEMENTNEEDED = 'True', 1, 0))       as EnforcementRecommended,
            convert(bit, IIF(c.STRKNOWNDEVIATIONSREPORTED = 'True', 1, 0)) as AllDeviationsReported,
            convert(bit, IIF(c.STRRESUBMITTALREQUIRED = 'True', 1, 0))     as ResubmittalRequested,
-           f.STRAIRSNUMBER                                                as Id,
+           right(f.STRAIRSNUMBER, 8)                                      as Id,
            f.STRFACILITYNAME                                              as Name,
            l.STRCOUNTYNAME                                                as County,
            'FacilityAddress'                                              as Id,

@@ -13,7 +13,7 @@ public class GetFceReport
     [Test]
     public async Task ReturnsReportIfExists()
     {
-        var facilityId = new ApbFacilityId("001-00001");
+        var facilityId = new FacilityId("001-00001");
         const int id = 7136;
         var facilitiesRepo = new FacilitiesRepository(Global.DbConnectionFactory!);
         var repo = new ComplianceRepository(Global.DbConnectionFactory!, facilitiesRepo);

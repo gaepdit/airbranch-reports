@@ -1,0 +1,6 @@
+@WebApi_HostAddress = https://localhost:44380/api
+
+GET {{WebApi_HostAddress}}/facility/00100001/
+Accept: application/json
+
+###

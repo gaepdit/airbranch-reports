@@ -6,13 +6,13 @@ namespace LocalRepository.StackTest;
 
 public class StackTestRepository : IStackTestRepository
 {
-    private static bool StackTestReportExists(ApbFacilityId facilityId, int referenceNumber) =>
+    private static bool StackTestReportExists(FacilityId facilityId, int referenceNumber) =>
         StackTestReports.Any(e =>
             e.ReferenceNumber == referenceNumber &&
             e.Facility?.Id == facilityId &&
             e.DocumentType != DocumentType.Unassigned);
 
-    public Task<BaseStackTestReport?> GetStackTestReportAsync(ApbFacilityId facilityId, int referenceNumber)
+    public Task<BaseStackTestReport?> GetStackTestReportAsync(FacilityId facilityId, int referenceNumber)
     {
         if (!StackTestReportExists(facilityId, referenceNumber))
             return Task.FromResult(null as BaseStackTestReport);

@@ -26,7 +26,7 @@ public class GetStackTestReport
     {
         var repo = new StackTestRepository();
         var result =
-            await repo.GetStackTestReportAsync(new ApbFacilityId(Constants.FacilityIdThatDoesNotExist), default);
+            await repo.GetStackTestReportAsync(new FacilityId(Constants.FacilityIdThatDoesNotExist), default);
         result.Should().BeNull();
     }
 }

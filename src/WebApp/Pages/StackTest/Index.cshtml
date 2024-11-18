@@ -1,7 +1,7 @@
 ﻿@page "~/facility/{facilityId}/stack-test/{referenceNumber:int}"
 @using Domain.StackTest.Models
 @using WebApp.Platform.Formatting
-@model WebApp.Pages.StackTest.IndexModel
+@model IndexModel
 @{
     Layout = "_ReportLayout";
     ViewBag.BodyCssClass = "stack-test sans-serif";
@@ -107,7 +107,7 @@
                     <footer class="split-lr">
                         <div>
                             <div>cc: @report.ComplianceManager.DisplayName</div>
-                            <div>AIRS Number: @report.Facility.Id</div>
+                            <div>AIRS Number: @report.Facility.FacilityId</div>
                         </div>
                         <div>
                             <div>Reference Number: @report.ReferenceNumber.ToString()</div>
