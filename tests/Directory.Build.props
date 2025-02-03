@@ -1,12 +1,12 @@
 <Project>
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <PropertyGroup>
-        <BaseProjectArtifactPath>$(MSBuildThisFileDirectory).artifacts\$(MSBuildProjectName)</BaseProjectArtifactPath>
+        <BaseProjectArtifactPath>$(MSBuildThisFileDirectory)..\.artifacts\$(MSBuildProjectName)</BaseProjectArtifactPath>
         <BaseOutputPath>$(BaseProjectArtifactPath)\bin\</BaseOutputPath>
         <BaseIntermediateOutputPath>$(BaseProjectArtifactPath)\obj\</BaseIntermediateOutputPath>
     </PropertyGroup>
@@ -17,6 +17,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentAssertions"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk"/>
+        <PackageReference Include="NUnit"/>
+        <PackageReference Include="NUnit3TestAdapter"/>
+        <PackageReference Include="coverlet.collector">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="SonarAnalyzer.CSharp">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
