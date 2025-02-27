@@ -7,6 +7,9 @@ on:
     # Update this line with the desired tag format, e.g., "prod/*"
     tags: [prod/*]
 
+permissions:
+  contents: read
+
 jobs:
   raygun-deployment:
     runs-on: ubuntu-latest
