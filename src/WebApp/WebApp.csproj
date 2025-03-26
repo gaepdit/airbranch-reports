@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
-        <InformationalVersion>2025.2.3</InformationalVersion>
+        <InformationalVersion>2025.3.26</InformationalVersion>
         <RootNamespace>WebApp</RootNamespace>
         <UserSecretsId>aspnet-WebApp2-75A2DBEE-8438-4D63-B10D-D6E0DE52AF07</UserSecretsId>
     </PropertyGroup>
