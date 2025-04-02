@@ -4,17 +4,26 @@ namespace WebApp.Platform.SecurityHeaders;
 
 internal static class SecurityHeaders
 {
+    private static readonly string ReportUri =
+        $"https://report-to-api.raygun.com/reports?apikey={ApplicationSettings.RaygunSettings.ApiKey}";
+
     internal static void AddSecurityHeaderPolicies(this HeaderPolicyCollection policies)
     {
-        policies.AddFrameOptionsDeny();
-        policies.AddXssProtectionBlock();
-        policies.AddContentTypeOptionsNoSniff();
-        policies.AddReferrerPolicyStrictOriginWhenCrossOrigin();
-        policies.RemoveServerHeader();
-        policies.AddContentSecurityPolicy(builder => builder.CspBuilder());
-        if (!string.IsNullOrEmpty(ApplicationSettings.RaygunSettings.ApiKey))
-            policies.AddReportingEndpoints(builder => builder.AddEndpoint("csp-endpoint",
-                $"https://report-to-api.raygun.com/reports?apikey={ApplicationSettings.RaygunSettings.ApiKey}"));
+        // Not used because it adds its own HSTS header, and I prefer the one built into ASP.NET.
+        // Also, I wanted to customize the CSP.
+        // policies.AddDefaultSecurityHeaders(); //
+        policies
+            .AddFrameOptionsDeny()
+            .AddContentTypeOptionsNoSniff()
+            .AddReferrerPolicyStrictOriginWhenCrossOrigin()
+            .RemoveServerHeader()
+            .AddContentSecurityPolicy(builder => builder.CspBuilder())
+            .AddCrossOriginOpenerPolicy(builder => builder.SameOrigin())
+            .AddCrossOriginEmbedderPolicy(builder => builder.Credentialless())
+            .AddCrossOriginResourcePolicy(builder => builder.SameSite());
+
+        if (string.IsNullOrEmpty(ApplicationSettings.RaygunSettings.ApiKey)) return;
+        policies.AddReportingEndpoints(builder => builder.AddEndpoint("csp-endpoint", ReportUri));
     }
 
 #pragma warning disable S1075 // "URIs should not be hardcoded"
@@ -22,6 +31,7 @@ internal static class SecurityHeaders
     {
         builder.AddDefaultSrc().None();
         builder.AddBaseUri().None();
+        builder.AddObjectSrc().None();
         builder.AddScriptSrc()
             .From("https://cdn.raygun.io/raygun4js/raygun.min.js")
             .WithHash256("kOJzCjwwBHVC6EAEX5M+ovfu9sE7JG0G9LcYssttn6I=") // Raygun CDN loader
@@ -43,6 +53,9 @@ internal static class SecurityHeaders
             .From("https://login.microsoftonline.com");
         builder.AddManifestSrc().Self();
         builder.AddFrameAncestors().None();
+
+        if (string.IsNullOrEmpty(ApplicationSettings.RaygunSettings.ApiKey)) return;
+        builder.AddReportUri().To(ReportUri);
         builder.AddReportTo("csp-endpoint");
     }
 #pragma warning restore S1075
