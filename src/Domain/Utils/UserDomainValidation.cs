@@ -2,6 +2,8 @@
 
 public static class UserDomainValidation
 {
+    public const string DnrGaGov = "@dnr.ga.gov";
+
     public static bool IsValidEmailDomain(this string email) =>
-        email.EndsWith("@dnr.ga.gov", StringComparison.CurrentCultureIgnoreCase);
+        email.EndsWith(DnrGaGov, StringComparison.CurrentCultureIgnoreCase);
 }
