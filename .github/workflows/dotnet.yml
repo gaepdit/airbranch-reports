@@ -1,4 +1,4 @@
-﻿name: .NET Unit Tests
+name: .NET Unit Tests
 
 on:
   pull_request:
@@ -14,6 +14,7 @@ jobs:
     
     name: Run unit tests
     runs-on: windows-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,4 +31,29 @@ jobs:
         run: dotnet build --no-restore
 
       - name: Test
-        run: dotnet test --no-build --verbosity normal --filter FullyQualifiedName!~IntegrationTests
+        run: dotnet test --no-build --verbosity normal --filter FullyQualifiedName!~IntegrationTests --logger:nunit
+
+      - name: Upload test result artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: tests/**/TestResults.xml
+
+  publish-test-results:
+    name: Publish test results
+    needs: dotnet-test
+    runs-on: ubuntu-latest
+
+    permissions:
+      checks: write
+      pull-requests: write
+
+    steps:
+      - name: Download test result artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: test-results # destination folder
+
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: test-results/**/TestResults.xml
