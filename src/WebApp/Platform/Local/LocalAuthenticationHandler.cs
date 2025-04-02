@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using Domain.Utils;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Text;
@@ -20,7 +21,7 @@ internal class LocalAuthenticationHandler(
         if (!ApplicationSettings.DevOptions.LocalAuthSucceeds)
             return Task.FromResult(AuthenticateResult.Fail("Invalid"));
 
-        var claims = new[] { new Claim(ClaimTypes.Name, "Local User") };
+        var claims = new[] { new Claim(ClaimTypes.Name, $"Local.User{UserDomainValidation.DnrGaGov}") };
         var ticket = new AuthenticationTicket(
             new ClaimsPrincipal(new ClaimsIdentity(claims, Scheme.Name)), Scheme.Name);
         return Task.FromResult(AuthenticateResult.Success(ticket));
@@ -31,6 +32,6 @@ internal class LocalAuthenticationHandler(
         await base.HandleChallengeAsync(properties);
 
         await Response.BodyWriter.WriteAsync(Encoding.UTF8.GetBytes("Status Code: 403; Forbidden \r\n" +
-            "To access protected pages, set 'LocalAuthSucceeds' to 'true' in the 'appsettings.Development.json' file."));
+                                                                    "To access protected pages, set 'LocalAuthSucceeds' to 'true' in the 'appsettings.Development.json' file."));
     }
 }
