@@ -7,7 +7,6 @@ using LocalRepository.Facilities;
 using LocalRepository.StackTest;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Mindscape.Raygun4Net;
@@ -27,6 +26,9 @@ AppDomain.CurrentDomain.SetData("REGEX_DEFAULT_MATCH_TIMEOUT", TimeSpan.FromMill
 // Set Application Settings
 ApplicationSettings.BindSettings(builder);
 
+// Persist data protection keys
+builder.Services.AddDataProtection();
+
 // Configure authentication
 if (ApplicationSettings.DevOptions.UseLocalAuth)
 {
@@ -44,10 +46,6 @@ else
         .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
 }
 
-// Persist data protection keys
-var keysFolder = Path.Combine(builder.Configuration["PersistedFilesBasePath"] ?? "./", "DataProtectionKeys");
-builder.Services.AddDataProtection()
-    .PersistKeysToFileSystem(Directory.CreateDirectory(keysFolder));
 builder.Services.AddAuthorization();
 
 // Configure the UI
@@ -132,8 +130,9 @@ else
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
-    app.UseRaygun();
 }
+
+app.UseRaygun();
 
 // Configure security HTTP headers
 app.UseSecurityHeaders(policies => policies.AddSecurityHeaderPolicies());
