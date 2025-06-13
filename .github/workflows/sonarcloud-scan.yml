@@ -3,6 +3,7 @@
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -68,7 +69,8 @@ jobs:
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"gaepdit_airbranch-reports" /o:"gaepdit" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=coverage.xml /d:sonar.exclusions=src/LocalRepository/Data/**
           dotnet build
           coverlet .\.artifacts\DomainTests\bin\Debug\net9.0\DomainTests.dll --target "dotnet" --targetargs "test tests/DomainTests --no-build"
-          coverlet .\.artifacts\IntegrationTests\bin\Debug\net9.0\IntegrationTests.dll --target "dotnet" --targetargs "test tests/IntegrationTests --no-build" --merge-with "coverage.json"
+          # Skip the integration tests as they require a connection to the database.
+          # coverlet .\.artifacts\IntegrationTests\bin\Debug\net9.0\IntegrationTests.dll --target "dotnet" --targetargs "test tests/IntegrationTests --no-build" --merge-with "coverage.json"
           coverlet .\.artifacts\LocalRepositoryTests\bin\Debug\net9.0\LocalRepositoryTests.dll --target "dotnet" --targetargs "test tests/LocalRepositoryTests --no-build" --merge-with "coverage.json"
           coverlet .\.artifacts\WebAppTests\bin\Debug\net9.0\WebAppTests.dll --target "dotnet" --targetargs "test tests/WebAppTests --no-build" --merge-with "coverage.json" -f=opencover -o="coverage.xml"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
