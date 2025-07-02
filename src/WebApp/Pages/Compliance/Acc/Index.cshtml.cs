@@ -3,7 +3,7 @@ using Domain.Compliance.Repositories;
 using Domain.Facilities.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebApp.Platform.Models;
+using WebApp.Platform;
 
 namespace WebApp.Pages.Compliance.Acc;
 
@@ -35,8 +35,8 @@ public class IndexModel : PageModel
             Date = Report.DateComplete,
             From = Report.StaffResponsible.DisplayName,
             Subject = $"Title V Annual Certification for {Report.AccReportingYear}" + Environment.NewLine +
-                $"{Report.Facility.Name}, {Report.Facility.FacilityAddress.City}" + Environment.NewLine +
-                $"AIRS # {Report.Facility.Id}",
+                      $"{Report.Facility.Name}, {Report.Facility.FacilityAddress.City}" + Environment.NewLine +
+                      $"AIRS # {Report.Facility.Id}",
         };
 
         return Page();

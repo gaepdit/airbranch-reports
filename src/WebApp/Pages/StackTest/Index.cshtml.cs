@@ -5,8 +5,7 @@ using Domain.StackTest.Repositories;
 using Domain.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebApp.Platform.Models;
-using WebApp.Platform.Settings;
+using WebApp.Platform;
 
 namespace WebApp.Pages.StackTest;
 
@@ -51,7 +50,7 @@ public class IndexModel : PageModel
             Subject = Report.ReportTypeSubject.ToUpperInvariant(),
         };
         ShowConfidentialWarning = includeConfidentialInfo && Report.ConfidentialParameters.Any();
-        OrganizationInfo = ApplicationSettings.OrganizationInfo with { NameOfDirector = report.EpdDirector };
+        OrganizationInfo = AppSettings.OrganizationInfo with { NameOfDirector = report.EpdDirector };
         return Page();
     }
 }

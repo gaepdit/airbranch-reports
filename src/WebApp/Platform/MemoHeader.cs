@@ -1,4 +1,4 @@
-﻿namespace WebApp.Platform.Models;
+﻿namespace WebApp.Platform;
 
 public record struct MemoHeader
 {

@@ -1,5 +1,5 @@
 ﻿@page "~/facility/{facilityId}/acc-report/{id:int}"
-@using WebApp.Platform.Settings
+@using WebApp.Platform
 @model IndexModel
 @{
     Layout = "_ReportLayout";
@@ -9,7 +9,7 @@
 }
 
 <div class="page-wrapper">
-    <partial name="_EpdBannerPartial" model="ApplicationSettings.OrganizationInfo" />
+    <partial name="_EpdBannerPartial" model="AppSettings.OrganizationInfo" />
     <partial name="_MemoHeaderPartial" model="Model.MemoHeader" />
 
     <section>

@@ -1,4 +1,4 @@
-﻿namespace WebApp.Platform.Formatting;
+﻿namespace WebApp.Platform;
 
 public static class DisplayFormats
 {

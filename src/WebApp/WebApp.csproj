@@ -9,6 +9,7 @@
         <PackageReference Include="JetBrains.Annotations"/>
         <PackageReference Include="Microsoft.Identity.Web.UI"/>
         <PackageReference Include="Mindscape.Raygun4Net.AspNetCore"/>
+        <PackageReference Include="Mindscape.Raygun4Net.Extensions.Logging" />
         <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders"/>
         <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers"/>
     </ItemGroup>

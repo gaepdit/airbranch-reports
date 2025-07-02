@@ -1,11 +1,9 @@
-﻿using WebApp.Platform.Settings;
-
-namespace WebApp.Platform.SecurityHeaders;
+﻿namespace WebApp.Platform;
 
 internal static class SecurityHeaders
 {
     private static readonly string ReportUri =
-        $"https://report-to-api.raygun.com/reports?apikey={ApplicationSettings.RaygunSettings.ApiKey}";
+        $"https://report-to-api.raygun.com/reports?apikey={AppSettings.RaygunSettings.ApiKey}";
 
     internal static void AddSecurityHeaderPolicies(this HeaderPolicyCollection policies)
     {
@@ -22,7 +20,7 @@ internal static class SecurityHeaders
             .AddCrossOriginEmbedderPolicy(builder => builder.Credentialless())
             .AddCrossOriginResourcePolicy(builder => builder.SameSite());
 
-        if (string.IsNullOrEmpty(ApplicationSettings.RaygunSettings.ApiKey)) return;
+        if (string.IsNullOrEmpty(AppSettings.RaygunSettings.ApiKey)) return;
         policies.AddReportingEndpoints(builder => builder.AddEndpoint("csp-endpoint", ReportUri));
     }
 
@@ -54,7 +52,7 @@ internal static class SecurityHeaders
         builder.AddManifestSrc().Self();
         builder.AddFrameAncestors().None();
 
-        if (string.IsNullOrEmpty(ApplicationSettings.RaygunSettings.ApiKey)) return;
+        if (string.IsNullOrEmpty(AppSettings.RaygunSettings.ApiKey)) return;
         builder.AddReportUri().To(ReportUri);
         builder.AddReportTo("csp-endpoint");
     }

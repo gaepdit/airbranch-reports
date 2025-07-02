@@ -1,5 +1,5 @@
 ﻿@using System.Security.Claims
-@using WebApp.Platform.Settings;
+@using WebApp.Platform
 @{
     string greeting;
     if (User.HasClaim(claim => claim.Type == "name"))
@@ -27,7 +27,7 @@
                         <li class="nav-item">
                             <span class="navbar-text text-dark d-block">Hello, @greeting</span>
                         </li>
-                        @if (!ApplicationSettings.DevOptions.UseLocalAuth)
+                        @if (!AppSettings.DevOptions.UseLocalAuth)
                         {
                             <li class="nav-item">
                                 @* ReSharper disable once Mvc.AreaNotResolved *@
@@ -37,7 +37,7 @@
                     }
                     else
                     {
-                        @if (ApplicationSettings.DevOptions.UseLocalAuth)
+                        @if (AppSettings.DevOptions.UseLocalAuth)
                         {
                             <li class="nav-item">
                                 <span class="navbar-text text-dark d-block">Not signed in</span>

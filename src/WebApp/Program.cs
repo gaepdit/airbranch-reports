@@ -10,12 +10,8 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-using Mindscape.Raygun4Net;
-using Mindscape.Raygun4Net.AspNetCore;
 using System.Text.Json.Serialization;
-using WebApp.Platform.Local;
-using WebApp.Platform.SecurityHeaders;
-using WebApp.Platform.Settings;
+using WebApp.Platform;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,10 +21,11 @@ var builder = WebApplication.CreateBuilder(args);
 AppDomain.CurrentDomain.SetData("REGEX_DEFAULT_MATCH_TIMEOUT", TimeSpan.FromMilliseconds(100));
 
 // Set Application Settings
-ApplicationSettings.BindSettings(builder);
+builder.BindAppSettings();
+builder.AddErrorLogging();
 
 // Configure authentication
-if (ApplicationSettings.DevOptions.UseLocalAuth)
+if (AppSettings.DevOptions.UseLocalAuth)
 {
     // Optionally handles authentication internally.
     builder.Services
@@ -75,29 +72,8 @@ else
     });
 }
 
-// Configure application monitoring.
-if (!string.IsNullOrEmpty(ApplicationSettings.RaygunSettings.ApiKey))
-{
-    builder.Services.AddSingleton(provider =>
-    {
-        var client = new RaygunClient(provider.GetService<RaygunSettings>()!,
-            provider.GetService<IRaygunUserProvider>()!);
-        client.SendingMessage += (_, eventArgs) =>
-            eventArgs.Message.Details.Tags.Add(builder.Environment.EnvironmentName);
-        return client;
-    });
-    builder.Services.AddRaygun(opts =>
-    {
-        opts.ApiKey = ApplicationSettings.RaygunSettings.ApiKey;
-        opts.ApplicationVersion = ApplicationSettings.RaygunSettings.InformationalVersion;
-        opts.IgnoreFormFieldNames = ["*Password"];
-        opts.EnvironmentVariables.Add("ASPNETCORE_*");
-    });
-    builder.Services.AddRaygunUserProvider();
-}
-
 // Configure the data repositories
-if (ApplicationSettings.DevOptions.UseLocalData)
+if (AppSettings.DevOptions.UseLocalData)
 {
     // Uses sample data when running locally.
     builder.Services.AddScoped<IFacilitiesRepository, FacilitiesRepository>();
@@ -121,28 +97,18 @@ else
 
 // Build the application
 var app = builder.Build();
-var env = app.Environment;
 
-// Configure the HTTP request pipeline.
-if (env.IsDevelopment())
+if (!app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
-}
-else
-{
-    app.UseExceptionHandler("/Error");
     app.UseHsts();
-    app.UseRaygun();
+    app.UseSecurityHeaders(policyCollection => policyCollection.AddSecurityHeaderPolicies());
 }
 
-// Configure security HTTP headers
-app.UseSecurityHeaders(policies => policies.AddSecurityHeaderPolicies());
-
+app.UseErrorHandling();
 app.UseStatusCodePages();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
 

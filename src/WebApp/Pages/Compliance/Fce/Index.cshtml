@@ -1,5 +1,5 @@
 @page "~/facility/{facilityId}/fce/{id:int}"
-@using WebApp.Platform.Settings
+@using WebApp.Platform
 @model IndexModel
 @{
     Layout = "_ReportLayout";
@@ -13,7 +13,7 @@
 }
 
 <div class="page-wrapper" aria-label="Document">
-    <partial name="_EpdBannerPartial" model="ApplicationSettings.OrganizationInfo" />
+    <partial name="_EpdBannerPartial" model="AppSettings.OrganizationInfo" />
 
     <header>
         <h1>Full Compliance Evaluation Report</h1>
