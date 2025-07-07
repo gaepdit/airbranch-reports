@@ -130,9 +130,8 @@ else
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
+    app.UseRaygun();
 }
-
-app.UseRaygun();
 
 // Configure security HTTP headers
 app.UseSecurityHeaders(policies => policies.AddSecurityHeaderPolicies());
