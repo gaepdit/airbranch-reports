@@ -7,7 +7,6 @@ using LocalRepository.Facilities;
 using LocalRepository.StackTest;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using System.Text.Json.Serialization;
@@ -23,6 +22,9 @@ AppDomain.CurrentDomain.SetData("REGEX_DEFAULT_MATCH_TIMEOUT", TimeSpan.FromMill
 // Set Application Settings
 builder.BindAppSettings();
 builder.AddErrorLogging();
+
+// Persist data protection keys
+builder.Services.AddDataProtection();
 
 // Configure authentication
 if (AppSettings.DevOptions.UseLocalAuth)
@@ -41,10 +43,6 @@ else
         .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
 }
 
-// Persist data protection keys
-var keysFolder = Path.Combine(builder.Configuration["PersistedFilesBasePath"] ?? "./", "DataProtectionKeys");
-builder.Services.AddDataProtection()
-    .PersistKeysToFileSystem(Directory.CreateDirectory(keysFolder));
 builder.Services.AddAuthorization();
 
 // Configure the UI
