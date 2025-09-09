@@ -1,4 +1,8 @@
 ﻿/* Print toolbar */
+.print-toolbar + main {
+    margin-top: 1.5rem;
+}
+
 .print-toolbar {
     background: #eeed;
     text-align: right;
@@ -11,8 +15,10 @@
 }
 
 .print-toolbar button {
-    padding: 4px 16px;
+    vertical-align: middle;
+    padding: 5px 16px;
     margin-left: .5rem;
+    line-height: 1;
 }
 
 /* styling of the tooltip display */
@@ -23,7 +29,6 @@
     /* Visually hide */
     opacity: 0;
     top: -100rem;
-    /*display: none;*/
 
     /* Shape */
     height: auto;
@@ -54,10 +59,14 @@
 }
 
 #tooltip-text kbd {
-    padding: 1px 3px;
+    padding: 2px 3px;
     border-radius: 3px;
     border: 1px solid hsla(0 0% 100% / .25);
     background: hsla(0 0% 100% / .1);
+}
+
+#tooltip-text kbd svg {
+    margin-top: -1px;
 }
 
 /* optional styling to add a "wedge" to the tooltip */
@@ -66,16 +75,27 @@
     content: "";
     position: absolute;
     bottom: 100%;
-    right: 2rem;
+    right: .85rem;
     margin-left: -8px;
     border: 8px solid transparent;
     border-bottom: 8px solid #004D1D;
 }
 
-#print-button:hover + #tooltip-text, #print-button:focus + #tooltip-text {
+#print-help-button:hover + #tooltip-text, #print-help-button:focus + #tooltip-text {
     /* Un-hide */
     opacity: 100%;
     top: auto;
+}
+
+#print-help-button {
+    border: none;
+    padding: 5px;
+    background: none;
+    border-radius: 5px;
+}
+
+#print-help-button:hover, #print-help-button:focus {
+    background: rgb(208, 208, 215);
 }
 
 /* Print styles */
@@ -83,4 +103,20 @@
     .print-toolbar {
         display: none !important;
     }
+}
+
+/* Bootstrap Icons
+-------------------------------------------------- */
+.bi {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    overflow: visible !important;
+    vertical-align: middle;
+}
+
+.icon-link {
+    display: inline-flex;
+    gap: 0.375rem;
+    align-items: center;
 }
