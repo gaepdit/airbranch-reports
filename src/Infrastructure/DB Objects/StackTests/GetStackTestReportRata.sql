@@ -37,9 +37,10 @@ BEGIN
            d.STRACCURACYREQUIREDPERCENT   as RelativeAccuracyRequiredPercent,
            d.STRACCURACYREQUIREDSTATEMENT as RelativeAccuracyRequiredLabel,
            case
-               when r.STRCOMPLIANCESTATUS in ('02', '03') then 'Pass'
-               when r.STRCOMPLIANCESTATUS in ('05') then 'Fail'
-               else 'N/A'
+               when r.STRCOMPLIANCESTATUS in ('02', '03')
+                   then 'Pass' -- N'For Information Purposes Only', N'In Compliance'
+               when r.STRCOMPLIANCESTATUS in ('05') then 'Fail' -- N'Not In Compliance'
+               else 'N/A' -- N'File Open', N'Indeterminate'
            end                            as ComplianceStatus
     from ISMPREPORTINFORMATION r
         inner join ISMPREPORTRATA d
