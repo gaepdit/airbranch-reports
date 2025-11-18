@@ -3,7 +3,7 @@
 This application creates various printable reports used or provided by the Georgia EPD Air Protection Branch.
 
 [![Georgia EPD-IT](https://raw.githubusercontent.com/gaepdit/gaepd-brand/main/blinkies/blinkies.cafe-gaepdit.gif)](https://github.com/gaepdit)
-[![.NET Test](https://github.com/gaepdit/airbranch-reports/actions/workflows/dotnet.yml/badge.svg)](https://github.com/gaepdit/airbranch-reports/actions/workflows/dotnet.yml) 
+[![.NET Test](https://github.com/gaepdit/airbranch-reports/actions/workflows/dotnet-test.yml/badge.svg)](https://github.com/gaepdit/airbranch-reports/actions/workflows/dotnet-test.yml) 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_airbranch-reports&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=gaepdit_airbranch-reports)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=gaepdit_airbranch-reports&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=gaepdit_airbranch-reports)
 
