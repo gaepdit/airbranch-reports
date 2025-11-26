@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using Infrastructure.Facilities;
 using NUnit.Framework;
 using System.Threading.Tasks;

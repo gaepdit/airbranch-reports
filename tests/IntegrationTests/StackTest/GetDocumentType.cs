@@ -1,5 +1,5 @@
+using AwesomeAssertions;
 using Domain.StackTest.Models;
-using FluentAssertions;
 using Infrastructure.StackTest;
 using NUnit.Framework;
 using System;
