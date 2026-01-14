@@ -1,5 +1,5 @@
+using AwesomeAssertions;
 using Domain.Facilities.Models;
-using FluentAssertions;
 using LocalRepository.Compliance;
 using LocalRepository.Data;
 using NUnit.Framework;

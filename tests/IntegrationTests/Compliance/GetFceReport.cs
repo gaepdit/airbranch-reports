@@ -1,6 +1,6 @@
+using AwesomeAssertions;
 using Domain.Compliance.Models;
 using Domain.Facilities.Models;
-using FluentAssertions;
 using Infrastructure.Compliance;
 using Infrastructure.Facilities;
 using NUnit.Framework;
