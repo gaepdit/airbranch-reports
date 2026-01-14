@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
-        <InformationalVersion>2025.9.9</InformationalVersion>
+        <InformationalVersion>2026.1.14</InformationalVersion>
         <RootNamespace>WebApp</RootNamespace>
         <AssemblyName>AirReports.WebApp</AssemblyName>
         <UserSecretsId>aspnet-WebApp2-75A2DBEE-8438-4D63-B10D-D6E0DE52AF07</UserSecretsId>
