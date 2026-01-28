@@ -1,35 +1,26 @@
 ﻿using System.ComponentModel;
+using System.Reflection;
 
 namespace Domain.Utils;
 
+/// <summary>
+/// Enumeration type extension methods.
+/// </summary>
 public static class EnumExtensions
 {
-    private static readonly Dictionary<string, string> EnumDescriptions = new();
-
-    public static string GetDescription(this Enum e)
+    /// <summary>
+    /// Gets the enum description.
+    /// </summary>
+    /// <param name="enumValue">The enum value.</param>
+    /// <returns>
+    /// Uses <see cref="DescriptionAttribute"/> if exists. Otherwise, uses the standard string representation.
+    /// </returns>
+    public static string GetDescription<TEnum>(this TEnum enumValue) where TEnum : Enum
     {
-        var enumType = e.GetType();
-        var description = e.ToString();
-        var fullName = string.Join('.', enumType.FullName, description);
-
-        if (EnumDescriptions.TryGetValue(fullName, out var cachedDescription))
-            return cachedDescription;
-
-        var memberInfo = enumType.GetMember(description);
-        if (memberInfo.Length > 0)
-        {
-            var attrs = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
-            if (attrs.Length > 0)
-                description = ((DescriptionAttribute)attrs[0]).Description;
-        }
-
-        // Use TryAdd() instead of Add() to avoid an ArgumentException when
-        // the key exists. (It shouldn't exist because of the TryGetValue()
-        // call above, but the exception is occurring nonetheless.)
-        // This shouldn't affect the functionality of this method or the 
-        // cache dictionary.
-        // See https://github.com/gaepdit/airbranch-reports/issues/53
-        EnumDescriptions.TryAdd(fullName, description);
-        return description;
+        var enumString = enumValue.ToString();
+        var type = enumValue.GetType();
+        var memInfo = type.GetMember(enumString)[0];
+        var attributes = memInfo.GetCustomAttributes<DescriptionAttribute>(false);
+        return attributes.FirstOrDefault()?.Description ?? enumString;
     }
 }
