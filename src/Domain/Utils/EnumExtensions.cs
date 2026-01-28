@@ -19,7 +19,9 @@ public static class EnumExtensions
     {
         var enumString = enumValue.ToString();
         var type = enumValue.GetType();
-        var memInfo = type.GetMember(enumString)[0];
+        var memberInfo = type.GetMember(enumString);
+        if (memberInfo.Length == 0) return enumString;
+        var memInfo = memberInfo[0];
         var attributes = memInfo.GetCustomAttributes<DescriptionAttribute>(false);
         return attributes.FirstOrDefault()?.Description ?? enumString;
     }
